@@ -1,34 +1,483 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+    
 
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
-        </style>
-
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
+    
+    <div class="hero-wrap" style="background-image: url({{asset('assets/images/bg_1.jpg')}});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center d-flex justify-content-between">
+            <div class="col-md-5 ftco-animate d-flex align-items-end">
+                <div class="text w-80">
+                    <h1 class="mb-4">Entrepreneurs: vous avez accès à plus de chose</h1>
+                    <p class="mb-4">Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Marrakech-Safi.</p>
                 </div>
-            @endif
+            </div>
+            <div class="col-md-6 ftco-animate d-flex align-items-end">
+                <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}"></search-form-component>
+            </div>
+        </div>
+      </div>
+    </div>
 
-            
-    </body>
-</html>
+
+    {{-- offres section  --}}
+    {{-- <div class="ftco-intro">
+    	<div class="container">
+    		<div class="row no-gutters">
+    			<div class="col-md-4 d-flex">
+    				<div class="intro aside-stretch d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-checklist"></span>
+    					</div>
+    					<div class="text">
+    						<h2>100% Confidential</h2>
+    						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex">
+    				<div class="intro color-1 d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-employee"></span>
+    					</div>
+    					<div class="text">
+    						<h2>Qualified Team</h2>
+    						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex">
+    				<div class="intro color-2 d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-umbrella"></span>
+    					</div>
+    					<div class="text">
+    						<h2>Individual Approach</h2>
+    						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div> --}}
+
+
+
+    {{-- Comment ça marche section  --}}
+	<section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Service</span>
+            <h2>Comment ça marche?</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>01</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-calendar"></span>
+	    					</div>
+    					</div>
+    					<h2>choisissez votre profil</h2>
+    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>02</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-qa"></span>
+	    					</div>
+    					</div>
+    					<h2>choisissez votre cycle de vie</h2>
+  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>03</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-checklist"></span>
+	    					</div>
+    					</div>
+    					<h2>choisissez votre besoin</h2>
+  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>04</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-checklist"></span>
+	    					</div>
+    					</div>
+    					<h2>choisissez l'offre</h2>
+  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+
+    {{-- welcome section  --}}
+    {{-- <section class="ftco-section ftco-no-pb ftco-no-pt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url({{asset('assets/images/about-1.jpg')}});">
+                </div>
+                <div class="col-md-6 wrap-about px-md-5 ftco-animate py-5 bg-light">
+            <div class="heading-section">
+            <span class="subheading">Welcome to Counselor</span>
+            <h2 class="mb-4">Best Counseling Funding Network Worldwide.</h2>
+
+            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
+
+            <a href="https://vimeo.com/45830194" class="play-video popup-vimeo d-flex align-items-center mt-4">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-play"></span></div>
+                <span class="watch">Watch Our Consultant Video</span>
+            </a>
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+
+    {{-- sponsors section  --}}
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row justify-content-center mb-5">
+                <div class="col-md-8 text-center heading-section ftco-animate">
+                    <span class="subheading">Nos sponsors</span>
+                    <h2 class="mb-3">We Can Help You With This Situation</h2>
+                </div>
+                </div>
+				<div class="row tabulation mt-4 ftco-animate">
+  				<div class="col-md-4">
+						<ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
+						  <li class="nav-item text-left">
+						    <a class="nav-link active py-4" data-toggle="tab" href="#services-1">Middle East Partnership Initiative</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-2">Confédération générale des entreprises du Maroc</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-3">Centre Régional d'Investissement Marakech Safi</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-4">Emerging Business Factory</a>
+						  </li>
+						</ul>
+					</div>
+					<div class="col-md-8">
+						<div class="tab-content">
+						  <div class="tab-pane container p-0 active" id="services-1">
+						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor1.png')}});"></div>
+						  	<h3><a href="#">Middle East Partnership Initiative</a></h3>
+						  	<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.</p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-2">
+						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor2.png')}});"></div>
+						  	<h3><a href="#">Confédération générale des entreprises du Maroc</a></h3>
+						  	<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. </p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-3">
+						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor3.png')}});"></div>
+						  	<h3><a href="#">Centre Régional d'Investissement Marakech Safi</a></h3>
+						  	<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. </p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-4">
+						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor4.png')}});"></div>
+						  	<h3><a href="#">Emerging Business Factory</a></h3>
+						  	<p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. </p>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+  
+    {{-- <section class="ftco-section testimony-section">
+    	<div class="img img-bg border" style="background-image: url({{asset('assets/images/bg_4.jpg')}});"></div>
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          	<span class="subheading">Testimonial</span>
+            <h2 class="mb-3">Happy Clients</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url({{asset('assets/images/person_1.jpg')}})"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url({{asset('assets/images/person_2.jpg')}})"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url({{asset('assets/images/person_3.jpg')}})"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url({{asset('assets/images/person_1.jpg')}})"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url({{asset('assets/images/person_2.jpg')}})"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> --}}
+
+
+	{{-- <section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Price &amp; Plans</span>
+            <h2>Affordable Packages</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-4 ftco-animate d-flex">
+	          <div class="block-7 w-100">
+	            <div class="text-center">
+		            <span class="price"><sup>$</sup> <span class="number">49</span> <sub>/mo</sub></span>
+		            <span class="excerpt d-block">For Adults</span>
+		            <ul class="pricing-text mb-5">
+		              <li><span class="fa fa-check mr-2"></span>Individual Counseling</li>
+		              <li><span class="fa fa-check mr-2"></span>Couples Therapy</li>
+		              <li><span class="fa fa-check mr-2"></span>Family Therapy</li>
+		            </ul>
+
+		            <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-4 ftco-animate d-flex">
+	          <div class="block-7 w-100">
+	            <div class="text-center">
+		            <span class="price"><sup>$</sup> <span class="number">79</span> <sub>/mo</sub></span>
+		            <span class="excerpt d-block">For Children</span>
+		            <ul class="pricing-text mb-5">
+		              <li><span class="fa fa-check mr-2"></span>Counseling for Children</li>
+		              <li><span class="fa fa-check mr-2"></span>Behavioral Management</li>
+		              <li><span class="fa fa-check mr-2"></span>Educational Counseling</li>
+		            </ul>
+
+		            <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-4 ftco-animate d-flex">
+	          <div class="block-7 w-100">
+	            <div class="text-center">
+		            <span class="price"><sup>$</sup> <span class="number">109</span> <sub>/mo</sub></span>
+		            <span class="excerpt d-block">For Business</span>
+		            <ul class="pricing-text mb-5">
+		              <li><span class="fa fa-check mr-2"></span>Consultancy Services</li>
+		              <li><span class="fa fa-check mr-2"></span>Employee Counseling</li>
+		              <li><span class="fa fa-check mr-2"></span>Psychological Assessment</li>
+		            </ul>
+
+		            <a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+    	</div>
+    </section> --}}
+		
+	{{-- <section class="ftco-appointment ftco-section img" style="background-image: ;">
+			<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-6 half ftco-animate">
+    				<h2 class="mb-4">Send a Message &amp; Get in touch!</h2>
+    				<form action="#" class="appointment">
+    					<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+			              <input type="text" class="form-control" placeholder="Your Name">
+			            </div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+			              <input type="text" class="form-control" placeholder="Email">
+			            </div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			    					<div class="form-field">
+	          					<div class="select-wrap">
+	                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
+	                      <select name="" id="" class="form-control">
+	                      	<option value="">Services</option>
+	                        <option value="">Relation Problem</option>
+	                        <option value="">Couple Counseling</option>
+	                        <option value="">Depression Treatment</option>
+	                        <option value="">Family Problem</option>
+	                        <option value="">Personal Problem</option>
+	                        <option value="">Business Problem</option>
+	                      </select>
+	                    </div>
+			              </div>
+			    				</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+			            </div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			              <input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
+			            </div>
+								</div>
+    					</div>
+	          </form>
+    			</div>
+    		</div>
+    	</div>
+    </section> --}}
+
+    {{-- <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Blog</span>
+            <h2>Recent Blog</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text text-center">
+              	<a href="blog-single.html" class="block-20 img" style="background-image: url({{asset('assets/images/image_1.jpg')}});">
+	              </a>
+	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
+                	<div>
+                		<span class="day">18</span>
+                		<span class="mos">April</span>
+                		<span class="yr">2020</span>
+                	</div>
+                </div>
+                <h3 class="heading mb-3"><a href="#">Social Media Risks To Mental Health</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text text-center">
+              	<a href="blog-single.html" class="block-20 img" style="background-image: url({{asset('assets/images/image_2.jpg')}});">
+	              </a>
+	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
+                	<div>
+                		<span class="day">18</span>
+                		<span class="mos">April</span>
+                		<span class="yr">2020</span>
+                	</div>
+                </div>
+                <h3 class="heading mb-3"><a href="#">Social Media Risks To Mental Health</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <div class="text text-center">
+              	<a href="blog-single.html" class="block-20 img" style="background-image: url({{asset('assets/images/image_3.jpg')}});">
+	              </a>
+	              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
+                	<div>
+                		<span class="day">18</span>
+                		<span class="mos">April</span>
+                		<span class="yr">2020</span>
+                	</div>
+                </div>
+                <h3 class="heading mb-3"><a href="#">Social Media Risks To Mental Health</a mb-3></h3>
+								<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>              
+							</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> --}}
+
+    @endsection
+   
