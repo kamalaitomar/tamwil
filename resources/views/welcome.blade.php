@@ -4,22 +4,9 @@
     
 
     
-    <div class="hero-wrap" style="background-image: url({{asset('assets/images/bg_1.jpg')}});" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center d-flex justify-content-between">
-            <div class="col-md-5 ftco-animate d-flex align-items-end">
-                <div class="text w-80">
-                    <h1 class="mb-4">Entrepreneurs: vous avez accès à plus de chose</h1>
-                    <p class="mb-4">Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Marrakech-Safi.</p>
-                </div>
-            </div>
-            <div class="col-md-6 ftco-animate d-flex align-items-end">
-                <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}"></search-form-component>
-            </div>
-        </div>
-      </div>
-    </div>
+    
+    <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></search-form-component>
+           
 
 
     {{-- offres section  --}}
