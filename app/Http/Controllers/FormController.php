@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Besoin;
 use App\Models\Cycle;
+use App\Models\Offre;
 use App\Models\Profil;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class formController extends Controller
      */
     public function index()
     {
+
         $profils = Profil::all();
         $besoins = Besoin::all();
 

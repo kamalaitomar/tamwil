@@ -28,6 +28,7 @@ class OffreController extends Controller
 
         })->get();
         
+        //dd($offres);
         return $offres;
     }
 

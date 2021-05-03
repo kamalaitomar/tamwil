@@ -1896,21 +1896,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'FasciculeSection',
   data: function data() {
     return {};
   },
-  props: ['offres'],
+  props: ['offres', 'fascicule'],
   mounted: function mounted() {},
   methods: {}
 });
@@ -1942,18 +1933,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Offre',
   data: function data() {
     return {};
   },
-  props: ['offre'],
+  props: ['offre', 'fascicule'],
   mounted: function mounted() {},
   methods: {}
 });
@@ -2043,42 +2028,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2092,7 +2041,14 @@ __webpack_require__.r(__webpack_exports__);
       },
       allerros: [],
       success: false,
-      submited: false
+      submited: false,
+      fascicules: [{
+        id: 1,
+        nom_fascicule: 'Subvention'
+      }, {
+        id: 2,
+        nom_fascicule: 'prete'
+      }]
     };
   },
   props: {
@@ -37956,49 +37912,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "ftco-section testimony-section" }, [
-    _c("div", { staticClass: "img img-bg border" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "overlay" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "row ftco-animate" }, [
-        _c("div", { staticClass: "col-md-12" }, [
+  return _vm.offres != 0
+    ? _c("section", { staticClass: "testimony-section mb-2" }, [
+        _c("div", { staticClass: "container bg-primary" }, [
+          _c("div", { staticClass: "row justify-content-center " }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-md-7 text-center heading-section heading-section-white "
+              },
+              [_c("h2", [_vm._v(_vm._s(_vm.fascicule.nom_fascicule))])]
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "carousel-testimony owl-carousel ftco-owl" },
+            { staticClass: "row justify-content-center" },
             _vm._l(_vm.offres, function(offre) {
               return _c("offre-component", {
                 key: offre.id,
-                attrs: { offre: offre }
+                attrs: { offre: offre, fascicule: _vm.fascicule }
               })
             }),
             1
           )
         ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center " }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "col-md-7 text-center heading-section heading-section-white ftco-animate"
-        },
-        [_c("h2", {}, [_vm._v("Offres")])]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38021,43 +37964,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.offre.fascicule === _vm.fascicule.nom_fascicule
+    ? _c(
+        "div",
+        { staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated" },
+        [
+          _c("div", { staticClass: "staff" }, [
+            _c("div", { staticClass: "text pt-3 px-3 pb-4 text-center" }, [
+              _c("h3", [_vm._v(_vm._s(_vm.offre.nom_offre))]),
+              _vm._v(" "),
+              _c("div", { staticClass: "faded" }, [
+                _c("p", [_vm._v(_vm._s(_vm.offre.description))]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item" }, [
-      _c("div", { staticClass: "testimony-wrap py-4" }, [
-        _c(
-          "div",
-          {
-            staticClass: "icon d-flex align-items-center justify-content-center"
-          },
-          [_c("span", { staticClass: "fa fa-quote-left" })]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "text" }, [
-          _c("p", { staticClass: "mb-4" }, [
-            _vm._v(
-              "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex align-items-center" }, [
-            _c("div", { staticClass: "user-img" }),
-            _vm._v(" "),
-            _c("div", { staticClass: "pl-3" }, [
-              _c("p", { staticClass: "name" }, [_vm._v("Roger Scott")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "position" }, [
-                _vm._v("Marketing Manager")
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("a", { attrs: { href: "#" } }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("En savoir plus")]
+      )
     ])
   }
 ]
@@ -38084,7 +38021,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "section",
     [
       _c(
         "div",
@@ -38365,9 +38302,14 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("fascicule-section-component", { attrs: { offres: _vm.offres } })
+      _vm._l(_vm.fascicules, function(fascicule) {
+        return _c("fascicule-section-component", {
+          key: fascicule.id,
+          attrs: { offres: _vm.offres, fascicule: fascicule }
+        })
+      })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = [

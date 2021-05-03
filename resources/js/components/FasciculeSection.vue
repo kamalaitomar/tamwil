@@ -1,25 +1,16 @@
 <template>
-    <section class="ftco-section testimony-section">
-            <div class="img img-bg border" style=""></div>
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row justify-content-center ">
-                    <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                        <h2 class="">Offres</h2>
-                    </div>
-                </div>
-                <div class="row ftco-animate">
-                    <div class="col-md-12">
-                        <div class="carousel-testimony owl-carousel ftco-owl">
-                            
-                            <offre-component v-for="offre in offres" :key="offre.id" :offre="offre"></offre-component>
-                            
-
-                        </div>
-                    </div>
+    <section v-if="offres!= 0"  class="testimony-section mb-2">
+        <div class="container bg-primary" >
+            <div class="row justify-content-center ">
+                <div class="col-md-7 text-center heading-section heading-section-white ">
+                    <h2>{{fascicule.nom_fascicule}}</h2>
                 </div>
             </div>
-        </section>
+            <div class="row justify-content-center">
+                <offre-component v-for="offre in offres" :key="offre.id" :offre="offre" :fascicule="fascicule"></offre-component>
+            </div>
+        </div> 
+    </section>
 </template>
 
 
@@ -32,7 +23,7 @@
             return{ }
         },
 
-        props: ['offres'],
+        props: ['offres', 'fascicule'],
 
         mounted() {},
         

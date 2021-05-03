@@ -1,17 +1,11 @@
 <template>
-
-
-    <div class="item">
-        <div class="testimony-wrap py-4">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-            <div class="text">
-            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            <div class="d-flex align-items-center">
-                <div class="user-img" style=""></div>
-                <div class="pl-3">
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                    </div>
+    <div class="col-lg-3 ftco-animate fadeInUp ftco-animated" v-if="offre.fascicule === fascicule.nom_fascicule">
+        <div class="staff">
+            <div class="text pt-3 px-3 pb-4 text-center">
+                <h3>{{ offre.nom_offre}}</h3>
+                <div class="faded">
+                    <p>{{ offre.description}}</p>
+                    <a href="#"><button type="button" class="btn btn-primary">En savoir plus</button></a>
                 </div>
             </div>
         </div>
@@ -27,7 +21,7 @@
             return{ }
         },
 
-        props: ['offre'],
+        props: ['offre', 'fascicule'],
 
         mounted() {},
         

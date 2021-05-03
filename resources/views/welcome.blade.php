@@ -4,12 +4,12 @@
     
 
     
-    
+    {{-- offres section  --}}
     <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></search-form-component>
            
 
 
-    {{-- offres section  --}}
+    
     {{-- <div class="ftco-intro">
     	<div class="container">
     		<div class="row no-gutters">

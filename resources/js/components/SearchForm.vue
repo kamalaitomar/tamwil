@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
         <div class="hero-wrap" :style="{ backgroundImage: 'url(assets/images/bg_1.jpg)' }" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
@@ -65,45 +65,9 @@
                 </div>
             </div>
         </div>
-        <fascicule-section-component :offres="offres"></fascicule-section-component>
-
-        <!-- <section class="ftco-section testimony-section">
-    	<div class="img img-bg border" style=""></div>
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center ">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-
-            <h2 class="">Happy Clients</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-               <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style=""></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-             
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+            <fascicule-section-component v-for="fascicule in fascicules" :key="fascicule.id" :offres="offres" :fascicule="fascicule"></fascicule-section-component>
         
-    </div>
+    </section>
 </template>
 
 <script>
@@ -124,6 +88,16 @@
                 allerros: [],
                 success : false,
                 submited : false,
+                fascicules :[
+                    {
+                        id : 1,
+                        nom_fascicule : 'Subvention'
+                    },
+                    {
+                        id : 2,
+                        nom_fascicule : 'prete'
+                    }
+                ]
                
             }
         },
