@@ -12,24 +12,30 @@ class OffreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($idProfil, $idCycle, $idBesoin)
+    public function index(Request $request)
     {
-        $offres = Offre::when($idProfil, function($query)use($idProfil){
+        $validated = $request->validate([
+            'profil' => 'required',
+            'cycle' => 'required',
+            'besoin' => 'required'
+        ]);
 
-            return  $query->whereHas('profils', function($q)use($idProfil){ $q->where('id', $idProfil);});
+        $offres = Offre::when('profil', function($query)use ( $request ){
 
-        })->when($idCycle, function($query)use($idCycle) {
+            return  $query->whereHas('profils', function($q)use ( $request ){ $q->where('id', $request->profil);});
 
-            return  $query->whereHas('cycles', function($q)use($idCycle){ $q->where('id', $idCycle);});
+        })->when('cycle', function($query)use ( $request ){
 
-        })->when($idBesoin, function($query)use( $idBesoin){
+            return  $query->whereHas('cycles', function($q)use ( $request ){ $q->where('id', $request->cycle);});
 
-            return  $query->whereHas('besoins', function($q)use( $idBesoin){ $q->where('id', $idBesoin);});
+        })->when('besoin', function($query)use ( $request ){
+
+            return  $query->whereHas('besoins', function($q)use ( $request ){ $q->where('id', $request->besoin);});
 
         })->get();
-        
-        //dd($offres);
-        return $offres;
+
+
+        return $offres->groupBy('fascicule');
     }
 
     /**
@@ -50,15 +56,7 @@ class OffreController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'profil' => 'required',
-            'cycle' => 'required',
-            'besoin' => 'required'
-        ]);
-        
-       
-
-        return response()->json(['success'=>'Done!']);
+     //
     }
 
     /**

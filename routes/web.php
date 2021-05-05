@@ -21,8 +21,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\FormController::class, 'index']);
 Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
 
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'store']);
+Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 
-Route::get('/offres/{id_profil}/{id_cycle}/{id_besoin}', [App\Http\Controllers\OffreController::class, 'index']);
 
 Auth::routes();

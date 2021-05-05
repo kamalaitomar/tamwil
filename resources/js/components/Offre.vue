@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-3 ftco-animate fadeInUp ftco-animated" v-if="offre.fascicule === fascicule.nom_fascicule">
+    <div class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
         <div class="staff">
             <div class="text pt-3 px-3 pb-4 text-center">
                 <h3>{{ offre.nom_offre}}</h3>

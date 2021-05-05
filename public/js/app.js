@@ -1901,7 +1901,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  props: ['offres', 'fascicule'],
+  props: ['offres', 'index'],
   mounted: function mounted() {},
   methods: {}
 });
@@ -2041,14 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       allerros: [],
       success: false,
-      submited: false,
-      fascicules: [{
-        id: 1,
-        nom_fascicule: 'Subvention'
-      }, {
-        id: 2,
-        nom_fascicule: 'prete'
-      }]
+      submited: false
     };
   },
   props: {
@@ -2078,15 +2071,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = [];
         _this.submited = true;
         _this.success = true;
+        _this.offres = response.data;
       })["catch"](function (error) {
         _this.allerros = error.response.data.errors;
         _this.success = false;
-      });
-      var that = this;
-      axios.get('/offres/' + this.form.profil + '/' + this.form.cycle + '/' + this.form.besoin).then(function (res) {
-        console.log(res);
-        that.offres = res.data;
-      });
+      }); // var that = this
+      // axios.get('/offres/'+ this.form.profil +'/'+ this.form.cycle +'/'+ this.form.besoin)
+      // .then(function(res){
+      //     console.log(res)
+      //     that.offres = res.data;
+      //     }
+      // );
     }
   }
 });
@@ -37922,7 +37917,7 @@ var render = function() {
                 staticClass:
                   "col-md-7 text-center heading-section heading-section-white "
               },
-              [_c("h2", [_vm._v(_vm._s(_vm.fascicule.nom_fascicule))])]
+              [_c("h2", [_vm._v(_vm._s(_vm.index))])]
             )
           ]),
           _vm._v(" "),
@@ -37964,25 +37959,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.offre.fascicule === _vm.fascicule.nom_fascicule
-    ? _c(
-        "div",
-        { staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated" },
-        [
-          _c("div", { staticClass: "staff" }, [
-            _c("div", { staticClass: "text pt-3 px-3 pb-4 text-center" }, [
-              _c("h3", [_vm._v(_vm._s(_vm.offre.nom_offre))]),
-              _vm._v(" "),
-              _c("div", { staticClass: "faded" }, [
-                _c("p", [_vm._v(_vm._s(_vm.offre.description))]),
-                _vm._v(" "),
-                _vm._m(0)
-              ])
-            ])
+  return _c(
+    "div",
+    { staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated" },
+    [
+      _c("div", { staticClass: "staff" }, [
+        _c("div", { staticClass: "text pt-3 px-3 pb-4 text-center" }, [
+          _c("h3", [_vm._v(_vm._s(_vm.offre.nom_offre))]),
+          _vm._v(" "),
+          _c("div", { staticClass: "faded" }, [
+            _c("p", [_vm._v(_vm._s(_vm.offre.description))]),
+            _vm._v(" "),
+            _vm._m(0)
           ])
-        ]
-      )
-    : _vm._e()
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -38302,10 +38295,10 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._l(_vm.fascicules, function(fascicule) {
+      _vm._l(_vm.offres, function(offre, key) {
         return _c("fascicule-section-component", {
-          key: fascicule.id,
-          attrs: { offres: _vm.offres, fascicule: fascicule }
+          key: offre,
+          attrs: { index: key, offres: offre }
         })
       })
     ],

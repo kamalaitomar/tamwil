@@ -3,7 +3,7 @@
         <div class="container bg-primary" >
             <div class="row justify-content-center ">
                 <div class="col-md-7 text-center heading-section heading-section-white ">
-                    <h2>{{fascicule.nom_fascicule}}</h2>
+                    <h2>{{index}}</h2>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -23,7 +23,7 @@
             return{ }
         },
 
-        props: ['offres', 'fascicule'],
+        props: ['offres', 'index'],
 
         mounted() {},
         

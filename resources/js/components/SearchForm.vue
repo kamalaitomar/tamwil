@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-            <fascicule-section-component v-for="fascicule in fascicules" :key="fascicule.id" :offres="offres" :fascicule="fascicule"></fascicule-section-component>
+            <fascicule-section-component v-for="(offre, key) in offres" :key="offre" :index="key" :offres="offre"></fascicule-section-component>
         
     </section>
 </template>
@@ -88,17 +88,7 @@
                 allerros: [],
                 success : false,
                 submited : false,
-                fascicules :[
-                    {
-                        id : 1,
-                        nom_fascicule : 'Subvention'
-                    },
-                    {
-                        id : 2,
-                        nom_fascicule : 'prete'
-                    }
-                ]
-               
+                
             }
         },
 
@@ -134,18 +124,19 @@
                     this.allerros = [];
                     this.submited = true;
                     this.success = true;
+                    this.offres = response.data;
                 } ).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });
 
-                var that = this
-                axios.get('/offres/'+ this.form.profil +'/'+ this.form.cycle +'/'+ this.form.besoin)
-                .then(function(res){
-                    console.log(res)
-                    that.offres = res.data;
-                    }
-                );
+                // var that = this
+                // axios.get('/offres/'+ this.form.profil +'/'+ this.form.cycle +'/'+ this.form.besoin)
+                // .then(function(res){
+                //     console.log(res)
+                //     that.offres = res.data;
+                //     }
+                // );
                 
             }
         }
