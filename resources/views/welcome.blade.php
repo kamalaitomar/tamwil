@@ -3,9 +3,29 @@
 @section('content')
     
 
-    
-    {{-- offres section  --}}
-    <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></search-form-component>
+	<section>
+        <div class="hero-wrap" :style="{ backgroundImage: 'url(assets/images/bg1.jpg)' }" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center d-flex justify-content-between">
+                    <div class="col-md-5 ftco-animate d-flex align-items-end">
+                        <div class="text w-80">
+                            <h1 class="mb-4">Entrepreneurs: vous avez accès à plus de chose</h1>
+                            <p class="mb-4">Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Marrakech-Safi.</p>
+							<p>
+								<a href="/financement" class="btn btn-primary py-3 px-4">Explorez vos options de financement</a>
+							</p>
+						</div>
+						
+                    </div>
+                    <div class="col-md-6 ftco-animate d-flex align-items-end">
+						<img src="assets/images/asset_1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
            
 
 
@@ -53,7 +73,7 @@
 
 
     {{-- Comment ça marche section  --}}
-	<section class="ftco-section">
+	<section class="ftco-section mt-4">
     	<div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">

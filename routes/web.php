@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::view('/', 'welcome')->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
 
-Route::get('/', [App\Http\Controllers\FormController::class, 'index']);
+
+// Route::get('/', [App\Http\Controllers\FormController::class, 'index']);
 Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
 
 Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);

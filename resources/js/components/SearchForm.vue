@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <!-- <section>
         <div class="hero-wrap" :style="{ backgroundImage: 'url(assets/images/bg_1.jpg)' }" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
@@ -65,9 +65,57 @@
                 </div>
             </div>
         </div>
-            <fascicule-section-component v-for="(offre, key) in offres" :key="offre" :index="key" :offres="offre"></fascicule-section-component>
+        <fascicule-section-component v-for="(offre, key) in offres" :key="offre" :index="key" :offres="offre"></fascicule-section-component>
         
-    </section>
+    </section> -->
+
+    <form method="POST" action="/offres"  @submit.prevent="onSubmit" >
+            <span v-for="error in allerrors" :key="error.id" class="danger" >{{error}}</span>
+            <section v-if="curentStep == 1" class="text-center">
+                <h1>Profil</h1>
+                <div class="row">
+                    <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
+                        <div class="staff">
+                            <div class="text pt-3 px-3 pb-4 text-center">
+                                <h3>{{ profil.nom_profil}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section v-if="curentStep == 2" class="text-center">
+                <h1>Cycle de vie</h1>
+                <div class="row">
+                    <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
+                        <div class="staff">
+                            <div class="text pt-3 px-3 pb-4 text-center">
+                                <h3>{{cycle.nom_cycle}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section v-if="curentStep == 3" class="text-center">
+                <h1>Besoin</h1>
+                <div class="row">
+                    <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
+                        <div class="staff">
+                            <div class="text pt-3 px-3 pb-4 text-center">
+                                <h3>{{besoin.nom_besoin}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <button v-if="curentStep != 1" @click.prevent="pretStep" >previos</button>
+            <button v-if="curentStep != allSteps" @click.prevent="nextStep" >next</button>
+            <button v-if="curentStep == allSteps" type="submit" >submit</button>
+    </form>
+
 </template>
 
 <script>
@@ -85,9 +133,12 @@
                 besoin: ''
                 },
 
-                allerros: [],
+                allerrors: [],
                 success : false,
                 submited : false,
+
+                allSteps : 3,
+                curentStep : 1,
                 
             }
         },
@@ -100,16 +151,6 @@
         },
         
         methods:{
-            profilCycle(){
-                
-                var that = this
-                axios.get('/cycles/' + this.form.profil)
-                .then(function(res){
-                    console.log(res)
-                    that.cycles = res.data
-                    }
-                );
-            },
             
             onSubmit(){
 
@@ -130,15 +171,61 @@
                          this.success = false;
                     });
 
-                // var that = this
-                // axios.get('/offres/'+ this.form.profil +'/'+ this.form.cycle +'/'+ this.form.besoin)
-                // .then(function(res){
-                //     console.log(res)
-                //     that.offres = res.data;
-                //     }
-                // );
-                
-            }
+                    alert('done')
+            },
+
+            nextStep(){
+                if(this.curentStep == 1){
+                    if(!this.form.profil){
+                        this.allerrors = 'choose one Profil'
+                        return false
+                    }
+                    
+                }
+
+                if(this.curentStep == 2){
+                    if(!this.form.cycle){
+                        this.allerrors = 'choose one cycle'
+                        return false
+                    }
+                    
+                }
+
+                if(this.curentStep == 3){
+                    if(!this.form.besoin){
+                        this.allerrors = 'choose one besoin'
+                        return false
+                    }
+                    
+                }
+
+                this.curentStep ++
+                this.allerrors = ''
+            },
+
+            pretStep(){
+                this.curentStep --
+            },
+
+            selectProfil($id){
+                this.form.profil = $id
+                var that = this
+                axios.get('/cycles/' + this.form.profil)
+                .then(function(res){
+                    console.log(res)
+                    that.cycles = res.data
+                    }
+                );
+            },
+
+            selectCycle($id){
+                this.form.cycle = $id
+            },
+
+            selectBesoin($id){
+                this.form.besoin = $id
+            },
+
         }
     }
 </script>

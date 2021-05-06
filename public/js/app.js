@@ -2028,6 +2028,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2039,9 +2087,11 @@ __webpack_require__.r(__webpack_exports__);
         cycle: '',
         besoin: ''
       },
-      allerros: [],
+      allerrors: [],
       success: false,
-      submited: false
+      submited: false,
+      allSteps: 3,
+      curentStep: 1
     };
   },
   props: {
@@ -2052,13 +2102,6 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
   },
   methods: {
-    profilCycle: function profilCycle() {
-      var that = this;
-      axios.get('/cycles/' + this.form.profil).then(function (res) {
-        console.log(res);
-        that.cycles = res.data;
-      });
-    },
     onSubmit: function onSubmit() {
       var _this = this;
 
@@ -2075,13 +2118,50 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.allerros = error.response.data.errors;
         _this.success = false;
-      }); // var that = this
-      // axios.get('/offres/'+ this.form.profil +'/'+ this.form.cycle +'/'+ this.form.besoin)
-      // .then(function(res){
-      //     console.log(res)
-      //     that.offres = res.data;
-      //     }
-      // );
+      });
+      alert('done');
+    },
+    nextStep: function nextStep() {
+      if (this.curentStep == 1) {
+        if (!this.form.profil) {
+          this.allerrors = 'choose one Profil';
+          return false;
+        }
+      }
+
+      if (this.curentStep == 2) {
+        if (!this.form.cycle) {
+          this.allerrors = 'choose one cycle';
+          return false;
+        }
+      }
+
+      if (this.curentStep == 3) {
+        if (!this.form.besoin) {
+          this.allerrors = 'choose one besoin';
+          return false;
+        }
+      }
+
+      this.curentStep++;
+      this.allerrors = '';
+    },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectProfil: function selectProfil($id) {
+      this.form.profil = $id;
+      var that = this;
+      axios.get('/cycles/' + this.form.profil).then(function (res) {
+        console.log(res);
+        that.cycles = res.data;
+      });
+    },
+    selectCycle: function selectCycle($id) {
+      this.form.cycle = $id;
+    },
+    selectBesoin: function selectBesoin($id) {
+      this.form.besoin = $id;
     }
   }
 });
@@ -38014,355 +38094,169 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
+    "form",
+    {
+      attrs: { method: "POST", action: "/offres" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
     [
-      _c(
-        "div",
-        {
-          staticClass: "hero-wrap",
-          style: { backgroundImage: "url(assets/images/bg_1.jpg)" },
-          attrs: { "data-stellar-background-ratio": "0.5" }
-        },
-        [
-          _c("div", { staticClass: "overlay" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "container" }, [
+      _vm._l(_vm.allerrors, function(error) {
+        return _c("span", { key: error.id, staticClass: "danger" }, [
+          _vm._v(_vm._s(error))
+        ])
+      }),
+      _vm._v(" "),
+      _vm.curentStep == 1
+        ? _c("section", { staticClass: "text-center" }, [
+            _c("h1", [_vm._v("Profil")]),
+            _vm._v(" "),
             _c(
               "div",
-              {
-                staticClass:
-                  "row no-gutters slider-text align-items-center d-flex justify-content-between"
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
+              { staticClass: "row" },
+              _vm._l(_vm.profils, function(profil) {
+                return _c(
                   "div",
                   {
-                    staticClass: "col-md-6 ftco-animate d-flex align-items-end"
+                    key: profil.id,
+                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.selectProfil(profil.id)
+                      }
+                    }
                   },
                   [
-                    _c(
-                      "form",
-                      {
-                        staticClass: "appointment",
-                        attrs: { method: "POST", action: "/offres" },
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.onSubmit($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("h2", { staticClass: "mb-4" }, [
-                          _vm._v("Recherche de financement")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { attrs: { for: "profil" } }, [
-                                _vm._v("Sélectionnez votre Profil")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-field" }, [
-                                _c("div", { staticClass: "select-wrap" }, [
-                                  _vm._m(1),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.profil,
-                                          expression: "form.profil"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-select-lg mb-3",
-                                      attrs: { name: "profil", id: "profil" },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.form,
-                                              "profil",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          },
-                                          _vm.profilCycle
-                                        ]
-                                      }
-                                    },
-                                    _vm._l(_vm.profils, function(profil) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: profil.id,
-                                          attrs: { name: "profil" },
-                                          domProps: { value: profil.id }
-                                        },
-                                        [_vm._v(_vm._s(profil.nom_profil))]
-                                      )
-                                    }),
-                                    0
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _vm.allerros.profil
-                                  ? _c("div", { staticClass: "text-danger" }, [
-                                      _vm._v(_vm._s(_vm.allerros.profil[0]))
-                                    ])
-                                  : _vm._e()
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { attrs: { for: "cycle" } }, [
-                                _vm._v("Sélectionnez votre Cycle")
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-field " }, [
-                                _c("div", { staticClass: "select-wrap" }, [
-                                  _vm._m(2),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.cycle,
-                                          expression: "form.cycle"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-select-lg mb-3",
-                                      attrs: { name: "cycle", id: "cycle" },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.form,
-                                            "cycle",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    _vm._l(_vm.cycles, function(cycle) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: cycle.id,
-                                          attrs: { name: "cycle" },
-                                          domProps: { value: cycle.id }
-                                        },
-                                        [_vm._v(_vm._s(cycle.nom_cycle))]
-                                      )
-                                    }),
-                                    0
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _vm.allerros.cycle
-                                  ? _c("div", { staticClass: "text-danger" }, [
-                                      _vm._v(_vm._s(_vm.allerros.cycle[0]))
-                                    ])
-                                  : _vm._e()
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { attrs: { for: "besoin" } }, [
-                                _vm._v("Sélectionnez votre Besoin")
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-field" }, [
-                                _c("div", { staticClass: "select-wrap" }, [
-                                  _vm._m(3),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.besoin,
-                                          expression: "form.besoin"
-                                        }
-                                      ],
-                                      staticClass:
-                                        "form-control form-select-lg mb-3",
-                                      attrs: { name: "besoin", id: "besoin" },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.form,
-                                            "besoin",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    _vm._l(_vm.besoins, function(besoin) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: besoin.id,
-                                          attrs: { name: "cycle" },
-                                          domProps: { value: besoin.id }
-                                        },
-                                        [_vm._v(_vm._s(besoin.nom_besoin))]
-                                      )
-                                    }),
-                                    0
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _vm.allerros.besoin
-                                  ? _c("div", { staticClass: "text-danger" }, [
-                                      _vm._v(_vm._s(_vm.allerros.besoin[0]))
-                                    ])
-                                  : _vm._e()
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(4)
-                          ])
-                        ])
-                      ]
-                    )
+                    _c("div", { staticClass: "staff" }, [
+                      _c(
+                        "div",
+                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
+                        [_c("h3", [_vm._v(_vm._s(profil.nom_profil))])]
+                      )
+                    ])
                   ]
                 )
-              ]
+              }),
+              0
             )
           ])
-        ]
-      ),
+        : _vm._e(),
       _vm._v(" "),
-      _vm._l(_vm.offres, function(offre, key) {
-        return _c("fascicule-section-component", {
-          key: offre,
-          attrs: { index: key, offres: offre }
-        })
-      })
+      _vm.curentStep == 2
+        ? _c("section", { staticClass: "text-center" }, [
+            _c("h1", [_vm._v("Cycle de vie")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.cycles, function(cycle) {
+                return _c(
+                  "div",
+                  {
+                    key: cycle.id,
+                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.selectCycle(cycle.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "staff" }, [
+                      _c(
+                        "div",
+                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
+                        [_c("h3", [_vm._v(_vm._s(cycle.nom_cycle))])]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.curentStep == 3
+        ? _c("section", { staticClass: "text-center" }, [
+            _c("h1", [_vm._v("Besoin")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.besoins, function(besoin) {
+                return _c(
+                  "div",
+                  {
+                    key: besoin.id,
+                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.selectBesoin(besoin.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "staff" }, [
+                      _c(
+                        "div",
+                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
+                        [_c("h3", [_vm._v(_vm._s(besoin.nom_besoin))])]
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.curentStep != 1
+        ? _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.pretStep($event)
+                }
+              }
+            },
+            [_vm._v("previos")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.curentStep != _vm.allSteps
+        ? _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.nextStep($event)
+                }
+              }
+            },
+            [_vm._v("next")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.curentStep == _vm.allSteps
+        ? _c("button", { attrs: { type: "submit" } }, [_vm._v("submit")])
+        : _vm._e()
     ],
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-md-5 ftco-animate d-flex align-items-end" },
-      [
-        _c("div", { staticClass: "text w-80" }, [
-          _c("h1", { staticClass: "mb-4" }, [
-            _vm._v("Entrepreneurs: vous avez accès à plus de chose")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "mb-4" }, [
-            _vm._v(
-              "Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Marrakech-Safi."
-            )
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "icon" }, [
-      _c("span", { staticClass: "fa fa-chevron-down" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "icon" }, [
-      _c("span", { staticClass: "fa fa-chevron-down" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "icon" }, [
-      _c("span", { staticClass: "fa fa-chevron-down" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("button", { staticClass: "btn btn-primary py-3 px-4" }, [
-        _vm._v("Recherche")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

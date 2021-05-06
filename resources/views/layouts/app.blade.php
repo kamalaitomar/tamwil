@@ -47,16 +47,17 @@
         </div>
     </div> --}}
     
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="#">TAMWIL</a>
+	      <a class="navbar-brand" href="/">TAMWIL</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="financement" class="nav-link">Financements</a></li>
 	          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
 	          <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>
@@ -69,7 +70,7 @@
 	  </nav>
     <!-- END nav -->
 
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 

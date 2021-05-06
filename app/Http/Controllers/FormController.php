@@ -21,7 +21,7 @@ class formController extends Controller
         $profils = Profil::all();
         $besoins = Besoin::all();
 
-        return view('welcome', compact('profils', 'besoins'));
+        return view('financement', compact('profils', 'besoins'));
     }
 
     /**

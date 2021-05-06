@@ -8051,7 +8051,7 @@ h1, h2, h3, h4, h5,
         color: #fff; }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: #ffff !important;
   z-index: 3;
   padding: 10px 0; }
   @media (max-width: 991.98px) {
