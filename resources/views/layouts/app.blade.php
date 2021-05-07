@@ -70,7 +70,7 @@
 	  </nav>
     <!-- END nav -->
 
-    <main>
+    <main class="container">
         @yield('content')
     </main>
 
@@ -147,6 +147,7 @@
             </svg>
         </div>  
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-migrate-3.0.1.min.js')}}"></script>

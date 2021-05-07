@@ -91,7 +91,7 @@
 	    					</div>
     					</div>
     					<h2>choisissez votre profil</h2>
-    					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+    					{{-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> --}}
     				</div>
     			</div>
     			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
@@ -103,7 +103,7 @@
 	    					</div>
     					</div>
     					<h2>choisissez votre cycle de vie</h2>
-  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+  						{{-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> --}}
     				</div>
     			</div>
     			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
@@ -115,7 +115,7 @@
 	    					</div>
     					</div>
     					<h2>choisissez votre besoin</h2>
-  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+  						{{-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> --}}
     				</div>
     			</div>
     			<div class="col-md-3 d-flex align-items-stretch ftco-animate">
@@ -127,7 +127,7 @@
 	    					</div>
     					</div>
     					<h2>choisissez l'offre</h2>
-  						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+  						{{-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> --}}
     				</div>
     			</div>
     		</div>

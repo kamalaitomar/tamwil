@@ -3,6 +3,6 @@
 @section('content')
 
     {{-- offres section  --}}
-    <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></search-form-component>
+    <search-form-component :profils="{{ $profils }}" :besoins="{{ $besoins }}"></search-form-component>
 
 @endsection

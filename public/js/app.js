@@ -2076,6 +2076,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2124,21 +2126,36 @@ __webpack_require__.r(__webpack_exports__);
     nextStep: function nextStep() {
       if (this.curentStep == 1) {
         if (!this.form.profil) {
-          this.allerrors = 'choose one Profil';
+          swal({
+            title: "Rappel!",
+            text: "choisissez votre profil",
+            icon: "warning",
+            dangerMode: true
+          });
           return false;
         }
       }
 
       if (this.curentStep == 2) {
         if (!this.form.cycle) {
-          this.allerrors = 'choose one cycle';
+          swal({
+            title: "Rappel!",
+            text: "choisissez votre cycle de vie",
+            icon: "warning",
+            dangerMode: true
+          });
           return false;
         }
       }
 
       if (this.curentStep == 3) {
         if (!this.form.besoin) {
-          this.allerrors = 'choose one besoin';
+          swal({
+            title: "Rappel!",
+            text: "choisissez votre besoin",
+            icon: "warning",
+            dangerMode: true
+          });
           return false;
         }
       }
@@ -38105,124 +38122,12 @@ var render = function() {
       }
     },
     [
-      _vm._l(_vm.allerrors, function(error) {
-        return _c("span", { key: error.id, staticClass: "danger" }, [
-          _vm._v(_vm._s(error))
-        ])
-      }),
-      _vm._v(" "),
-      _vm.curentStep == 1
-        ? _c("section", { staticClass: "text-center" }, [
-            _c("h1", [_vm._v("Profil")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.profils, function(profil) {
-                return _c(
-                  "div",
-                  {
-                    key: profil.id,
-                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.selectProfil(profil.id)
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "staff" }, [
-                      _c(
-                        "div",
-                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
-                        [_c("h3", [_vm._v(_vm._s(profil.nom_profil))])]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.curentStep == 2
-        ? _c("section", { staticClass: "text-center" }, [
-            _c("h1", [_vm._v("Cycle de vie")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.cycles, function(cycle) {
-                return _c(
-                  "div",
-                  {
-                    key: cycle.id,
-                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.selectCycle(cycle.id)
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "staff" }, [
-                      _c(
-                        "div",
-                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
-                        [_c("h3", [_vm._v(_vm._s(cycle.nom_cycle))])]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.curentStep == 3
-        ? _c("section", { staticClass: "text-center" }, [
-            _c("h1", [_vm._v("Besoin")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.besoins, function(besoin) {
-                return _c(
-                  "div",
-                  {
-                    key: besoin.id,
-                    staticClass: "col-lg-3 ftco-animate fadeInUp ftco-animated",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.selectBesoin(besoin.id)
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "staff" }, [
-                      _c(
-                        "div",
-                        { staticClass: "text pt-3 px-3 pb-4 text-center" },
-                        [_c("h3", [_vm._v(_vm._s(besoin.nom_besoin))])]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
       _vm.curentStep != 1
         ? _c(
             "button",
             {
+              staticClass: "btn btn-outline-primary mt-5 ml-5",
+              attrs: { type: "button", "data-mdb-ripple-color": "dark" },
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -38230,30 +38135,192 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("previos")]
+            [_vm._v("Retour")]
           )
         : _vm._e(),
+      _c("br"),
       _vm._v(" "),
-      _vm.curentStep != _vm.allSteps
-        ? _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.nextStep($event)
+      _c("div", { staticClass: "mb-5 mt-2" }, [
+        _vm.curentStep == 1
+          ? _c("section", { staticClass: "text-center" }, [
+              _c("h1", { staticClass: "m-2 p-2" }, [_vm._v("Je suis:")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.profils, function(profil) {
+                  return _c(
+                    "div",
+                    {
+                      key: profil.id,
+                      staticClass:
+                        "col-lg-3 ftco-animate fadeInUp ftco-animated d-flex ",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.selectProfil(profil.id)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "staff bg-info m-1 p-2  border mb-5",
+                          class: {
+                            "bg-white border-light":
+                              profil.id != _vm.form.profil,
+                            "shadow ": profil.id == _vm.form.profil
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "col-lg-6",
+                            attrs: { src: "assets/images/icon.png" }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "text m-1 text-center",
+                              class: {
+                                "bg-info ": profil.id == _vm.form.profil
+                              }
+                            },
+                            [_c("h4", [_vm._v(_vm._s(profil.nom_profil))])]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.curentStep == 2
+          ? _c("section", [
+              _c("h1", { staticClass: " col-md-4 offset-md-4" }, [
+                _vm._v("Cycle de vie")
+              ]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.cycles, function(cycle) {
+                  return _c(
+                    "button",
+                    {
+                      key: cycle.id,
+                      staticClass:
+                        "list-group-item list-group-item-action border border-light",
+                      class: { active: cycle.id == _vm.form.cycle },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.selectCycle(cycle.id)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(cycle.nom_cycle))]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.curentStep == 3
+          ? _c("section", { staticClass: "text-center" }, [
+              _c("h1", { staticClass: "m-2 p-2" }, [
+                _vm._v("J'ai besoin de :")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.besoins, function(besoin) {
+                  return _c(
+                    "div",
+                    {
+                      key: besoin.id,
+                      staticClass:
+                        "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.selectBesoin(besoin.id)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "staff bg-info m-1 p-2  border mb-5",
+                          class: {
+                            "bg-white border-light":
+                              besoin.id != _vm.form.besoin,
+                            "shadow ": besoin.id == _vm.form.besoin
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "col-lg-6",
+                            attrs: { src: "assets/images/icon.png" }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "text m-1  text-center",
+                              class: {
+                                "bg-info ": besoin.id == _vm.form.besoin
+                              }
+                            },
+                            [_c("h3", [_vm._v(_vm._s(besoin.nom_besoin))])]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.curentStep != _vm.allSteps
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary btn-lg btn-block mt-4",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.nextStep($event)
+                  }
                 }
-              }
-            },
-            [_vm._v("next")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.curentStep == _vm.allSteps
-        ? _c("button", { attrs: { type: "submit" } }, [_vm._v("submit")])
-        : _vm._e()
-    ],
-    2
+              },
+              [_vm._v("Continue")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.curentStep == _vm.allSteps && _vm.form.besoin != 0
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-lg btn-block m-2",
+                attrs: { type: "submit", "data-mdb-ripple-color": "dark" }
+              },
+              [_vm._v("submit")]
+            )
+          : _vm._e()
+      ])
+    ]
   )
 }
 var staticRenderFns = []

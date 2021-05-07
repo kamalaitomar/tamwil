@@ -70,50 +70,52 @@
     </section> -->
 
     <form method="POST" action="/offres"  @submit.prevent="onSubmit" >
-            <span v-for="error in allerrors" :key="error.id" class="danger" >{{error}}</span>
-            <section v-if="curentStep == 1" class="text-center">
-                <h1>Profil</h1>
-                <div class="row">
-                    <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
-                        <div class="staff">
-                            <div class="text pt-3 px-3 pb-4 text-center">
-                                <h3>{{ profil.nom_profil}}</h3>
+
+            <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">Retour</button><br>
+            <div class="mb-5 mt-2">
+
+                <section v-if="curentStep == 1" class="text-center">
+                    <h1 class="m-2 p-2">Je suis:</h1>
+                    <div class="row">
+                        <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex " >
+                            <div class="staff bg-info m-1 p-2  border mb-5" :class="{ 'bg-white border-light' : profil.id != form.profil, 'shadow ':profil.id == form.profil}">
+                                <img src="assets/images/icon.png" class="col-lg-6">
+                                <div class="text m-1 text-center" :class="{'bg-info ':profil.id == form.profil}">
+                                    <h4>{{ profil.nom_profil}}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
 
-            <section v-if="curentStep == 2" class="text-center">
-                <h1>Cycle de vie</h1>
-                <div class="row">
-                    <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
-                        <div class="staff">
-                            <div class="text pt-3 px-3 pb-4 text-center">
-                                <h3>{{cycle.nom_cycle}}</h3>
+                <section v-if="curentStep == 2" >
+                    <h1 class=" col-md-4 offset-md-4">Cycle de vie</h1>
+                        <ul class="list-group">
+                            <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle}" type="button" class="list-group-item list-group-item-action border border-light">{{cycle.nom_cycle}}</button>
+                        </ul>
+                </section>
+
+
+                <section v-if="curentStep == 3" class="text-center">
+                    <h1 class="m-2 p-2">J'ai besoin de :</h1>
+                    <div class="row">
+                        <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                            <div class="staff bg-info m-1 p-2  border mb-5" :class="{ 'bg-white border-light' : besoin.id != form.besoin, 'shadow ':besoin.id == form.besoin}">
+                                <img src="assets/images/icon.png" class="col-lg-6">
+                                <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.besoin}">
+                                    <h3>{{besoin.nom_besoin}}</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
+                <button v-if="curentStep != allSteps" @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">Continue</button>
+                <button v-if="curentStep == allSteps && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">submit</button>
+            </div>
+            
 
-            <section v-if="curentStep == 3" class="text-center">
-                <h1>Besoin</h1>
-                <div class="row">
-                    <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated" >
-                        <div class="staff">
-                            <div class="text pt-3 px-3 pb-4 text-center">
-                                <h3>{{besoin.nom_besoin}}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <button v-if="curentStep != 1" @click.prevent="pretStep" >previos</button>
-            <button v-if="curentStep != allSteps" @click.prevent="nextStep" >next</button>
-            <button v-if="curentStep == allSteps" type="submit" >submit</button>
     </form>
 
 </template>
@@ -177,7 +179,12 @@
             nextStep(){
                 if(this.curentStep == 1){
                     if(!this.form.profil){
-                        this.allerrors = 'choose one Profil'
+                        swal({
+                                title: "Rappel!",
+                                text: "choisissez votre profil",
+                                icon: "warning",
+                                dangerMode: true,
+                                })
                         return false
                     }
                     
@@ -185,7 +192,12 @@
 
                 if(this.curentStep == 2){
                     if(!this.form.cycle){
-                        this.allerrors = 'choose one cycle'
+                        swal({
+                                title: "Rappel!",
+                                text: "choisissez votre cycle de vie",
+                                icon: "warning",
+                                dangerMode: true,
+                                })
                         return false
                     }
                     
@@ -193,7 +205,12 @@
 
                 if(this.curentStep == 3){
                     if(!this.form.besoin){
-                        this.allerrors = 'choose one besoin'
+                        swal({
+                                title: "Rappel!",
+                                text: "choisissez votre besoin",
+                                icon: "warning",
+                                dangerMode: true,
+                                })
                         return false
                     }
                     
