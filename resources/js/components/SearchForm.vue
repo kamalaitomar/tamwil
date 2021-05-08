@@ -77,9 +77,9 @@
                 <section v-if="curentStep == 1" class="text-center">
                     <h1 class="m-2 p-2">Je suis:</h1>
                     <div class="row">
-                        <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex " >
+                        <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
                             <div class="staff bg-info m-1 p-2  border mb-5" :class="{ 'bg-white border-light' : profil.id != form.profil, 'shadow ':profil.id == form.profil}">
-                                <img src="assets/images/icon.png" class="col-lg-6">
+                                <img :src="'assets/images/'+profil.icon" class="col-lg-6">
                                 <div class="text m-1 text-center" :class="{'bg-info ':profil.id == form.profil}">
                                     <h4>{{ profil.nom_profil}}</h4>
                                 </div>

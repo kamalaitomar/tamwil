@@ -38154,7 +38154,7 @@ var render = function() {
                     {
                       key: profil.id,
                       staticClass:
-                        "col-lg-3 ftco-animate fadeInUp ftco-animated d-flex ",
+                        "col-3 ftco-animate fadeInUp ftco-animated d-flex ",
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -38176,7 +38176,7 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "col-lg-6",
-                            attrs: { src: "assets/images/icon.png" }
+                            attrs: { src: "assets/images/" + profil.icon }
                           }),
                           _vm._v(" "),
                           _c(
