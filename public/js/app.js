@@ -38166,7 +38166,8 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "staff bg-info m-1 p-2  border mb-5",
+                          staticClass:
+                            "staff bg-info m-1 p-2  border mb-5 col-12",
                           class: {
                             "bg-white border-light":
                               profil.id != _vm.form.profil,
@@ -38259,7 +38260,8 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "staff bg-info m-1 p-2  border mb-5",
+                          staticClass:
+                            "staff bg-info m-1 p-2 border mb-5 col-12",
                           class: {
                             "bg-white border-light":
                               besoin.id != _vm.form.besoin,
@@ -38269,7 +38271,7 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "col-lg-6",
-                            attrs: { src: "assets/images/icon.png" }
+                            attrs: { src: "assets/images/" + besoin.icon }
                           }),
                           _vm._v(" "),
                           _c(
