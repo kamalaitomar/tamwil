@@ -80,7 +80,7 @@
                             </div>
                             <div class="col mr-2">
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{off.description}}</div>
-                                <a href="/offre" class="btn btn-outline-primary btn-lg btn-block mt-4">Afficher l'offre</a>
+                                <a :href="'/offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">Afficher l'offre</a>
                             </div>
                         </div>
                     </div>

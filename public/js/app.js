@@ -38079,7 +38079,10 @@ var render = function() {
                           {
                             staticClass:
                               "btn btn-outline-primary btn-lg btn-block mt-4",
-                            attrs: { href: "/offre" }
+                            attrs: {
+                              href: "/offre/" + off.id,
+                              target: "_blank"
+                            }
                           },
                           [_vm._v("Afficher l'offre")]
                         )
