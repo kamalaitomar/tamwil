@@ -115,17 +115,46 @@
                     <button v-if="curentStep == 3 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">submit</button>
                 </div>
         </form>
-
+        
         <section v-if="curentStep == 4" class="text-center">
             <div class="row">
                 <div v-for="(offre, key) in offres" :key="offre" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
                         <div class="text m-1 text-center">
                             <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{key}}</h2>
-                            <button @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">En savoir plus</button>
+                            <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">En savoir plus</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section v-if="curentStep ==5" class="text-center">
+            <div class="row">
+                <div v-for="off in offre" :key="off.id" class="col-4 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center mb-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase col-10">{{off.nom_offre}}</div>
+                                <img src="assets/images/icon.png" class="col-2">
+                            </div>
+                            <div class="col mr-2">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{off.description}}</div>
+                                <button type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div v-for="off in offre" :key="off.id" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                    <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
+                        <div class="text m-1 text-center">
+                            <h1  class="text-success font-weight-bold">{{off.nom_offre}}</h1>
+                            <h2>{{off.description}}</h2>
+                            <button type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">Continue</button>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </section>
         
@@ -153,6 +182,8 @@
 
                 allSteps : 5,
                 curentStep : 1,
+
+                offre:[],
                 
             }
         },
@@ -254,6 +285,12 @@
 
             selectBesoin($id){
                 this.form.besoin = $id
+            },
+
+            showOffres($id){
+                this.offre = $id
+                this.curentStep ++
+
             },
 
         }

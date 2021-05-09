@@ -2090,6 +2090,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2105,7 +2134,8 @@ __webpack_require__.r(__webpack_exports__);
       success: false,
       submited: false,
       allSteps: 5,
-      curentStep: 1
+      curentStep: 1,
+      offre: []
     };
   },
   props: {
@@ -2192,6 +2222,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectBesoin: function selectBesoin($id) {
       this.form.besoin = $id;
+    },
+    showOffres: function showOffres($id) {
+      this.offre = $id;
+      this.curentStep++;
     }
   }
 });
@@ -38373,11 +38407,11 @@ var render = function() {
                           {
                             staticClass:
                               "btn btn-outline-primary btn-lg btn-block mt-4",
-                            attrs: { type: "button" },
+                            attrs: { type: "button", offre: offre },
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                return _vm.nextStep($event)
+                                return _vm.showOffres(offre)
                               }
                             }
                           },
@@ -38388,6 +38422,70 @@ var render = function() {
                   )
                 ]
               )
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.curentStep == 5
+      ? _c("section", { staticClass: "text-center" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.offre, function(off) {
+              return _c("div", { key: off.id, staticClass: "col-4 mb-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "card border-left-primary shadow h-100 py-2" },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row no-gutters align-items-center mb-2"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "text-xs font-weight-bold text-primary text-uppercase col-10"
+                            },
+                            [_vm._v(_vm._s(off.nom_offre))]
+                          ),
+                          _vm._v(" "),
+                          _c("img", {
+                            staticClass: "col-2",
+                            attrs: { src: "assets/images/icon.png" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col mr-2" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "h5 mb-0 font-weight-bold text-gray-800"
+                          },
+                          [_vm._v(_vm._s(off.description))]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary btn-lg btn-block mt-4",
+                            attrs: { type: "button" }
+                          },
+                          [_vm._v("Continue")]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
             }),
             0
           )
