@@ -61,7 +61,10 @@
         <!-- showing results ections -->
 
         <!-- showing groups of results -->
-        <section v-if="curentStep == 4" class="text-center">
+        <div v-if="curentStep == 4" class="text-center">
+            <div v-if="offres == 0" class="alert alert-warning" role="alert" >
+                nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!
+            </div>
             <div class="row">
                 <div v-for="(offre, key) in offres" :key="key" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex " >
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
@@ -72,10 +75,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- showing offers -->
-        <section v-if="curentStep ==5" >
+        <div v-if="curentStep ==5" >
             <div class="row">
                 <div v-for="off in offre" :key="off.id" class="col-4 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -92,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         
     </div>
 </template>

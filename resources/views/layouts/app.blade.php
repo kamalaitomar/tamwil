@@ -23,57 +23,37 @@
   </head>
   <body>
     <div id="app">
-
-  	{{-- <div class="wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-center">
-                    <p class="mb-0 phone pl-md-2">
-                        <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a> 
-                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
-                    </p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-md-end">
-                    <div class="social-media">
-                        <p class="mb-0 d-flex">
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     
-	  <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
+    <!-- nav  -->
+    <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="/">TAMWIL</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="financement" class="nav-link">Financements</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>
-	          {{-- <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li> --}}
-	        </ul>
-	      </div>
+            {{-- logo  --}}
+	        <a class="navbar-brand" href="/">TAMWIL</a>
+
+            {{-- nav links  --}}
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="oi oi-menu"></span> Menu
+	        </button>
+	        <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="financement" class="nav-link">Financements</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>
+                </ul>
+	        </div>
 	    </div>
-	  </nav>
+    </nav>
     <!-- END nav -->
 
     <main>
         @yield('content')
     </main>
 
+
+    {{-- footer  --}}
     <footer class="ftco-footer">
         <div class="container">
             <div class="row ">
@@ -99,17 +79,6 @@
                     </ul>
                     </div>
                 </div>
-                {{-- <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                    <h2 class="ftco-heading-2">Legal</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Join us</a></li>
-                        <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Blog</a></li>
-                        <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Privacy &amp; Policy</a></li>
-                        <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Term &amp; Conditions</a></li>
-                    </ul>
-                    </div>
-                </div> --}}
                 <div class="col-sm-12 col-md ">
                     <div class="ftco-footer-widget mb-4 ml-5">
                     <h2 class="ftco-heading-2">Company</h2>
@@ -121,18 +90,6 @@
                     </ul>
                     </div>
                 </div>
-                {{-- <div class="col-sm-12 col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon fa fa-map marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">info@yourdomain.com</span></a></li>
-                        </ul>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
         </footer>

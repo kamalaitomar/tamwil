@@ -2,7 +2,7 @@
 
 @section('content')
     
-
+	{{-- welcome section  --}}
 	<section>
         <div class="hero-wrap" :style="{ backgroundImage: 'url(assets/images/bg1.jpg)' }" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
@@ -27,10 +27,6 @@
         
     </section>
            
-
-
-
-
     {{-- Comment ça marche section  --}}
 	<section class="ftco-section mt-4">
     	<div class="container">
@@ -92,8 +88,6 @@
     		</div>
     	</div>
     </section>
-
-
 
     {{-- sponsors section  --}}
 		<section class="ftco-section">

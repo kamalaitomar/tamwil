@@ -17,7 +17,7 @@
                 <h4 class="md-3">{{$offre->nom_offre}}</h4>
                 <p class="text-info mb-0">Objet :</p>
                 <p class="mb-3">{{$offre->objet}}</p>
-                @if ($offre->condition != 0)
+                @if ($offre->condition != null)
                     <p class="text-info mb-0">Condition :</p>
                     <p class="mb-3">{{$offre->condition}}</p>
                 @endif 
@@ -31,25 +31,25 @@
                 <div class="row m-1">
                     <div class="card col-3 m-1">
                         <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">organisation 1 nom</h5>
                         <a href="#" class="btn btn-primary">Somewhere</a>
                         </div>
                     </div> 
                     <div class="card col-3 m-1">
                         <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">organisation 2 nom</h5>
                         <a href="#" class="btn btn-primary">Somewhere</a>
                         </div>
                     </div> 
                     <div class="card col-3 m-1">
                         <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">organisation 3 nom</h5>
                         <a href="#" class="btn btn-primary">Somewhere</a>
                         </div>
                     </div> 
                     <div class="card col-3 m-1">
                         <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">organisation 4 nom</h5>
                         <a href="#" class="btn btn-primary">Somewhere</a>
                         </div>
                     </div> 
