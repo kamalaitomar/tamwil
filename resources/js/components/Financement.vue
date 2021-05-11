@@ -9,7 +9,7 @@
             </div>
 
             <div class="row">
-                 <div class="col-12 mb-5 mt-2">
+                 <div class="col-10 offset-1 mb-5 mt-2">
 
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1" class="text-center">
@@ -27,7 +27,7 @@
                     </div>
 
                     <!-- choose cycle section -->      
-                    <div class="col-10 offset-1" v-if="curentStep == 2" >
+                    <div v-if="curentStep == 2" >
                         <h1 class=" col-md-4 offset-md-4">Cycle de vie</h1>
                             <ul class="list-group">
                                 <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle}" type="button" class="list-group-item list-group-item-action border border-light fs-3">{{cycle.nom_cycle}}</button>
@@ -61,7 +61,7 @@
         <!-- showing results ections -->
 
         <!-- showing groups of results -->
-        <div v-if="curentStep == 4" class="text-center">
+        <div v-if="curentStep == 4" class="text-center col-10 offset-1 ">
             <div v-if="offres == 0" class="alert alert-warning" role="alert" >
                 nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!
             </div>
@@ -78,7 +78,7 @@
         </div>
 
         <!-- showing offers -->
-        <div v-if="curentStep ==5" >
+        <div v-if="curentStep ==5" class="col-10 offset-1 ">
             <div class="row">
                 <div v-for="off in offre" :key="off.id" class="col-4 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">

@@ -27,4 +27,8 @@ Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
 
 
+Route::get('/adminn', [App\Http\Controllers\HomeController::class, 'index']);
+
+
+
 Auth::routes();

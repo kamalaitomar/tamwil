@@ -37802,7 +37802,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 mb-5 mt-2" }, [
+          _c("div", { staticClass: "col-10 offset-1 mb-5 mt-2" }, [
             _vm.curentStep == 1
               ? _c("div", { staticClass: "text-center" }, [
                   _c("h1", { staticClass: "m-2 p-2" }, [_vm._v("Je suis :")]),
@@ -37863,7 +37863,7 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.curentStep == 2
-              ? _c("div", { staticClass: "col-10 offset-1" }, [
+              ? _c("div", [
                   _c("h1", { staticClass: " col-md-4 offset-md-4" }, [
                     _vm._v("Cycle de vie")
                   ]),
@@ -37990,7 +37990,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.curentStep == 4
-      ? _c("div", { staticClass: "text-center" }, [
+      ? _c("div", { staticClass: "text-center col-10 offset-1 " }, [
           _vm.offres == 0
             ? _c(
                 "div",
@@ -38060,7 +38060,7 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.curentStep == 5
-      ? _c("div", [
+      ? _c("div", { staticClass: "col-10 offset-1 " }, [
           _c(
             "div",
             { staticClass: "row" },

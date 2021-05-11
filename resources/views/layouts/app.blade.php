@@ -41,7 +41,7 @@
                     <li class="nav-item"><a href="financement" class="nav-link">Financements</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Admin</a></li>
+                    <li class="nav-item"><a href="adminn" class="nav-link">Admin</a></li>
                 </ul>
 	        </div>
 	    </div>
