@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-3 offset-1">
                 <img src="../assets/images/logo-placeholder.png" class="mx-auto col-12">
-                <div class="my-3">
+                <div class="my-2">
                     <p>0622222222</p>
                     <p>test@gmail.com</p>
                     <p>www.test.com</p>

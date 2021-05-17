@@ -27,7 +27,9 @@ Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
 
 
-Route::get('/adminn', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index']);
+Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
+Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
 
 
 
