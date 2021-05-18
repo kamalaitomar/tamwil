@@ -25,7 +25,6 @@
   </head>
   <body>
     <div id="app">
-    @dd(Route::currentRouteName());
     <!-- nav  -->
     <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -51,8 +50,14 @@
                   Langue
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">Francais</a>
-                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">Arabe</a>
+                    @if (Route::currentRouteName() == "offre")
+                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id]) }}">Francais</a>
+                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id]) }}">Arabe</a>
+                    @else
+                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">Francais</a>
+                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">Arabe</a> 
+                    @endif
+                  
                 </div>
               </div>
 	    </div>
