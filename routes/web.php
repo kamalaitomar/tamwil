@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes 
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,23 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/','/fr');
 
-Route::view('/', 'welcome')->name('home');
+Route::group(['prefix'=>'{locale}'], function(){
 
-Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
+    Route::view('/', 'welcome')->name('home');
 
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+    Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
+    Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+
+    Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
+    Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
+
+    Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');
+    Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
+    Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
+
+    Auth::routes();
+});
 
 
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 
-Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
-
-
-Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index']);
-Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
-Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
-
-
-
-Auth::routes();

@@ -29,7 +29,7 @@
 	    <div class="container">
 
             {{-- logo  --}}
-	        <a class="navbar-brand" href="/">TAMWIL</a>
+	        <a class="navbar-brand" href="{{ url('/')}}">TAMWIL</a>
 
             {{-- nav links  --}}
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,13 +37,22 @@
 	        </button>
 	        <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">{{__('tamwil.home')}}</a></li>
-                    <li class="nav-item"><a href="/financement" class="nav-link">{{__('tamwil.funding')}}</a></li>
+                    <li class="nav-item"><a href="{{ url('/')}} " class="nav-link">{{__('tamwil.home')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.organizations')}}</a></li>
-                    <li class="nav-item"><a href="/adminn" class="nav-link">{{__('tamwil.admin')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Langue
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">Francais</a>
+                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">Arabe</a>
+                </div>
+              </div>
 	    </div>
     </nav>
     <!-- END nav -->
