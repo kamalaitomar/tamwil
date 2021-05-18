@@ -85,11 +85,11 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center mb-2">
                                 <h4 class="text-xs font-weight-bold text-primary text-uppercase col-10">{{off.nom_offre}}</h4>
-                                <img src="assets/images/icon.png" class="col-2">
+                                <img src="/assets/images/icon.png" class="col-2">
                             </div>
                             <div class="mr-2">
                                 <p class="h5 mb-0 text-gray-800">{{off.description}}</p>
-                                <a :href="'/offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">Afficher l'offre</a>
+                                <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">Afficher l'offre</a>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                 besoins: Array},
 
         mounted() {
-            console.log('Component mounted.')
+            console.log(window.locale)
         },
         
         methods:{
@@ -144,7 +144,7 @@
                 dataform.append('besoin', this.form.besoin);
 
 
-                axios.post('/offres', dataform).then( response => {
+                axios.post( '/offres', dataform).then( response => {
                     console.log(response);
                     this.allerros = [];
                     this.submited = true;

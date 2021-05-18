@@ -2006,7 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
     besoins: Array
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log(window.locale);
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -38088,7 +38088,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("img", {
                             staticClass: "col-2",
-                            attrs: { src: "assets/images/icon.png" }
+                            attrs: { src: "/assets/images/icon.png" }
                           })
                         ]
                       ),
@@ -38103,10 +38103,7 @@ var render = function() {
                           {
                             staticClass:
                               "btn btn-outline-primary btn-lg btn-block mt-4",
-                            attrs: {
-                              href: "/offre/" + off.id,
-                              target: "_blank"
-                            }
+                            attrs: { href: "offre/" + off.id, target: "_blank" }
                           },
                           [_vm._v("Afficher l'offre")]
                         )
