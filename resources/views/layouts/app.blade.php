@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
-	
+	<script>
+        var locale = '{{ app()->getLocale()}}'
+    </script>
   </head>
   <body>
     <div id="app">

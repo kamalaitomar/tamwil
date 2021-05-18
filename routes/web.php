@@ -21,9 +21,6 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::view('/', 'welcome')->name('home');
 
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
-    Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
-
-    Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
 
     Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');
@@ -34,4 +31,7 @@ Route::group(['prefix'=>'{locale}'], function(){
 });
 
 
+Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+
+Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 

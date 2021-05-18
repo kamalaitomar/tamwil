@@ -5,7 +5,7 @@
     <div class="my-5 p-2 m-2">
         <div class="row">
             <div class="col-3 offset-1">
-                <img src="../assets/images/logo-placeholder.png" class="mx-auto col-12">
+                <img src="/assets/images/logo-placeholder.png" class="mx-auto col-12">
                 <div class="my-2">
                     <p>0622222222</p>
                     <p>test@gmail.com</p>
@@ -25,7 +25,7 @@
                 <p class="mb-3">{{$offre->description}}</p>
 
                 <div class="row">
-                    <div class="my-3">
+                    <div class="my-3">  
                         <h4 class="text-info ml-2">Organisations :</h4>
                         <div class="row m-1">
                             <div class="card col-3 m-2 ">

@@ -68,6 +68,8 @@ class OffreController extends Controller
     public function show($id)
     {
         $offre = Offre::find($id);
+        
+        dd($id);
 
         return view("offre", compact('offre'));
     }
