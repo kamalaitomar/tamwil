@@ -37,13 +37,21 @@
 	        </button>
 	        <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="financement" class="nav-link">Financements</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
-                    <li class="nav-item"><a href="adminn" class="nav-link">Admin</a></li>
+                    <li class="nav-item"><a href="{{ route('home', app()->getlocale())}}" class="nav-link">{{__('tamwil.home')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('financement', app()->getlocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.organizations')}}</a></li>
                 </ul>
 	        </div>
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  langue
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">AR</a>
+                  <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">FR</a>
+                </div>
+              </div>
 	    </div>
     </nav>
     <!-- END nav -->

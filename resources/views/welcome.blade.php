@@ -13,7 +13,7 @@
                             <h1 class="mb-4">Entrepreneurs: vous avez accès à plus de chose</h1>
                             <p class="mb-4">Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Marrakech-Safi.</p>
 							<p>
-								<a href="/financement" class="btn btn-primary py-3 px-4">Explorez vos options de financement</a>
+								<a href="/financement" class="btn btn-success py-3 px-4">Explorez vos options de financement</a>
 							</p>
 						</div>
 						

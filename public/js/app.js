@@ -37839,7 +37839,7 @@ var render = function() {
                             [
                               _c("img", {
                                 staticClass: "col-lg-6",
-                                attrs: { src: "assets/images/" + profil.icon }
+                                attrs: { src: "/assets/images/" + profil.icon }
                               }),
                               _vm._v(" "),
                               _c(
@@ -37933,7 +37933,7 @@ var render = function() {
                             [
                               _c("img", {
                                 staticClass: "col-lg-6",
-                                attrs: { src: "assets/images/" + besoin.icon }
+                                attrs: { src: "/assets/images/" + besoin.icon }
                               }),
                               _vm._v(" "),
                               _c(

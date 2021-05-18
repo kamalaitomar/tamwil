@@ -8,7 +8,7 @@ use App\Models\Offre;
 use App\Models\Profil;
 use Illuminate\Http\Request;
 
-class formController extends Controller
+class FormController extends Controller
 {
     /**
      * Display a listing of the resource.

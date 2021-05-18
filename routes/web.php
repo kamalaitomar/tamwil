@@ -14,21 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/','/fr');
 
-Route::view('/', 'welcome')->name('home');
+Route::group(['prefix'=>'{locale}'], function(){
 
-Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
+    Route::view('/', 'welcome')->name('home');
+    
+    Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
 
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+    Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
 
+    Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
-
-Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
-
-
-Route::get('/adminn', [App\Http\Controllers\HomeController::class, 'index']);
-
+    Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show']);
 
 
-Auth::routes();
+// Route::get('/adminn', [App\Http\Controllers\HomeController::class, 'index']);
+
+
+
+    Auth::routes();
+
+});
+
+    
