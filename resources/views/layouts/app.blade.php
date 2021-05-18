@@ -37,11 +37,11 @@
 	        </button>
 	        <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/financement" class="nav-link">Financements</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Organisations</a></li>
-                    <li class="nav-item"><a href="/adminn" class="nav-link">Admin</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link">{{__('tamwil.home')}}</a></li>
+                    <li class="nav-item"><a href="/financement" class="nav-link">{{__('tamwil.funding')}}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.organizations')}}</a></li>
+                    <li class="nav-item"><a href="/adminn" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
 	    </div>
