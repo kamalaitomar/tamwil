@@ -25,7 +25,7 @@
   </head>
   <body>
     <div id="app">
-    
+    @dd(Route::currentRouteName());
     <!-- nav  -->
     <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -58,11 +58,10 @@
 	    </div>
     </nav>
     <!-- END nav -->
-
     <main>
         @yield('content')
     </main>
-
+    
 
     {{-- footer  --}}
     <footer class="ftco-footer">
