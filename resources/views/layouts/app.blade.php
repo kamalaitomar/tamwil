@@ -23,7 +23,7 @@
         var locale = '{{ app()->getLocale()}}'
     </script>
   </head>
-  <body>
+  <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
     <div id="app">
     <!-- nav  -->
     <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
@@ -37,7 +37,7 @@
 	            <span class="oi oi-menu"></span> Menu
 	        </button>
 	        <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav m-auto">
                     <li class="nav-item"><a href="{{ url('/')}} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
