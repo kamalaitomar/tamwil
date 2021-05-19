@@ -47,15 +47,15 @@
 	        </div>
             <div class="dropdown">
                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Langue
+                  {{__("tamwil.language")}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @if (Route::currentRouteName() == "offre")
-                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id]) }}">Francais</a>
-                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id]) }}">Arabe</a>
+                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id]) }}">{{__('tamwil.french') }}</a>
+                        <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id]) }}">{{__('tamwil.arabic') }}</a>
                     @else
-                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">Francais</a>
-                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">Arabe</a> 
+                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">{{__('tamwil.french') }}</a>
+                    <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'ar') }}">{{__('tamwil.arabic') }}</a> 
                     @endif
                   
                 </div>
