@@ -9,11 +9,11 @@
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center d-flex justify-content-between">
                     <div class="col-md-5 ftco-animate d-flex align-items-end">
-                        <div class="text w-80">
+                        <div class="text w-80 text-center">
                             <h1 class="mb-4">{{__("tamwil.slogon")}}</h1>
                             <p class="mb-4">{{__("tamwil.sous_slogon")}}</p>
 							<p>
-								<a href="/financement" class="btn btn-primary py-3 px-4">{{__("tamwil.financement_button")}}</a>
+								<a href="{{ route('financement', app()->getLocale()) }}" class="btn btn-success py-3 px-4">{{__("tamwil.financement_button")}}</a>
 							</p>
 						</div>
 						
@@ -134,7 +134,7 @@
 							</div>
 						  <div class="tab-pane container p-1 fade" id="services-4">
 						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor4.png')}});"></div>
-						  	<h3> class="text-center"<a href="#" >{{__('tamwil.ebf') }}</a></h3>
+						  	<h3 class="text-center"> <a href="#" >{{__('tamwil.ebf') }}</a></h3>
 							<p>{{__('tamwil.lorem') }}</p>
 							</div>
 						</div>

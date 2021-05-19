@@ -37801,8 +37801,8 @@ var render = function() {
           _c("br")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-10 offset-1 mb-5 mt-2" }, [
+        _c("div", { staticClass: "row justify-content-md-center" }, [
+          _c("div", { staticClass: "col-10 mb-5 mt-2" }, [
             _vm.curentStep == 1
               ? _c("div", { staticClass: "text-center" }, [
                   _c("h1", { staticClass: "m-2 p-2" }, [_vm._v("Je suis :")]),
@@ -37864,7 +37864,7 @@ var render = function() {
             _vm._v(" "),
             _vm.curentStep == 2
               ? _c("div", [
-                  _c("h1", { staticClass: " col-md-4 offset-md-4" }, [
+                  _c("h1", { staticClass: "m-2 p-2 text-center" }, [
                     _vm._v("Cycle de vie")
                   ]),
                   _vm._v(" "),
@@ -37990,73 +37990,77 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.curentStep == 4
-      ? _c("div", { staticClass: "text-center col-10 offset-1 " }, [
-          _vm.offres == 0
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-warning",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._v(
-                    "\n            nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!\n        "
-                  )
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.offres, function(offre, key) {
-              return _c(
-                "div",
-                {
-                  key: key,
-                  staticClass:
-                    "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex "
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "staff bg-white border-light m-1 p-2 border mb-5 col-12"
-                    },
-                    [
-                      _c("div", { staticClass: "text m-1 text-center" }, [
-                        _c(
-                          "h1",
-                          { staticClass: "text-success font-weight-bold" },
-                          [_vm._v(_vm._s(offre.length))]
-                        ),
-                        _c("h2", [_vm._v(_vm._s(key))]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-outline-primary btn-lg btn-block mt-4",
-                            attrs: { type: "button", offre: offre },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.showOffres(offre)
+      ? _c(
+          "div",
+          { staticClass: "text-center col-10 justify-content-md-center " },
+          [
+            _vm.offres == 0
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-warning",
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _vm._v(
+                      "\n            nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!\n        "
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.offres, function(offre, key) {
+                return _c(
+                  "div",
+                  {
+                    key: key,
+                    staticClass:
+                      "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex "
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "staff bg-white border-light m-1 p-2 border mb-5 col-12"
+                      },
+                      [
+                        _c("div", { staticClass: "text m-1 text-center" }, [
+                          _c(
+                            "h1",
+                            { staticClass: "text-success font-weight-bold" },
+                            [_vm._v(_vm._s(offre.length))]
+                          ),
+                          _c("h2", [_vm._v(_vm._s(key))]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-outline-primary btn-lg btn-block mt-4",
+                              attrs: { type: "button", offre: offre },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.showOffres(offre)
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("En savoir plus")]
-                        )
-                      ])
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        ])
+                            },
+                            [_vm._v("En savoir plus")]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _vm.curentStep == 5

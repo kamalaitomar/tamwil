@@ -30,7 +30,7 @@
 	    <div class="container">
 
             {{-- logo  --}}
-	        <a class="navbar-brand" href="{{ url('/')}}">TAMWIL</a>
+	        <a class="navbar-brand" href="{{ route('home', app()->getLocale()) }}">TAMWIL</a>
 
             {{-- nav links  --}}
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
 	        </button>
 	        <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item"><a href="{{ url('/')}} " class="nav-link">{{__('tamwil.home')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('home', app()->getLocale()) }} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.organizations')}}</a></li>
