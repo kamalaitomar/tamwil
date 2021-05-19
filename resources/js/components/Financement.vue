@@ -20,6 +20,7 @@
                                     <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                     <div class="text m-1  text-center"  :class="{'bg-info ':profil.id == form.profil}">
                                         <h3>{{profil.nom_profil}}</h3>
+                                        <!-- <p>{{__('tamwil.home')}}</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -127,11 +128,13 @@
             }
         },
 
-        props: {profils:Array,
-                besoins: Array},
+        props: {
+                profils:Array,
+                besoins: Array,
+                },
 
         mounted() {
-            console.log(window.locale)
+            console.log()
         },
         
         methods:{

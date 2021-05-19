@@ -20,7 +20,10 @@
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 	<script>
-        var locale = '{{ app()->getLocale()}}'
+        var locale = '{{ app()->getLocale()}}';
+        window._locale = ' {{ config('app.locale')}}';
+        let translation = @JSON(Cache::get('translations', "0"));
+        window._translations = translation ? translation : '';
     </script>
   </head>
   <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
