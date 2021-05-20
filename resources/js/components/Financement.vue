@@ -4,7 +4,7 @@
         <form method="POST" action="/offres"  @submit.prevent="onSubmit" >
             <!-- back button -->
             <div class="row">
-                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">Retour</button><br>
+                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">{{__('tamwil.back')}}</button><br>
 
             </div>
 
@@ -13,14 +13,13 @@
 
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1" class="text-center">
-                        <h1 class="m-2 p-2">Je suis :</h1>
+                        <h1 class="m-2 p-2">{{__('tamwil.Je suis')}}</h1>
                         <div class="row">
                             <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex" >
                                 <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : profil.id != form.profil, 'shadow ':profil.id == form.profil}">
                                     <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                     <div class="text m-1  text-center"  :class="{'bg-info ':profil.id == form.profil}">
-                                        <h3>{{profil.nom_profil}}</h3>
-                                        <!-- <p>{{__('tamwil.home')}}</p> -->
+                                        <h3>{{__('tamwil.'+profil.nom_profil )}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -29,9 +28,9 @@
 
                     <!-- choose cycle section -->      
                     <div v-if="curentStep == 2" >
-                        <h1 class="m-2 p-2 text-center">Cycle de vie</h1>
+                        <h1 class="m-2 p-2 text-center">خلق الأعمال</h1>
                             <ul class="list-group">
-                                <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle}" type="button" class="list-group-item list-group-item-action border border-light fs-3">{{cycle.nom_cycle}}</button>
+                                <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle}" type="button" class="list-group-item list-group-item-action border border-light fs-3">{{__('tamwil.'+cycle.nom_cycle )}}</button>
                             </ul>
                     </div>
 
@@ -51,7 +50,7 @@
                     </div>
 
                     <!-- next and submit button -->
-                    <button v-if="curentStep < 3" @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">Continue</button>
+                    <button v-if="curentStep < 3" @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button>
                     <button v-if="curentStep == 3 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">submit</button>
                 </div>
             </div>

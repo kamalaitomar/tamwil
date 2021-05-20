@@ -19,12 +19,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
-	<script>
-        var locale = '{{ app()->getLocale()}}';
-        window._locale = ' {{ config('app.locale')}}';
-        let translation = @JSON(Cache::get('translations', "0"));
-        window._translations = translation ? translation : '';
-    </script>
+	
   </head>
   <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
     <div id="app">
@@ -113,7 +108,6 @@
         </footer>
         
 
-
     <!-- loader -->
         <div id="ftco-loader" class="show fullscreen">
             <svg class="circular" width="48px" height="48px">
@@ -122,6 +116,12 @@
             </svg>
         </div>  
     </div>
+    <script>
+        var locale = '{{ app()->getLocale()}}';
+        window._locale = '{{ config('app.locale')}}';
+        let translation = @json(\Cache::get('translations', "0"));
+        window._translations = translation ? translation : '';
+    </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
