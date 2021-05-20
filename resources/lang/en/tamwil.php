@@ -8,6 +8,7 @@
         "language"=>"language",
         "French"=>"French",
         "arabic"=>"Arabic",
+        "english"=>"English",
         "slogon"=>"Entrepreneurs: you have access to more",
         "sous_slogon"=>"Welcome to Tamwil, the first digital fundraising platform for entrepreneurs and businesses in the Souss-Massa Region.",
         "financement_button"=>"Explore your financing options",

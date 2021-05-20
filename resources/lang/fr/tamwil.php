@@ -8,6 +8,7 @@
         "language"=>"Langue",
         "french"=>"Français",
         "arabic"=>"Arabe",
+        "english"=>"Anglais",
         "slogon"=>"Entrepreneurs: vous avez accès à plus de chose",
         "sous_slogon"=>"Bienvenu sur Tamwil, la première plateforme digitale de recherche de financement pour les entrepreneurs et les entreprises de la Région Souss-Massa.",
         "financement_button"=>"Explorez vos options de financement",
