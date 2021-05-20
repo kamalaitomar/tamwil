@@ -41,10 +41,14 @@
         "Démarrage de l'activité"=>"Démarrage de l'activité",
         "Exploitation"=>"Exploitation",
         "Développement/ Croissance"=>"Développement/ Croissance",
-        ""=>"",
-        ""=>"",
-        ""=>"",
-        ""=>"",
+        "i need"=>"J'ai besoin de :",
+        "Investissement"=>"Investissement",
+        "Ressources humaines"=>"Ressources humaines",
+        "Production"=>"Production",
+        "Import/Export et internationalisation"=>"Import/Export et internationalisation",
+        "Innovation, technologie/Recherche & développement"=>"Innovation, technologie/Recherche & développement",
+        "Protection de l’environnement et développement durable"=>"Protection de l’environnement et développement durable",
+        "submit"=>"Soumettre",
         ""=>"",
 
 

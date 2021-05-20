@@ -33,7 +33,7 @@
         "Exploitant agricole"=>"مزارع",
         "Personne physique"=>"شخص طبيعي",
         "Autres"=>"آخر",
-        "next"=>"استمر",
+        "next"=>"التالي",
         "back"=>"عودة",
         "life cycle"=>"مراحل التطور",
         "Projet d'entreprise"=>"مشروع تجاري",
@@ -41,10 +41,14 @@
         "Démarrage de l'activité"=>"بدء النشاط",
         "Exploitation"=>"عملية",
         "Développement/ Croissance"=>"التنمية / النمو",
-        ""=>"",
-        ""=>"",
-        ""=>"",
-
+        "i need"=>"أحتاج إلى :",
+        "Investissement"=>"استثمار",
+        "Ressources humaines"=>"الموارد البشرية",
+        "Production"=>"إنتاج",
+        "Import/Export et internationalisation"=>"الاستيراد / التصدير والتدويل",
+        "Innovation, technologie/Recherche & développement"=>"الابتكار والتكنولوجيا / البحث والتطوير",
+        "Protection de l’environnement et développement durable"=>"حماية البيئة والتنمية المستدامة",
+        "submit"=>"إرسال",
 
 
 

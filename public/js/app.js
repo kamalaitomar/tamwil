@@ -1982,6 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -1997,8 +1998,9 @@ __webpack_require__.r(__webpack_exports__);
       success: false,
       submited: false,
       allSteps: 5,
-      curentStep: 1,
-      offre: []
+      curentStep: 3,
+      offre: [],
+      locale: window._locale
     };
   },
   props: {
@@ -2006,7 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
     besoins: Array
   },
   mounted: function mounted() {
-    console.log();
+    console.log(_locale);
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -2195,7 +2197,6 @@ module.exports = {
           locale: window._locale,
           fallback: 'en'
         });
-        console.log(lang.get(key));
         return lang.get(key);
       }
     }
@@ -38600,7 +38601,7 @@ var render = function() {
             _vm.curentStep == 2
               ? _c("div", [
                   _c("h1", { staticClass: "m-2 p-2 text-center" }, [
-                    _vm._v("خلق الأعمال")
+                    _vm._v(" " + _vm._s(_vm.__("tamwil.life cycle")) + " ")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -38613,7 +38614,10 @@ var render = function() {
                           key: cycle.id,
                           staticClass:
                             "list-group-item list-group-item-action border border-light fs-3",
-                          class: { active: cycle.id == _vm.form.cycle },
+                          class: {
+                            active: cycle.id == _vm.form.cycle,
+                            "text-right": _vm.locale == "ar"
+                          },
                           attrs: { type: "button" },
                           on: {
                             click: function($event) {
@@ -38633,7 +38637,7 @@ var render = function() {
             _vm.curentStep == 3
               ? _c("div", { staticClass: "text-center" }, [
                   _c("h1", { staticClass: "m-2 p-2" }, [
-                    _vm._v("J'ai besoin de :")
+                    _vm._v(_vm._s(_vm.__("tamwil.i need")))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -38679,7 +38683,15 @@ var render = function() {
                                     "bg-info ": besoin.id == _vm.form.besoin
                                   }
                                 },
-                                [_c("h3", [_vm._v(_vm._s(besoin.nom_besoin))])]
+                                [
+                                  _c("h3", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.__("tamwil." + besoin.nom_besoin)
+                                      )
+                                    )
+                                  ])
+                                ]
                               )
                             ]
                           )
@@ -38716,7 +38728,7 @@ var render = function() {
                     staticClass: "btn btn-primary btn-lg btn-block m-2",
                     attrs: { type: "submit", "data-mdb-ripple-color": "dark" }
                   },
-                  [_vm._v("submit")]
+                  [_vm._v(_vm._s(_vm.__("tamwil.submit")))]
                 )
               : _vm._e()
           ])

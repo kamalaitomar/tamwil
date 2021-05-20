@@ -20,6 +20,11 @@
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 	
+    <script>
+        window._locale = '{{ config('app.locale')}}';
+        let translation = @json(\Cache::get('translations', "0"));
+        window._translations = translation ? translation : '';
+    </script>
   </head>
   <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
     <div id="app">
@@ -116,12 +121,7 @@
             </svg>
         </div>  
     </div>
-    <script>
-        var locale = '{{ app()->getLocale()}}';
-        window._locale = '{{ config('app.locale')}}';
-        let translation = @json(\Cache::get('translations', "0"));
-        window._translations = translation ? translation : '';
-    </script>
+    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>

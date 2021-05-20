@@ -28,21 +28,22 @@
 
                     <!-- choose cycle section -->      
                     <div v-if="curentStep == 2" >
-                        <h1 class="m-2 p-2 text-center">خلق الأعمال</h1>
-                            <ul class="list-group">
-                                <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle}" type="button" class="list-group-item list-group-item-action border border-light fs-3">{{__('tamwil.'+cycle.nom_cycle )}}</button>
+                        <h1 class="m-2 p-2 text-center"> {{__('tamwil.life cycle')}} </h1>
+                        
+                            <ul class="list-group" >
+                                <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle, 'text-right': locale=='ar'}"  type="button" class="list-group-item list-group-item-action border border-light fs-3" >{{__('tamwil.'+cycle.nom_cycle )}}</button>
                             </ul>
                     </div>
 
                     <!-- choose besoin section -->
                     <div v-if="curentStep == 3" class="text-center">
-                        <h1 class="m-2 p-2">J'ai besoin de :</h1>
+                        <h1 class="m-2 p-2">{{__('tamwil.i need')}}</h1>
                         <div class="row">
                             <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
                                 <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.besoin, 'shadow ':besoin.id == form.besoin}">
                                     <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
                                     <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.besoin}">
-                                        <h3>{{besoin.nom_besoin}}</h3>
+                                        <h3>{{__('tamwil.'+besoin.nom_besoin)}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +52,7 @@
 
                     <!-- next and submit button -->
                     <button v-if="curentStep < 3" @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button>
-                    <button v-if="curentStep == 3 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">submit</button>
+                    <button v-if="curentStep == 3 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">{{__('tamwil.submit')}}</button>
                 </div>
             </div>
             
@@ -120,9 +121,10 @@
                 submited : false,
 
                 allSteps : 5,
-                curentStep : 1,
+                curentStep : 3,
 
                 offre:[],
+                locale: window._locale,
                 
             }
         },
@@ -133,7 +135,7 @@
                 },
 
         mounted() {
-            console.log()
+            console.log(_locale)
         },
         
         methods:{

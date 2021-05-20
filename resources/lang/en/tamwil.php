@@ -40,9 +40,14 @@
         "Démarrage de l'activité"=>"Starting the activity",
         "Exploitation"=>"Operation",
         "Développement/ Croissance"=>"Development / Growth",
-        ""=>"",
-        ""=>"",
-        ""=>"",
+        "i need"=>"I need :",
+        "Investissement"=>"Investment",
+        "Ressources humaines"=>"Human ressources",
+        "Production"=>"Production",
+        "Import/Export et internationalisation"=>"Import / Export and internationalization",
+        "Innovation, technologie/Recherche & développement"=>"Innovation, technology / Research & development",
+        "Protection de l’environnement et développement durable"=>"Environmental protection and sustainable development",
+        "submit"=>"Submit",
         ""=>"",
 
 

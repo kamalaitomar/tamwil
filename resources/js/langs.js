@@ -11,7 +11,6 @@ module.exports ={
                     locale: window._locale,
                     fallback: 'en'
                 })
-                console.log(lang.get(key))
                 return lang.get(key)
             }
         }
