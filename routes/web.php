@@ -24,6 +24,7 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 
     Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');
+    
     Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
     Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
 
