@@ -121,7 +121,7 @@
                 submited : false,
 
                 allSteps : 5,
-                curentStep : 3,
+                curentStep : 1,
 
                 offre:[],
                 locale: window._locale,
