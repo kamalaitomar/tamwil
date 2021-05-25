@@ -23,6 +23,7 @@
                             <th>Tele</th>
                             <th>Adresse</th>
                             <th>Web-site</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -33,6 +34,7 @@
                             <th>Tele</th>
                             <th>Adresse</th>
                             <th>Web-site</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -44,11 +46,25 @@
                                 <td>{{$organisation->tel}}</td>
                                 <td>{{$organisation->adresse}}</td>
                                 <td>{{$organisation->web_site}}</td>
+                                <td>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-warning btn-circle" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-danger btn-circle" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
+                            
                         @endforeach
                        
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">
+                    {!! $organisations->links() !!}
+                </div>
             </div>
         </div>
     </div>
