@@ -25,7 +25,8 @@
                             <th>Description</th>
                             <th>Condition</th>
                             <th>Fascicule</th>
-                            <th>mantont du financement</th>
+                            <th>Mantont du financement</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -36,7 +37,8 @@
                             <th>Description</th>
                             <th>Condition</th>
                             <th>Fascicule</th>
-                            <th>mantont du financement</th>
+                            <th>Mantont du financement</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -48,12 +50,25 @@
                                 <td>{{$offre->description}}</td>
                                 <td>{{$offre->condition}}</td>
                                 <td>{{$offre->fascicule}}</td>
-                                <td>{{$offre->montont_du_financemet}}</td>
+                                <td>{{$offre->mantont_du_financement}}</td>
+                                <td>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-warning btn-circle" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-danger btn-circle" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                        
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center">
+                    {!! $offres->links() !!}
+                </div> 
             </div>
         </div>
     </div>

@@ -85,12 +85,12 @@ class AdminController extends Controller
     }
 
     public function offres(){
-        $offres = Offre::all();
+        $offres = Offre::paginate(5);
         return view('admin.offres', compact('offres'));
     }
 
     public function organisations(){
-        $organisations = Organisation::all();
+        $organisations = Organisation::paginate(5);
         return view('admin.organisations', compact('organisations'));
     }
 }
