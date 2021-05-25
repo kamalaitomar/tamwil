@@ -12,7 +12,17 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Offres table</h6>
+            <div class="row">
+                <h5 class=" font-weight-bold text-primary col-9">Offres table</h5>
+            
+                <a href="#" class="btn btn-success btn-icon-split ml-5">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Ajouter une offre</span>
+                </a>
+            </div>
+            
         </div>
         <div class="card-body">
             <div class="table-responsive">
