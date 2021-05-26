@@ -15,7 +15,7 @@
             <div class="row">
                 <h5 class=" font-weight-bold text-primary col-9">Offres table</h5>
             
-                <a href=" {{ route('createOffre') }} " class="btn btn-success btn-icon-split ml-5">
+                <a href=" {{ route('offre.create') }} " class="btn btn-success btn-icon-split ml-5">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>

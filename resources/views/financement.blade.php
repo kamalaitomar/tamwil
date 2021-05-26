@@ -5,7 +5,7 @@
 <div class="container">
     
     {{-- offres section  --}}
-    <financement-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></search-form-component>
+    <financement-component :profils="{{ $profils }}" :besoins="{{ $besoins }}" ></financement-component>
         
 </div>
 

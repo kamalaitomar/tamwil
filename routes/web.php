@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\OffreController;
+use App\Http\Controllers\Admin\OrganisationController;
+use App\Models\Offre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +24,12 @@ Auth::routes([
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');  
-    Route::get('/offres', [App\Http\Controllers\Admin\OffreController::class, 'index']);
-    Route::get('/organisations', [App\Http\Controllers\Admin\OrganisationController::class, 'index']);
+    Route::resource('/offre', OffreController::class);
+    Route::resource('/organisation', OrganisationController::class);
 
-    Route::get('/createoffre', [App\Http\Controllers\Admin\OffreController::class, 'create'])->name('createOffre') ;
+
+    
+
 });
 
 
