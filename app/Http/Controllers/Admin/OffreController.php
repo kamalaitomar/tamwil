@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Besoin;
+use App\Models\Cycle;
 use App\Models\Offre;
-use App\Models\Organisation;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class OffreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $offres = Offre::paginate(5);
+        return view('admin.offres', compact('offres'));
     }
 
     /**
@@ -25,7 +29,11 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $profils = Profil::all();
+        $cycles = Cycle::all();
+        $besoins = Besoin::all();
+
+        return view('admin.createOffre', compact('profils', 'cycles', 'besoins'));
     }
 
     /**

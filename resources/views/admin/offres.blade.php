@@ -15,7 +15,7 @@
             <div class="row">
                 <h5 class=" font-weight-bold text-primary col-9">Offres table</h5>
             
-                <a href="#" class="btn btn-success btn-icon-split ml-5">
+                <a href=" {{ route('createOffre') }} " class="btn btn-success btn-icon-split ml-5">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -56,9 +56,9 @@
                              <tr>
                                 <td>{{$offre->id}}</td>
                                 <td>{{$offre->nom_offre}}</td>
-                                <td>{{$offre->objet}}</td>
-                                <td>{{$offre->description}}</td>
-                                <td>{{$offre->condition}}</td>
+                                <td>{{ Str::limit($offre->objet, 50)}}</td>
+                                <td>{{ Str::limit($offre->description, 50)}}</td>
+                                <td>{{ Str::limit($offre->condition, 50)}}</td>
                                 <td>{{$offre->fascicule}}</td>
                                 <td>{{$offre->mantont_du_financement}}</td>
                                 <td>

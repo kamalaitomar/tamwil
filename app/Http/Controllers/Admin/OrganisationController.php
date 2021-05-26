@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Offre;
+use App\Http\Controllers\Controller;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class OrganisationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $organisations = Organisation::paginate(5);
+        return view('admin.organisations', compact('organisations'));
     }
 
     /**

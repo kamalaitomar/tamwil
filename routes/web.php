@@ -21,8 +21,10 @@ Auth::routes([
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');  
-    Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
-    Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
+    Route::get('/offres', [App\Http\Controllers\Admin\OffreController::class, 'index']);
+    Route::get('/organisations', [App\Http\Controllers\Admin\OrganisationController::class, 'index']);
+
+    Route::get('/createoffre', [App\Http\Controllers\Admin\OffreController::class, 'create'])->name('createOffre') ;
 });
 
 
@@ -31,6 +33,7 @@ Route::redirect('/','/fr');
 Route::group(['prefix'=>'{locale}'], function(){
     Route::view('/', 'welcome')->name('home');
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
+    Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 });
 
 
