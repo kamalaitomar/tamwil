@@ -8,72 +8,60 @@
         <form class="user">
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="nom"
-                        placeholder="Offre nom">
+                    <label for="nom">Offre nom</label>
+                    <input type="text" class="form-control form-control-user" id="nom">
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="fascicule"
-                        placeholder="Fascicule">
+                    <label for="fascicule">Fascicule</label>
+                    <input type="text" class="form-control form-control-user" id="fascicule">
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="objet"
-                    placeholder="Objet">
+                <label for="objet">Objet</label>
+                <input type="text" class="form-control form-control-user" id="objet">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="description"
-                    placeholder="Description">
+                <label for="description">Description</label>
+                <input type="text" class="form-control form-control-user" id="description">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="condition"
-                    placeholder="Condition">
+                <label for="condition">Condition</label>
+                <input type="text" class="form-control form-control-user" id="condition">
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user"
-                        id="mantont" placeholder="Mantont du financement">
+                    <label for="mantont">Mantont du financement</label>
+                    <input type="number" class="form-control form-control-user" id="mantont" min="0">
                 </div>
             </div>
-            <div class="form-group row d-flex justify-content-center">
+            <div class="form-group">
+                <div class="row my-2">
+                    <label for="profils" class="col-2">Profils</label>
+                    <select class="js-example-basic-multiple col-9" name="profils[]" multiple="multiple" id="profils">
+                        @foreach ($profils as $profil)
+                            <option value="{{ $profil->id }}">{{ $profil->nom_profil }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="row my-2">
+                    <label for="cycles" class="col-2">Cycles de vie</label>
+                    <select class="js-example-basic-multiple col-9" name="cycles[]" multiple="multiple" id="cycles">
+                        @foreach ($cycles as $cycle)
+                            <option value="{{ $profil->id }}{{ $cycle->id }}">{{ $cycle->nom_cycle }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="row my-2">
+                    <label for="besoins" class="col-2">Besoins</label>
+                    <select class="js-example-basic-multiple col-9" name="besoins[]" multiple="multiple" id="besoins">
+                        @foreach ($besoins as $besoin)
+                            <option value="{{ $besoin->id }}">{{ $besoin->nom_besoin }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                <ul class="list-group list-group-flush">
-                    <p class="font-weight-bold">Profil</p>
-                    @foreach ($profils as $profil)
-                        <li class="list-group-item">
-                            <!-- Default checked -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="profil_{{ $profil->id }}" >
-                                <label class="custom-control-label" for="profil_{{ $profil->id }}">{{ $profil->nom_profil }} </label>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-
-                <ul class="list-group list-group-flush mx-1">
-                    <p class="font-weight-bold">Cycle de vie</p>
-                    @foreach ($cycles as $cycle)
-                        <li class="list-group-item">
-                            <!-- Default checked -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="cycle_{{ $cycle->id }}">
-                                <label class="custom-control-label" for="cycle_{{ $cycle->id }}">{{ $cycle->nom_cycle }} </label>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-
-                <ul class="list-group list-group-flush ">
-                    <p class="font-weight-bold">Besoin</p>
-                    @foreach ($besoins as $besoin)
-                        <li class="list-group-item">
-                            <!-- Default checked -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="besoin_{{ $besoin->id }}">
-                                <label class="custom-control-label" for="besoin_{{ $besoin->id }}">{{ $besoin->nom_besoin }} </label>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
             </div>
             <a href="login.html" class="btn btn-primary btn-user btn-block">
                 Ajouter
