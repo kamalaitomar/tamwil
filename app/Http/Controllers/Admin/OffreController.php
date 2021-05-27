@@ -54,7 +54,16 @@ class OffreController extends Controller
             'objet' => 'required|min:3|max:255',
             'description' => 'required|min:3|max:500',
             'condition' => 'required|min:3|max:500',
-            'mantont' => 'required',
+            'mantont' => 'required|min:0',
+            
+            'profils' => 'required|array',
+            'profils.*' => 'integer|exists:profils,id',
+            'cycles' => 'required|array',
+            'cycles.*' => 'integer|exists:cycles,id',
+            'besoins' => 'required|array',
+            'besoins.*' => 'integer|exists:besoins,id',
+            'organisations' => 'required|array',
+            'organisations.*' => 'integer|exists:organisations,id',
         ]);
 
         $offre= new Offre();
@@ -96,7 +105,13 @@ class OffreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $offre = Offre ::findOrFail($id);
+        $profils = Profil::all();
+        $cycles = Cycle::all();
+        $besoins = Besoin::all();
+        $organisations = Organisation::all();
+
+        return view('admin.editOffre', compact('offre','profils', 'cycles', 'besoins', 'organisations'));
     }
 
     /**

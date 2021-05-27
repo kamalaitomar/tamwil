@@ -5,12 +5,13 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Ajouter une Offre!</h1>
         </div>
-        <form class="user" action=" {{ route('offre.store') }} " method="POST">
+        <form class="user" action=" {{ route('offre.store', ['offre'=>$offre->id]) }} " method="POST">
             @csrf
+            @method('PUT')
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="nom">Offre nom</label>
-                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom')}}">
+                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom', $offre->nom_offre)}}">
                     @error('nom')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -19,7 +20,7 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="fascicule">Fascicule</label>
-                    <input type="text" class="form-control " id="fascicule" name="fascicule"  value="{{old('fascicule')}}">
+                    <input type="text" class="form-control " id="fascicule" name="fascicule"  value="{{old('fascicule', $offre->fascicule)}}">
                     @error('fascicule')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -29,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="objet">Objet</label>
-                <textarea type="text" class="form-control " id="objet" name="objet"  >{{old('objet')}}</textarea>
+                <textarea type="text" class="form-control " id="objet" name="objet"  >{{old('objet', $offre->objet)}}</textarea>
                 @error('objet')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -38,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" class="form-control " id="description" name="description"  >{{old('description')}}</textarea>
+                <textarea type="text" class="form-control " id="description" name="description"  >{{old('description', $offre->description)}}</textarea>
                 @error('description')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -47,7 +48,7 @@
             </div>
             <div class="form-group"> 
                 <label for="condition">Condition</label>
-                <textarea type="text" class="form-control " id="condition" name="condition"  >{{old('condition')}}</textarea>
+                <textarea type="text" class="form-control " id="condition" name="condition"  >{{old('condition', $offre->condition)}}</textarea>
                 @error('condition')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -57,7 +58,7 @@
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="mantont">Mantont du financement</label>
-                    <input type="number" class="form-control " id="mantont" min="0" name="mantont"  value="{{old('mantont')}}">
+                    <input type="number" class="form-control " id="mantont" min="0" name="mantont"  value="{{old('mantont', $offre->mantont_du_financement)}}">
                     @error('mantont')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -133,7 +134,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-user btn-block">
-                Ajouter
+                Mise à jour
             </button>
             
         </form>
