@@ -9,6 +9,8 @@ use App\Models\Offre;
 use App\Models\Organisation;
 use App\Models\Profil;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
+use Symfony\Component\Console\Input\Input;
 
 class OffreController extends Controller
 {
@@ -46,6 +48,14 @@ class OffreController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nom' => 'required|min:3|max:255',
+            'fascicule' => 'required|min:3|max:255',
+            'objet' => 'required|min:3|max:255',
+            'description' => 'required|min:3|max:500',
+            'condition' => 'required|min:3|max:500',
+            'mantont' => 'required',
+        ]);
 
         $offre= new Offre();
         $offre->nom_offre = $request->input('nom');
@@ -55,7 +65,16 @@ class OffreController extends Controller
         $offre->condition = $request->input('condition');
         $offre->mantont_du_financement = $request->input('mantont');
 
-        dd($offre);
+        $offre->save();
+
+        $offre->profils()->attach($request->profils);
+        $offre->cycles()->attach($request->cycles);
+        $offre->besoins()->attach($request->besoins);
+        $offre->organisations()->attach($request->organisations);
+
+        $request->session()->flash('status','votre offre a été ajoutée avec succès');
+
+        return redirect()->route('offre.index');
     }
 
     /**

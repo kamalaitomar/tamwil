@@ -10,29 +10,59 @@
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="nom">Offre nom</label>
-                    <input type="text" class="form-control form-control-user" id="nom" name="nom">
+                    <input type="text" class="form-control " id="nom" name="nom">
+                    @error('nom')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col-sm-6">
                     <label for="fascicule">Fascicule</label>
-                    <input type="text" class="form-control form-control-user" id="fascicule" name="fascicule">
+                    <input type="text" class="form-control " id="fascicule" name="fascicule">
+                    @error('fascicule')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
                 <label for="objet">Objet</label>
-                <textarea type="text" class="form-control form-control-user" id="objet" name="objet"></textarea>
+                <textarea type="text" class="form-control " id="objet" name="objet"></textarea>
+                @error('objet')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" class="form-control form-control-user" id="description" name="description"></textarea>
+                <textarea type="text" class="form-control " id="description" name="description"></textarea>
+                @error('description')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group"> 
                 <label for="condition">Condition</label>
-                <textarea type="text" class="form-control form-control-user" id="condition" name="condition"></textarea>
+                <textarea type="text" class="form-control " id="condition" name="condition"></textarea>
+                @error('condition')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="mantont">Mantont du financement</label>
-                    <input type="number" class="form-control form-control-user" id="mantont" min="0" name="mantont"> 
+                    <input type="number" class="form-control " id="mantont" min="0" name="mantont">
+                    @error('mantont')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +95,7 @@
                 
                 <div class="row my-2">
                     <label for="organisations" class="col-2">Organisations</label>
-                    <select class="js-example-basic-multiple col-9" name="cycles[]" multiple="multiple" id="organisations">
+                    <select class="js-example-basic-multiple col-9" name="organisations[]" multiple="multiple" id="organisations">
                         @foreach ($organisations as $organisation)
                             <option value="{{ $organisation->id }}">{{ $organisation->nom_organisation }}</option>
                         @endforeach

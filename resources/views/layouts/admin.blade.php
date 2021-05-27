@@ -24,6 +24,12 @@
 
 <body id="page-top">
 
+    @if (session()->has('status'))
+        <h4 class="alert alert-success my-0">
+            {{ session()->get('status') }}
+        </h4>
+    @endif
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
