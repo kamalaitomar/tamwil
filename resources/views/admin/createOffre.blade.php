@@ -69,7 +69,7 @@
                 <div class="row my-2">
                     <label for="profils" class="col-2">Profils</label>
                     <div class="col-9">
-                        <select class="js-example-basic-multiple col-12" name="profils[]" multiple="multiple" id="profils"  value="{{old('profils[]')}}">
+                        <select class="js-example-basic-multiple col-12" name="profils[]" multiple="multiple" id="profils"  >
                             @foreach ($profils as $profil)
                                 <option value="{{ $profil->id }}">{{ $profil->nom_profil }}</option>
                             @endforeach
@@ -139,5 +139,27 @@
         </form>
         
     </div>
-    
+
+
+@endsection
+
+@section('script')
+      
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+            
+            $('#profils').val( @json(old('profils')) );
+            $('#profils').trigger('change');
+            
+            $('#cycles').val( @json(old('cycles')) );
+            $('#cycles').trigger('change');
+            
+            $('#besoins').val( @json(old('besoins')) );
+            $('#besoins').trigger('change');
+            
+            $('#organisations').val( @json(old('organisations')) );
+            $('#organisations').trigger('change');
+        });
+    </script>
 @endsection

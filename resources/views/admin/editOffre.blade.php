@@ -5,7 +5,7 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Ajouter une Offre!</h1>
         </div>
-        <form class="user" action=" {{ route('offre.store', ['offre'=>$offre->id]) }} " method="POST">
+        <form class="user" action=" {{ route('offre.update', ['offre'=>$offre->id]) }} " method="POST">
             @csrf
             @method('PUT')
             <div class="form-group row">
@@ -141,4 +141,25 @@
         
     </div>
     
+@endsection
+
+@section('script')
+      
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+            
+            $('#profils').val( @json($offreprofil ));
+            $('#profils').trigger('change');
+            
+            $('#cycles').val( @json($offrecycle) );
+            $('#cycles').trigger('change');
+            
+            $('#besoins').val( @json($offrebesoin) );
+            $('#besoins').trigger('change');
+            
+            $('#organisations').val( @json($offreorganisation) );
+            $('#organisations').trigger('change');
+        });
+    </script>
 @endsection

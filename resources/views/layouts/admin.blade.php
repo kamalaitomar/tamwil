@@ -19,16 +19,13 @@
     <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
 
 </head>
 
 <body id="page-top">
 
-    @if (session()->has('status'))
-        <h4 class="alert alert-success my-0">
-            {{ session()->get('status') }}
-        </h4>
-    @endif
+    
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -242,13 +239,23 @@
     <script src="/admin/js/demo/chart-area-demo.js"></script>
     <script src="/admin/js/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
 
-    </script>
-    
+    {{-- sweetalert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @if (session()->has('status'))
+        <script>
+            swal({
+                position: 'top-end',
+                title: @json(session()->get('status')),
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000
+                })
+        </script>
+    @endif
+
+    @yield('script')
 
 </body>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOffre;
 use App\Models\Besoin;
 use App\Models\Cycle;
 use App\Models\Offre;
@@ -46,25 +47,8 @@ class OffreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOffre $request)
     {
-        $validated = $request->validate([
-            'nom' => 'required|min:3|max:255',
-            'fascicule' => 'required|min:3|max:255',
-            'objet' => 'required|min:3|max:255',
-            'description' => 'required|min:3|max:500',
-            'condition' => 'required|min:3|max:500',
-            'mantont' => 'required|min:0',
-            
-            'profils' => 'required|array',
-            'profils.*' => 'integer|exists:profils,id',
-            'cycles' => 'required|array',
-            'cycles.*' => 'integer|exists:cycles,id',
-            'besoins' => 'required|array',
-            'besoins.*' => 'integer|exists:besoins,id',
-            'organisations' => 'required|array',
-            'organisations.*' => 'integer|exists:organisations,id',
-        ]);
 
         $offre= new Offre();
         $offre->nom_offre = $request->input('nom');
@@ -105,13 +89,18 @@ class OffreController extends Controller
      */
     public function edit($id)
     {
-        $offre = Offre ::findOrFail($id);
+        $offre = Offre::findOrFail($id);
         $profils = Profil::all();
         $cycles = Cycle::all();
         $besoins = Besoin::all();
         $organisations = Organisation::all();
 
-        return view('admin.editOffre', compact('offre','profils', 'cycles', 'besoins', 'organisations'));
+        $offreprofil = $offre->profils->pluck('id');
+        $offrecycle = $offre->cycles->pluck('id');
+        $offrebesoin = $offre->besoins->pluck('id');
+        $offreorganisation = $offre->organisations->pluck('id');
+ 
+        return view('admin.editOffre', compact('offre','profils', 'cycles', 'besoins', 'organisations', 'offreprofil', 'offrecycle', 'offrebesoin','offreorganisation'));
     }
 
     /**
@@ -121,9 +110,27 @@ class OffreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreOffre $request, $id)
     {
-        //
+        $offre = Offre::findOrFail($id);
+        $offre->nom_offre = $request->input('nom');
+        $offre->fascicule = $request->input('fascicule');
+        $offre->objet = $request->input('objet');
+        $offre->description = $request->input('description');
+        $offre->condition = $request->input('condition');
+        $offre->mantont_du_financement = $request->input('mantont');
+
+        $offre->save();
+
+        $offre->profils()->sync($request['profils']);
+        $offre->cycles()->sync($request['cycles']);
+        $offre->besoins()->sync($request['besoins']);
+        $offre->organisations()->sync($request['organisations']);
+
+
+        $request->session()->flash('status','votre offre a été modifier avec succès');
+
+        return redirect()->route('offre.index');
     }
 
     /**
@@ -132,8 +139,12 @@ class OffreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $offre = Offre::findOrFail($id);
+        $offre->delete();
+
+        $request->session()->flash('status','votre offre a été modifier avec succès');
+        return redirect()->route('offre.index');
     }
 }
