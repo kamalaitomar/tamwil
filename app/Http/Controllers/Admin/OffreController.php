@@ -142,9 +142,17 @@ class OffreController extends Controller
     public function destroy(Request $request, $id)
     {
         $offre = Offre::findOrFail($id);
+
+        
+        $offre->profils->detach($id);
+
+        $offre->cycles->detach($id);
+        $offre->besoins->detach($id);
+        $offre->organisations->detach($id);
+
         $offre->delete();
 
-        $request->session()->flash('status','votre offre a été modifier avec succès');
+        $request->session()->flash('status','votre offre a été Suprime');
         return redirect()->route('offre.index');
     }
 }

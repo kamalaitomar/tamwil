@@ -67,9 +67,15 @@
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <div class="my-2"></div>
-                                    <a href="#" class="btn btn-danger btn-circle" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+
+                                    <form action="POST" action="{{ route('offre.destroy', ['offre' => $offre->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-circle" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                    
                                 </td>
                             </tr>
                         @endforeach
