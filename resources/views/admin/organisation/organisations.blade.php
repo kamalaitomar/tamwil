@@ -57,7 +57,7 @@
                                 <td>{{$organisation->web_site}}</td>
                                 <td>
                                     <div class="my-2"></div>
-                                    <a href="#" class="btn btn-warning btn-circle" title="Edit">
+                                    <a href="{{ route('organisation.edit', ['organisation'=>$organisation->id]) }}" class="btn btn-warning btn-circle" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <div class="my-2"></div>
