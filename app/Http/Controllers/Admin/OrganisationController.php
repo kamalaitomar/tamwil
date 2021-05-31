@@ -82,7 +82,7 @@ class OrganisationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreOrganisation $request, $id)
     {
         $organisation = Organisation::findOrFail($id);
         $organisation->nom_organisation = $request->input('nom');
@@ -104,8 +104,14 @@ class OrganisationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $organisation = Organisation::findOrFail($id);
+
+        $organisation->delete();
+
+        $request->session()->flash('status','votre organisation a été Suprime');
+
+        return redirect()->route('organisation.index');
     }
 }

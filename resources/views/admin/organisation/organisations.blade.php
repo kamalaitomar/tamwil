@@ -61,9 +61,13 @@
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <div class="my-2"></div>
-                                    <a href="#" class="btn btn-danger btn-circle" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <form method="POST" action="{{ route('organisation.destroy', ['organisation' => $organisation->id]) }}" class="button delete-confirm"> 
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-circle" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             
@@ -77,4 +81,24 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+        $('.delete-confirm').on('click', function (event) {
+        event.preventDefault();
+        swal({
+            title: 'Are you sure?',
+            text: 'This record and it`s details will be permanantly deleted!',
+            icon: 'warning',
+            buttons: ["Cancel", "Yes!"],
+        }).then(function(value) {
+            if (value) {
+                $('.delete-confirm').submit();            }
+        });
+    });
+</script>
 @endsection
