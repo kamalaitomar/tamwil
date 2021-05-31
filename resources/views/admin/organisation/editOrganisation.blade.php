@@ -7,6 +7,7 @@
         </div>
         <form class="user" action=" {{ route('organisation.update', ['organisation'=>$organisation->id]) }} " method="POST">
             @csrf
+            @method('PUT')
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="nom">Nom</label>

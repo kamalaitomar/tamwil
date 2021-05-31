@@ -84,7 +84,18 @@ class OrganisationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $organisation = Organisation::findOrFail($id);
+        $organisation->nom_organisation = $request->input('nom');
+        $organisation->email = $request->input('email');
+        $organisation->tel = $request->input('tel');
+        $organisation->adresse = $request->input('adresse');
+        $organisation->web_site = $request->input('web_site');
+
+        $organisation->save();
+
+        $request->session()->flash('status','votre organisation a été modifier avec succès');
+
+        return redirect()->route('organisation.index');
     }
 
     /**
