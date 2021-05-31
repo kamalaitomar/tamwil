@@ -4,12 +4,13 @@
     <title>TAMWIL</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    
     
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
@@ -44,7 +45,7 @@
                     <li class="nav-item"><a href="{{ route('home', app()->getLocale()) }} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.organizations')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('organisation', app()->getLocale()) }}" class="nav-link">{{__('tamwil.organizations')}}</a></li>
                     <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
@@ -138,6 +139,6 @@
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
     {{-- <script src="{{asset('assets/js/google-map.js')}}"></script> --}}
     <script src="{{asset('assets/js/main.js')}}"></script>
-    </body>
+    <!-- <script src="{{ asset('js/app.js') }}"></script>    </body> -->
     </html>
       

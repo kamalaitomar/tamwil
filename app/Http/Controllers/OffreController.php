@@ -17,7 +17,8 @@ class OffreController extends Controller
         $validated = $request->validate([
             'profil' => 'required',
             'cycle' => 'required',
-            'besoin' => 'required'
+            'besoin' => 'required',
+            // 'organisation'=>'required'
         ]);
 
         $offres = Offre::when('profil', function($query)use ( $request ){
@@ -30,8 +31,10 @@ class OffreController extends Controller
 
         })->when('besoin', function($query)use ( $request ){
 
+            
             return  $query->whereHas('besoins', function($q)use ( $request ){ $q->where('id', $request->besoin);});
-
+        //})->when('organisation', function($query)use ( $request ){
+                // return  $query->whereHas('organisations', function($q)use ( $request ){ $q->where('id', $request->organisation);});
         })->get();
 
 

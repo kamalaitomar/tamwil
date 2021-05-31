@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- choosing step  -->
-        <form method="POST" action="/offres"  @submit.prevent="onSubmit" >
+        <form method="POST" action="/organisations"  @submit.prevent="onSubmit" >
             <!-- back button -->
             <div class="row">
                  <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">Retour</button><br>
@@ -71,6 +71,7 @@
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
                         <div class="text m-1 text-center">
                             <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{key}}</h2>
+                            <!-- thye key in the table -->
                             <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">En savoir plus</button>
                         </div>
                     </div>
