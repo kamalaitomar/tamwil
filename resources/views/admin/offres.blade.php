@@ -68,7 +68,7 @@
                                     </a>
                                     <div class="my-2"></div>
 
-                                    <form action="POST" action="{{ route('offre.destroy', ['offre' => $offre->id]) }}">
+                                    <form method="POST" action="{{ route('offre.destroy', ['offre' => $offre->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-circle" title="Delete">

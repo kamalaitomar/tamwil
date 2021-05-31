@@ -143,12 +143,10 @@ class OffreController extends Controller
     {
         $offre = Offre::findOrFail($id);
 
-        
-        $offre->profils->detach($id);
-
-        $offre->cycles->detach($id);
-        $offre->besoins->detach($id);
-        $offre->organisations->detach($id);
+        $offre->profils()->detach();
+        $offre->cycles()->detach();
+        $offre->besoins()->detach();
+        $offre->organisations()->detach();
 
         $offre->delete();
 
