@@ -26,10 +26,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');  
     Route::resource('/offre', OffreController::class);
     Route::resource('/organisation', OrganisationController::class);
-
-
-    
-
 });
 
 

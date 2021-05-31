@@ -23,7 +23,7 @@ class OffreController extends Controller
     public function index()
     {
         $offres = Offre::paginate(5);
-        return view('admin.offres', compact('offres'));
+        return view('admin.offre.offres', compact('offres'));
     }
 
     /**
@@ -38,7 +38,7 @@ class OffreController extends Controller
         $besoins = Besoin::all();
         $organisations = Organisation::all();
 
-        return view('admin.createOffre', compact('profils', 'cycles', 'besoins', 'organisations'));
+        return view('admin.offre.createOffre', compact('profils', 'cycles', 'besoins', 'organisations'));
     }
 
     /**
@@ -100,7 +100,7 @@ class OffreController extends Controller
         $offrebesoin = $offre->besoins->pluck('id');
         $offreorganisation = $offre->organisations->pluck('id');
  
-        return view('admin.editOffre', compact('offre','profils', 'cycles', 'besoins', 'organisations', 'offreprofil', 'offrecycle', 'offrebesoin','offreorganisation'));
+        return view('admin.offre.editOffre', compact('offre','profils', 'cycles', 'besoins', 'organisations', 'offreprofil', 'offrecycle', 'offrebesoin','offreorganisation'));
     }
 
     /**

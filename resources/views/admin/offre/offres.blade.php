@@ -12,7 +12,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row">
+            <div class="row d-flex justify-content-between">
                 <h5 class=" font-weight-bold text-primary col-9">Offres table</h5>
             
                 <a href=" {{ route('offre.create') }} " class="btn btn-success btn-icon-split ml-5">

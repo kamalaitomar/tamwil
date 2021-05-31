@@ -16,7 +16,7 @@ class OrganisationController extends Controller
     public function index()
     {
         $organisations = Organisation::paginate(5);
-        return view('admin.organisations', compact('organisations'));
+        return view('admin.organisation.organisations', compact('organisations'));
     }
 
     /**
@@ -26,7 +26,7 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.organisation.createOrganisation');
     }
 
     /**
@@ -37,7 +37,18 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organisation= new Organisation();
+        $organisation->nom_organisation = $request->input('nom');
+        $organisation->email = $request->input('email');
+        $organisation->tel = $request->input('tel');
+        $organisation->adresse = $request->input('adresse');
+        $organisation->web_site = $request->input('web_site');
+
+        $organisation->save();
+
+        $request->session()->flash('status','votre organisation a été ajoutée avec succès');
+
+        return redirect()->route('organisation.index');
     }
 
     /**
