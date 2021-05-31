@@ -22,7 +22,7 @@
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="fascicule">Email</label>
                     <input type="email" class="form-control " id="email" name="email"  value="{{old('email')}}">
-                    @error('fascicule')
+                    @error('email')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -33,7 +33,7 @@
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="fascicule">Telephone</label>
                     <input type="text" class="form-control " id="tel" name="tel"  value="{{old('tel')}}">
-                    @error('fascicule')
+                    @error('tel')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -44,7 +44,7 @@
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="fascicule">Adresse</label>
                     <input type="text" class="form-control " id="adresse" name="adresse"  value="{{old('adresse')}}">
-                    @error('fascicule')
+                    @error('adresse')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -55,7 +55,7 @@
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="fascicule">Web site</label>
                     <input type="text" class="form-control " id="web_site" name="web_site"  value="{{old('web_site')}}">
-                    @error('fascicule')
+                    @error('web_site')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOrganisation;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class OrganisationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrganisation $request)
     {
         $organisation= new Organisation();
         $organisation->nom_organisation = $request->input('nom');
