@@ -10,8 +10,7 @@ use App\Models\Offre;
 use App\Models\Organisation;
 use App\Models\Profil;
 use Illuminate\Http\Request;
-use SebastianBergmann\Environment\Console;
-use Symfony\Component\Console\Input\Input;
+
 
 class OffreController extends Controller
 {

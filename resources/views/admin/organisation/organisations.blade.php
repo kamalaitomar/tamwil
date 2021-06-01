@@ -6,8 +6,6 @@
     <div class="d-sm-flex align-items-center justify-content-between my-4">
         <h1 class="h3 mb-0 text-gray-800">Organisations</h1>
     </div>
-
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row d-flex justify-content-between">
@@ -85,7 +83,6 @@
 
 @section('script')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
 <script>
         $('.delete-confirm').on('click', function (event) {

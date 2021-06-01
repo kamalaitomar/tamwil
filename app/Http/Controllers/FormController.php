@@ -17,7 +17,6 @@ class formController extends Controller
      */
     public function index()
     {
-
         $profils = Profil::all();
         $besoins = Besoin::all();
 
