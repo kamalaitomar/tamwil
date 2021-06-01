@@ -75,8 +75,13 @@
                                 <option value="{{ $profil->id }}">{{ $profil->nom_profil }}</option>
                             @endforeach
                         </select>
-                        
                         @error('profils')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </select>
+                        @error('profils.*')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -98,6 +103,12 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        </select>
+                        @error('cycles.*')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 
@@ -114,6 +125,12 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        </select>
+                        @error('besoins.*')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 
@@ -126,6 +143,12 @@
                             @endforeach
                         </select>
                         @error('organisations')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </select>
+                        @error('organisations.*')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

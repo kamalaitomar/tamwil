@@ -41,4 +41,19 @@ class StoreOffre extends FormRequest
             'organisations.*' => 'integer|exists:organisations,id',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'profils.*.exists' => 'The value of profils field does not exist',
+            'cycles.*.exists' => 'The value of cycles field does not exist',
+            'besoins.*.exists' => 'The value of besoins field does not exist',
+            'organisations.*.exists' => 'The value of organisations field does not exist',
+        ];
+    }
 }
