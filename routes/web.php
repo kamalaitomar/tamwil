@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/','/fr');
 
+
+Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
+
+Route::get('/organisation/{type}',[App\Http\Controllers\OrganisationController::class , 'create'])->name('organisation');
+
+
 Route::group(['prefix'=>'{locale}'], function(){
 
     Route::view('/', 'welcome')->name('home');
@@ -27,12 +34,13 @@ Route::group(['prefix'=>'{locale}'], function(){
     
     Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
     Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
-
+    
+    Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
+    Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
+    
+    // Route::resource('photos', PhotoController::class)->only([
+    //     'index', 'show'
+    // ]);
+    
     Auth::routes();
 });
-
-
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
-
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
-

@@ -1998,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
       success: false,
       submited: false,
       allSteps: 5,
-      curentStep: 3,
+      curentStep: 1,
       offre: [],
       locale: window._locale
     };
@@ -2020,6 +2020,7 @@ __webpack_require__.r(__webpack_exports__);
       dataform.append('besoin', this.form.besoin);
       axios.post('/offres', dataform).then(function (response) {
         console.log(response);
+        console.log(dataform);
         _this.allerros = [];
         _this.submited = true;
         _this.success = true;
@@ -2097,6 +2098,118 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ExampleComponent: _ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  name: 'Organisations',
+  data: function data() {
+    return {
+      curentStep: 1,
+      type: '',
+      organisationsResult: []
+    };
+  },
+  props: {
+    organisations: Array
+  },
+  mounted: function mounted() {// console.log(this.typedata)
+  },
+  methods: {
+    next: function next() {
+      this.curentStep++;
+    },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectOrg: function selectOrg(type) {
+      var _this = this;
+
+      this.type = type;
+      var that = this;
+      axios.get('/organisation/' + this.type).then(function (res) {
+        console.log(res);
+        that.organisationsResult = res.data;
+      })["catch"](function (error) {
+        _this.allerros = error.response.data.errors;
+        _this.success = false;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2123,6 +2236,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 Vue.component('financement-component', __webpack_require__(/*! ./components/Financement.vue */ "./resources/js/components/Financement.vue").default);
+Vue.component('organisations-component', __webpack_require__(/*! ./components/Organisations.vue */ "./resources/js/components/Organisations.vue").default);
 Vue.mixin(__webpack_require__(/*! ./langs.js */ "./resources/js/langs.js"));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38364,6 +38478,45 @@ component.options.__file = "resources/js/components/Financement.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Organisations.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Organisations.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Organisations.vue?vue&type=template&id=a697bc04& */ "./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04&");
+/* harmony import */ var _Organisations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Organisations.vue?vue&type=script&lang=js& */ "./resources/js/components/Organisations.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _Organisations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Organisations.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -38393,6 +38546,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Financement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Financement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Financement.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Financement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Organisations.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Organisations.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Organisations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organisations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Organisations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -38426,6 +38595,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Financement_vue_vue_type_template_id_df87f1c6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Financement_vue_vue_type_template_id_df87f1c6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Financement.vue?vue&type=template&id=df87f1c6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Financement.vue?vue&type=template&id=df87f1c6&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organisations_vue_vue_type_template_id_a697bc04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organisations.vue?vue&type=template&id=a697bc04& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04&");
 
 
 /***/ }),
@@ -38498,7 +38684,7 @@ var render = function() {
     _c(
       "form",
       {
-        attrs: { method: "POST", action: "/offres" },
+        attrs: { method: "POST", action: "/organisation" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -38863,6 +39049,235 @@ var render = function() {
                   ]
                 )
               ])
+            }),
+            0
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Organisations.vue?vue&type=template&id=a697bc04& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.curentStep == 1
+      ? _c("div", { staticClass: "text-center" }, [
+          _c("h1", { staticClass: "m-2 p-2" }, [
+            _vm._v("Types des organismes :")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-md-center" },
+            _vm._l(_vm.organisations, function(objet, key) {
+              return _c(
+                "div",
+                {
+                  key: key,
+                  staticClass:
+                    "col-3 ftco-animate fadeInUp ftco-animated d-flex",
+                  attrs: {
+                    value: _vm.organisations[key].types_des_organisations
+                  },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.selectOrg(
+                        _vm.organisations[key].types_des_organisations
+                      )
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "staff bg-info m-1 p-2 border mb-5 col-12",
+                      class: {
+                        "bg-white border-light":
+                          _vm.organisations[key].types_des_organisations !=
+                          _vm.type,
+                        "shadow ":
+                          _vm.organisations[key].types_des_organisations ==
+                          _vm.type
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "col-5",
+                        attrs: { src: "/assets/images/icon.png" }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "text m-1  text-center",
+                          class: {
+                            "bg-info ":
+                              _vm.organisations[key].types_des_organisations ==
+                              _vm.type
+                          }
+                        },
+                        [
+                          _c("h3", [
+                            _vm._v(
+                              " " +
+                                _vm._s(
+                                  _vm.organisations[key].types_des_organisations
+                                )
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary btn-lg btn-block",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.next($event)
+                }
+              }
+            },
+            [_vm._v("Recherche")]
+          ),
+          _c("br")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _vm.curentStep != 1
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary my-3 ml-5",
+              attrs: { type: "button", "data-mdb-ripple-color": "dark" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.pretStep($event)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.__("tamwil.back")))]
+          )
+        : _vm._e(),
+      _c("br")
+    ]),
+    _vm._v(" "),
+    _vm.curentStep == 2
+      ? _c("div", { staticClass: "text-center m-3" }, [
+          _vm.organisations == 0
+            ? _c(
+                "div",
+                {
+                  staticClass: "alert alert-warning",
+                  attrs: { role: "alert" }
+                },
+                [
+                  _vm._v(
+                    "\n        nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres types d'organisationsResult!\n    "
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-md-center m-3" },
+            _vm._l(_vm.organisationsResult, function(organisation) {
+              return _c(
+                "div",
+                { key: organisation.id, staticClass: "col-4 mb-4" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card border-left-primary shadow h-100 py-2"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "row no-gutters align-items-center mb-2"
+                          },
+                          [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-xs font-weight-bold text-primary text-uppercase col-10 text-left"
+                              },
+                              [_vm._v(_vm._s(organisation.nom_organisation))]
+                            ),
+                            _vm._v(" "),
+                            _c("img", {
+                              staticClass: "col-2",
+                              attrs: {
+                                src:
+                                  "/assets/images/organisation/" +
+                                  organisation.icone
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("h6", { staticClass: "text-center" }, [
+                          _vm._v(
+                            _vm._s(organisation.types_des_organisations) + " "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "d-flex align-items-end" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary btn-lg btn-block m-3 ",
+                            attrs: {
+                              href: "showorganisation/" + organisation.id,
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v("Afficher l'organisation")]
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
             }),
             0
           )
