@@ -70,6 +70,11 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Offres</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Users</span></a>
+            </li>
 
             <!-- Divider -->
             {{-- <hr class="sidebar-divider">
