@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- choosing step  -->
-        <form method="POST" action="/offres"  @submit.prevent="onSubmit" >
+        <form method="POST" action="/organisation"  @submit.prevent="onSubmit" >
             <!-- back button -->
             <div class="row">
                  <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">{{__('tamwil.back')}}</button><br>
@@ -111,9 +111,9 @@
                 offres :[],
                 
                 form: {
-                profil : '',
-                cycle : '',
-                besoin: ''
+                    profil : '',
+                    cycle : '',
+                    besoin: ''
                 },
 
                 allerrors: [],
@@ -150,6 +150,7 @@
 
                 axios.post( '/offres', dataform).then( response => {
                     console.log(response);
+                    console.log(dataform);
                     this.allerros = [];
                     this.submited = true;
                     this.success = true;
