@@ -7,6 +7,8 @@ use App\Models\Cycle;
 use App\Models\Offre;
 use App\Models\Profil;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class formController extends Controller
 {
@@ -17,6 +19,13 @@ class formController extends Controller
      */
     public function index()
     {
+        // $role = Role::findById(2);
+
+        // $permission = Permission::find([1, 2, 4, 5]);
+
+        // $role->givePermissionTo($permission);
+
+
         $profils = Profil::all();
         $besoins = Besoin::all();
 
