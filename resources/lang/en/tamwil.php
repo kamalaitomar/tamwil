@@ -6,7 +6,7 @@
         "organizations"=>"Organizations",
         "admin"=>"Admin",
         "language"=>"language",
-        "French"=>"French",
+        "french"=>"French",
         "arabic"=>"Arabic",
         "english"=>"English",
         "slogon"=>"Entrepreneurs: you have access to more",

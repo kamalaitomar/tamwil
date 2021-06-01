@@ -172,11 +172,15 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         KgBot\LaravelLocalization\LaravelLocalizationServiceProvider::class,
-        App\Providers\TranslationServiceProvider::class
+        App\Providers\TranslationServiceProvider::class,
+
+        
+        Spatie\Permission\PermissionServiceProvider::class
         
     ],
 

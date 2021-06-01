@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Offre;
-use App\Models\Organisation;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -82,15 +81,5 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function offres(){
-        $offres = Offre::all();
-        return view('admin.offres', compact('offres'));
-    }
-
-    public function organisations(){
-        $organisations = Organisation::all();
-        return view('admin.organisations', compact('organisations'));
     }
 }

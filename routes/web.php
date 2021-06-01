@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OffreController;
+use App\Http\Controllers\Admin\OrganisationController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,20 +17,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
+
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/adminn', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('adminn');  
+    Route::resource('/offre', OffreController::class);
+    Route::resource('/organisation', OrganisationController::class);
+    Route::resource('/user', UserController::class);
+});
+
 
 Route::redirect('/','/fr');
 
-
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
 
 Route::get('/organisation/{type}',[App\Http\Controllers\OrganisationController::class , 'create'])->name('organisation');
 
 
 Route::group(['prefix'=>'{locale}'], function(){
-
     Route::view('/', 'welcome')->name('home');
-
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 
@@ -44,3 +56,8 @@ Route::group(['prefix'=>'{locale}'], function(){
     
     Auth::routes();
 });
+
+
+Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
+Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
+

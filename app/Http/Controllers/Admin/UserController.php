@@ -1,41 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Offre;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class OffreController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $validated = $request->validate([
-            'profil' => 'required',
-            'cycle' => 'required',
-            'besoin' => 'required'
-        ]);
-
-        $offres = Offre::when('profil', function($query)use ( $request ){
-
-            return  $query->whereHas('profils', function($q)use ( $request ){ $q->where('id', $request->profil);});
-
-        })->when('cycle', function($query)use ( $request ){
-
-            return  $query->whereHas('cycles', function($q)use ( $request ){ $q->where('id', $request->cycle);});
-
-        })->when('besoin', function($query)use ( $request ){
-
-            return  $query->whereHas('besoins', function($q)use ( $request ){ $q->where('id', $request->besoin);});
-
-        })->get();
-
-
-        return $offres->groupBy('fascicule');
+        $users = User::paginate(5);
+        return view('admin.user.users', compact('users'));
     }
 
     /**
@@ -56,7 +37,7 @@ class OffreController extends Controller
      */
     public function store(Request $request)
     {
-     //
+        //
     }
 
     /**
@@ -65,10 +46,9 @@ class OffreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($locale ,$id)
+    public function show($id)
     {
-        $offre = Offre::findOrFail($id);
-        return view("offre", compact('offre', 'locale', 'id'));
+        //
     }
 
     /**
