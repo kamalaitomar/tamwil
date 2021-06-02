@@ -2164,9 +2164,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2187,15 +2184,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     next: function next() {
-      this.curentStep++;
-    },
-    pretStep: function pretStep() {
-      this.curentStep--;
-    },
-    selectOrg: function selectOrg(type) {
       var _this = this;
 
-      this.type = type;
       var that = this;
       axios.get('/organisation/' + this.type).then(function (res) {
         console.log(res);
@@ -2204,6 +2194,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
+      this.curentStep++;
+    },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectOrg: function selectOrg(type) {
+      this.type = type;
     }
   }
 });
@@ -39188,7 +39185,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.__("tamwil.back")))]
+            [_vm._v("Retour")]
           )
         : _vm._e(),
       _c("br")
@@ -39196,21 +39193,6 @@ var render = function() {
     _vm._v(" "),
     _vm.curentStep == 2
       ? _c("div", { staticClass: "text-center m-3" }, [
-          _vm.organisations == 0
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-warning",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._v(
-                    "\n        nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres types d'organisationsResult!\n    "
-                  )
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "row justify-content-md-center m-3" },

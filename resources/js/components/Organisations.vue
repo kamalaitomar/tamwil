@@ -29,13 +29,10 @@
 
         </div>
         <div class="row">
-                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary my-3 ml-5" data-mdb-ripple-color="dark">{{__('tamwil.back')}}</button><br>
+                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary my-3 ml-5" data-mdb-ripple-color="dark">Retour</button><br>
 
         </div>
-                <div v-if="curentStep == 2" class="text-center m-3"> 
-                    <div v-if="organisations == 0" class="alert alert-warning" role="alert" >
-            nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres types d'organisationsResult!
-        </div>
+                <div v-if="curentStep == 2" class="text-center m-3">
                     <div class="row justify-content-md-center m-3">
                         <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -80,16 +77,7 @@ export default {
         methods:{
 
             next(){
-                this.curentStep ++
-            },
-            pretStep(){
-                this.curentStep --
-        
-            },
-            selectOrg(type){
-                this.type = type
                 var that = this
-
                 axios.get('/organisation/'+this.type)
                 .then(function(res){
                     console.log(res)
@@ -99,6 +87,16 @@ export default {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });
+                    
+                this.curentStep ++
+
+            },
+            pretStep(){
+                this.curentStep --
+        
+            },
+            selectOrg(type){
+                this.type = type
 
             }
 

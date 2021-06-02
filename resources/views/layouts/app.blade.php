@@ -48,12 +48,12 @@
                     <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
-            {{-- <div class="dropdown">
+             <div class="dropdown">
                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{__("tamwil.language")}}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @if (in_array(Route::currentRouteName(), ["offre" ,"showorganisation"]))
+                    @if (in_array(Route::currentRouteName(), ["offre","showorganisation"] ) )
                         <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id]) }}">{{__('tamwil.arabic') }}</a>
                         <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id]) }}">{{__('tamwil.french') }}</a>
                         <a class="dropdown-item" href="{{ route(Route::currentRouteName(), ['locale'=>'en', 'id'=>$id]) }}">{{__('tamwil.english') }}</a>
@@ -63,8 +63,8 @@
                     <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'en') }}">{{__('tamwil.english') }}</a> 
                     @endif
                   
-                </div>
-              </div> --}}
+                </div> 
+              </div>
 	    </div>
     </nav>
     <!-- END nav -->
