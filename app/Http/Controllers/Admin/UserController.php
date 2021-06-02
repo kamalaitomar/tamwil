@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -37,9 +39,20 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        //
+        $user= new User();
+        $user->name = $request->input('nom');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+
+        $user->assignRole($request->input('role'));
+
+        $user->save();
+
+        $request->session()->flash('status','votre user a été ajoutée avec succès');
+
+        return redirect()->route('user.index');
     }
 
     /**
