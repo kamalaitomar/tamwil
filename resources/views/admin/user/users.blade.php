@@ -51,7 +51,7 @@
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td></td>
+                                <td>{{ $user->getRoleNames()->implode('name', ',') }}</td>
                                 <td>
                                     <div class="my-2"></div>
                                     <a href=" {{ route('user.edit', ['user'=>$user->id]) }} " class="btn btn-warning btn-circle" title="Edit">

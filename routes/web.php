@@ -29,16 +29,16 @@ Auth::routes([
   ]);
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/adminn', [AdminController::class, 'index'])->name('adminn');  
-    Route::resource('/offre', OffreController::class);
-    Route::resource('/organisation', OrganisationController::class);
-    Route::resource('/user', UserController::class);
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
+    Route::resource('/admin/offre', OffreController::class);
+    Route::resource('/admin/organisation', OrganisationController::class);
+    Route::resource('/admin/user', UserController::class);
 });
 
 
 Route::redirect('/','/fr');
 
-Route::group(['prefix'=>'{locale}'], function(){
+Route::group(['prefix'=>'{locale}','where' => ['locale' => 'fr|en|ar']], function(){
     Route::view('/', 'welcome')->name('home');
     Route::get('/financement', [formController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [ControllersOffreController::class, 'show'])->name('offre');
