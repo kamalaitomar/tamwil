@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use function PHPSTORM_META\map;
 
 class OrganisationController extends Controller
 {
@@ -29,10 +26,9 @@ class OrganisationController extends Controller
      */
     public function create($type)
     {
-        // $organisation = Organisation::find(1);
         $organisations = Organisation::where('types_des_organisations', $type)->get();
         // dd( $organisations);
-         return $organisations;
+        return $organisations;
         
     }
 
@@ -56,8 +52,8 @@ class OrganisationController extends Controller
     public function show($locale,   $id)
     {
         
-         $organisation = Organisation::find($id);
-        return view('affiche', compact('organisation'));
+         $organisation = Organisation::findOrFail($id);
+        return view('affiche', compact('organisation', 'locale', 'id'));
 
     }
 

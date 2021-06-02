@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\OffreController;
 use App\Http\Controllers\Admin\OrganisationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\formController;
+use App\Http\Controllers\OffreController as ControllersOffreController;
+use App\Http\Controllers\OrganisationController as ControllersOrganisationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes([
+Route::get('/organisation/{type}', [ControllersOrganisationController::class , 'create'])->name('organisation');
+
+Auth::routes([ 
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
   ]);
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/adminn', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('adminn');  
+    Route::get('/adminn', [AdminController::class, 'index'])->name('adminn');  
     Route::resource('/offre', OffreController::class);
     Route::resource('/organisation', OrganisationController::class);
     Route::resource('/user', UserController::class);
@@ -33,31 +38,21 @@ Route::group(['middleware'=>'auth'], function(){
 
 Route::redirect('/','/fr');
 
-
-Route::get('/organisation/{type}',[App\Http\Controllers\OrganisationController::class , 'create'])->name('organisation');
-
-
 Route::group(['prefix'=>'{locale}'], function(){
     Route::view('/', 'welcome')->name('home');
-    Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
-    Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
+    Route::get('/financement', [formController::class, 'index'])->name('financement');
+    Route::get('/offre/{id}', [ControllersOffreController::class, 'show'])->name('offre');
 
-    Route::get('/adminn', [App\Http\Controllers\AdminController::class, 'index'])->name('adminn');
     
-    Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
-    Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
+    Route::get('/offres', [AdminController::class, 'offres']);
+    Route::get('/organisations', [AdminController::class, 'organisations']);
     
-    Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
-    Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
-    
-    // Route::resource('photos', PhotoController::class)->only([
-    //     'index', 'show'
-    // ]);
-    
-    Auth::routes();
+    Route::get('/organisations',[ControllersOrganisationController::class , 'index'])->name('organisations');
+    Route::get('/showorganisation/{id} ',[ControllersOrganisationController::class , 'show'])->name('showorganisation');
+   
 });
 
 
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
+Route::get('/cycles/{id}', [FormController::class, 'show']);
+Route::post('/offres', [ControllersOffreController::class, 'index']);
 
