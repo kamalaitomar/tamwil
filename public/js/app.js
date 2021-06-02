@@ -2164,6 +2164,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -39080,7 +39082,9 @@ var render = function() {
     _vm.curentStep == 1
       ? _c("div", { staticClass: "text-center" }, [
           _c("h1", { staticClass: "m-2 p-2" }, [
-            _vm._v("Types des organismes :")
+            _vm._v(
+              _vm._s(_vm.__("organisation.Types des organisations")) + " :"
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -39138,10 +39142,19 @@ var render = function() {
                         [
                           _c("h3", [
                             _vm._v(
-                              " " +
+                              " \n                            " +
                                 _vm._s(
-                                  _vm.organisations[key].types_des_organisations
-                                )
+                                  _vm.__(
+                                    "organisation." +
+                                      _vm.organisations[
+                                        key
+                                      ].types_des_organisations.replace(
+                                        /_/g,
+                                        " "
+                                      )
+                                  )
+                                ) +
+                                "\n                        "
                             )
                           ])
                         ]
@@ -39165,7 +39178,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Recherche")]
+            [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
           ),
           _c("br")
         ])
@@ -39185,7 +39198,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Retour")]
+            [_vm._v(_vm._s(_vm.__("organisation.Retour")))]
           )
         : _vm._e(),
       _c("br")
@@ -39253,7 +39266,13 @@ var render = function() {
                               target: "_blank"
                             }
                           },
-                          [_vm._v("Afficher l'organisation")]
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.__("organisation.Afficherlorganisation")
+                              )
+                            )
+                          ]
                         )
                       ])
                     ]
