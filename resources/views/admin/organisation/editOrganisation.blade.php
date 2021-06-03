@@ -63,6 +63,39 @@
                     @enderror
                 </div>
             </div>
+            <div class="form-group d-flex justify-content-center">
+                <div class="col-6  mb-3 mb-sm-0">
+                    <label for="type">Type d'organisation</label>
+                    <input type="text" class="form-control " id="type" name="type"  value="{{old('type', $organisation->types_des_organisations)}}">
+                    @error('type')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <div class="col-6  mb-3 mb-sm-0">
+                    <label for="presentation">Presentation</label>
+                    <textarea type="text" class="form-control " id="presentation" name="presentation" rows="5" >{{old('presentation', $organisation->presentation)}}</textarea>
+                    @error('presentation')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <div class="col-6  mb-3 mb-sm-0">
+                    <label for="logo">Logo nom</label>
+                    <input type="text" class="form-control " id="logo" name="logo"  value="{{old('logo', $organisation->icone)}}">
+                    @error('logo')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
             
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">

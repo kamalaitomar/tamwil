@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="objet">Objet</label>
-                <textarea type="text" class="form-control " id="objet" name="objet"  >{{old('objet')}}</textarea>
+                <textarea type="text" class="form-control " id="objet" name="objet" rows="4">{{old('objet')}}</textarea>
                 @error('objet')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" class="form-control " id="description" name="description"  >{{old('description')}}</textarea>
+                <textarea type="text" class="form-control " id="description" name="description" rows="4">{{old('description')}}</textarea>
                 @error('description')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group"> 
                 <label for="condition">Condition</label>
-                <textarea type="text" class="form-control " id="condition" name="condition"  >{{old('condition')}}</textarea>
+                <textarea type="text" class="form-control " id="condition" name="condition" rows="4">{{old('condition')}}</textarea>
                 @error('condition')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
