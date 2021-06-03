@@ -2196,6 +2196,19 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
+
+      if (this.curentStep == 1) {
+        if (!this.type) {
+          swal({
+            title: "Rappel!",
+            text: "choisissez votre type d'organisation",
+            icon: "warning",
+            dangerMode: true
+          });
+          return false;
+        }
+      }
+
       this.curentStep++;
     },
     pretStep: function pretStep() {
@@ -39250,7 +39263,16 @@ var render = function() {
                         _vm._v(" "),
                         _c("h6", { staticClass: "text-center" }, [
                           _vm._v(
-                            _vm._s(organisation.types_des_organisations) + " "
+                            " " +
+                              _vm._s(
+                                _vm.__(
+                                  "organisation." +
+                                    organisation.types_des_organisations.replace(
+                                      /_/g,
+                                      " "
+                                    )
+                                )
+                              )
                           )
                         ])
                       ]),

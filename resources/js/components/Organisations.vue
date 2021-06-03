@@ -43,7 +43,7 @@
                                         <h4 class="text-xs font-weight-bold text-primary text-uppercase col-10 text-left">{{organisation.nom_organisation}}</h4>
                                         <img :src="'/assets/images/organisation/'+organisation.icone" class="col-2">
                                     </div>
-                                     <h6 class="text-center">{{organisation.types_des_organisations}} </h6>  
+                                     <h6 class="text-center"> {{__('organisation.'+organisation.types_des_organisations.replace(/_/g, " ") )}}</h6>  
                                 </div>
                             <div class="d-flex align-items-end">
                                 <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
@@ -89,6 +89,22 @@ export default {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });
+
+                if(this.curentStep == 1){
+                    if(!this.type){
+                        swal({
+                                title: "Rappel!",
+                                text: "choisissez votre type d'organisation",
+                                icon: "warning",
+                                dangerMode: true,
+                                })
+                        return false
+                    }
+                    
+                }
+
+
+
                     
                 this.curentStep ++
 
