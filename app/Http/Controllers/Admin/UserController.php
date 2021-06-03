@@ -77,7 +77,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::all();
         $userrole = $user->roles->pluck('id');
-        // dd($userrole);
         return view('Admin.user.edit', compact('user', 'roles', 'userrole'));
     }
 
@@ -88,9 +87,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUser $request, $id)
     {
-        //
+        
+        $user = User::findOrFail($id); 
+        
+        $user->name = $request->input('nom');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+
+
+        $user->roles()->detach();
+        $user->assignRole($request->input('role'));
+
+        $user->save();
+
+        $request->session()->flash('status','votre user a été modifier avec succès');
+
+        return redirect()->route('user.index');
     }
 
     /**

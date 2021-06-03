@@ -6,7 +6,7 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Ajouter une Offre</h1>
         </div>
-        <form class="user" action=" {{ route('user.store') }} " method="POST">
+        <form class="user" action=" {{ route('user.update', ['user'=>$user->id]) }} " method="POST">
             @csrf
             @method('PUT')
             <div class="form-group row">
