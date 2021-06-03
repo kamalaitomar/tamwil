@@ -74,7 +74,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        $userrole = $user->roles->pluck('id');
+        // dd($userrole);
+        return view('Admin.user.edit', compact('user', 'roles', 'userrole'));
     }
 
     /**
