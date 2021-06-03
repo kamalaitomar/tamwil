@@ -113,8 +113,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        
+        $user = User::findOrFail($id); 
+        
+        $user->roles()->detach();
+        
+        $user->delete();
+
+        $request->session()->flash('status','votre user a été Suprime');
+
+        return redirect()->route('user.index');
     }
 }
