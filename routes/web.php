@@ -32,7 +32,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
     Route::resource('/admin/offre', OffreController::class);
     Route::resource('/admin/organisation', OrganisationController::class);
-    Route::resource('/admin/user', UserController::class);
+    
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('/admin/user', UserController::class);
+    });
 });
 
 
