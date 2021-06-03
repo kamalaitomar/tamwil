@@ -16,7 +16,7 @@
         <span class="icon text-white-50">
             <i class="fas fa-plus"></i>
         </span>
-        <span class="text">Ajouter une organisation</span>
+        <span class="text">Ajouter une offre</span>
     </a>
 </div>
     

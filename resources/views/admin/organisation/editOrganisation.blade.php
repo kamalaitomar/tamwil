@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-5" >
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Ajouter une Organisation</h1>
+            <h1 class="h4 text-gray-900 mb-4">{{$organisation->nom_organisation}}</h1>
         </div>
         <form class="user" action=" {{ route('organisation.update', ['organisation'=>$organisation->id]) }} " method="POST">
             @csrf

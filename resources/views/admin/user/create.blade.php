@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-5">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Ajouter une Offre</h1>
+            <h1 class="h4 text-gray-900 mb-4">Ajouter un utilisateur</h1>
         </div>
         <form class="user" action=" {{ route('user.store') }} " method="POST">
             @csrf

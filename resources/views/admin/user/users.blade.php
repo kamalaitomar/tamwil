@@ -6,20 +6,20 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between my-4">
-        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+        <h1 class="h3 mb-0 text-gray-800">Utilisateurs</h1>
     </div>
 
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row d-flex justify-content-between">
-                <h5 class=" font-weight-bold text-primary col-9">Users table</h5>
+                <h5 class=" font-weight-bold text-primary col-9">Utilisateurs table</h5>
             
                 <a href=" {{ route('user.create') }} " class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Ajouter un user</span>
+                    <span class="text">Ajouter un utilisateur</span>
                 </a>
             </div>
             
