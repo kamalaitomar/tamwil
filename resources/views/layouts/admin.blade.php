@@ -40,16 +40,18 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">Tamwil<sup>admin</sup></div>
             </a>
+            @if ( Auth::user()->hasRole('admin'))
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/admin/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

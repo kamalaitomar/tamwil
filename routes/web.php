@@ -24,16 +24,16 @@ Route::get('/organisation/{type}', [ControllersOrganisationController::class , '
 
 Auth::routes([ 
     'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
+    // 'reset' => false,  Password Reset Routes...
     'verify' => false, // Email Verification Routes...
   ]);
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
     Route::resource('/admin/offre', OffreController::class);
     Route::resource('/admin/organisation', OrganisationController::class);
     
     Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
         Route::resource('/admin/user', UserController::class);
     });
 });
