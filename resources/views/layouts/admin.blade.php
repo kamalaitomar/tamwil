@@ -52,6 +52,14 @@
             </li>
 
             <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-flag"></i>
+                    <span>Home</span></a>
+            </li>
+
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -60,18 +68,18 @@
             </div>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('organisation.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Organisations</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ route('offre.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Offres</span></a>
             </li>
             @if ( Auth::user()->hasRole('admin'))
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.index') }}">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Users</span></a>
