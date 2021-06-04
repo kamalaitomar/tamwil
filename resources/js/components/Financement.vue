@@ -51,8 +51,8 @@
                     </div>
 
                     <!-- next and submit button -->
-                    <button v-if="curentStep < 3" @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button>
-                    <button v-if="curentStep == 3 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block m-2" data-mdb-ripple-color="dark">{{__('tamwil.submit')}}</button>
+                    <button v-if="curentStep < 3 && slected==true " @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button>
+                    <button v-if="curentStep == 3 && form.profil != 0 && form.cycle != 0 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block mt-4" data-mdb-ripple-color="dark">{{__('tamwil.submit')}}</button>
                 </div>
             </div>
             
@@ -125,6 +125,7 @@
 
                 offre:[],
                 locale: window._locale,
+                slected: false,
                 
             }
         },
@@ -165,55 +166,20 @@
             },
 
             nextStep(){
-                if(this.curentStep == 1){
-                    if(!this.form.profil){
-                        swal({
-                                title: "Rappel!",
-                                text: "choisissez votre profil",
-                                icon: "warning",
-                                dangerMode: true,
-                                })
-                        return false
-                    }
-                    
-                }
-
-                if(this.curentStep == 2){
-                    if(!this.form.cycle){
-                        swal({
-                                title: "Rappel!",
-                                text: "choisissez votre cycle de vie",
-                                icon: "warning",
-                                dangerMode: true,
-                                })
-                        return false
-                    }
-                    
-                }
-
-                if(this.curentStep == 3){
-                    if(!this.form.besoin){
-                        swal({
-                                title: "Rappel!",
-                                text: "choisissez votre besoin",
-                                icon: "warning",
-                                dangerMode: true,
-                                })
-                        return false
-                    }
-                    
-                }
-
+                
                 this.curentStep ++
-                this.allerrors = ''
+                this.allerrors = '',
+                this.slected = false
             },
 
             pretStep(){
-                this.curentStep --
+                this.curentStep --,
+                this.slected = true
             },
 
             selectProfil($id){
                 this.form.profil = $id
+                this.slected = true 
                 var that = this
                 axios.get('/cycles/' + this.form.profil)
                 .then(function(res){
@@ -221,20 +187,22 @@
                     that.cycles = res.data
                     }
                 );
+                
             },
 
             selectCycle($id){
-                this.form.cycle = $id
+                this.form.cycle = $id,
+                this.slected = true
             },
 
             selectBesoin($id){
-                this.form.besoin = $id
+                this.form.besoin = $id,
+                this.slected = true
             },
 
             showOffres($id){
                 this.offre = $id
                 this.curentStep ++
-
             },
 
         }
