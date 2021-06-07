@@ -36,7 +36,7 @@
                                         <label > Types des organismes: </label>
                                         <div>
                                         <select  required v-model="selected.selorganisation" name="type" type="text"    class="form-control">
-										<option v-for="organisation in organisations" :key="organisation.id"  :value="organisation">{{organisation.type_organisme}}</option>
+										<option v-for="organisation in organisations" :key="organisation.id"  :value="organisation">{{organisation.types_des_organisations}}</option>
                                         </select>
                                     </div>
                                 </div>
