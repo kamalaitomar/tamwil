@@ -39139,7 +39139,12 @@ var render = function() {
                     [
                       _c("img", {
                         staticClass: "col-5",
-                        attrs: { src: "/assets/images/icon.png" }
+                        attrs: {
+                          src:
+                            "/assets/images/organisation/" +
+                            _vm.organisations[key].types_des_organisations +
+                            ".png"
+                        }
                       }),
                       _vm._v(" "),
                       _c(

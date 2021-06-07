@@ -18,7 +18,7 @@
                                  class="col-3 ftco-animate fadeInUp ftco-animated d-flex" 
                                  >
                     <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != type, 'shadow ':organisations[key].types_des_organisations == type}" >
-                        <img src="/assets/images/icon.png" class="col-5">   
+                        <img :src="'/assets/images/organisation/'+organisations[key].types_des_organisations+'.png'" class="col-5">   
                         <div class="text m-1  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == type}">
                             <h3> 
                                 {{__('organisation.'+organisations[key].types_des_organisations.replace(/_/g, " ") )}}
