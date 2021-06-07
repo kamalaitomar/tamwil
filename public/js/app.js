@@ -38983,11 +38983,9 @@ var render = function() {
                           staticClass: "row no-gutters align-items-center mb-2"
                         },
                         [
-                          _c(
-                            "h4",
-                            { staticClass: "text-primary text-uppercase" },
-                            [_vm._v(_vm._s(off.nom_offre))]
-                          )
+                          _c("h4", { staticClass: "text-primary" }, [
+                            _vm._v(_vm._s(off.nom_offre))
+                          ])
                         ]
                       ),
                       _vm._v(" "),

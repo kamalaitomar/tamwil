@@ -85,7 +85,7 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center mb-2">
-                                <h4 class="text-primary text-uppercase">{{off.nom_offre}}</h4>
+                                <h4 class="text-primary">{{off.nom_offre}}</h4>
                                 <!-- <img src="/assets/images/icon.png" class="col-2"> -->
                             </div>
                             <div class="mr-2">
