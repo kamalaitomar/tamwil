@@ -38985,17 +38985,9 @@ var render = function() {
                         [
                           _c(
                             "h4",
-                            {
-                              staticClass:
-                                "text-xs font-weight-bold text-primary text-uppercase col-10"
-                            },
+                            { staticClass: "text-primary text-uppercase" },
                             [_vm._v(_vm._s(off.nom_offre))]
-                          ),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticClass: "col-2",
-                            attrs: { src: "/assets/images/icon.png" }
-                          })
+                          )
                         ]
                       ),
                       _vm._v(" "),

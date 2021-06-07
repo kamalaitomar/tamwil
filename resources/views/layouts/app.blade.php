@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
-    
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}"> --}}
+
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
@@ -26,6 +25,7 @@
         window._translations = translation ? translation : '';
     </script>
   </head>
+
   <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
     <div id="app">
     <!-- nav  -->
@@ -137,8 +137,6 @@
     <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.animateNumber.min.js')}}"></script>
     <script src="{{asset('assets/js/scrollax.min.js')}}"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
-    {{-- <script src="{{asset('assets/js/google-map.js')}}"></script> --}}
     <script src="{{asset('assets/js/main.js')}}"></script>
     </body>
     </html>
