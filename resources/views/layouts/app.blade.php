@@ -43,8 +43,8 @@
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item"><a href="{{ route('home', app()->getLocale()) }} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
                     <li class="nav-item"><a href="{{ route('organisations', app()->getLocale()) }}" class="nav-link">{{__('tamwil.organizations')}}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{__('tamwil.about')}}</a></li>
                     <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>

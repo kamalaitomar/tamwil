@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="curentStep == 1" class="text-center" >   
+        <div v-if="curentStep == 1" class="text-center mt-5" >   
             <h1 class="m-2 p-2">{{__('organisation.Types des organisations')}} :</h1>
             <div class="row justify-content-md-center"> 
                 <!-- <div @click.prevent="selectOrg('NOTHING')" class="col-3 ftco-animate fadeInUp ftco-animated d-flex">
@@ -27,11 +27,11 @@
                     </div>
                 </div>
             </div>    
-            <button  class="btn btn-outline-primary btn-lg btn-block"  @click.prevent="next">{{__('organisation.Recherche')}}</button><br>
+            <button v-if="(this.type)" class="btn btn-outline-primary btn-lg btn-block"  @click.prevent="next">{{__('organisation.Recherche')}}</button><br>
 
         </div>
         <div class="row">
-                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary my-3 ml-5" data-mdb-ripple-color="dark">{{__('organisation.Retour')}}</button><br>
+                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">{{__('organisation.Retour')}}</button><br>
 
         </div>
                 <div v-if="curentStep == 2" class="text-center m-3">
@@ -40,8 +40,8 @@
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center mb-2">
-                                        <h4 class="text-xs font-weight-bold text-primary text-uppercase col-10 text-left">{{organisation.nom_organisation}}</h4>
-                                        <img :src="'/assets/images/organisation/'+organisation.icone" class="col-2">
+                                        <h4 class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation}}</h4>
+                                        <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
                                     </div>
                                      <h6 class="text-center"> {{__('organisation.'+organisation.types_des_organisations.replace(/_/g, " ") )}}</h6>  
                                 </div>

@@ -39093,7 +39093,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.curentStep == 1
-      ? _c("div", { staticClass: "text-center" }, [
+      ? _c("div", { staticClass: "text-center mt-5" }, [
           _c("h1", { staticClass: "m-2 p-2" }, [
             _vm._v(
               _vm._s(_vm.__("organisation.Types des organisations")) + " :"
@@ -39180,19 +39180,21 @@ var render = function() {
             0
           ),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary btn-lg btn-block",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.next($event)
-                }
-              }
-            },
-            [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
-          ),
+          this.type
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary btn-lg btn-block",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.next($event)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
+              )
+            : _vm._e(),
           _c("br")
         ])
       : _vm._e(),
@@ -39202,7 +39204,7 @@ var render = function() {
         ? _c(
             "button",
             {
-              staticClass: "btn btn-outline-primary my-3 ml-5",
+              staticClass: "btn btn-outline-primary mt-5 ml-5",
               attrs: { type: "button", "data-mdb-ripple-color": "dark" },
               on: {
                 click: function($event) {
@@ -39245,13 +39247,14 @@ var render = function() {
                               "h4",
                               {
                                 staticClass:
-                                  "text-xs font-weight-bold text-primary text-uppercase col-10 text-left"
+                                  "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
                               },
                               [_vm._v(_vm._s(organisation.nom_organisation))]
                             ),
                             _vm._v(" "),
                             _c("img", {
-                              staticClass: "col-2",
+                              staticClass:
+                                "offset-1 col-2 rounded d-flex align-items-start ",
                               attrs: {
                                 src:
                                   "/assets/images/organisation/" +
