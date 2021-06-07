@@ -37,6 +37,8 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::view('/', 'welcome')->name('home');
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
+
+    Route::get('/organization', [App\Http\Controllers\OrganisationController::class, 'index'])->name('organization');
 });
 
 
