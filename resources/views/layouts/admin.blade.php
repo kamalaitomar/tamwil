@@ -34,24 +34,34 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminn">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Tamwil<sup>admin</sup></div>
             </a>
+            @if ( Auth::user()->hasRole('admin'))
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
+            
             <li class="nav-item active">
-                <a class="nav-link" href="/adminn">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link" href="/">
+                    <i class="fas fa-flag"></i>
+                    <span>Home</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -60,21 +70,23 @@
             </div>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('organisation.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Organisations</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ route('offre.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Offres</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('user.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Users</span></a>
-            </li>
+            @if ( Auth::user()->hasRole('admin'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.index') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Users</span></a>
+                </li>
+            @endif
 
             <!-- Divider -->
             {{-- <hr class="sidebar-divider">

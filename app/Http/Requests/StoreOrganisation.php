@@ -28,7 +28,10 @@ class StoreOrganisation extends FormRequest
             'email' => 'required|email|max:255',
             'tel' => 'required|min:10|max:15',
             'adresse' => 'required|min:3|max:500',
-            'web_site' => 'required|min:3|max:500',
+            'web_site' => 'required|min:3|max:500', 
+            'type' => 'required|min:3|max:255', 
+            'presentation' => 'required|min:3|max:500', 
+            'logo' => 'required|min:3|max:255', 
         ];
     }
 }

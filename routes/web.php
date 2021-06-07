@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\OffreController;
 use App\Http\Controllers\Admin\OrganisationController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\formController;
+use App\Http\Controllers\OffreController as ControllersOffreController;
+use App\Http\Controllers\OrganisationController as ControllersOrganisationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,24 +21,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/organisation/{type}',[App\Http\Controllers\OrganisationController::class , 'create'])->name('organisation');
+Route::get('/organisation/{type}', [ControllersOrganisationController::class , 'create'])->name('organisation');
 
-Auth::routes([
+Auth::routes([ 
     'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
+    // 'reset' => false,  Password Reset Routes...
     'verify' => false, // Email Verification Routes...
   ]);
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/adminn', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('adminn');  
-    Route::resource('/offre', OffreController::class);
-    Route::resource('/organisation', OrganisationController::class);
-    Route::resource('/user', UserController::class);
+    Route::resource('/admin/offre', OffreController::class);
+    Route::resource('/admin/organisation', OrganisationController::class);
+    
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
+        Route::resource('/admin/user', UserController::class);
+    });
 });
 
 
 Route::redirect('/','/fr');
-
 
 
 Route::group(['prefix'=>'{locale}'], function(){
@@ -49,11 +54,9 @@ Route::group(['prefix'=>'{locale}'], function(){
     
     Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
-    
-  
 });
 
 
-Route::get('/cycles/{id}', [App\Http\Controllers\FormController::class, 'show']);
-Route::post('/offres', [App\Http\Controllers\OffreController::class, 'index']);
+Route::get('/cycles/{id}', [FormController::class, 'show']);
+Route::post('/offres', [ControllersOffreController::class, 'index']);
 
