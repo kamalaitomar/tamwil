@@ -27,9 +27,7 @@ class OrganisationController extends Controller
     public function create($type)
     {
         $organisations = Organisation::where('types_des_organisations', $type)->get();
-        // dd( $organisations);
         return $organisations;
-        
     }
 
     /**
@@ -51,8 +49,7 @@ class OrganisationController extends Controller
      */
     public function show($locale,   $id)
     {
-        
-         $organisation = Organisation::findOrFail($id);
+        $organisation = Organisation::findOrFail($id);
         return view('affiche', compact('organisation', 'locale', 'id'));
 
     }

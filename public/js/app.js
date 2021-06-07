@@ -2132,7 +2132,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2153,15 +2152,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     next: function next() {
-      this.curentStep++;
-    },
-    pretStep: function pretStep() {
-      this.curentStep--;
-    },
-    selectOrg: function selectOrg(type) {
       var _this = this;
 
-      this.type = type;
       var that = this;
       axios.get('/organisation/' + this.type).then(function (res) {
         console.log(res);
@@ -2170,6 +2162,26 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
+
+      if (this.curentStep == 1) {
+        if (!this.type) {
+          swal({
+            title: "Rappel!",
+            text: "choisissez votre type d'organisation",
+            icon: "warning",
+            dangerMode: true
+          });
+          return false;
+        }
+      }
+
+      this.curentStep++;
+    },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectOrg: function selectOrg(type) {
+      this.type = type;
     }
   }
 });
@@ -39040,9 +39052,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.curentStep == 1
-      ? _c("div", { staticClass: "text-center" }, [
+      ? _c("div", { staticClass: "text-center mt-5" }, [
           _c("h1", { staticClass: "m-2 p-2" }, [
-            _vm._v("Types des organismes :")
+            _vm._v(
+              _vm._s(_vm.__("organisation.Types des organisations")) + " :"
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -39084,7 +39098,12 @@ var render = function() {
                     [
                       _c("img", {
                         staticClass: "col-5",
-                        attrs: { src: "/assets/images/icon.png" }
+                        attrs: {
+                          src:
+                            "/assets/images/organisation/" +
+                            _vm.organisations[key].types_des_organisations +
+                            ".png"
+                        }
                       }),
                       _vm._v(" "),
                       _c(
@@ -39100,10 +39119,19 @@ var render = function() {
                         [
                           _c("h3", [
                             _vm._v(
-                              " " +
+                              " \n                            " +
                                 _vm._s(
-                                  _vm.organisations[key].types_des_organisations
-                                )
+                                  _vm.__(
+                                    "organisation." +
+                                      _vm.organisations[
+                                        key
+                                      ].types_des_organisations.replace(
+                                        /_/g,
+                                        " "
+                                      )
+                                  )
+                                ) +
+                                "\n                        "
                             )
                           ])
                         ]
@@ -39116,19 +39144,21 @@ var render = function() {
             0
           ),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary btn-lg btn-block",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.next($event)
-                }
-              }
-            },
-            [_vm._v("Recherche")]
-          ),
+          this.type
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary btn-lg btn-block",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.next($event)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
+              )
+            : _vm._e(),
           _c("br")
         ])
       : _vm._e(),
@@ -39138,7 +39168,7 @@ var render = function() {
         ? _c(
             "button",
             {
-              staticClass: "btn btn-outline-primary my-3 ml-5",
+              staticClass: "btn btn-outline-primary mt-5 ml-5",
               attrs: { type: "button", "data-mdb-ripple-color": "dark" },
               on: {
                 click: function($event) {
@@ -39147,7 +39177,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.__("tamwil.back")))]
+            [_vm._v(_vm._s(_vm.__("organisation.Retour")))]
           )
         : _vm._e(),
       _c("br")
@@ -39155,21 +39185,6 @@ var render = function() {
     _vm._v(" "),
     _vm.curentStep == 2
       ? _c("div", { staticClass: "text-center m-3" }, [
-          _vm.organisations == 0
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-warning",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _vm._v(
-                    "\n        nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres types d'organisationsResult!\n    "
-                  )
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "row justify-content-md-center m-3" },
@@ -39196,13 +39211,14 @@ var render = function() {
                               "h4",
                               {
                                 staticClass:
-                                  "text-xs font-weight-bold text-primary text-uppercase col-10 text-left"
+                                  "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
                               },
                               [_vm._v(_vm._s(organisation.nom_organisation))]
                             ),
                             _vm._v(" "),
                             _c("img", {
-                              staticClass: "col-2",
+                              staticClass:
+                                "offset-1 col-2 rounded d-flex align-items-start ",
                               attrs: {
                                 src:
                                   "/assets/images/organisation/" +
@@ -39214,7 +39230,16 @@ var render = function() {
                         _vm._v(" "),
                         _c("h6", { staticClass: "text-center" }, [
                           _vm._v(
-                            _vm._s(organisation.types_des_organisations) + " "
+                            " " +
+                              _vm._s(
+                                _vm.__(
+                                  "organisation." +
+                                    organisation.types_des_organisations.replace(
+                                      /_/g,
+                                      " "
+                                    )
+                                )
+                              )
                           )
                         ])
                       ]),
@@ -39230,7 +39255,13 @@ var render = function() {
                               target: "_blank"
                             }
                           },
-                          [_vm._v("Afficher l'organisation")]
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.__("organisation.Afficherlorganisation")
+                              )
+                            )
+                          ]
                         )
                       ])
                     ]

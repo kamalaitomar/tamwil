@@ -4,9 +4,6 @@
 
 <div class="container">
     <div class="my-5 p-2 m-2">
-        <div v-if="organisations == 0" class="alert alert-warning" role="alert" >
-            nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres types d'organisationsResult!
-        </div>
         <div class="row">
             <div class="col-3 offset-1">
                 <img src='/assets/images/organisation/{{ $organisation ->icone}}' class="mx-auto col-12">
