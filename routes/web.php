@@ -49,9 +49,6 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
     Route::view('/about', 'about')->name('about');
     
-    Route::get('/offres', [App\Http\Controllers\AdminController::class, 'offres']);
-    Route::get('/organisations', [App\Http\Controllers\AdminController::class, 'organisations']);
-    
     Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
 });
