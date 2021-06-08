@@ -2174,9 +2174,37 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {// console.log(this.typedata)
   },
   methods: {
-    next: function next() {
+    // next(){
+    //     var that = this
+    //     axios.get('/organisation/'+this.type)
+    //     .then(function(res){
+    //         console.log(res)
+    //         that.organisationsResult = res.data
+    //         }
+    //     ).catch((error) => {
+    //              this.allerros = error.response.data.errors;
+    //              this.success = false;
+    //         });
+    //     if(this.curentStep == 1){
+    //         if(!this.type){
+    //             swal({
+    //                     title: "Rappel!",
+    //                     text: "choisissez votre type d'organisation",
+    //                     icon: "warning",
+    //                     dangerMode: true,
+    //                     })
+    //             return false
+    //         }
+    //     }    
+    //     this.curentStep ++
+    // },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectOrg: function selectOrg(type) {
       var _this = this;
 
+      this.type = type;
       var that = this;
       axios.get('/organisation/' + this.type).then(function (res) {
         console.log(res);
@@ -2199,12 +2227,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.curentStep++;
-    },
-    pretStep: function pretStep() {
-      this.curentStep--;
-    },
-    selectOrg: function selectOrg(type) {
-      this.type = type;
     }
   }
 });
@@ -39133,24 +39155,7 @@ var render = function() {
               )
             }),
             0
-          ),
-          _vm._v(" "),
-          this.type
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary btn-lg btn-block",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.next($event)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
-              )
-            : _vm._e(),
-          _c("br")
+          )
         ])
       : _vm._e(),
     _vm._v(" "),
