@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
-
 class OrganisationController extends Controller
 {
     /**
@@ -28,8 +27,7 @@ class OrganisationController extends Controller
     public function create($type)
     {
         $organisations = Organisation::where('types_des_organisations', $type)->get();
-         return $organisations;
-        
+        return $organisations;
     }
 
     /**
@@ -51,8 +49,7 @@ class OrganisationController extends Controller
      */
     public function show($locale,   $id)
     {
-        
-         $organisation = Organisation::find($id);
+        $organisation = Organisation::findOrFail($id);
         return view('affiche', compact('organisation', 'locale', 'id'));
 
     }

@@ -44,6 +44,9 @@ class OrganisationController extends Controller
         $organisation->tel = $request->input('tel');
         $organisation->adresse = $request->input('adresse');
         $organisation->web_site = $request->input('web_site');
+        $organisation->types_des_organisations = $request->input('type');
+        $organisation->presentation = $request->input('presentation');
+        $organisation->icone = $request->input('logo');
 
         $organisation->save();
 
@@ -90,6 +93,9 @@ class OrganisationController extends Controller
         $organisation->tel = $request->input('tel');
         $organisation->adresse = $request->input('adresse');
         $organisation->web_site = $request->input('web_site');
+        $organisation->types_des_organisations = $request->input('type');
+        $organisation->presentation = $request->input('presentation');
+        $organisation->icone = $request->input('logo');
 
         $organisation->save();
 

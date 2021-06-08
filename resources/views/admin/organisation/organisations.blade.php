@@ -24,23 +24,25 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Tele</th>
                             <th>Adresse</th>
                             <th>Web-site</th>
+                            <th>Type d'organisation</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Tele</th>
                             <th>Adresse</th>
                             <th>Web-site</th>
+                            <th>Type d'organisation</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -51,21 +53,25 @@
                                 <td>{{$organisation->nom_organisation}}</td>
                                 <td>{{$organisation->email}}</td>
                                 <td>{{$organisation->tel}}</td>
-                                <td>{{$organisation->adresse}}</td>
+                                <td>{{Str::limit($organisation->adresse, 50)}}</td>
                                 <td>{{$organisation->web_site}}</td>
+                                <td>{{$organisation->types_des_organisations}}</td>
                                 <td>
                                     <div class="my-2"></div>
                                     <a href="{{ route('organisation.edit', ['organisation'=>$organisation->id]) }}" class="btn btn-warning btn-circle" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <div class="my-2"></div>
-                                    <form method="POST" action="{{ route('organisation.destroy', ['organisation' => $organisation->id]) }}" class="button delete-confirm"> 
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-circle" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    
+                                    @if ( Auth::user()->hasRole('admin'))
+                                        <form method="POST" action="{{ route('organisation.destroy', ['organisation' => $organisation->id]) }}" class="button delete-confirm"> 
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-circle" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                             

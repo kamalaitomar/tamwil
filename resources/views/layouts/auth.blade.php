@@ -26,14 +26,14 @@
         window._translations = translation ? translation : '';
     </script>
   </head>
-  <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
+  <body >
     <div id="app">
     <!-- nav  -->
     <nav class="navbar navbar-expand-lg  ftco_navbar ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 
             {{-- logo  --}}
-	        <a class="navbar-brand" href="{{ url('home') }}">TAMWIL</a>
+	        <a class="navbar-brand" href="{{ url('/') }}">TAMWIL</a>
 
             {{-- nav links  --}}
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">

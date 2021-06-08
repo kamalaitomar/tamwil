@@ -29,7 +29,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nom</th>
                             <th>Objet</th>
                             <th>Description</th>
@@ -41,7 +41,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Nom</th>
                             <th>Objet</th>
                             <th>Description</th>
@@ -67,15 +67,16 @@
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                     <div class="my-2"></div>
-
-                                    <form method="POST" action="{{ route('offre.destroy', ['offre' => $offre->id]) }}" class="button delete-confirm"> 
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-circle" title="Delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
                                     
+                                    @if ( Auth::user()->hasRole('admin'))
+                                        <form method="POST" action="{{ route('offre.destroy', ['offre' => $offre->id]) }}" class="button delete-confirm"> 
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-circle" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

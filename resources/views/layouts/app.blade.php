@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
-    
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}"> --}}
+
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
@@ -26,6 +25,7 @@
         window._translations = translation ? translation : '';
     </script>
   </head>
+
   <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
     <div id="app">
     <!-- nav  -->
@@ -48,7 +48,7 @@
                     <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
-             <div class="dropdown">
+            <div class="dropdown">
                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{__("tamwil.language")}}
                 </button>
@@ -62,7 +62,6 @@
                     <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'fr') }}">{{__('tamwil.french') }}</a> 
                     <a class="dropdown-item" href="{{ route(Route::currentRouteName(), 'en') }}">{{__('tamwil.english') }}</a> 
                     @endif
-                  
                 </div> 
               </div>
 	    </div>
@@ -137,8 +136,6 @@
     <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.animateNumber.min.js')}}"></script>
     <script src="{{asset('assets/js/scrollax.min.js')}}"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
-    {{-- <script src="{{asset('assets/js/google-map.js')}}"></script> --}}
     <script src="{{asset('assets/js/main.js')}}"></script>
     </body>
     </html>

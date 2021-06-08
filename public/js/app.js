@@ -2000,7 +2000,8 @@ __webpack_require__.r(__webpack_exports__);
       allSteps: 5,
       curentStep: 1,
       offre: [],
-      locale: window._locale
+      locale: window._locale,
+      slected: false
     };
   },
   props: {
@@ -2033,50 +2034,15 @@ __webpack_require__.r(__webpack_exports__);
       this.allerrors = '';
     },
     nextStep: function nextStep() {
-      if (this.curentStep == 1) {
-        if (!this.form.profil) {
-          swal({
-            title: "Rappel!",
-            text: "choisissez votre profil",
-            icon: "warning",
-            dangerMode: true
-          });
-          return false;
-        }
-      }
-
-      if (this.curentStep == 2) {
-        if (!this.form.cycle) {
-          swal({
-            title: "Rappel!",
-            text: "choisissez votre cycle de vie",
-            icon: "warning",
-            dangerMode: true
-          });
-          return false;
-        }
-      }
-
-      if (this.curentStep == 3) {
-        if (!this.form.besoin) {
-          swal({
-            title: "Rappel!",
-            text: "choisissez votre besoin",
-            icon: "warning",
-            dangerMode: true
-          });
-          return false;
-        }
-      }
-
       this.curentStep++;
-      this.allerrors = '';
+      this.allerrors = '', this.slected = false;
     },
     pretStep: function pretStep() {
-      this.curentStep--;
+      this.curentStep--, this.slected = true;
     },
     selectProfil: function selectProfil($id) {
       this.form.profil = $id;
+      this.slected = true;
       var that = this;
       axios.get('/cycles/' + this.form.profil).then(function (res) {
         console.log(res);
@@ -2084,10 +2050,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectCycle: function selectCycle($id) {
-      this.form.cycle = $id;
+      this.form.cycle = $id, this.slected = true;
     },
     selectBesoin: function selectBesoin($id) {
-      this.form.besoin = $id;
+      this.form.besoin = $id, this.slected = true;
     },
     showOffres: function showOffres($id) {
       this.offre = $id;
@@ -38901,7 +38867,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.curentStep < 3
+            _vm.curentStep < 3 && _vm.slected == true
               ? _c(
                   "button",
                   {
@@ -38919,11 +38885,14 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.curentStep == 3 && _vm.form.besoin != 0
+            _vm.curentStep == 3 &&
+            _vm.form.profil != 0 &&
+            _vm.form.cycle != 0 &&
+            _vm.form.besoin != 0
               ? _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary btn-lg btn-block m-2",
+                    staticClass: "btn btn-primary btn-lg btn-block mt-4",
                     attrs: { type: "submit", "data-mdb-ripple-color": "dark" }
                   },
                   [_vm._v(_vm._s(_vm.__("tamwil.submit")))]
@@ -39028,17 +38997,9 @@ var render = function() {
                         [
                           _c(
                             "h4",
-                            {
-                              staticClass:
-                                "text-xs font-weight-bold text-primary text-uppercase col-10"
-                            },
+                            { staticClass: "text-primary text-uppercase" },
                             [_vm._v(_vm._s(off.nom_offre))]
-                          ),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticClass: "col-2",
-                            attrs: { src: "/assets/images/icon.png" }
-                          })
+                          )
                         ]
                       ),
                       _vm._v(" "),
