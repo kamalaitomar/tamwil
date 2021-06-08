@@ -6,6 +6,8 @@
         "Email address"=>"Email address",
         "message"=>"message",
         "Envoyer"=>"send",
+        "nom"=>"name",
+
 
 
         

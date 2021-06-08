@@ -44,8 +44,8 @@
                     <li class="nav-item"><a href="{{ route('home', app()->getLocale()) }} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="{{ route('organisations', app()->getLocale()) }}" class="nav-link">{{__('tamwil.organizations')}}</a></li>
-                    <li class="nav-item"><a href="{{ route('about', app()->getLocale()) }} " class="nav-link">{{__('tamwil.about')}}</a></li>
-                    <li class="nav-item"><a href="{{ route('adminn', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('about.index', app()->getLocale()) }} " class="nav-link">{{__('tamwil.about')}}</a></li>
+                    <li class="nav-item"><a href="{{ route('offre.index', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
             <div class="dropdown">

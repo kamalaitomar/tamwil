@@ -6,7 +6,7 @@
 
 
     <div class="container ">
-        <div class="p-2">
+        <div class="p-2 d-flex align-items-center flex-column">
             <h1 class="text-center m-2 pb-4 "> {{__('about.Qui sommes nous ?')}} </h1>
         
             <div class="card  m-6">
@@ -15,20 +15,33 @@
                         {{__('about.description')}}
                     </p>
                 </div>
-            </div> 
-            <div class="  justify-content-center align-items-center mt-5 col-8  ">
-                <h1 class="text-center m-2 pb-4 "> {{__('about.Contactez-nous')}} </h1>
-
-                <div class="my-3">
-                    <label for="exampleFormControlInput1" class="form-label"> {{__('about.Email address')}}</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label"> {{__('about.message')}}</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-outline-primary">{{__('about.Envoyer')}}</button>
             </div>
+            
+                <div class="mt-5 col-8  text-center">
+                    @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                    <form action=" {{ route('about.store', app()->getLocale()) }} " method="post">  
+                        @csrf
+                    <h1 class="m-2 pb-4 "> {{__('about.Contactez-nous')}} </h1>
+                    <div class="my-3 ">
+                        <label for="nom" class="form-label"> {{__('about.nom')}}</label>
+                        <input type="nom" class="form-control" id="nom" name="nom">
+                    </div>
+                    <div class="my-3 ">
+                        <label for="email" class="form-label"> {{__('about.Email address')}}</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label"> {{__('about.message')}}</label>
+                        <textarea class="form-control" id="message" rows="4" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">{{__('about.Envoyer')}}</button>
+                </form>  
+                </div>
+              
         </div>
     </div>
 </div>    
