@@ -2033,10 +2033,11 @@ __webpack_require__.r(__webpack_exports__);
       this.curentStep++;
       this.allerrors = '';
     },
-    nextStep: function nextStep() {
-      this.curentStep++;
-      this.allerrors = '', this.slected = false;
-    },
+    // nextStep(){
+    //     this.curentStep ++
+    //     this.allerrors = '',
+    //     this.slected = false
+    // },
     pretStep: function pretStep() {
       this.curentStep--, this.slected = true;
     },
@@ -2048,12 +2049,34 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res);
         that.cycles = res.data;
       });
+      this.curentStep++;
+      this.allerrors = '', this.slected = false;
     },
     selectCycle: function selectCycle($id) {
-      this.form.cycle = $id, this.slected = true;
+      this.form.cycle = $id, this.slected = true, this.curentStep++;
+      this.allerrors = '', this.slected = false;
     },
     selectBesoin: function selectBesoin($id) {
+      var _this2 = this;
+
       this.form.besoin = $id, this.slected = true;
+      var dataform = new FormData();
+      dataform.append('profil', this.form.profil);
+      dataform.append('cycle', this.form.cycle);
+      dataform.append('besoin', this.form.besoin);
+      axios.post('/offres', dataform).then(function (response) {
+        console.log(response);
+        console.log(dataform);
+        _this2.allerros = [];
+        _this2.submited = true;
+        _this2.success = true;
+        _this2.offres = response.data;
+      })["catch"](function (error) {
+        _this2.allerros = error.response.data.errors;
+        _this2.success = false;
+      });
+      this.curentStep++;
+      this.allerrors = '';
     },
     showOffres: function showOffres($id) {
       this.offre = $id;
@@ -38865,38 +38888,6 @@ var render = function() {
                     0
                   )
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.curentStep < 3 && _vm.slected == true
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-outline-primary btn-lg btn-block mt-4",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.nextStep($event)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.__("tamwil.next")))]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.curentStep == 3 &&
-            _vm.form.profil != 0 &&
-            _vm.form.cycle != 0 &&
-            _vm.form.besoin != 0
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-lg btn-block mt-4",
-                    attrs: { type: "submit", "data-mdb-ripple-color": "dark" }
-                  },
-                  [_vm._v(_vm._s(_vm.__("tamwil.submit")))]
-                )
               : _vm._e()
           ])
         ])

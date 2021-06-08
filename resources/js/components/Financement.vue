@@ -51,8 +51,8 @@
                     </div>
 
                     <!-- next and submit button -->
-                    <button v-if="curentStep < 3 && slected==true " @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button>
-                    <button v-if="curentStep == 3 && form.profil != 0 && form.cycle != 0 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block mt-4" data-mdb-ripple-color="dark">{{__('tamwil.submit')}}</button>
+                    <!-- <button v-if="curentStep < 3 && slected==true " @click.prevent="nextStep" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.next')}}</button> -->
+                    <!-- <button v-if="curentStep == 3 && form.profil != 0 && form.cycle != 0 && form.besoin != 0" type="submit" class="btn btn-primary btn-lg btn-block mt-4" data-mdb-ripple-color="dark">{{__('tamwil.submit')}}</button> -->
                 </div>
             </div>
             
@@ -165,12 +165,11 @@
                     this.allerrors = ''
             },
 
-            nextStep(){
-                
-                this.curentStep ++
-                this.allerrors = '',
-                this.slected = false
-            },
+            // nextStep(){
+            //     this.curentStep ++
+            //     this.allerrors = '',
+            //     this.slected = false
+            // },
 
             pretStep(){
                 this.curentStep --,
@@ -187,17 +186,43 @@
                     that.cycles = res.data
                     }
                 );
-                
+                this.curentStep ++
+                this.allerrors = '',
+                this.slected = false
             },
 
             selectCycle($id){
                 this.form.cycle = $id,
-                this.slected = true
+                this.slected = true,
+                this.curentStep ++
+                this.allerrors = '',
+                this.slected = false
             },
 
             selectBesoin($id){
                 this.form.besoin = $id,
                 this.slected = true
+
+                let dataform = new FormData();
+                dataform.append('profil', this.form.profil);
+                dataform.append('cycle', this.form.cycle);
+                dataform.append('besoin', this.form.besoin);
+
+
+                axios.post( '/offres', dataform).then( response => {
+                    console.log(response);
+                    console.log(dataform);
+                    this.allerros = [];
+                    this.submited = true;
+                    this.success = true;
+                    this.offres = response.data;
+                } ).catch((error) => {
+                         this.allerros = error.response.data.errors;
+                         this.success = false;
+                    });
+
+                    this.curentStep ++
+                    this.allerrors = ''
             },
 
             showOffres($id){
