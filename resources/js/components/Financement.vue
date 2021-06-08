@@ -4,7 +4,7 @@
         <form method="POST" action="/organisation"  @submit.prevent="onSubmit" >
             <!-- back button -->
             <div class="row">
-                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">{{__('tamwil.back')}}</button><br>
+                 <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 " data-mdb-ripple-color="dark">{{__('tamwil.back')}}</button><br>
 
             </div>
 
@@ -62,12 +62,12 @@
         <!-- showing results sections -->
 
             <!-- showing groups of results -->
-        <div v-if="curentStep == 4" class="text-center col-10 justify-content-md-center ">
-            <div v-if="offres == 0" class="alert alert-warning" role="alert" >
+        <div v-if="curentStep == 4" class="text-center">
+            <div v-if="offres == 0" class="alert alert-warning col-12" role="alert" >
                 nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!
             </div>
             <div class="row">
-                <div v-for="(offre, key) in offres" :key="key" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex " >
+                <div v-for="(offre, key) in offres" :key="key" class="col-4 ftco-animate fadeInUp ftco-animated d-flex " >
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
                         <div class="text m-1 text-center">
                             <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{key}}</h2>
