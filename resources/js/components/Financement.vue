@@ -16,7 +16,7 @@
                         <h1 class="m-2 p-2">{{__('tamwil.Je suis')}}</h1>
                         <div class="row">
                             <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex" >
-                                <div class="staff bg-info m-1 p-2 border mb-3 col-12" :class="{ 'bg-white border-light' : profil.id != form.profil, 'shadow ':profil.id == form.profil}">
+                                <div class="staff bg-info m-1 p-2 mb-3 col-12  shadow-sm " :class="{ 'bg-white border-light' : profil.id != form.profil, 'shadow ':profil.id == form.profil}">
                                     <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                     <div class="text m-1 "  :class="{'bg-info ':profil.id == form.profil}">
                                         <h3>{{__('tamwil.'+profil.nom_profil )}}</h3>
@@ -30,9 +30,15 @@
                     <div v-if="curentStep == 2" class="ftco-animate fadeInUp ftco-animated">
                         <h1 class="m-2 p-2 text-center"> {{__('tamwil.life cycle')}} </h1>
                         
-                            <ul class="list-group" >
-                                <button v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" :class="{'active':cycle.id == form.cycle, 'text-right': locale=='ar'}"  type="button" class="list-group-item list-group-item-action border border-light fs-3" >{{__('tamwil.'+cycle.nom_cycle )}}</button>
-                            </ul>
+                            <div class="row" >
+                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                                    <div class="staff bg-info p-4 mb-3 col-12 shadow-sm d-flex align-items-center justify-content-center" :class="{ 'bg-white border-light' : cycle.id != form.cycle, 'shadow ':cycle.id == form.cycle}">
+                                        <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
+                                            <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
 
                     <!-- choose besoin section -->
@@ -40,7 +46,7 @@
                         <h1 class="m-2 p-2">{{__('tamwil.i need')}}</h1>
                         <div class="row">
                             <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
-                                <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.besoin, 'shadow ':besoin.id == form.besoin}">
+                                <div class="staff bg-info m-1 p-2 border mb-3 col-12  shadow-sm" :class="{ 'bg-white border-light' : besoin.id != form.besoin, 'shadow ':besoin.id == form.besoin}">
                                     <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
                                     <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.besoin}">
                                         <h3>{{__('tamwil.'+besoin.nom_besoin)}}</h3>

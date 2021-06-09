@@ -1981,6 +1981,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -38764,7 +38770,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                "staff bg-info m-1 p-2 border mb-3 col-12",
+                                "staff bg-info m-1 p-2 mb-3 col-12  shadow-sm ",
                               class: {
                                 "bg-white border-light":
                                   profil.id != _vm.form.profil,
@@ -38815,20 +38821,15 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c(
-                      "ul",
-                      { staticClass: "list-group" },
+                      "div",
+                      { staticClass: "row" },
                       _vm._l(_vm.cycles, function(cycle) {
                         return _c(
-                          "button",
+                          "div",
                           {
                             key: cycle.id,
                             staticClass:
-                              "list-group-item list-group-item-action border border-light fs-3",
-                            class: {
-                              active: cycle.id == _vm.form.cycle,
-                              "text-right": _vm.locale == "ar"
-                            },
-                            attrs: { type: "button" },
+                              "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex",
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
@@ -38836,7 +38837,41 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(_vm.__("tamwil." + cycle.nom_cycle)))]
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "staff bg-info p-4 mb-3 col-12 shadow-sm d-flex align-items-center justify-content-center",
+                                class: {
+                                  "bg-white border-light":
+                                    cycle.id != _vm.form.cycle,
+                                  "shadow ": cycle.id == _vm.form.cycle
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "text m-1 text-center",
+                                    class: {
+                                      "bg-info ": cycle.id == _vm.form.cycle,
+                                      "text-right": _vm.locale == "ar"
+                                    }
+                                  },
+                                  [
+                                    _c("h3", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.__("tamwil." + cycle.nom_cycle)
+                                        )
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
                         )
                       }),
                       0
@@ -38873,7 +38908,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                "staff bg-info m-1 p-2 border mb-5 col-12",
+                                "staff bg-info m-1 p-2 border mb-3 col-12  shadow-sm",
                               class: {
                                 "bg-white border-light":
                                   besoin.id != _vm.form.besoin,
