@@ -7,7 +7,7 @@
         <div class="p-2 d-flex align-items-center flex-column">
             <h1 class="text-center m-2 pb-4 "> {{__('about.Qui sommes nous ?')}} </h1>
             <div class="card  m-6">
-                <div class="card-body">
+                <div class="card-body content">
                     <p class="card-text">
                         {{__('about.description')}}
                     </p>
@@ -21,11 +21,10 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                
         @endif
         <form action=" {{ route('about.store', app()->getLocale()) }} " method="post">  
             @csrf
-        <h1 class="mt-3 pb-4 text-center "> {{__('about.Contactez-nous')}} </h1>
+        <h1 class="mt-5  text-center "> {{__('about.Contactez-nous')}} </h1>
             <div class="my-3 ">
                 <label for="nom" class="form-label"> {{__('about.nom')}}</label>
                 <input type="nom" class="form-control" id="nom" name="nom">
