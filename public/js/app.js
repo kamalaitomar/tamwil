@@ -1981,8 +1981,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -38766,7 +38764,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                "staff bg-info m-1 p-2 border mb-5 col-12",
+                                "staff bg-info m-1 p-2 border mb-3 col-12",
                               class: {
                                 "bg-white border-light":
                                   profil.id != _vm.form.profil,
@@ -38782,7 +38780,7 @@ var render = function() {
                               _c(
                                 "div",
                                 {
-                                  staticClass: "text m-1  text-center",
+                                  staticClass: "text m-1 ",
                                   class: {
                                     "bg-info ": profil.id == _vm.form.profil
                                   }
@@ -38808,39 +38806,43 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.curentStep == 2
-              ? _c("div", [
-                  _c("h1", { staticClass: "m-2 p-2 text-center" }, [
-                    _vm._v(" " + _vm._s(_vm.__("tamwil.life cycle")) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group" },
-                    _vm._l(_vm.cycles, function(cycle) {
-                      return _c(
-                        "button",
-                        {
-                          key: cycle.id,
-                          staticClass:
-                            "list-group-item list-group-item-action border border-light fs-3",
-                          class: {
-                            active: cycle.id == _vm.form.cycle,
-                            "text-right": _vm.locale == "ar"
-                          },
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.selectCycle(cycle.id)
+              ? _c(
+                  "div",
+                  { staticClass: "ftco-animate fadeInUp ftco-animated" },
+                  [
+                    _c("h1", { staticClass: "m-2 p-2 text-center" }, [
+                      _vm._v(" " + _vm._s(_vm.__("tamwil.life cycle")) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "list-group" },
+                      _vm._l(_vm.cycles, function(cycle) {
+                        return _c(
+                          "button",
+                          {
+                            key: cycle.id,
+                            staticClass:
+                              "list-group-item list-group-item-action border border-light fs-3",
+                            class: {
+                              active: cycle.id == _vm.form.cycle,
+                              "text-right": _vm.locale == "ar"
+                            },
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.selectCycle(cycle.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.__("tamwil." + cycle.nom_cycle)))]
-                      )
-                    }),
-                    0
-                  )
-                ])
+                          },
+                          [_vm._v(_vm._s(_vm.__("tamwil." + cycle.nom_cycle)))]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.curentStep == 3
@@ -38987,12 +38989,12 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.curentStep == 5
-      ? _c("div", { staticClass: "col-10 offset-1 " }, [
+      ? _c("div", { staticClass: "ftco-animate fadeInUp ftco-animated" }, [
           _c(
             "div",
             { staticClass: "row" },
             _vm._l(_vm.offre, function(off) {
-              return _c("div", { key: off.id, staticClass: "col-4 mb-4" }, [
+              return _c("div", { key: off.id, staticClass: "col-3 mb-4" }, [
                 _c(
                   "div",
                   { staticClass: "card border-left-primary shadow h-100 py-2" },
