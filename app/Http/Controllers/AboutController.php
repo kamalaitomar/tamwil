@@ -34,6 +34,12 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedata = $request->validate([
+            'nom'  => 'required',
+            'email'  => 'required',
+            'message'  => 'required',
+        ]);
+
         $about= new About();
         $about->nom = $request->input('nom');
         $about->email = $request->input('email');
