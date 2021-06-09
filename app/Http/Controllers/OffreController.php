@@ -68,7 +68,8 @@ class OffreController extends Controller
     public function show($locale ,$id)
     {
         $offre = Offre::findOrFail($id);
-        return view("offre", compact('offre', 'locale', 'id'));
+        $organisations =  $offre->organisations->toArray();
+        return view("offre", compact('offre', 'organisations', 'locale', 'id'));
     }
 
     /**

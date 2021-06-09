@@ -5,15 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> --}}
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     
-    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"> --}}
+
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}"> --}}
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
@@ -44,7 +45,9 @@
                     <li class="nav-item"><a href="{{ route('home', app()->getLocale()) }} " class="nav-link">{{__('tamwil.home')}}</a></li>
                     <li class="nav-item"><a href="{{ route('financement', app()->getLocale()) }}" class="nav-link">{{__('tamwil.funding')}}</a></li>
                     <li class="nav-item"><a href="{{ route('organisations', app()->getLocale()) }}" class="nav-link">{{__('tamwil.organizations')}}</a></li>
+
                     <li class="nav-item"><a href="{{ route('about.index', app()->getLocale()) }} " class="nav-link">{{__('tamwil.about')}}</a></li>
+
                     <li class="nav-item"><a href="{{ route('offre.index', app()->getLocale()) }}" class="nav-link">{{__('tamwil.admin')}}</a></li>
                 </ul>
 	        </div>
@@ -122,8 +125,8 @@
             </svg>
         </div>  
     </div>
-    
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{--     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-migrate-3.0.1.min.js')}}"></script>

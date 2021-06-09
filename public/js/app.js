@@ -1981,8 +1981,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2033,10 +2031,11 @@ __webpack_require__.r(__webpack_exports__);
       this.curentStep++;
       this.allerrors = '';
     },
-    nextStep: function nextStep() {
-      this.curentStep++;
-      this.allerrors = '', this.slected = false;
-    },
+    // nextStep(){
+    //     this.curentStep ++
+    //     this.allerrors = '',
+    //     this.slected = false
+    // },
     pretStep: function pretStep() {
       this.curentStep--, this.slected = true;
     },
@@ -2048,12 +2047,34 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res);
         that.cycles = res.data;
       });
+      this.curentStep++;
+      this.allerrors = '', this.slected = false;
     },
     selectCycle: function selectCycle($id) {
-      this.form.cycle = $id, this.slected = true;
+      this.form.cycle = $id, this.slected = true, this.curentStep++;
+      this.allerrors = '', this.slected = false;
     },
     selectBesoin: function selectBesoin($id) {
+      var _this2 = this;
+
       this.form.besoin = $id, this.slected = true;
+      var dataform = new FormData();
+      dataform.append('profil', this.form.profil);
+      dataform.append('cycle', this.form.cycle);
+      dataform.append('besoin', this.form.besoin);
+      axios.post('/offres', dataform).then(function (response) {
+        console.log(response);
+        console.log(dataform);
+        _this2.allerros = [];
+        _this2.submited = true;
+        _this2.success = true;
+        _this2.offres = response.data;
+      })["catch"](function (error) {
+        _this2.allerros = error.response.data.errors;
+        _this2.success = false;
+      });
+      this.curentStep++;
+      this.allerrors = '';
     },
     showOffres: function showOffres($id) {
       this.offre = $id;
@@ -2151,9 +2172,37 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {// console.log(this.typedata)
   },
   methods: {
-    next: function next() {
+    // next(){
+    //     var that = this
+    //     axios.get('/organisation/'+this.type)
+    //     .then(function(res){
+    //         console.log(res)
+    //         that.organisationsResult = res.data
+    //         }
+    //     ).catch((error) => {
+    //              this.allerros = error.response.data.errors;
+    //              this.success = false;
+    //         });
+    //     if(this.curentStep == 1){
+    //         if(!this.type){
+    //             swal({
+    //                     title: "Rappel!",
+    //                     text: "choisissez votre type d'organisation",
+    //                     icon: "warning",
+    //                     dangerMode: true,
+    //                     })
+    //             return false
+    //         }
+    //     }    
+    //     this.curentStep ++
+    // },
+    pretStep: function pretStep() {
+      this.curentStep--;
+    },
+    selectOrg: function selectOrg(type) {
       var _this = this;
 
+      this.type = type;
       var that = this;
       axios.get('/organisation/' + this.type).then(function (res) {
         console.log(res);
@@ -2176,12 +2225,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.curentStep++;
-    },
-    pretStep: function pretStep() {
-      this.curentStep--;
-    },
-    selectOrg: function selectOrg(type) {
-      this.type = type;
     }
   }
 });
@@ -38676,7 +38719,7 @@ var render = function() {
             ? _c(
                 "button",
                 {
-                  staticClass: "btn btn-outline-primary mt-5 ml-5",
+                  staticClass: "btn btn-outline-primary mt-5 ",
                   attrs: { type: "button", "data-mdb-ripple-color": "dark" },
                   on: {
                     click: function($event) {
@@ -38721,7 +38764,7 @@ var render = function() {
                             "div",
                             {
                               staticClass:
-                                "staff bg-info m-1 p-2 border mb-5 col-12",
+                                "staff bg-info m-1 p-2 border mb-3 col-12",
                               class: {
                                 "bg-white border-light":
                                   profil.id != _vm.form.profil,
@@ -38737,7 +38780,7 @@ var render = function() {
                               _c(
                                 "div",
                                 {
-                                  staticClass: "text m-1  text-center",
+                                  staticClass: "text m-1 ",
                                   class: {
                                     "bg-info ": profil.id == _vm.form.profil
                                   }
@@ -38763,39 +38806,43 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.curentStep == 2
-              ? _c("div", [
-                  _c("h1", { staticClass: "m-2 p-2 text-center" }, [
-                    _vm._v(" " + _vm._s(_vm.__("tamwil.life cycle")) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group" },
-                    _vm._l(_vm.cycles, function(cycle) {
-                      return _c(
-                        "button",
-                        {
-                          key: cycle.id,
-                          staticClass:
-                            "list-group-item list-group-item-action border border-light fs-3",
-                          class: {
-                            active: cycle.id == _vm.form.cycle,
-                            "text-right": _vm.locale == "ar"
-                          },
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.selectCycle(cycle.id)
+              ? _c(
+                  "div",
+                  { staticClass: "ftco-animate fadeInUp ftco-animated" },
+                  [
+                    _c("h1", { staticClass: "m-2 p-2 text-center" }, [
+                      _vm._v(" " + _vm._s(_vm.__("tamwil.life cycle")) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      { staticClass: "list-group" },
+                      _vm._l(_vm.cycles, function(cycle) {
+                        return _c(
+                          "button",
+                          {
+                            key: cycle.id,
+                            staticClass:
+                              "list-group-item list-group-item-action border border-light fs-3",
+                            class: {
+                              active: cycle.id == _vm.form.cycle,
+                              "text-right": _vm.locale == "ar"
+                            },
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.selectCycle(cycle.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.__("tamwil." + cycle.nom_cycle)))]
-                      )
-                    }),
-                    0
-                  )
-                ])
+                          },
+                          [_vm._v(_vm._s(_vm.__("tamwil." + cycle.nom_cycle)))]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.curentStep == 3
@@ -38865,38 +38912,6 @@ var render = function() {
                     0
                   )
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.curentStep < 3 && _vm.slected == true
-              ? _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-outline-primary btn-lg btn-block mt-4",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.nextStep($event)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.__("tamwil.next")))]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.curentStep == 3 &&
-            _vm.form.profil != 0 &&
-            _vm.form.cycle != 0 &&
-            _vm.form.besoin != 0
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-lg btn-block mt-4",
-                    attrs: { type: "submit", "data-mdb-ripple-color": "dark" }
-                  },
-                  [_vm._v(_vm._s(_vm.__("tamwil.submit")))]
-                )
               : _vm._e()
           ])
         ])
@@ -38904,86 +38919,82 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.curentStep == 4
-      ? _c(
-          "div",
-          { staticClass: "text-center col-10 justify-content-md-center " },
-          [
-            _vm.offres == 0
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "alert alert-warning",
-                    attrs: { role: "alert" }
-                  },
-                  [
-                    _vm._v(
-                      "\n            nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!\n        "
-                    )
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.offres, function(offre, key) {
-                return _c(
-                  "div",
-                  {
-                    key: key,
-                    staticClass:
-                      "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex "
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "staff bg-white border-light m-1 p-2 border mb-5 col-12"
-                      },
-                      [
-                        _c("div", { staticClass: "text m-1 text-center" }, [
-                          _c(
-                            "h1",
-                            { staticClass: "text-success font-weight-bold" },
-                            [_vm._v(_vm._s(offre.length))]
-                          ),
-                          _c("h2", [_vm._v(_vm._s(key))]),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-outline-primary btn-lg btn-block mt-4",
-                              attrs: { type: "button", offre: offre },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.showOffres(offre)
-                                }
+      ? _c("div", { staticClass: "text-center" }, [
+          _vm.offres == 0
+            ? _c(
+                "div",
+                {
+                  staticClass: "alert alert-warning col-12",
+                  attrs: { role: "alert" }
+                },
+                [
+                  _vm._v(
+                    "\n            nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!\n        "
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.offres, function(offre, key) {
+              return _c(
+                "div",
+                {
+                  key: key,
+                  staticClass:
+                    "col-4 ftco-animate fadeInUp ftco-animated d-flex "
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "staff bg-white border-light m-1 p-2 border mb-5 col-12"
+                    },
+                    [
+                      _c("div", { staticClass: "text m-1 text-center" }, [
+                        _c(
+                          "h1",
+                          { staticClass: "text-success font-weight-bold" },
+                          [_vm._v(_vm._s(offre.length))]
+                        ),
+                        _c("h2", [_vm._v(_vm._s(key))]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary btn-lg btn-block mt-4",
+                            attrs: { type: "button", offre: offre },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.showOffres(offre)
                               }
-                            },
-                            [_vm._v("En savoir plus")]
-                          )
-                        ])
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            )
-          ]
-        )
+                            }
+                          },
+                          [_vm._v("En savoir plus")]
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
       : _vm._e(),
     _vm._v(" "),
     _vm.curentStep == 5
-      ? _c("div", { staticClass: "col-10 offset-1 " }, [
+      ? _c("div", { staticClass: "ftco-animate fadeInUp ftco-animated" }, [
           _c(
             "div",
             { staticClass: "row" },
             _vm._l(_vm.offre, function(off) {
-              return _c("div", { key: off.id, staticClass: "col-4 mb-4" }, [
+              return _c("div", { key: off.id, staticClass: "col-3 mb-4" }, [
                 _c(
                   "div",
                   { staticClass: "card border-left-primary shadow h-100 py-2" },
@@ -38995,11 +39006,9 @@ var render = function() {
                           staticClass: "row no-gutters align-items-center mb-2"
                         },
                         [
-                          _c(
-                            "h4",
-                            { staticClass: "text-primary text-uppercase" },
-                            [_vm._v(_vm._s(off.nom_offre))]
-                          )
+                          _c("h4", { staticClass: "text-primary" }, [
+                            _vm._v(_vm._s(off.nom_offre))
+                          ])
                         ]
                       ),
                       _vm._v(" "),
@@ -39144,24 +39153,7 @@ var render = function() {
               )
             }),
             0
-          ),
-          _vm._v(" "),
-          this.type
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary btn-lg btn-block",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.next($event)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.__("organisation.Recherche")))]
-              )
-            : _vm._e(),
-          _c("br")
+          )
         ])
       : _vm._e(),
     _vm._v(" "),

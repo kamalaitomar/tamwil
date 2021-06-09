@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>    
-            <button v-if="(this.type)" class="btn btn-outline-primary btn-lg btn-block"  @click.prevent="next">{{__('organisation.Recherche')}}</button><br>
+            <!-- <button v-if="(this.type)" class="btn btn-outline-primary btn-lg btn-block"  @click.prevent="next">{{__('organisation.Recherche')}}</button><br> -->
 
         </div>
         <div class="row">
@@ -78,7 +78,39 @@ export default {
 
         methods:{
 
-            next(){
+            // next(){
+            //     var that = this
+            //     axios.get('/organisation/'+this.type)
+            //     .then(function(res){
+            //         console.log(res)
+            //         that.organisationsResult = res.data
+            //         }
+            //     ).catch((error) => {
+            //              this.allerros = error.response.data.errors;
+            //              this.success = false;
+            //         });
+
+            //     if(this.curentStep == 1){
+            //         if(!this.type){
+            //             swal({
+            //                     title: "Rappel!",
+            //                     text: "choisissez votre type d'organisation",
+            //                     icon: "warning",
+            //                     dangerMode: true,
+            //                     })
+            //             return false
+            //         }
+                    
+            //     }    
+            //     this.curentStep ++
+            // },
+
+            pretStep(){
+                this.curentStep --
+        
+            },
+            selectOrg(type){
+                this.type = type
                 var that = this
                 axios.get('/organisation/'+this.type)
                 .then(function(res){
@@ -101,20 +133,8 @@ export default {
                         return false
                     }
                     
-                }
-
-
-
-                    
+                }    
                 this.curentStep ++
-
-            },
-            pretStep(){
-                this.curentStep --
-        
-            },
-            selectOrg(type){
-                this.type = type
             }
 
             

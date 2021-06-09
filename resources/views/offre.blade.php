@@ -25,33 +25,28 @@
                 <h4 class="text-info mb-0">Description :</h4>
                 <p class="mb-3">{{$offre->description}}</p>
 
-                <div class="row">
-                    <div class="my-3">  
-                        <h4 class="text-info ml-2">Organisations :</h4>
-                        <div class="row m-1">
-                            <div class="card col-4 m-2 ">
-                                <div class="card-body ">
-                                    <h5 class="card-title text-primary text-uppercase">MAJOR MEDIA COMMUNICATION DIGITALE</h5>
-                                    <div class="d-flex align-items-end"> 
-                                        <a href="/showorganisation/1" class="btn btn-primary">Afficher l'organisation</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="card col-4 m-2">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary text-uppercase">Agence SEO Maroc, Création site internet et Google Ads</h5>
-                                    <a href="/showorganisation/2" class="btn btn-primary align-self-end">Afficher l'organisation</a>
-                                </div>
-                            </div> 
-                            <div class="card col-4 m-2">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary text-uppercase">Moto Tours Maroc</h5>
-                                    <a href="/showorganisation/3" class="btn btn-primary align-self-end">Afficher l'organisation</a>
-                                </div>
-                            </div> 
+                @if ($organisations  )
+                    <div class="row">
+                        <div class="my-3">  
+                            <h4 class="text-info ml-2">Organisations :</h4>
+                            <div class="row m-1">
+
+                                @foreach ($organisations as $organisation)
+                                    <div class="card col-4 m-2 ">
+                                        <div class="card-body ">
+                                            <h5 class="card-title text-primary text-uppercase">{{$organisation->nom_organisation}}</h5>
+                                            <div class="d-flex align-items-end"> 
+                                                <a href="'offre/'{{$organisation->id}}" class="btn btn-primary">Afficher l'organisation</a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                @endforeach
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+                
             </div>
         </div>
     </div>
