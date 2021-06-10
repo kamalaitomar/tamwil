@@ -23,7 +23,7 @@
         <h1 class="mt-5  text-center "> {{__('about.Contactez-nous')}} </h1>
         @if (session('status'))
                         <div style="color: green" class=" mt-2 alert alert-success" role="alert">
-                            {{ session('status') }}
+                            
                         </div>
         @endif
 
@@ -34,7 +34,7 @@
          @endif                    --}}
 
             <div class="my-3 ">
-                <label for="nom" class="form-label"> {{__('about.nom')}}</label>
+                <label for="nom" class="form-label col-12 {{ App::isLocale('ar') ? 'text-right'  : ''  }}"> {{__('about.nom')}}</label>
                 <input type="nom" class="form-control" id="nom" name="nom" value="{{ old('nom')}}">
                 @error('nom')
                     <span class="invalid-feedback d-block" role="alert">
@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="my-3 ">
-                <label for="email" class="form-label"> {{__('about.Email address')}}</label>
+                <label for="email" class="form-label col-12 {{ App::isLocale('ar') ? 'text-right'  : ''  }}" > {{__('about.Email address')}}</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email')}}">
                 @error('email')
                     <span class="invalid-feedback d-block" role="alert">
@@ -52,7 +52,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="message" class="form-label"> {{__('about.message')}}</label>
+                <label for="message" class="form-label col-12 {{ App::isLocale('ar') ? 'text-right'  : ''  }}"> {{__('about.message')}}</label>
                 <textarea class="form-control" id="message" rows="4" name="message" >{{ old('message')}}</textarea>
                 @error('message')
                     <span class="invalid-feedback d-block" role="alert">
@@ -60,8 +60,9 @@
                     </span>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-outline-primary">{{__('about.Envoyer')}}</button>
+            <button type="submit" class="btn btn-outline-primary ">{{__('about.Envoyer')}}</button>
         </form>  
     </div>   
 </div>
 @endsection
+   
