@@ -7,7 +7,8 @@
 
         <!-- steps time line  -->
         <div class="row justify-content-md-center">
-            <div class="col-2 text-center d-flex">
+
+            <div class="col-2 text-center d-flex" @click.prevent="profilsStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 1}">
                     <div class="m-1 p-2 col-12">
                         <div class=" col-12">
@@ -17,7 +18,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 text-center d-flex">
+
+            <div class="col-2 text-center d-flex" @click.prevent="cyclesStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 2}">
                     <div class="m-1 p-2 col-12">
                         <div class=" col-12">
@@ -27,7 +29,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 text-center d-flex">
+
+            <div class="col-2 text-center d-flex" @click.prevent="besoinsStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 3}">
                     <div class="m-1 p-2 col-12">
                         <div class="col-12">
@@ -37,7 +40,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 text-center d-flex">
+
+            <div class="col-2 text-center d-flex" @click.prevent="fasciculesStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 4}">
                     <div class="m-1 p-2 col-12">
                         <div class="col-12">
@@ -46,7 +50,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 text-center d-flex">
+
+            <div class="col-2 text-center d-flex" @click.prevent="offresStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 5}">
                     <div class="m-1 p-2 col-12">
                         <div class="col-12">
@@ -58,7 +63,7 @@
            
         </div>
 
-        <!-- choosing step  -->
+        <!-- choosing steps  -->
         <form method="POST" action="/organisation"  @submit.prevent="onSubmit" class=" my-5 ">
 
             <div class="row justify-content-md-center">
@@ -104,6 +109,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </form>
@@ -146,6 +152,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -213,12 +220,6 @@
                     this.allerrors = ''
             },
 
-            // nextStep(){
-            //     this.curentStep ++
-            //     this.allerrors = '',
-            //     this.slected = false
-            // },
-
             pretStep(){
                 this.curentStep --,
                 this.slected = true
@@ -276,6 +277,28 @@
             showOffres($id){
                 this.offre = $id
                 this.curentStep ++
+            },
+
+            profilsStep(){
+                if (this.form.profil != '') {
+                    this.curentStep = 1
+                }
+                
+            },
+            cyclesStep(){
+                if (this.form.profil != '') {
+                    this.curentStep = 2
+                }
+            },
+            besoinsStep(){
+                if (this.form.cycle != '') {
+                    this.curentStep = 3
+                }
+            },
+            fasciculesStep(){
+                if (this.form.besoin != '') {
+                    this.curentStep = 4
+                }
             },
 
         }
