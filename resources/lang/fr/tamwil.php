@@ -25,7 +25,7 @@
         "cri"=>"Centre Régional d'Investissement Marakech Safi",
         "ebf"=>"Usine commerciale émergente",
         "lorem"=>"Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.",
-        "Je suis"=>"Je suis :",
+        "Je suis"=>"Je suis",
         "Porteur de projet"=>"Porteur de projet",
         "Auto-entrepreneur"=>"Auto-entrepreneur",
         "Start-up"=>"Start-up",
@@ -42,7 +42,7 @@
         "Démarrage de l'activité"=>"Démarrage de l'activité",
         "Exploitation"=>"Exploitation",
         "Développement/ Croissance"=>"Développement/ Croissance",
-        "i need"=>"J'ai besoin de :",
+        "i need"=>"Besoin",
         "Investissement"=>"Investissement",
         "Ressources humaines"=>"Ressources humaines",
         "Production"=>"Production",
@@ -50,7 +50,8 @@
         "Innovation, technologie/Recherche & développement"=>"Innovation, technologie/Recherche & développement",
         "Protection de l’environnement et développement durable"=>"Protection de l’environnement et développement durable",
         "submit"=>"Soumettre",
-        ""=>"",
+        "programme"=>"Programme",
+        "offre"=>"Offre",
 
 
     ]
