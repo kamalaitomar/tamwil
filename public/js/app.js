@@ -2153,6 +2153,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2162,68 +2175,55 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       curentStep: 1,
-      type: '',
-      organisationsResult: []
+      form: {
+        type: '',
+        bes: ''
+      },
+      organisationsResult: [],
+      allerrors: [],
+      success: false
     };
   },
   props: {
-    organisations: Array
+    organisations: Array,
+    besoins: Array
   },
   mounted: function mounted() {// console.log(this.typedata)
   },
   methods: {
-    // next(){
-    //     var that = this
-    //     axios.get('/organisation/'+this.type)
-    //     .then(function(res){
-    //         console.log(res)
-    //         that.organisationsResult = res.data
-    //         }
-    //     ).catch((error) => {
-    //              this.allerros = error.response.data.errors;
-    //              this.success = false;
-    //         });
-    //     if(this.curentStep == 1){
-    //         if(!this.type){
-    //             swal({
-    //                     title: "Rappel!",
-    //                     text: "choisissez votre type d'organisation",
-    //                     icon: "warning",
-    //                     dangerMode: true,
-    //                     })
-    //             return false
-    //         }
-    //     }    
-    //     this.curentStep ++
-    // },
     pretStep: function pretStep() {
       this.curentStep--;
     },
     selectOrg: function selectOrg(type) {
+      this.form.type = type; // var that = this
+      // axios.get('/organisation/'+this.type)
+      // .then(function(res){
+      //     console.log(res)
+      //     that.organisationsResult = res.data
+      //     }
+      // ).catch((error) => {
+      //          this.allerros = error.response.data.errors;
+      //          this.success = false;
+      //     });
+
+      this.curentStep++;
+    },
+    selectBesoin: function selectBesoin(id) {
       var _this = this;
 
-      this.type = type;
-      var that = this;
-      axios.get('/organisation/' + this.type).then(function (res) {
-        console.log(res);
-        that.organisationsResult = res.data;
+      this.form.bes = id;
+      var dataform = new FormData();
+      dataform.append('type', this.form.type);
+      dataform.append('besoin', id);
+      console.log(dataform);
+      axios.post('/findOrganisation', dataform).then(function (response) {
+        console.log(response);
+        console.log(dataform);
+        _this.organisationsResult = response.data;
       })["catch"](function (error) {
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
-
-      if (this.curentStep == 1) {
-        if (!this.type) {
-          swal({
-            title: "Rappel!",
-            text: "choisissez votre type d'organisation",
-            icon: "warning",
-            dangerMode: true
-          });
-          return false;
-        }
-      }
-
       this.curentStep++;
     }
   }
@@ -39100,10 +39100,10 @@ var render = function() {
                       class: {
                         "bg-white border-light":
                           _vm.organisations[key].types_des_organisations !=
-                          _vm.type,
+                          _vm.form.type,
                         "shadow ":
                           _vm.organisations[key].types_des_organisations ==
-                          _vm.type
+                          _vm.form.type
                       }
                     },
                     [
@@ -39124,7 +39124,7 @@ var render = function() {
                           class: {
                             "bg-info ":
                               _vm.organisations[key].types_des_organisations ==
-                              _vm.type
+                              _vm.form.type
                           }
                         },
                         [
@@ -39178,6 +39178,69 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.curentStep == 2
+      ? _c("div", { staticClass: "text-center" }, [
+          _c("h1", { staticClass: "m-2 p-2" }, [
+            _vm._v("Types des financement :")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.besoins, function(besoin) {
+              return _c(
+                "div",
+                {
+                  key: besoin.id,
+                  staticClass:
+                    "col-lg-4 ftco-animate fadeInUp ftco-animated d-flex",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.selectBesoin(besoin.id)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "staff bg-info m-1 p-2 border mb-5 col-12",
+                      class: {
+                        "bg-white border-light": besoin.id != _vm.form.bes,
+                        "shadow ": besoin.id == _vm.form.bes
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "col-lg-6",
+                        attrs: { src: "/assets/images/" + besoin.icon }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "text m-1  text-center",
+                          class: { "bg-info ": besoin.id == _vm.form.bes }
+                        },
+                        [
+                          _c("h3", [
+                            _vm._v(
+                              _vm._s(_vm.__("tamwil." + besoin.nom_besoin))
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.curentStep == 3
       ? _c("div", { staticClass: "text-center m-3" }, [
           _c(
             "div",

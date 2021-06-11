@@ -17,9 +17,9 @@
                                  @click.prevent="selectOrg(organisations[key].types_des_organisations)" 
                                  class="col-3 ftco-animate fadeInUp ftco-animated d-flex" 
                                  >
-                    <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != type, 'shadow ':organisations[key].types_des_organisations == type}" >
+                    <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != form.type, 'shadow ':organisations[key].types_des_organisations == form.type}" >
                         <img :src="'/assets/images/organisation/'+organisations[key].types_des_organisations+'.png'" class="col-5">   
-                        <div class="text m-1  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == type}">
+                        <div class="text m-1  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == form.type}">
                             <h3> 
                                 {{__('organisation.'+organisations[key].types_des_organisations.replace(/_/g, " ") )}}
                             </h3>
@@ -34,7 +34,20 @@
                  <button v-if="curentStep != 1" @click.prevent="pretStep" type="button" class="btn btn-outline-primary mt-5 ml-5" data-mdb-ripple-color="dark">{{__('organisation.Retour')}}</button><br>
 
         </div>
-                <div v-if="curentStep == 2" class="text-center m-3">
+        <div v-if="curentStep == 2" class="text-center">
+             <h1 class="m-2 p-2">Types des financement :</h1>
+                <div class="row">
+                     <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                        <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.bes, 'shadow ':besoin.id == form.bes}">
+                             <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
+                                 <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.bes}">
+                                    <h3>{{__('tamwil.'+besoin.nom_besoin)}}</h3>
+                                 </div>
+                        </div>
+                     </div>
+                </div>
+        </div>
+        <div v-if="curentStep == 3" class="text-center m-3">
                     <div class="row justify-content-md-center m-3">
                         <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -63,12 +76,19 @@ export default {
         data: function(){
             return{
                 curentStep : 1,
-                type:'',
+                form:{
+                    type:'',
+                    bes:'',
+                },
+                
                 organisationsResult:[],
+                 allerrors: [],
+                success : false,
             }
         },
         props: {
                 organisations:Array,
+                besoins:Array
                 
                 },
 
@@ -78,64 +98,53 @@ export default {
 
         methods:{
 
-            // next(){
-            //     var that = this
-            //     axios.get('/organisation/'+this.type)
-            //     .then(function(res){
-            //         console.log(res)
-            //         that.organisationsResult = res.data
-            //         }
-            //     ).catch((error) => {
-            //              this.allerros = error.response.data.errors;
-            //              this.success = false;
-            //         });
-
-            //     if(this.curentStep == 1){
-            //         if(!this.type){
-            //             swal({
-            //                     title: "Rappel!",
-            //                     text: "choisissez votre type d'organisation",
-            //                     icon: "warning",
-            //                     dangerMode: true,
-            //                     })
-            //             return false
-            //         }
-                    
-            //     }    
-            //     this.curentStep ++
-            // },
-
             pretStep(){
                 this.curentStep --
         
             },
             selectOrg(type){
-                this.type = type
-                var that = this
-                axios.get('/organisation/'+this.type)
-                .then(function(res){
-                    console.log(res)
-                    that.organisationsResult = res.data
+                this.form.type = type
+                
+                // var that = this
+                // axios.get('/organisation/'+this.type)
+                // .then(function(res){
+                //     console.log(res)
+                //     that.organisationsResult = res.data
+                //     }
+                // ).catch((error) => {
+                //          this.allerros = error.response.data.errors;
+                //          this.success = false;
+                //     });
+                this.curentStep ++
+            },
+
+            selectBesoin(id){
+                this.form.bes = id
+
+                var dataform = new FormData();
+                dataform.append('type', this.form.type);
+                dataform.append('besoin', id);
+                console.log(dataform);
+
+
+                axios.post('/findOrganisation',dataform)
+                .then( response => {
+                    console.log(response);
+                    console.log(dataform);
+                    this.organisationsResult = response.data
                     }
                 ).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
-                    });
-
-                if(this.curentStep == 1){
-                    if(!this.type){
-                        swal({
-                                title: "Rappel!",
-                                text: "choisissez votre type d'organisation",
-                                icon: "warning",
-                                dangerMode: true,
-                                })
-                        return false
-                    }
-                    
-                }    
+                    });   
                 this.curentStep ++
-            }
+            },
+
+
+
+
+
+
 
             
 

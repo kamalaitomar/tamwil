@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/organisation/{type}', [ControllersOrganisationController::class , 'create'])->name('organisation');
+Route::post('/findOrganisation', [ControllersOrganisationController::class , 'create']);
 
 Auth::routes([ 
     'register' => false, // Registration Routes...
