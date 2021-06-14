@@ -50,6 +50,8 @@
         "Innovation, technologie/Recherche & développement"=>"الابتكار والتكنولوجيا / البحث والتطوير",
         "Protection de l’environnement et développement durable"=>"حماية البيئة والتنمية المستدامة",
         "submit"=>"إرسال",
+        "programme"=>"برنامج",
+        "offre"=>"عرض التمويل",
 
 
 
