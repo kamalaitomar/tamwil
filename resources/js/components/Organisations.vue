@@ -3,14 +3,7 @@
         <div v-if="curentStep == 1" class="text-center mt-5" >   
             <h1 class="m-2 p-2">{{__('organisation.Types des organisations')}} :</h1>
             <div class="row justify-content-md-center"> 
-                <!-- <div @click.prevent="selectOrg('NOTHING')" class="col-3 ftco-animate fadeInUp ftco-animated d-flex">
-                    <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : 'NOTHING' != type, 'shadow ':'NOTHING' == type}" >
-                        <img src="/assets/images/icon.png" class="col-5">   
-                        <div class="text m-1  text-center"  :class="{'bg-info ':'NOTHING' == type}">
-                            <h3>NOTHING FOR THE MOMENT</h3>
-                        </div>
-                    </div>
-                </div> -->
+                
                 <div v-for="(objet, key) in organisations" 
                                 :key="key" 
                                 :value="organisations[key].types_des_organisations"
@@ -35,7 +28,7 @@
 
         </div>
         <div v-if="curentStep == 2" class="text-center">
-             <h1 class="m-2 p-2">Types des financement :</h1>
+             <h1 class="m-2 p-2">{{__('organisation.Types des financement ')}} :</h1>
                 <div class="row">
                      <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
                         <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.bes, 'shadow ':besoin.id == form.bes}">
@@ -48,6 +41,9 @@
                 </div>
         </div>
         <div v-if="curentStep == 3" class="text-center m-3">
+            <div v-if="organisationsResult == 0" class="mt-2 alert alert-success" role="alert" >
+                    {{__('organisation.aucune')}}
+            </div>  
                     <div class="row justify-content-md-center m-3">
                         <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">

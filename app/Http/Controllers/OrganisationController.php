@@ -27,11 +27,12 @@ class OrganisationController extends Controller
      */
     public function create(Request $request)
     {
-        $organisations = Organisation::where('types_des_organisations', $request->type)->when('besoin', function($query)use ( $request ){
-
-            return  $query->whereHas('besoins', function($q)use ( $request ){ $q->where('id', $request->besoin);});
-
-        })->get();
+        $organisations = Organisation::where('types_des_organisations', $request->type)
+        ->whereHas('besoins', function($q) use ( $request ){
+                 $q->where('id', $request->besoin);
+                })
+        
+        ->get();
         
 
         

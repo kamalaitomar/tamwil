@@ -2162,10 +2162,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -39180,7 +39176,7 @@ var render = function() {
     _vm.curentStep == 2
       ? _c("div", { staticClass: "text-center" }, [
           _c("h1", { staticClass: "m-2 p-2" }, [
-            _vm._v("Types des financement :")
+            _vm._v(_vm._s(_vm.__("organisation.Types des financement ")) + " :")
           ]),
           _vm._v(" "),
           _c(
@@ -39242,6 +39238,23 @@ var render = function() {
     _vm._v(" "),
     _vm.curentStep == 3
       ? _c("div", { staticClass: "text-center m-3" }, [
+          _vm.organisationsResult == 0
+            ? _c(
+                "div",
+                {
+                  staticClass: "mt-2 alert alert-success",
+                  attrs: { role: "alert" }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.__("organisation.aucune")) +
+                      "\n        "
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c(
             "div",
             { staticClass: "row justify-content-md-center m-3" },

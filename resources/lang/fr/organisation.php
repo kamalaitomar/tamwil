@@ -7,7 +7,9 @@
         "Recherche"=>"Recherche",
         "Retour"=>"Retour",
         "établissement de crédit"=>"Etablissement de crédit",
-        "Afficherlorganisation"=>" Afficher l'organisation"
+        "Afficherlorganisation"=>" Afficher l'organisation",
+        "Types des financement "=>"Types des financement",
+        "aucune"=>"Nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres conditions!",
 
 
         
