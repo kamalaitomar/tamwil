@@ -3,7 +3,7 @@
         <div v-if="curentStep === 1" class="m-5"></div>
         <button v-if="curentStep != 1" @click.prevent="pretStep" class="btn btn-outline-primary" >{{__('organisation.Retour')}}</button>
 
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" style="cursor: pointer">
 
             <div class="col-2 text-center d-flex" @click.prevent="organisationsStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 1}">
@@ -21,9 +21,7 @@
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 2}">
                     <div class="m-2 p-2 col-12">
                         <div class=" col-12">
-                            <!-- <img src="/assets/images/organisation/besoin.png" class="col-7">    -->
                             <svg fill= "currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;marker:none;-inkscape-font-specification:Sans" d="M68.781 10.531a1 1 0 00-.812 1v4.281c-2.777.814-5.28 2.175-7.344 4.094l-3.688-2.093a1 1 0 00-1.374.343l-4.188 7.157a1 1 0 00.375 1.375l3.656 2.093c-.337 1.36-.594 2.748-.593 4.219 0 1.462.26 2.858.593 4.219l-3.656 2.093a1 1 0 00-.375 1.376l4.188 7.156a1 1 0 001.374.343l3.688-2.093c2.064 1.916 4.569 3.31 7.344 4.125V54.5a1 1 0 001 1h8.312a1 1 0 001-1v-4.219a18.075 18.075 0 007.406-4.187l3.626 2.093a1 1 0 001.374-.343l4.188-7.157a1 1 0 00-.375-1.374l-3.625-2.094c.331-1.359.594-2.756.594-4.219 0-1.474-.259-2.86-.594-4.219l3.625-2.093a1 1 0 00.375-1.375l-4.188-7.157a1 1 0 00-1.374-.343l-3.626 2.093c-2.078-1.946-4.591-3.348-7.406-4.156v-4.219a1 1 0 00-1-1H68.97a1 1 0 00-.188 0zm1.188 2h6.312v3.906a1 1 0 00.75.97c3.045.734 5.748 2.256 7.844 4.405a1 1 0 001.219.157l3.344-1.938 3.187 5.438-3.344 1.937a1 1 0 00-.469 1.157c.414 1.425.657 2.893.657 4.437 0 1.54-.245 3.048-.656 4.469a1 1 0 00.468 1.125l3.344 1.937-3.188 5.438-3.343-1.938a1 1 0 00-1.219.157 16.255 16.255 0 01-7.844 4.437 1 1 0 00-.75.969V53.5H69.97v-3.938a1 1 0 00-.75-.968 16.441 16.441 0 01-7.781-4.407 1 1 0 00-1.22-.156l-3.406 1.938-3.187-5.438L57 38.594a1 1 0 00.469-1.125A15.952 15.952 0 0156.812 33c0-1.543.241-3.017.657-4.438A1 1 0 0057 27.407l-3.375-1.937 3.188-5.438 3.406 1.938a1 1 0 001.218-.157c2.09-2.127 4.765-3.63 7.782-4.375a1 1 0 00.75-.968V12.53zm3.187 12.094c-4.654 0-8.5 3.742-8.5 8.375 0 4.632 3.841 8.406 8.5 8.406 4.66 0 8.438-3.783 8.438-8.406 0-4.622-3.784-8.375-8.438-8.375zm0 2c3.588 0 6.438 2.837 6.438 6.375a6.404 6.404 0 01-6.438 6.406c-3.583 0-6.5-2.878-6.5-6.406 0-3.528 2.912-6.375 6.5-6.375zm-41 27.125a1 1 0 00-.281.094l-7.219 3.031a1.001 1.001 0 10.782 1.844L32.5 55.75h19.625a3.628 3.628 0 013.656 3.625c0 2.005-1.54 3.281-3.656 3.281H38.969a1 1 0 00-1 1v1a1 1 0 00.656.938L53.5 70.563a1 1 0 00.5.03s4.712-1.01 9.469-2c2.378-.494 4.761-.972 6.593-1.343.917-.185 1.692-.362 2.25-.469.28-.053.5-.067.657-.094.065-.01.119-.026.156-.03a3.41 3.41 0 013.438 3.437 3.45 3.45 0 01-2.344 3.281c.089-.03-.096.042-.281.094-.186.052-.457.098-.782.187-.65.179-1.55.426-2.625.719-2.149.585-4.97 1.363-7.781 2.125-5.482 1.486-10.64 2.897-10.906 2.969L28.28 74.563a1 1 0 00-.562.03l-6.782 2.594-5.25-19.468A1 1 .524 0014.47 57L5.75 59.344a1 1 .524 00-.125.031 1 1 .524 00-.563 1.188l6.22 23.25a1 1 .524 001.218.687l8.719-2.344a1 1 .524 00.718-1.219l-.5-1.812 6.657-2.531 23.531 4.875a1 1 0 00.469 0l11.187-3.031c2.811-.763 5.63-1.54 7.782-2.126 1.075-.292 1.972-.539 2.624-.718.327-.09.592-.166.782-.219.19-.053.23-.045.375-.094a5.487 5.487 0 003.719-5.187 5.44 5.44 0 00-5.438-5.438c-.168 0-.183-.01-.25 0s-.161.016-.25.031c-.178.032-.402.102-.688.157-.571.11-1.361.251-2.28.437-1.84.372-4.214.88-6.594 1.375-4.62.961-8.92 1.85-9.188 1.906l-11.781-3.906h10.031c3.026 0 5.656-2.193 5.656-5.281 0-3.089-2.55-5.625-5.656-5.625H32.281a1 1 0 00-.125 0zm-18.125 5.438L19.75 80.5l-6.813 1.813L7.25 61l6.781-1.813z" font-weight="400"  overflow="visible" font-family="Sans"/></svg>
-
                         </div>
                         <h5>{{__('organisation.Types des financement ')}}</h5>
                     </div>
@@ -33,7 +31,6 @@
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 3}">
                     <div class="m-2 p-2 col-12">
                         <div class=" col-12">
-                            <!-- <img src="/assets/images/organisation/test3.png" class="col-7">   -->
                             <svg fill= "currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
                                 <path fill="none" d="M26.551 46.402h38.518v1.017H26.551zM26.551 37h46.898v1.018H26.551zM26.551 56.392h46.898v1.017H26.551z"/>
                                 <path fill="none" d="M72.875 17.834h-.004V8.422H17.045v83.156h65.91V18.834h-10.08v-1zM24.551 44.402h42.518v5.017H24.551v-5.017zm50.898 25.006H24.551v-5.017h50.898v5.017zm0-10H24.551v-5.017h50.898v5.017zm0-24.408v5.018H24.551V35h50.898z"/>
@@ -48,9 +45,9 @@
                 </div>
             </div>
         </div>  
-    
-        <div v-if="curentStep == 1" class="text-center mt-5" >   
-            <div class="row justify-content-md-center"> 
+        
+        <div v-if="curentStep == 1" class="text-center mt-5" style="cursor: pointer" >   
+            <div class="row justify-content-md-center" > 
                 <div v-for="(objet, key) in organisations" 
                                 :key="key" 
                                 :value="organisations[key].types_des_organisations"
@@ -58,8 +55,8 @@
                                  class="col-3 ftco-animate fadeInUp ftco-animated d-flex " 
                                  >
                     <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != form.type, 'shadow ':organisations[key].types_des_organisations == form.type}" >
-                        <img :src="'/assets/images/organisation/'+organisations[key].types_des_organisations+'.png'" class="col-5">   
-                        <div class="text m-1  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == form.type}">
+                        <img :src="'/assets/images/organisation/'+organisations[key].types_des_organisations+'.png'" class="col-5 mt-2">   
+                        <div class="text mt-3  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == form.type}">
                             <h3> 
                                 {{__('organisation.'+organisations[key].types_des_organisations.replace(/_/g, " ") )}}
                             </h3>
@@ -69,7 +66,7 @@
             </div>    
         </div>
         
-        <div v-if="curentStep == 2" class="text-center">
+        <div v-if="curentStep == 2" class="text-center" style="cursor: pointer">
                 <div class="row">
                      <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
                         <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.bes, 'shadow ':besoin.id == form.bes}">
@@ -82,7 +79,7 @@
                 </div>
         </div>
 
-        <div v-if="curentStep == 3" class="text-center m-3">
+        <div v-if="curentStep == 3" class="text-center m-3" style="cursor: pointer">
             <div v-if="organisationsResult == 0" class="alert alert-warning col-12" role="alert" >
                     {{__('organisation.aucune')}}
             </div>  
@@ -140,19 +137,9 @@ export default {
                 this.curentStep --
         
             },
+
             selectOrg(type){
                 this.form.type = type
-                
-                // var that = this
-                // axios.get('/organisation/'+this.type)
-                // .then(function(res){
-                //     console.log(res)
-                //     that.organisationsResult = res.data
-                //     }
-                // ).catch((error) => {
-                //          this.allerros = error.response.data.errors;
-                //          this.success = false;
-                //     });
                 this.curentStep ++
             },
 
@@ -184,14 +171,16 @@ export default {
                 }
                 
             },
-            organisationsStep(){
-                if (this.form.bes != '') {
+
+            financementStep(){
+                if (this.form.type != '') {
                     this.curentStep = 2
                 }
                 
             },
+
             afficheStep(){
-                if (this.form.type != '') {
+                if (this.form.bes != '') {
                     this.curentStep = 3
                 }
                 
