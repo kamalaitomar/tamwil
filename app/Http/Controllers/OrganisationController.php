@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Besoin;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,9 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-         $organisations = Organisation::select('types_des_organisations')->distinct()->get();;
-         return view("organisation", compact('organisations'));
-
+         $organisations = Organisation::select('types_des_organisations')->distinct()->get();
+         $besoins = Besoin::all();
+         return view("organisation", compact('organisations', 'besoins'));
     }
 
     /**
@@ -24,10 +25,22 @@ class OrganisationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($type)
+    public function create(Request $request)
     {
-        $organisations = Organisation::where('types_des_organisations', $type)->get();
-        return $organisations;
+        $organisations = Organisation::where('types_des_organisations', $request->type)
+        ->whereHas('besoins', function($q) use ( $request ){
+                 $q->where('id', $request->besoin);
+                })
+        
+        ->get();
+        
+
+        
+        // return $organisations;
+        // $type = $request->type;
+        // return($type);
+        
+        return $organisations ;
     }
 
     /**
@@ -50,6 +63,7 @@ class OrganisationController extends Controller
     public function show($locale,   $id)
     {
         $organisation = Organisation::findOrFail($id);
+
         return view('affiche', compact('organisation', 'locale', 'id'));
 
     }

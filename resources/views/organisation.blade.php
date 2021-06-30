@@ -4,7 +4,7 @@
 
 <div class="container">
     {{-- @dd($organisations); --}}
-     <organisations-component :organisations="{{ $organisations }}"  ></organisations-component> 
+     <organisations-component :organisations="{{ $organisations }}" :besoins="{{ $besoins }}" ></organisations-component> 
         
 </div>
 

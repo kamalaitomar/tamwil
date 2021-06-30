@@ -11,4 +11,7 @@ class Besoin extends Model
     public function offres(){
         return $this->belongsToMany(Offre::class);
     }
+    public function organisations(){
+        return $this->belongsToMany(Organisation::class);
+    }
 }
