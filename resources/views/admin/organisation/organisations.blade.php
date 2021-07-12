@@ -50,12 +50,12 @@
                         @foreach ($organisations as $organisation)
                              <tr>
                                 <td>{{$organisation->id}}</td>
-                                <td>{{$organisation->nom_organisation}}</td>
+                                <td>{{$organisation->nom_organisation_fr}}</td>
                                 <td>{{$organisation->email}}</td>
                                 <td>{{$organisation->tel}}</td>
-                                <td>{{Str::limit($organisation->adresse, 50)}}</td>
+                                <td>{{Str::limit($organisation->adresse_fr, 50)}}</td>
                                 <td>{{$organisation->web_site}}</td>
-                                <td>{{$organisation->types_des_organisations}}</td>
+                                <td>{{$organisation->type_d_organisation_fr}}</td>
                                 <td>
                                     <div class="my-2"></div>
                                     <a href="{{ route('organisation.edit', ['organisation'=>$organisation->id]) }}" class="btn btn-warning btn-circle" title="Edit">

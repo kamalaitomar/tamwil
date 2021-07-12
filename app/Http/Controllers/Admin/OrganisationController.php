@@ -39,13 +39,13 @@ class OrganisationController extends Controller
     public function store(StoreOrganisation $request)
     {
         $organisation= new Organisation();
-        $organisation->nom_organisation = $request->input('nom');
+        $organisation->nom_organisation_fr = $request->input('nom');
         $organisation->email = $request->input('email');
         $organisation->tel = $request->input('tel');
-        $organisation->adresse = $request->input('adresse');
+        $organisation->adresse_fr = $request->input('adresse');
         $organisation->web_site = $request->input('web_site');
-        $organisation->types_des_organisations = $request->input('type');
-        $organisation->presentation = $request->input('presentation');
+        $organisation->type_d_organisation_fr = $request->input('type');
+        $organisation->presentation_fr = $request->input('presentation');
         $organisation->icone = $request->input('logo');
 
         $organisation->save();
@@ -88,13 +88,13 @@ class OrganisationController extends Controller
     public function update(StoreOrganisation $request, $id)
     {
         $organisation = Organisation::findOrFail($id);
-        $organisation->nom_organisation = $request->input('nom');
+        $organisation->nom_organisation_fr = $request->input('nom');
         $organisation->email = $request->input('email');
         $organisation->tel = $request->input('tel');
-        $organisation->adresse = $request->input('adresse');
+        $organisation->adresse_fr = $request->input('adresse');
         $organisation->web_site = $request->input('web_site');
-        $organisation->types_des_organisations = $request->input('type');
-        $organisation->presentation = $request->input('presentation');
+        $organisation->type_d_organisation_fr = $request->input('type');
+        $organisation->presentation_fr = $request->input('presentation');
         $organisation->icone = $request->input('logo');
 
         $organisation->save();

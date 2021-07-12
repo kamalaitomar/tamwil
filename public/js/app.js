@@ -39749,7 +39749,7 @@ var render = function() {
                           attrs: {
                             src:
                               "/assets/images/organisation/" +
-                              _vm.organisations[key].types_des_organisations +
+                              _vm.organisations[key].type_d_organisation_fr +
                               ".png"
                           }
                         }),
@@ -39773,7 +39773,7 @@ var render = function() {
                                       "organisation." +
                                         _vm.organisations[
                                           key
-                                        ].types_des_organisations.replace(
+                                        ].type_d_organisation_fr.replace(
                                           /_/g,
                                           " "
                                         )
@@ -39912,7 +39912,11 @@ var render = function() {
                                   staticClass:
                                     "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
                                 },
-                                [_vm._v(_vm._s(organisation.nom_organisation))]
+                                [
+                                  _vm._v(
+                                    _vm._s(organisation.nom_organisation_fr)
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c("img", {
@@ -39933,7 +39937,7 @@ var render = function() {
                                 _vm._s(
                                   _vm.__(
                                     "organisation." +
-                                      organisation.types_des_organisations.replace(
+                                      organisation.type_d_organisation_fr.replace(
                                         /_/g,
                                         " "
                                       )

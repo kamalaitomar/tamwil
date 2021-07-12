@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-5" >
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">{{$organisation->nom_organisation}}</h1>
+            <h1 class="h4 text-gray-900 mb-4">{{$organisation->nom_organisation_fr}}</h1>
         </div>
         <form class="user" action=" {{ route('organisation.update', ['organisation'=>$organisation->id]) }} " method="POST">
             @csrf
@@ -11,7 +11,7 @@
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="nom">Nom</label>
-                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom', $organisation->nom_organisation)}}">
+                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom', $organisation->nom_organisation_fr)}}">
                     @error('nom')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="fascicule">Adresse</label>
-                    <input type="text" class="form-control " id="adresse" name="adresse"  value="{{old('adresse', $organisation->adresse)}}">
+                    <input type="text" class="form-control " id="adresse" name="adresse"  value="{{old('adresse', $organisation->adresse_fr)}}">
                     @error('adresse')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="type">Type d'organisation</label>
-                    <input type="text" class="form-control " id="type" name="type"  value="{{old('type', $organisation->types_des_organisations)}}">
+                    <input type="text" class="form-control " id="type" name="type"  value="{{old('type', $organisation->type_d_organisation_fr)}}">
                     @error('type')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -77,7 +77,7 @@
             <div class="form-group d-flex justify-content-center">
                 <div class="col-6  mb-3 mb-sm-0">
                     <label for="presentation">Presentation</label>
-                    <textarea type="text" class="form-control " id="presentation" name="presentation" rows="5" >{{old('presentation', $organisation->presentation)}}</textarea>
+                    <textarea type="text" class="form-control " id="presentation" name="presentation" rows="5" >{{old('presentation', $organisation->presentation_fr)}}</textarea>
                     @error('presentation')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>

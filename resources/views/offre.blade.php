@@ -34,7 +34,7 @@
                                 @foreach ($organisations as $organisation)
                                     <div class="card col-4 m-2 ">
                                         <div class="card-body ">
-                                            <h5 class="card-title text-primary text-uppercase">{{$organisation->nom_organisation}}</h5>
+                                            <h5 class="card-title text-primary text-uppercase">{{$organisation->nom_organisation_fr}}</h5>
                                             <div class="d-flex align-items-end"> 
                                                 <a href="'offre/'{{$organisation->id}}" class="btn btn-primary">Afficher l'organisation</a>
                                             </div>

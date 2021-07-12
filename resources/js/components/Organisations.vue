@@ -55,10 +55,10 @@
                                  class="col-3 ftco-animate fadeInUp ftco-animated d-flex " 
                                  >
                     <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != form.type, 'shadow ':organisations[key].types_des_organisations == form.type}" >
-                        <img :src="'/assets/images/organisation/'+organisations[key].types_des_organisations+'.png'" class="col-5 mt-2">   
+                        <img :src="'/assets/images/organisation/'+organisations[key].type_d_organisation_fr+'.png'" class="col-5 mt-2">   
                         <div class="text mt-3  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == form.type}">
                             <h3> 
-                                {{__('organisation.'+organisations[key].types_des_organisations.replace(/_/g, " ") )}}
+                                {{__('organisation.'+organisations[key].type_d_organisation_fr.replace(/_/g, " ") )}}
                             </h3>
                         </div>
                     </div>
@@ -88,10 +88,10 @@
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center mb-2">
-                                        <h4 class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation}}</h4>
+                                        <h4 class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h4>
                                         <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
                                     </div>
-                                     <h6 class="text-center"> {{__('organisation.'+organisation.types_des_organisations.replace(/_/g, " ") )}}</h6>  
+                                     <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
                                 </div>
                             <div class="d-flex align-items-end">
                                 <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>

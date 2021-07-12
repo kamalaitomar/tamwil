@@ -139,7 +139,7 @@
                     <div class="col-9">
                         <select class="js-example-basic-multiple col-12" name="organisations[]" multiple="multiple" id="organisations"  value="{{old('organisations[]')}}">
                             @foreach ($organisations as $organisation)
-                                <option value="{{ $organisation->id }}">{{ $organisation->nom_organisation }}</option>
+                                <option value="{{ $organisation->id }}">{{ $organisation->nom_organisation_fr }}</option>
                             @endforeach
                         </select>
                         @error('organisations')

@@ -15,7 +15,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-         $organisations = Organisation::select('types_des_organisations')->distinct()->get();
+         $organisations = Organisation::select('type_d_organisation_fr')->distinct()->get();
          $besoins = Besoin::all();
          return view("organisation", compact('organisations', 'besoins'));
     }
@@ -27,7 +27,7 @@ class OrganisationController extends Controller
      */
     public function create(Request $request)
     {
-        $organisations = Organisation::where('types_des_organisations', $request->type)
+        $organisations = Organisation::where('type_d_organisation_fr', $request->type)
         ->whereHas('besoins', function($q) use ( $request ){
                  $q->where('id', $request->besoin);
                 })

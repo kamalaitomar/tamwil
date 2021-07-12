@@ -17,14 +17,14 @@
                     </svg>
                     {{ $organisation ->tel}}<br>  
                     <a href="{{ $organisation ->web_site}}" class="card-link">{{ $organisation ->web_site}}</a>
-                    <p class="card-text">{{ $organisation ->adresse}}</p>
-                    <p class="card-text">{{ $organisation ->types_des_organisations}}</p>
+                    <p class="card-text">{{ $organisation ->adresse_fr}}</p>
+                    <p class="card-text">{{ $organisation ->type_d_organisation_fr}}</p>
                 </div>
             </div>
             <div class="col-8 m-auto">
-                <h1 class="text-primary mb-3">{{ $organisation ->nom_organisation}}</h1>
+                <h1 class="text-primary mb-3">{{ $organisation ->nom_organisation_fr}}</h1>
                 <h1 class="mb-3">Présentation :</h1>
-                <p> {{ $organisation ->presentation}}</p>
+                <p> {{ $organisation ->presentation_fr}}</p>
             </div>
         </div>
     </div>
