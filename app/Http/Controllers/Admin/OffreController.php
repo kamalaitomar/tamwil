@@ -50,11 +50,11 @@ class OffreController extends Controller
     {
 
         $offre= new Offre();
-        $offre->nom_offre = $request->input('nom');
-        $offre->fascicule = $request->input('fascicule');
-        $offre->objet = $request->input('objet');
-        $offre->description = $request->input('description');
-        $offre->condition = $request->input('condition');
+        $offre->nom_offre_fr = $request->input('nom');
+        $offre->fascicule_fr = $request->input('fascicule');
+        $offre->objet_fr = $request->input('objet');
+        $offre->description_fr = $request->input('description');
+        $offre->condition_fr = $request->input('condition');
         $offre->mantont_du_financement = $request->input('mantont');
 
         $offre->save();
@@ -112,11 +112,11 @@ class OffreController extends Controller
     public function update(StoreOffre $request, $id)
     {
         $offre = Offre::findOrFail($id);
-        $offre->nom_offre = $request->input('nom');
-        $offre->fascicule = $request->input('fascicule');
-        $offre->objet = $request->input('objet');
-        $offre->description = $request->input('description');
-        $offre->condition = $request->input('condition');
+        $offre->nom_offre_fr = $request->input('nom');
+        $offre->fascicule_fr = $request->input('fascicule');
+        $offre->objet_fr = $request->input('objet');
+        $offre->description_fr = $request->input('description');
+        $offre->condition_fr = $request->input('condition');
         $offre->mantont_du_financement = $request->input('mantont');
 
         $offre->save();

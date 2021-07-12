@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-5">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">{{$offre->nom_offre}}</h1>
+            <h1 class="h4 text-gray-900 mb-4">{{$offre->nom_offre_fr}}</h1>
         </div>
         <form class="user" action=" {{ route('offre.update', ['offre'=>$offre->id]) }} " method="POST">
             @csrf
@@ -11,7 +11,7 @@
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <label for="nom">Offre nom</label>
-                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom', $offre->nom_offre)}}">
+                    <input type="text" class="form-control " id="nom" name="nom"  value="{{old('nom', $offre->nom_offre_fr)}}">
                     @error('nom')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="fascicule">Fascicule</label>
-                    <input type="text" class="form-control " id="fascicule" name="fascicule"  value="{{old('fascicule', $offre->fascicule)}}">
+                    <input type="text" class="form-control " id="fascicule" name="fascicule"  value="{{old('fascicule', $offre->fascicule_fr)}}">
                     @error('fascicule')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="objet">Objet</label>
-                <textarea type="text" class="form-control " id="objet" name="objet" rows="4">{{old('objet', $offre->objet)}}</textarea>
+                <textarea type="text" class="form-control " id="objet" name="objet" rows="4">{{old('objet', $offre->objet_fr)}}</textarea>
                 @error('objet')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea type="text" class="form-control " id="description" name="description" rows="4">{{old('description', $offre->description)}}</textarea>
+                <textarea type="text" class="form-control " id="description" name="description" rows="4">{{old('description', $offre->description_fr)}}</textarea>
                 @error('description')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group"> 
                 <label for="condition">Condition</label>
-                <textarea type="text" class="form-control " id="condition" name="condition" rows="4">{{old('condition', $offre->condition)}}</textarea>
+                <textarea type="text" class="form-control " id="condition" name="condition" rows="4">{{old('condition', $offre->condition_fr)}}</textarea>
                 @error('condition')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>

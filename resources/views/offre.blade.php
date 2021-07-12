@@ -15,15 +15,15 @@
                 </div>
             </div>
             <div class="col-8 m-auto">
-                <h1 class="mb-3">{{$offre->nom_offre}}</h1>
+                <h1 class="mb-3">{{$offre->nom_offre_fr}}</h1>
                 <h4 class="text-info mb-0">Objet :</h4>
-                <p class="mb-3">{{$offre->objet}}</p>
+                <p class="mb-3">{{$offre->objet_fr}}</p>
                 @if ($offre->condition != null)
                     <h4 class="text-info mb-0">Condition :</h4>
-                    <p class="mb-3">{{$offre->condition}}</p>
+                    <p class="mb-3">{{$offre->condition_fr}}</p>
                 @endif 
                 <h4 class="text-info mb-0">Description :</h4>
-                <p class="mb-3">{{$offre->description}}</p>
+                <p class="mb-3">{{$offre->description_fr}}</p>
 
                 @if ($organisations  )
                     <div class="row">

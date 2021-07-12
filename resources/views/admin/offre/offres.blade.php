@@ -55,11 +55,11 @@
                         @foreach ($offres as $offre)
                              <tr>
                                 <td>{{$offre->id}}</td>
-                                <td>{{$offre->nom_offre}}</td>
-                                <td>{{ Str::limit($offre->objet, 50)}}</td>
-                                <td>{{ Str::limit($offre->description, 50)}}</td>
-                                <td>{{ Str::limit($offre->condition, 50)}}</td>
-                                <td>{{$offre->fascicule}}</td>
+                                <td>{{$offre->nom_offre_fr}}</td>
+                                <td>{{ Str::limit($offre->objet_fr, 50)}}</td>
+                                <td>{{ Str::limit($offre->description_fr, 50)}}</td>
+                                <td>{{ Str::limit($offre->condition_fr, 50)}}</td>
+                                <td>{{$offre->fascicule_fr}}</td>
                                 <td>{{$offre->mantont_du_financement}}</td>
                                 <td>
                                     <div class="my-2"></div>

@@ -39412,14 +39412,14 @@ var render = function() {
                         },
                         [
                           _c("h4", { staticClass: "text-primary" }, [
-                            _vm._v(_vm._s(off.nom_offre))
+                            _vm._v(_vm._s(off.nom_offre_fr))
                           ])
                         ]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "mr-2" }, [
                         _c("p", { staticClass: "h5 mb-0 text-gray-800" }, [
-                          _vm._v(_vm._s(off.description))
+                          _vm._v(_vm._s(off.description_fr))
                         ]),
                         _vm._v(" "),
                         _c(
