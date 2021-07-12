@@ -6,7 +6,7 @@
         <button v-if="curentStep != 1" @click.prevent="pretStep" class="btn btn-outline-primary" >{{__('tamwil.back')}}</button>
 
         <!-- steps time line  -->
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" style="cursor: pointer">
 
             <div class="col-2 text-center d-flex" @click.prevent="profilsStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 1}">
@@ -72,7 +72,7 @@
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1" class="text-center">
                         <div class="row">
-                            <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex">
+                            <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
                                 <div class="staff bg-info m-1 p-2 mb-3 col-12  shadow-sm " :class="{ 'bg-white border-light' : profil.id != form.profil}">
                                     <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                     <div class="text m-1 mt-3"  :class="{'bg-info ':profil.id == form.profil}">
@@ -86,7 +86,7 @@
                     <!-- choose cycle section -->      
                     <div v-if="curentStep == 2" class="ftco-animate fadeInUp ftco-animated">
                             <div class="row" >
-                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
                                     <div class="staff bg-info p-4 mb-3 col-12 shadow-sm d-flex align-items-center justify-content-center" :class="{ 'bg-white border-light' : cycle.id != form.cycle}">
                                         <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
                                             <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
@@ -99,7 +99,7 @@
                     <!-- choose besoin section -->
                     <div v-if="curentStep == 3" class="text-center">
                         <div class="row">
-                            <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                            <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
                                 <div class="staff bg-info m-1 p-2 border mb-3 col-12  shadow-sm" :class="{ 'bg-white border-light' : besoin.id != form.besoin}">
                                     <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
                                     <div class="text m-1  text-center mt-3"  :class="{'bg-info ':besoin.id == form.besoin}">
