@@ -28,7 +28,7 @@
     </section>
            
     {{-- Comment ça marche section  --}}
-	<section class="ftco-section mt-4">
+	<section class="ftco-section mt-4 @if(App::isLocale('ar')) text-right @endif">
     	<div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -90,58 +90,58 @@
     </section>
 
     {{-- sponsors section  --}}
-		<section class="ftco-section">
-			<div class="container">
-				<div class="row justify-content-center mb-5">
-                <div class="col-md-8 text-center heading-section ftco-animate">
-                    <span class="subheading"> {{ __("tamwil.our_sponsors") }} </span>
-                    <h2 class="mb-3"> {{ __("tamwil.spons_slogon") }} </h2>
-                </div>
-                </div>
-				<div class="row tabulation mt-4 ftco-animate">
-  				<div class="col-md-4">
-						<ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
-						  <li class="nav-item text-left">
-						    <a class="nav-link active py-4" data-toggle="tab" href="#services-1"> {{__('tamwil.mepi') }} </a>
-						  </li>
-						  <li class="nav-item text-left">
-						    <a class="nav-link py-4" data-toggle="tab" href="#services-2">{{__('tamwil.cgem') }}</a>
-						  </li>
-						  <li class="nav-item text-left">
-						    <a class="nav-link py-4" data-toggle="tab" href="#services-3">{{__('tamwil.cri') }}</a>
-						  </li>
-						  <li class="nav-item text-left">
-						    <a class="nav-link py-4" data-toggle="tab" href="#services-4">{{__('tamwil.ebf') }}</a>
-						  </li>
-						</ul>
-					</div>
-					<div class="col-md-8">
-						<div class="tab-content">
-						  <div class="tab-pane container p-1 active" id="services-1">
-						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor1.png')}});"></div>
-						  	<h3 class="text-center"><a href="#">{{__('tamwil.mepi') }}</a></h3>
-							<p>{{__('tamwil.lorem') }}</p>
-						  </div>
-						  <div class="tab-pane container p-1 fade" id="services-2">
-						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor2.png')}});"></div>
-						  	<h3 class="text-center"><a href="#">{{__('tamwil.cgem') }}</a></h3>
-							<p>{{__('tamwil.lorem') }}</p>
-							</div>
-						  <div class="tab-pane container p-1 fade" id="services-3">
-						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor3.png')}});"></div>
-						  	<h3 class="text-center"><a href="#">{{__('tamwil.cri') }}</a></h3>
-							<p>{{__('tamwil.lorem') }}</p>
-							</div>
-						  <div class="tab-pane container p-1 fade" id="services-4">
-						  	<div class="img" style="background-image: url({{asset('assets/images/sponsor4.png')}});"></div>
-						  	<h3 class="text-center"> <a href="#" >{{__('tamwil.ebf') }}</a></h3>
-							<p>{{__('tamwil.lorem') }}</p>
-							</div>
+	<section class="ftco-section @if(App::isLocale('ar')) text-right @endif">
+		<div class="container">
+			<div class="row justify-content-center mb-5">
+			<div class="col-md-8 text-center heading-section ftco-animate">
+				<span class="subheading"> {{ __("tamwil.our_sponsors") }} </span>
+				<h2 class="mb-3"> {{ __("tamwil.spons_slogon") }} </h2>
+			</div>
+			</div>
+			<div class="row tabulation mt-4 ftco-animate">
+			<div class="col-md-4">
+					<ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
+						<li class="nav-item">
+						<a class="nav-link active py-4" data-toggle="tab" href="#services-1"> {{__('tamwil.mepi') }} </a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link py-4" data-toggle="tab" href="#services-2">{{__('tamwil.cgem') }}</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link py-4" data-toggle="tab" href="#services-3">{{__('tamwil.cri') }}</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link py-4" data-toggle="tab" href="#services-4">{{__('tamwil.ebf') }}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-8">
+					<div class="tab-content">
+						<div class="tab-pane container p-1 active" id="services-1">
+						<div class="img" style="background-image: url({{asset('assets/images/sponsor1.png')}});"></div>
+						<h3 class="text-center"><a href="#">{{__('tamwil.mepi') }}</a></h3>
+						<p>{{__('tamwil.lorem') }}</p>
+						</div>
+						<div class="tab-pane container p-1 fade" id="services-2">
+						<div class="img" style="background-image: url({{asset('assets/images/sponsor2.png')}});"></div>
+						<h3 class="text-center"><a href="#">{{__('tamwil.cgem') }}</a></h3>
+						<p>{{__('tamwil.lorem') }}</p>
+						</div>
+						<div class="tab-pane container p-1 fade" id="services-3">
+						<div class="img" style="background-image: url({{asset('assets/images/sponsor3.png')}});"></div>
+						<h3 class="text-center"><a href="#">{{__('tamwil.cri') }}</a></h3>
+						<p>{{__('tamwil.lorem') }}</p>
+						</div>
+						<div class="tab-pane container p-1 fade" id="services-4">
+						<div class="img" style="background-image: url({{asset('assets/images/sponsor4.png')}});"></div>
+						<h3 class="text-center"> <a href="#" >{{__('tamwil.ebf') }}</a></h3>
+						<p>{{__('tamwil.lorem') }}</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
 
     @endsection

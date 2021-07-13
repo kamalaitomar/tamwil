@@ -54,9 +54,6 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
 
     Route::resource('/about', AboutController::class)->only('index','store');
-
-
-
 });
 
 

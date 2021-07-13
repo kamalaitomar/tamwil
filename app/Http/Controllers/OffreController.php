@@ -20,22 +20,13 @@ class OffreController extends Controller
             'besoin' => 'required'
         ]);
 
-        $offres = Offre::when('profil', function($query)use ( $request ){
-
-            return  $query->whereHas('profils', function($q)use ( $request ){ $q->where('id', $request->profil);});
-
-        })->when('cycle', function($query)use ( $request ){
-
-            return  $query->whereHas('cycles', function($q)use ( $request ){ $q->where('id', $request->cycle);});
-
-        })->when('besoin', function($query)use ( $request ){
-
-            return  $query->whereHas('besoins', function($q)use ( $request ){ $q->where('id', $request->besoin);});
-
-        })->get();
+        $offres = Offre::whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})
+                        ->whereHas('cycles', function($q)use($request){ $q->where('id', $request->cycle);})
+                        ->whereHas('besoins', function($q)use($request){ $q->where('id', $request->besoin);})
+                        ->get();
 
 
-        return $offres->groupBy('fascicule');
+        return $offres->groupBy('fascicule_fr');
     }
 
     /**
@@ -69,6 +60,15 @@ class OffreController extends Controller
     {
         $offre = Offre::findOrFail($id);
         $organisations =  $offre->organisations->toArray();
+
+        $lng = app()->getLocale();
+        $offre = [
+            'name'=> $offre->{'nom_offre_' . $lng},
+            'objet'=> $offre->{'objet_' . $lng},
+            'condition'=> $offre->{'condition_' . $lng},
+            'description'=> $offre->{'description_' . $lng}
+        ];
+        
         return view("offre", compact('offre', 'organisations', 'locale', 'id'));
     }
 

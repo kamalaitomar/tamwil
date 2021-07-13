@@ -39365,7 +39365,7 @@ var render = function() {
                           { staticClass: "text-success font-weight-bold" },
                           [_vm._v(_vm._s(offre.length))]
                         ),
-                        _c("h2", [_vm._v(_vm._s(key))]),
+                        _c("h2", [_vm._v(_vm._s(_vm.__("tamwil." + key)))]),
                         _vm._v(" "),
                         _c(
                           "button",

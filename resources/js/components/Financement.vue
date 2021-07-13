@@ -125,7 +125,7 @@
                 <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
                         <div class="text m-1 text-center">
-                            <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{key}}</h2>
+                            <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{__('tamwil.'+key )}}</h2>
                             <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">En savoir plus</button>
                         </div>
                     </div>

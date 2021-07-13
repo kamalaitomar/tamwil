@@ -52,6 +52,8 @@
         "submit"=>"Soumettre",
         "programme"=>"Programme",
         "offre"=>"Offre",
+        "Subvention"=>"Subvention",
+        "Prêt"=>"Prêt",
 
 
     ]
