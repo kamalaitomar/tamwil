@@ -2037,7 +2037,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -2056,7 +2055,8 @@ __webpack_require__.r(__webpack_exports__);
       curentStep: 1,
       offre: [],
       locale: window._locale,
-      slected: false
+      slected: false,
+      name: '{{off.nom_offre_' + window._locale + '}}'
     };
   },
   props: {
@@ -39380,7 +39380,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("En savoir plus")]
+                          [_vm._v(_vm._s(_vm.__("tamwil.savoir_plus")))]
                         )
                       ])
                     ]
@@ -39404,35 +39404,58 @@ var render = function() {
                   "div",
                   { staticClass: "card border-left-primary shadow h-100 py-2" },
                   [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "row no-gutters align-items-center mb-2"
-                        },
-                        [
-                          _c("h4", { staticClass: "text-primary" }, [
-                            _vm._v(_vm._s(off.nom_offre_fr))
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mr-2" }, [
-                        _c("p", { staticClass: "h5 mb-0 text-gray-800" }, [
-                          _vm._v(_vm._s(off.description_fr))
-                        ]),
-                        _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card-body",
+                        class: { "text-right": _vm.locale == "ar" }
+                      },
+                      [
                         _c(
-                          "a",
+                          "div",
                           {
                             staticClass:
-                              "btn btn-outline-primary btn-lg btn-block mt-4",
-                            attrs: { href: "offre/" + off.id, target: "_blank" }
+                              "row no-gutters align-items-center mb-2"
                           },
-                          [_vm._v("Afficher l'offre")]
-                        )
-                      ])
-                    ])
+                          [
+                            _vm.locale == "ar"
+                              ? _c("h4", { staticClass: "text-primary" }, [
+                                  _vm._v(_vm._s(off.nom_offre_ar))
+                                ])
+                              : _c("h4", { staticClass: "text-primary" }, [
+                                  _vm._v(_vm._s(off.nom_offre_fr))
+                                ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mr-2" }, [
+                          _vm.locale == "ar"
+                            ? _c(
+                                "p",
+                                { staticClass: "h5 mb-0 text-gray-800" },
+                                [_vm._v(_vm._s(off.objet_ar))]
+                              )
+                            : _c(
+                                "p",
+                                { staticClass: "h5 mb-0 text-gray-800" },
+                                [_vm._v(_vm._s(off.objet_fr))]
+                              ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn btn-outline-primary btn-lg btn-block mt-4",
+                              attrs: {
+                                href: "offre/" + off.id,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v(_vm._s(_vm.__("tamwil.affiche_loffre")))]
+                          )
+                        ])
+                      ]
+                    )
                   ]
                 )
               ])

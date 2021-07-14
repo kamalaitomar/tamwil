@@ -7,7 +7,6 @@
 
         <!-- steps time line  -->
         <div class="row justify-content-md-center" style="cursor: pointer">
-
             <div class="col-2 text-center d-flex" @click.prevent="profilsStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 1}">
                     <div class="m-1 p-2 col-12">
@@ -18,7 +17,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-2 text-center d-flex" @click.prevent="cyclesStep()">
                 <div class=" col-12 d-flex align-items-center justify-content-center" :class="{'text-primary': curentStep === 2}">
                     <div class="m-1 p-2 col-12">
@@ -126,7 +124,7 @@
                     <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
                         <div class="text m-1 text-center">
                             <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{__('tamwil.'+key )}}</h2>
-                            <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">En savoir plus</button>
+                            <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.savoir_plus')}}</button>
                         </div>
                     </div>
                 </div>
@@ -138,14 +136,15 @@
             <div class="row justify-content-md-center">
                 <div v-for="off in offre" :key="off.id" class="col-3 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
-                        <div class="card-body">
+                        <div class="card-body" :class="{'text-right': locale == 'ar'}">
                             <div class="row no-gutters align-items-center mb-2">
-                                <h4 class="text-primary">{{off.nom_offre_fr}}</h4>
-                                <!-- <img src="/assets/images/icon.png" class="col-2"> -->
+                                <h4 v-if="locale == 'ar'" class="text-primary">{{ off.nom_offre_ar }}</h4>
+                                <h4 v-else class="text-primary">{{ off.nom_offre_fr}}</h4>
                             </div>
                             <div class="mr-2">
-                                <p class="h5 mb-0 text-gray-800">{{off.description_fr}}</p>
-                                <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">Afficher l'offre</a>
+                                <p  v-if="locale == 'ar'" class="h5 mb-0 text-gray-800">{{off.objet_ar}}</p>
+                                <p v-else class="h5 mb-0 text-gray-800">{{off.objet_fr}}</p>
+                                <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.affiche_loffre')}}</a>
                             </div>
                         </div>
                     </div>
@@ -181,7 +180,7 @@
                 offre:[],
                 locale: window._locale,
                 slected: false,
-                
+                name : '{{off.nom_offre_'+window._locale+'}}',
             }
         },
 

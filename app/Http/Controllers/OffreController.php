@@ -25,7 +25,6 @@ class OffreController extends Controller
                         ->whereHas('besoins', function($q)use($request){ $q->where('id', $request->besoin);})
                         ->get();
 
-
         return $offres->groupBy('fascicule_fr');
     }
 
@@ -62,13 +61,7 @@ class OffreController extends Controller
         $organisations =  $offre->organisations->toArray();
 
         $lng = app()->getLocale();
-        $offre = [
-            'name'=> $offre->{'nom_offre_' . $lng},
-            'objet'=> $offre->{'objet_' . $lng},
-            'condition'=> $offre->{'condition_' . $lng},
-            'description'=> $offre->{'description_' . $lng}
-        ];
-        
+
         return view("offre", compact('offre', 'organisations', 'locale', 'id'));
     }
 

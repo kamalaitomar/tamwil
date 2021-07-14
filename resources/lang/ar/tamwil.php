@@ -54,6 +54,8 @@
         "offre"=>"عرض التمويل",
         "Subvention"=>"منحة",
         "Prêt"=>"مستعد",
+        "affiche_loffre"=>"عرض",
+        "savoir_plus"=>"عرض المزيد",
 
 
 

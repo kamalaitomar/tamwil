@@ -53,6 +53,10 @@
         "offre"=>"Offre",
         "Subvention"=>"Grant",
         "Prêt"=>"Ready",
+        "affiche_loffre"=>"Show offer",
+        "savoir_plus"=>"Find out more",
+        
+
 
 
 

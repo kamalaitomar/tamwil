@@ -54,6 +54,8 @@
         "offre"=>"Offre",
         "Subvention"=>"Subvention",
         "Prêt"=>"Prêt",
+        "affiche_loffre"=>"Afficher l'offre",
+        "savoir_plus"=>"En savoir plus",
 
 
     ]
