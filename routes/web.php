@@ -28,7 +28,7 @@ Auth::routes([
     'register' => false, // Registration Routes...
     // 'reset' => false,  Password Reset Routes...
     'verify' => false, // Email Verification Routes...
-  ]);
+]);
 
 Route::group(['middleware'=>'auth'], function(){
     Route::resource('/admin/offre', OffreController::class);
@@ -40,9 +40,7 @@ Route::group(['middleware'=>'auth'], function(){
     });
 });
 
-
 Route::redirect('/','/fr');
-
 
 Route::group(['prefix'=>'{locale}'], function(){
     Route::view('/', 'welcome')->name('home');
@@ -56,7 +54,5 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::resource('/about', AboutController::class)->only('index','store');
 });
 
-
 Route::get('/cycles/{id}', [FormController::class, 'show']);
 Route::post('/offres', [ControllersOffreController::class, 'index']);
-

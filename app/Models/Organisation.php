@@ -15,5 +15,25 @@ class Organisation extends Model
         return $this->belongsToMany(Besoin::class);
     }
 
+    /*
+     accesssors 
+    */ 
+
+    public function getNameAttribute() {
+        return $this->{'nom_organisation_'.app()->getLocale()};
+    }
+    
+    public function getAdresseAttribute() {
+        return $this->{'adresse_'.app()->getLocale()};
+    }
+
+    public function getTypeAttribute() {
+        return $this->{'type_d_organisation_'.app()->getLocale()};
+    }
+
+    public function getPresentationAttribute() {
+        return $this->{'presentation_'.app()->getLocale()};
+    }
+
 }
 

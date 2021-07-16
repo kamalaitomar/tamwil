@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="my-5 p-2 m-2">
-        <div class="row">
+        <div class="row @if(App::isLocale('ar')) text-right @endif">
             <div class="col-3 offset-1">
                 <img src='/assets/images/organisation/{{ $organisation ->icone}}' class="mx-auto col-12">
                 <div class="my-2">
@@ -17,14 +17,14 @@
                     </svg>
                     {{ $organisation ->tel}}<br>  
                     <a href="{{ $organisation ->web_site}}" class="card-link">{{ $organisation ->web_site}}</a>
-                    <p class="card-text">{{ $organisation ->adresse_fr}}</p>
-                    <p class="card-text">{{ $organisation ->type_d_organisation_fr}}</p>
+                    <p class="card-text">{{ $organisation['adresse']}}</p>
+                    <p class="card-text">{{ $organisation['type']}}</p>
                 </div>
             </div>
             <div class="col-8 m-auto">
-                <h1 class="text-primary mb-3">{{ $organisation ->nom_organisation_fr}}</h1>
-                <h1 class="mb-3">Présentation :</h1>
-                <p> {{ $organisation ->presentation_fr}}</p>
+                <h1 class="text-primary mb-3">{{ $organisation['name']}}</h1>
+                <h1 class="mb-3">{{__('organisation.presentation')}}</h1>
+                <p> {{ $organisation['presentation']}}</p>
             </div>
         </div>
     </div>
