@@ -50,8 +50,8 @@
             <div class="row justify-content-md-center" > 
                 <div v-for="(objet, key) in organisations" 
                                 :key="key" 
-                                :value="organisations[key].types_des_organisations"
-                                 @click.prevent="selectOrg(organisations[key].types_des_organisations)" 
+                                :value="organisations[key].type_d_organisation_fr"
+                                 @click.prevent="selectOrg(organisations[key].type_d_organisation_fr)" 
                                  class="col-3 ftco-animate fadeInUp ftco-animated d-flex " 
                                  >
                     <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : organisations[key].types_des_organisations != form.type, 'shadow ':organisations[key].types_des_organisations == form.type}" >
@@ -67,38 +67,39 @@
         </div>
         
         <div v-if="curentStep == 2" class="text-center" style="cursor: pointer">
-                <div class="row">
-                     <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
-                        <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.bes, 'shadow ':besoin.id == form.bes}">
-                             <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
-                                 <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.bes}">
-                                    <h3>{{__('tamwil.'+besoin.nom_besoin)}}</h3>
-                                 </div>
+            <div class="row">
+                <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" >
+                    <div class="staff bg-info m-1 p-2 border mb-5 col-12" :class="{ 'bg-white border-light' : besoin.id != form.bes, 'shadow ':besoin.id == form.bes}">
+                        <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
+                        <div class="text m-1  text-center"  :class="{'bg-info ':besoin.id == form.bes}">
+                            <h3>{{__('tamwil.'+besoin.nom_besoin)}}</h3>
                         </div>
-                     </div>
+                    </div>
                 </div>
+            </div>
         </div>
 
         <div v-if="curentStep == 3" class="text-center m-3" style="cursor: pointer">
             <div v-if="organisationsResult == 0" class="alert alert-warning col-12" role="alert" >
                     {{__('organisation.aucune')}}
             </div>  
-                    <div class="row justify-content-md-center m-3">
-                        <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center mb-2">
-                                        <h4 class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h4>
-                                        <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
-                                    </div>
-                                     <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
-                                </div>
-                            <div class="d-flex align-items-end">
-                                <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
+            <div class="row justify-content-md-center m-3">
+                <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center mb-2">
+                                <h4 v-if="locale == 'ar'" class="text-xs font-weight-bold text-primary text-uppercase col-9 text-right">{{organisation.nom_organisation_ar}}</h4>
+                                <h4 v-else class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h4>
+                                <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
                             </div>
-                            </div>
+                                <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
                         </div>
+                    <div class="d-flex align-items-end">
+                        <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
                     </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -117,8 +118,10 @@ export default {
                 },
                 
                 organisationsResult:[],
-                 allerrors: [],
+                allerrors: [],
                 success : false,
+                locale: window._locale,
+                
             }
         },
         props: {

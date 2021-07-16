@@ -2273,6 +2273,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2288,7 +2289,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       organisationsResult: [],
       allerrors: [],
-      success: false
+      success: false,
+      locale: window._locale
     };
   },
   props: {
@@ -39741,13 +39743,13 @@ var render = function() {
                     staticClass:
                       "col-3 ftco-animate fadeInUp ftco-animated d-flex ",
                     attrs: {
-                      value: _vm.organisations[key].types_des_organisations
+                      value: _vm.organisations[key].type_d_organisation_fr
                     },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
                         return _vm.selectOrg(
-                          _vm.organisations[key].types_des_organisations
+                          _vm.organisations[key].type_d_organisation_fr
                         )
                       }
                     }
@@ -39929,18 +39931,31 @@ var render = function() {
                                 "row no-gutters align-items-center mb-2"
                             },
                             [
-                              _c(
-                                "h4",
-                                {
-                                  staticClass:
-                                    "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(organisation.nom_organisation_fr)
+                              _vm.locale == "ar"
+                                ? _c(
+                                    "h4",
+                                    {
+                                      staticClass:
+                                        "text-xs font-weight-bold text-primary text-uppercase col-9 text-right"
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(organisation.nom_organisation_ar)
+                                      )
+                                    ]
                                   )
-                                ]
-                              ),
+                                : _c(
+                                    "h4",
+                                    {
+                                      staticClass:
+                                        "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(organisation.nom_organisation_fr)
+                                      )
+                                    ]
+                                  ),
                               _vm._v(" "),
                               _c("img", {
                                 staticClass:
