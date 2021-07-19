@@ -51,10 +51,20 @@ class OffreController extends Controller
 
         $offre= new Offre();
         $offre->nom_offre_fr = $request->input('nom');
+        $offre->nom_offre_ar = $request->input('nom_ar');
+
         $offre->fascicule_fr = $request->input('fascicule');
+        $offre->fascicule_ar = $request->input('fascicule_ar');
+
         $offre->objet_fr = $request->input('objet');
+        $offre->objet_ar = $request->input('objet_ar');
+
         $offre->description_fr = $request->input('description');
+        $offre->description_ar = $request->input('description_ar');
+        
         $offre->condition_fr = $request->input('condition');
+        $offre->condition_ar = $request->input('condition_ar');
+        
         $offre->mantont_du_financement = $request->input('mantont');
 
         $offre->save();
@@ -113,11 +123,19 @@ class OffreController extends Controller
     {
         $offre = Offre::findOrFail($id);
         $offre->nom_offre_fr = $request->input('nom');
+        $offre->nom_offre_ar = $request->input('nom_ar');
+
         $offre->fascicule_fr = $request->input('fascicule');
+        $offre->fascicule_ar = $request->input('fascicule_ar');
+
         $offre->objet_fr = $request->input('objet');
+        $offre->objet_ar = $request->input('objet_ar');
+
         $offre->description_fr = $request->input('description');
+        $offre->description_ar = $request->input('description_ar');
+
         $offre->condition_fr = $request->input('condition');
-        $offre->mantont_du_financement = $request->input('mantont');
+        $offre->condition_ar = $request->input('condition_ar');
 
         $offre->save();
 

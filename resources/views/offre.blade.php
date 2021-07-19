@@ -26,17 +26,17 @@
                 <p class="mb-3">{{$offre['description']}}</p>
 
                 @if ($organisations  )
-                    <div class="row">
-                        <div class="my-3">  
+                    <div class="row" >
+                        <div class="my-3  col-12">  
                             <h4 class="text-info ml-2">{{__('offre.organisations')}}</h4>
                             <div class="row m-1">
 
                                 @foreach ($organisations as $organisation)
-                                    <div class="card col-4 m-2 ">
-                                        <div class="card-body ">
-                                            <h5 class="card-title text-primary text-uppercase">{{$organisation->nom_organisation_fr}}</h5>
+                                    <div class="card col-4 m-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary text-uppercase">{{$organisation['name']}}</h5>
                                             <div class="d-flex align-items-end"> 
-                                                <a href="'offre/'{{$organisation->id}}" class="btn btn-primary">Afficher l'organisation</a>
+                                                <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-primary" target="_blank">Afficher l'organisation</a>
                                             </div>
                                         </div>
                                     </div> 

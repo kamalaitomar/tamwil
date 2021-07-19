@@ -25,10 +25,15 @@ class StoreOffre extends FormRequest
     {
         return [
             'nom' => 'required|min:3|max:255',
+            'nom_ar' => 'required|min:3|max:255',
             'fascicule' => 'required|min:3|max:255',
+            'fascicule_ar' => 'required|min:3|max:255',
             'objet' => 'required|min:3|max:255',
+            'objet_ar' => 'required|min:3|max:255',
             'description' => 'required|min:3|max:500',
+            'description_ar' => 'required|min:3|max:500',
             'condition' => 'required|min:3|max:500',
+            'condition_ar' => 'required|min:3|max:500',
             'mantont' => 'required|min:0',
             
             'profils' => 'required|array',

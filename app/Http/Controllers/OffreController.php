@@ -58,7 +58,7 @@ class OffreController extends Controller
     public function show($locale ,$id)
     {
         $offre = Offre::findOrFail($id);
-        $organisations =  $offre->organisations->toArray();
+        $organisations =  $offre->organisations;
 
         $lng = app()->getLocale();
 
