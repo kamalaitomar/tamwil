@@ -25,12 +25,16 @@ class StoreOrganisation extends FormRequest
     {
         return [
             'nom' => 'required|min:3|max:255',
+            'nom_ar' => 'required|min:3|max:255',
             'email' => 'required|email|max:255',
             'tel' => 'required|min:10|max:15',
             'adresse' => 'required|min:3|max:500',
+            'adresse_ar' => 'required|min:3|max:500',
             'web_site' => 'required|min:3|max:500', 
             'type' => 'required|min:3|max:255', 
+            'type_ar' => 'required|min:3|max:255', 
             'presentation' => 'required|min:3|max:500', 
+            'presentation_ar' => 'required|min:3|max:500', 
             'logo' => 'required|min:3|max:255', 
         ];
     }
