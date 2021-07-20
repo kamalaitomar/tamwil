@@ -40,12 +40,16 @@ class OrganisationController extends Controller
     {
         $organisation= new Organisation();
         $organisation->nom_organisation_fr = $request->input('nom');
+        $organisation->nom_organisation_ar = $request->input('nom_ar');
         $organisation->email = $request->input('email');
         $organisation->tel = $request->input('tel');
         $organisation->adresse_fr = $request->input('adresse');
+        $organisation->adresse_ar = $request->input('adresse_ar');
         $organisation->web_site = $request->input('web_site');
         $organisation->type_d_organisation_fr = $request->input('type');
+        $organisation->type_d_organisation_ar = $request->input('type_ar');
         $organisation->presentation_fr = $request->input('presentation');
+        $organisation->presentation_ar = $request->input('presentation_ar');
         $organisation->icone = $request->input('logo');
 
         $organisation->save();
