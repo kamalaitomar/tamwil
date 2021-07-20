@@ -166,6 +166,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="col-6  mb-3 mb-sm-0">
+                            <div class="alert alert-warning" role="alert">veuillez remplir la suite des informations en arabe aussi</div>
+                        </div>
+                    </div>
             </div>
             <div class="tab-pane fade text-right" id="ar" role="tabpanel" aria-labelledby="profile-tab" dir="rtl">
                 <div class="form-group row">
