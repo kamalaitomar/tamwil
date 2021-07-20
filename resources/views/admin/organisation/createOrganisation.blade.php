@@ -107,6 +107,29 @@
                     </div>
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-6  mb-3 mb-sm-0">
+                            <label for="besoins">Types de financement</label>
+                            <div class="">
+                                <select class="js-example-basic-multiple col-12" name="besoins[]" multiple="multiple" id="besoins"  value="{{old('besoins[]')}}">
+                                    @foreach ($besoins as $besoin)
+                                        <option value="{{ $besoin->id }}">{{ $besoin->nom_besoin }}</option>
+                                    @endforeach
+                                </select>
+                                @error('besoins')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </select>
+                                @error('besoins.*')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="col-6  mb-3 mb-sm-0">
                             <div class="alert alert-warning" role="alert">veuillez remplir la suite des informations en arabe aussi</div>
                         </div>
                     </div>
@@ -170,5 +193,18 @@
         
     </div>
 
+
+@endsection
+
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+        
+        $('#besoins').val( @json(old('besoins')) );
+        $('#besoins').trigger('change');
+    });
+</script>
 
 @endsection

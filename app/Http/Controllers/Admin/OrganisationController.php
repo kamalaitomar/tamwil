@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrganisation;
+use App\Models\Besoin;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class OrganisationController extends Controller
     public function index()
     {
         $organisations = Organisation::paginate(5);
+        
         return view('admin.organisation.organisations', compact('organisations'));
     }
 
@@ -27,7 +29,9 @@ class OrganisationController extends Controller
      */
     public function create()
     {
-        return view('admin.organisation.createOrganisation');
+        
+        $besoins = Besoin::all();
+        return view('admin.organisation.createOrganisation', compact('besoins'));
     }
 
     /**
@@ -53,6 +57,9 @@ class OrganisationController extends Controller
         $organisation->icone = $request->input('logo');
 
         $organisation->save();
+        
+        $organisation->besoins()->attach($request->besoins);
+
 
         $request->session()->flash('status','votre organisation a été ajoutée avec succès');
 
@@ -79,7 +86,11 @@ class OrganisationController extends Controller
     public function edit($id)
     {
         $organisation = Organisation::findOrFail($id);
-        return view('admin.organisation.editOrganisation', compact('organisation'));
+        $besoins = Besoin::all();
+        
+        $organisationbesoin = $organisation->besoins->pluck('id');
+
+        return view('admin.organisation.editOrganisation', compact('organisation', 'besoins', 'organisationbesoin'));
     }
 
     /**
@@ -106,6 +117,9 @@ class OrganisationController extends Controller
         $organisation->icone = $request->input('logo');
 
         $organisation->save();
+        
+        $organisation->besoins()->sync($request['besoins']);
+
 
         $request->session()->flash('status','votre organisation a été modifier avec succès');
 
