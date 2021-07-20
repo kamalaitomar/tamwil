@@ -36,7 +36,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title text-primary text-uppercase">{{$organisation['name']}}</h5>
                                             <div class="d-flex align-items-end"> 
-                                                <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-primary" target="_blank">Afficher l'organisation</a>
+                                                <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-primary col-12" target="_blank">{{__('offre.afficher l\'organisation')}} </a>
                                             </div>
                                         </div>
                                     </div> 

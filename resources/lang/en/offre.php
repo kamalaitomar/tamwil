@@ -3,6 +3,7 @@
         "objet"=>"Objet :",
         "condition"=>"Condition :",
         "description"=>"Description :",
-        "organisations"=>"Organizations :"
+        "organisations"=>"Organizations :",
+        "afficher l'organisation"=>"Show organization"
         ]
 ?>
