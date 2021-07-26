@@ -138,14 +138,16 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body" :class="{'text-right': locale == 'ar'}">
                             <div class="row no-gutters align-items-center mb-2">
-                                <h4 v-if="locale == 'ar'" class="text-primary">{{ off.nom_offre_ar }}</h4>
-                                <h4 v-else class="text-primary">{{ off.nom_offre_fr}}</h4>
+                                <h4 v-if="locale == 'ar'" class="text-primary" :title="off.nom_offre_ar">{{ off.nom_offre_ar.substring(0,70)+"..."  }}</h4>
+                                <h4 v-else class="text-primary" :title="off.nom_offre_fr">{{ off.nom_offre_fr.substring(0,70)+"..." }}</h4>
                             </div>
                             <div class="mr-2">
-                                <p  v-if="locale == 'ar'" class="h5 mb-0 text-gray-800">{{off.objet_ar}}</p>
-                                <p v-else class="h5 mb-0 text-gray-800">{{off.objet_fr}}</p>
-                                <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.affiche_loffre')}}</a>
+                                <p  v-if="locale == 'ar'" class="h5 mb-0 text-gray-800">{{off.objet_ar.substring(0,70)+"..."}}</p>
+                                <p v-else class="h5 mb-0 text-gray-800">{{off.objet_fr.substring(0,70)+"..."}}</p>
                             </div>
+                        </div>
+                        <div class="m-3">
+                            <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.affiche_loffre')}}</a>
                         </div>
                     </div>
                 </div>

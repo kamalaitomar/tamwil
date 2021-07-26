@@ -2037,6 +2037,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
   data: function data() {
@@ -39421,12 +39423,36 @@ var render = function() {
                           },
                           [
                             _vm.locale == "ar"
-                              ? _c("h4", { staticClass: "text-primary" }, [
-                                  _vm._v(_vm._s(off.nom_offre_ar))
-                                ])
-                              : _c("h4", { staticClass: "text-primary" }, [
-                                  _vm._v(_vm._s(off.nom_offre_fr))
-                                ])
+                              ? _c(
+                                  "h4",
+                                  {
+                                    staticClass: "text-primary",
+                                    attrs: { title: off.nom_offre_ar }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        off.nom_offre_ar.substring(0, 70) +
+                                          "..."
+                                      )
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "h4",
+                                  {
+                                    staticClass: "text-primary",
+                                    attrs: { title: off.nom_offre_fr }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        off.nom_offre_fr.substring(0, 70) +
+                                          "..."
+                                      )
+                                    )
+                                  ]
+                                )
                           ]
                         ),
                         _vm._v(" "),
@@ -39435,29 +39461,40 @@ var render = function() {
                             ? _c(
                                 "p",
                                 { staticClass: "h5 mb-0 text-gray-800" },
-                                [_vm._v(_vm._s(off.objet_ar))]
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      off.objet_ar.substring(0, 70) + "..."
+                                    )
+                                  )
+                                ]
                               )
                             : _c(
                                 "p",
                                 { staticClass: "h5 mb-0 text-gray-800" },
-                                [_vm._v(_vm._s(off.objet_fr))]
-                              ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "btn btn-outline-primary btn-lg btn-block mt-4",
-                              attrs: {
-                                href: "offre/" + off.id,
-                                target: "_blank"
-                              }
-                            },
-                            [_vm._v(_vm._s(_vm.__("tamwil.affiche_loffre")))]
-                          )
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      off.objet_fr.substring(0, 70) + "..."
+                                    )
+                                  )
+                                ]
+                              )
                         ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "m-3" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "btn btn-outline-primary btn-lg btn-block",
+                          attrs: { href: "offre/" + off.id, target: "_blank" }
+                        },
+                        [_vm._v(_vm._s(_vm.__("tamwil.affiche_loffre")))]
+                      )
+                    ])
                   ]
                 )
               ])
