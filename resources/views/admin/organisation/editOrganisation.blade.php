@@ -87,7 +87,7 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-6  mb-3 mb-sm-0">
                             <label for="presentation">Presentation</label>
-                            <textarea type="text" class="form-control " id="presentation" name="presentation" rows="5" >{{old('presentation', $organisation->presentation_fr)}}</textarea>
+                            <textarea type="text" class="form-control " id="presentation" name="presentation" rows="10" >{{old('presentation', $organisation->presentation_fr)}}</textarea>
                             @error('presentation')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -172,7 +172,7 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-6  mb-3 mb-sm-0">
                             <label for="presentation_ar">التقديم</label>
-                            <textarea type="text" class="form-control " id="presentation_ar" name="presentation_ar" rows="5" >{{old('presentation_ar', $organisation->presentation_ar)}}</textarea>
+                            <textarea type="text" class="form-control " id="presentation_ar" name="presentation_ar" rows="10" >{{old('presentation_ar', $organisation->presentation_ar)}}</textarea>
                             @error('presentation_ar')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
