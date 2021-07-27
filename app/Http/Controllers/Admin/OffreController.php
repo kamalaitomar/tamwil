@@ -21,7 +21,7 @@ class OffreController extends Controller
      */
     public function index()
     {
-        $offres = Offre::paginate(5);
+        $offres = Offre::paginate(10);
         return view('admin.offre.offres', compact('offres'));
     }
 
@@ -136,6 +136,8 @@ class OffreController extends Controller
 
         $offre->condition_fr = $request->input('condition');
         $offre->condition_ar = $request->input('condition_ar');
+
+        $offre->mantont_du_financement = $request->input('mantont');
 
         $offre->save();
 
