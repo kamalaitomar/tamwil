@@ -58,7 +58,7 @@
                         <img :src="'/assets/images/organisation/'+organisations[key].type_d_organisation_fr+'.png'" class="col-5 mt-2">   
                         <div class="text mt-3  text-center"  :class="{'bg-info ':organisations[key].types_des_organisations == form.type}">
                             <h3> 
-                                {{__('organisation.'+organisations[key].type_d_organisation_fr.replace(/_/g, " ") )}}
+                                {{__('organisation.'+organisations[key].type_d_organisation_fr)}}
                             </h3>
                         </div>
                     </div>

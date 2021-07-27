@@ -39833,12 +39833,8 @@ var render = function() {
                                   _vm._s(
                                     _vm.__(
                                       "organisation." +
-                                        _vm.organisations[
-                                          key
-                                        ].type_d_organisation_fr.replace(
-                                          /_/g,
-                                          " "
-                                        )
+                                        _vm.organisations[key]
+                                          .type_d_organisation_fr
                                     )
                                   ) +
                                   "\n                        "
