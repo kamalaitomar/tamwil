@@ -60,6 +60,8 @@
         "fiscal"=>"ضريبة",
         "garanties"=>"ضمانات",
         "douane"=>"جمارك",
+        "prise de participation"=>"الاستثمار في الأسهم",
+        "aucune"=>"لم نعثر على أي منظمة عرض لبحثك ، جرب الشروط الأخرى",
         "affiche_loffre"=>"عرض",
         "savoir_plus"=>"عرض المزيد",
 

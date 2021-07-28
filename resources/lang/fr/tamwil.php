@@ -60,6 +60,8 @@
         "fiscal"=>"Fiscal",
         "garanties"=>"Garantie",
         "douane"=>"Douane",
+        "prise de participation"=>"Prise de participation",
+        "aucune"=>"Nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!",
         "affiche_loffre"=>"Afficher l'offre",
         "savoir_plus"=>"En savoir plus",
 

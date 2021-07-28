@@ -2053,6 +2053,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
@@ -39846,26 +39848,32 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "staff bg-white border-light m-1 p-2 border mb-5 col-12"
+                              "staff bg-white border-light m-1 p-2 border mb-5 col-12 card"
                           },
                           [
-                            _c("div", { staticClass: "text m-1 text-center" }, [
-                              _c(
-                                "h1",
-                                {
-                                  staticClass: "text-success font-weight-bold"
-                                },
-                                [_vm._v(_vm._s(offre.length))]
-                              ),
-                              _c("h2", [
-                                _vm._v(_vm._s(_vm.__("tamwil." + key)))
-                              ]),
-                              _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "text text-center card-body" },
+                              [
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass: "text-success font-weight-bold"
+                                  },
+                                  [_vm._v(_vm._s(offre.length))]
+                                ),
+                                _c("h2", [
+                                  _vm._v(_vm._s(_vm.__("tamwil." + key)))
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "m-3" }, [
                               _c(
                                 "button",
                                 {
                                   staticClass:
-                                    "btn btn-outline-primary btn-lg btn-block mt-4",
+                                    "btn btn-outline-primary btn-lg btn-block",
                                   attrs: { type: "button", offre: offre },
                                   on: {
                                     click: function($event) {
@@ -39898,7 +39906,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!\n            "
+                          "\n                    " +
+                            _vm._s(_vm.__("tamwil.aucune")) +
+                            "\n            "
                         )
                       ]
                     )
