@@ -66,7 +66,7 @@
 
             <div class="row justify-content-md-center">
                 <div class="col-10">
-
+                 
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1" class="text-center">
                         <div class="row">
@@ -83,11 +83,16 @@
 
                     <!-- choose cycle section -->      
                     <div v-if="curentStep == 2" class="ftco-animate fadeInUp ftco-animated">
-                            <div class="row" >
-                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
-                                    <div class="staff bg-info p-4 mb-3 col-12 shadow-sm d-flex align-items-center justify-content-center" :class="{ 'bg-white border-light' : cycle.id != form.cycle}">
-                                        <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
-                                            <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
+                            <div class="row justify-content-center">
+                                <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
+                            </div>
+                            <div v-if="loading == false">
+                                <div class="row" >
+                                    <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="col-lg-4 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
+                                        <div class="staff bg-info p-4 mb-3 col-12 shadow-sm d-flex align-items-center justify-content-center" :class="{ 'bg-white border-light' : cycle.id != form.cycle}">
+                                            <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
+                                                <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -116,19 +121,27 @@
 
             <!-- showing groups of results -->
         <div v-if="curentStep == 4" class="text-center">
-            <div v-if="offres == 0" class="alert alert-warning col-12" role="alert" >
-                nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!
+            <div class="row justify-content-center">
+                <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
             </div>
-            <div class="row justify-content-md-center">
-                <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
-                    <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
-                        <div class="text m-1 text-center">
-                            <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{__('tamwil.'+key )}}</h2>
-                            <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.savoir_plus')}}</button>
+            <div v-if="loading == false">
+                <div class="row justify-content-md-center">
+                    <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
+                        <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12">
+                            <div class="text m-1 text-center">
+                                <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{__('tamwil.'+key )}}</h2>
+                                <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block mt-4">{{__('tamwil.savoir_plus')}}</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <div v-if="loading == false">
+                <div v-if="offres == 0" class="alert alert-warning col-12 mb-5" role="alert" >
+                    nous n'avons trouvé aucune offre correspondant à votre recherche, essayez d'autres conditions!
+                </div> 
+            </div>
+            
         </div>
 
             <!-- showing offers -->
@@ -158,6 +171,8 @@
 </template>
 
 <script>
+    import GridLoader from 'vue-spinner/src/GridLoader.vue'
+
     export default {
 
         name : 'SearchForm',
@@ -183,6 +198,8 @@
                 locale: window._locale,
                 slected: false,
                 name : '{{off.nom_offre_'+window._locale+'}}',
+
+                loading: false,
             }
         },
 
@@ -194,11 +211,16 @@
         mounted() {
             console.log(_locale)
         },
+
+        components:{
+            GridLoader
+        },
         
         methods:{
             
             onSubmit(){
-
+                
+                this.loading = true;
                 let dataform = new FormData();
                 dataform.append('profil', this.form.profil);
                 dataform.append('cycle', this.form.cycle);
@@ -206,12 +228,16 @@
 
 
                 axios.post( '/offres', dataform).then( response => {
-                    console.log(response);
-                    console.log(dataform);
-                    this.allerros = [];
-                    this.submited = true;
-                    this.success = true;
-                    this.offres = response.data;
+                    setTimeout(()=>{
+                        console.log(response);
+                        console.log(dataform);
+                        this.allerros = [];
+                        this.submited = true;
+                        this.success = true;
+                        this.offres = response.data;
+                        this.loading= false
+                    }, 200)
+                    
                 } ).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
@@ -227,13 +253,18 @@
             },
 
             selectProfil($id){
+                
+                this.loading = true;
                 this.form.profil = $id
                 this.slected = true 
                 var that = this
                 axios.get('/cycles/' + this.form.profil)
                 .then(function(res){
+                    setTimeout(()=>{
                     console.log(res)
                     that.cycles = res.data
+                    that.loading= false
+                        }, 5)
                     }
                 );
                 this.curentStep ++
@@ -250,6 +281,8 @@
             },
 
             selectBesoin($id){
+                
+                this.loading = true;
                 this.form.besoin = $id,
                 this.slected = true
 
@@ -260,16 +293,19 @@
 
 
                 axios.post( '/offres', dataform).then( response => {
-                    console.log(response);
-                    console.log(dataform);
-                    this.allerros = [];
-                    this.submited = true;
-                    this.success = true;
-                    this.offres = response.data;
-                } ).catch((error) => {
-                         this.allerros = error.response.data.errors;
-                         this.success = false;
-                    });
+                    setTimeout(()=>{
+                            console.log(response);
+                            console.log(dataform);
+                            this.allerros = [];
+                            this.submited = true;
+                            this.success = true;
+                            this.offres = response.data;
+                            this.loading= false
+                        }, 500)
+                    } ).catch((error) => {
+                            this.allerros = error.response.data.errors;
+                            this.success = false;
+                        });
 
                     this.curentStep ++
                     this.allerrors = ''

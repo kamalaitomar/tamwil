@@ -30,6 +30,7 @@
         "save": "^2.4.0",
         "select2": "^4.1.0-rc.0",
         "vue-axios": "^3.2.4",
-        "vue-router": "^3.5.1"
+        "vue-router": "^3.5.1",
+        "vue-spinner": "^1.0.4"
     }
 }
