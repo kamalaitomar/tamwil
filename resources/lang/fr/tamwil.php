@@ -59,6 +59,7 @@
         "foncier"=>"Foncier",
         "fiscal"=>"Fiscal",
         "garanties"=>"Garantie",
+        "douane"=>"Douane",
         "affiche_loffre"=>"Afficher l'offre",
         "savoir_plus"=>"En savoir plus",
 

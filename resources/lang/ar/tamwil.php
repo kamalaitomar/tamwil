@@ -59,6 +59,7 @@
         "foncier"=>"الأرض",
         "fiscal"=>"ضريبة",
         "garanties"=>"ضمانات",
+        "douane"=>"جمارك",
         "affiche_loffre"=>"عرض",
         "savoir_plus"=>"عرض المزيد",
 

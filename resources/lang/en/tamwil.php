@@ -57,6 +57,7 @@
         "prêts"=>"Ready",
         "foncier"=>"land",
         "fiscal"=>"Tax",
+        "douane"=>"customs",
         "garanties"=>"guarantees",
         "affiche_loffre"=>"Show offer",
         "savoir_plus"=>"Find out more",

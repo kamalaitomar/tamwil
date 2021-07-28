@@ -80,24 +80,31 @@
         </div>
 
         <div v-if="curentStep == 3" class="text-center m-3" style="cursor: pointer">
-            <div v-if="organisationsResult == 0" class="alert alert-warning col-12" role="alert" >
-                    {{__('organisation.aucune')}}
-            </div>  
-            <div class="row justify-content-md-center m-3">
-                <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center mb-2">
-                                <h4 v-if="locale == 'ar'" class="text-xs font-weight-bold text-primary text-uppercase col-9 text-right">{{organisation.nom_organisation_ar}}</h4>
-                                <h4 v-else class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h4>
-                                <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
+            <div class="row justify-content-center">
+                <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
+            </div> 
+            <div v-if="loading == false"> 
+                <div class="row justify-content-md-center m-3">
+                    <div v-for="organisation in organisationsResult" :key="organisation.id" class="col-4 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center mb-2">
+                                    <h4 v-if="locale == 'ar'" class="text-xs font-weight-bold text-primary text-uppercase col-9 text-right">{{organisation.nom_organisation_ar}}</h4>
+                                    <h4 v-else class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h4>
+                                    <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
+                                </div>
+                                    <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
                             </div>
-                                <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
+                        <div class="d-flex align-items-end">
+                            <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
                         </div>
-                    <div class="d-flex align-items-end">
-                        <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
+                        </div>
                     </div>
-                    </div>
+                </div>
+            </div>
+            <div v-if="loading == false">
+                <div v-if="organisationsResult == 0" class="alert alert-warning col-12" role="alert" >
+                        {{__('organisation.aucune')}}
                 </div>
             </div>
         </div>
@@ -105,6 +112,8 @@
 </template>
 <script> 
 import ExampleComponent from './ExampleComponent.vue';
+    import GridLoader from 'vue-spinner/src/GridLoader.vue'
+
 export default {
   components: { ExampleComponent },
 
@@ -121,9 +130,11 @@ export default {
                 allerrors: [],
                 success : false,
                 locale: window._locale,
+                loading: false,
                 
             }
         },
+
         props: {
                 organisations:Array,
                 besoins:Array
@@ -147,6 +158,8 @@ export default {
             },
 
             selectBesoin(id){
+                
+                this.loading = true;
                 this.form.bes = id
 
                 var dataform = new FormData();
@@ -157,11 +170,13 @@ export default {
 
                 axios.post('/findOrganisation',dataform)
                 .then( response => {
-                    console.log(response);
-                    console.log(dataform);
-                    this.organisationsResult = response.data
-                    }
-                ).catch((error) => {
+                    setTimeout(()=>{
+                        console.log(response);
+                        console.log(dataform);
+                        this.organisationsResult = response.data;
+                            this.loading= false
+                        }, 200)
+                    }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });   
@@ -188,17 +203,11 @@ export default {
                 }
                 
             },
-
-
-
-
-
-
-            
-
-        }
-
+        },
         
+        components:{
+            GridLoader
+        },
     }
 </script>
 
