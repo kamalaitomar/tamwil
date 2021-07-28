@@ -127,9 +127,12 @@
             <div v-if="loading == false">
                 <div class="row justify-content-md-center">
                     <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
-                        <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12 card">
+                        <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12 card align-middle">
                             <div class="text text-center card-body">
-                                <h1  class="text-success font-weight-bold">{{offre.length}}</h1><h2>{{__('tamwil.'+key )}}</h2>
+                                <h2>{{__('tamwil.'+key )}}</h2>
+                            </div>
+                            <div>
+                                <h1  class="text-success font-weight-bold">{{offre.length}}</h1><span>offre(s)</span>
                             </div>
                             <div class="m-3">
                                 <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
