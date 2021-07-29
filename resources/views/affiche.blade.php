@@ -5,8 +5,8 @@
 <div class="container">
     <div class="my-5 p-2 m-2">
         <div class="row @if(App::isLocale('ar')) text-right @endif">
-            <div class="col-3 offset-1">
-                <img src='/assets/images/organisation/{{ $organisation ->icone}}' class="mx-auto col-12">
+            <div class="col-3">
+                <img src='/assets/images/organisation/{{ $organisation ->icone}}' class="my-2 p-0 col-12">
                 <div class="my-2">
                     @if ($organisation ->email)
                         <div class="my-2">
@@ -27,7 +27,7 @@
                     <p class="card-text my-2">{{ $organisation['type']}}</p>
                 </div>
             </div>
-            <div class="col-8 m-auto">
+            <div class="col-8 mx-auto">
                 <h1 class="text-primary mb-3">{{ $organisation['name']}}</h1>
                 <h1 class="mb-3">{{__('organisation.presentation')}}</h1>
                 <p>{!! nl2br($organisation['presentation']) !!}</p>
