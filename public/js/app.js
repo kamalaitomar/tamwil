@@ -2058,6 +2058,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
@@ -39851,7 +39852,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "staff bg-white border-light m-1 p-2 border mb-5 col-12 card align-middle"
+                              "staff bg-white border-light m-1 p-2 border mb-5 col-12 card"
                           },
                           [
                             _c(
@@ -39872,7 +39873,10 @@ var render = function() {
                                 },
                                 [_vm._v(_vm._s(offre.length))]
                               ),
-                              _c("span", [_vm._v("offre(s)")])
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.__("tamwil.offres")))
+                              ])
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "m-3" }, [

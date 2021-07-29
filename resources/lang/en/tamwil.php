@@ -60,6 +60,7 @@
         "douane"=>"customs",
         "garanties"=>"guarantees",
         "prise de participation"=>"equity investment",
+        "offres"=>"Offer(s)",
         "aucune"=>"We did not find any offer corresponding to your search, try other conditions!",
         "affiche_loffre"=>"Show offer",
         "savoir_plus"=>"Find out more",
