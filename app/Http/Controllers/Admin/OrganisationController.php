@@ -56,6 +56,11 @@ class OrganisationController extends Controller
         $organisation->presentation_ar = $request->input('presentation_ar');
         $organisation->icone = $request->input('logo');
 
+        $imageName = $request->input('logo');  
+        $file = $request->file('logofile');
+        
+        $file->move(public_path('assetes/images/organisation'), $imageName);
+
         $organisation->save();
         
         $organisation->besoins()->attach($request->besoins);
@@ -115,6 +120,12 @@ class OrganisationController extends Controller
         $organisation->presentation_fr = $request->input('presentation');
         $organisation->presentation_ar = $request->input('presentation_ar');
         $organisation->icone = $request->input('logo');
+
+        $imageName = $request->input('logo');
+        $path = public_path('/assets/images/organisation');
+        $file = $request->file('logofile');
+
+        $file->move($path, $imageName);
 
         $organisation->save();
         

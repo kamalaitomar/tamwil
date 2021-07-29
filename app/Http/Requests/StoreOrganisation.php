@@ -35,7 +35,8 @@ class StoreOrganisation extends FormRequest
             'type_ar' => 'required|min:3|max:255', 
             'presentation' => 'required|min:3', 
             'presentation_ar' => 'required|min:3', 
-            'logo' => 'required|min:3|max:255', 
+            'logo' => 'required|min:3|max:255',
+            'logofile' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 }

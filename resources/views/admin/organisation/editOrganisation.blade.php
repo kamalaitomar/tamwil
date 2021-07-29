@@ -15,7 +15,7 @@
         </ul>
         <div class="tab-content m-3" id="myTabContent">
             <div class="tab-pane fade show active" id="fr" role="tabpanel" aria-labelledby="home-tab">
-                <form class="user" action=" {{ route('organisation.update', ['organisation'=>$organisation->id]) }} " method="POST">
+                <form class="user" action=" {{ route('organisation.update', ['organisation'=>$organisation->id]) }} " method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group d-flex justify-content-center">
@@ -100,6 +100,17 @@
                             <label for="logo">Logo nom</label>
                             <input type="text" class="form-control " id="logo" name="logo"  value="{{old('logo', $organisation->icone)}}">
                             @error('logo')
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="col-6  mb-3 mb-sm-0">
+                            <label for="logofile">Logo</label>
+                            <input type="file" class="form-control " id="logofile" name="logofile"  value="{{old('logofile')}}">
+                            @error('logofile')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
