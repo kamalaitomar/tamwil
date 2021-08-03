@@ -34,10 +34,10 @@
                                 @foreach ($organisations as $organisation)
                                     <div class="card col-3 m-2">
                                         <div class="card-body">
-                                            <h6 class="card-title text-uppercase">{{$organisation['name']}}</h6>
-                                            <div class="d-flex align-items-end"> 
-                                                <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-primary col-12" target="_blank">{{__('offre.afficher l\'organisation')}} </a>
-                                            </div>
+                                            <h6 class="card-title">{{$organisation['name']}}</h6>
+                                        </div>
+                                        <div class="d-flex align-items-end mb-3"> 
+                                            <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-primary col-12" target="_blank">{{__('offre.afficher l\'organisation')}} </a>
                                         </div>
                                     </div> 
                                 @endforeach

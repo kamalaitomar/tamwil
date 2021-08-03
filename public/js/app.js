@@ -2059,6 +2059,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
@@ -39880,21 +39881,42 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "m-3" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-outline-primary btn-lg btn-block",
-                                  attrs: { type: "button", offre: offre },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.showOffres(offre)
-                                    }
-                                  }
-                                },
-                                [_vm._v(_vm._s(_vm.__("tamwil.savoir_plus")))]
-                              )
+                              offre.length == 1
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "btn btn-outline-primary btn-lg btn-block",
+                                      attrs: {
+                                        href: "offre/" + offre[0].id,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.__("tamwil.savoir_plus"))
+                                      )
+                                    ]
+                                  )
+                                : _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-outline-primary btn-lg btn-block",
+                                      attrs: { type: "button", offre: offre },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.showOffres(offre)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(_vm.__("tamwil.savoir_plus"))
+                                      )
+                                    ]
+                                  )
                             ])
                           ]
                         )

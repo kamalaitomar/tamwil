@@ -73,7 +73,7 @@
                             <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="col-lg-3 ftco-animate fadeInUp ftco-animated d-flex" style="cursor: pointer">
                                 <div class="staff bg-info m-1 p-2 mb-3 col-12  shadow-sm " :class="{ 'bg-white border-light' : profil.id != form.profil}">
                                     <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
-                                    <div class="text m-1 mt-3"  :class="{'bg-info ':profil.id == form.profil}">
+                                    <div class="text m-1 mt-3" :class="{'bg-info ':profil.id == form.profil}">
                                         <h3>{{__('tamwil.'+profil.nom_profil )}}</h3>
                                     </div>
                                 </div>
@@ -136,7 +136,8 @@
                                 <span>{{__('tamwil.offres')}}</span>
                             </div>
                             <div class="m-3">
-                                <button @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
+                                <a v-if="offre.length == 1" :href="'offre/'+offre[0].id" target="_blank" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</a>
+                                <button v-else @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
                             </div>
                         </div>
                     </div>
