@@ -65,7 +65,7 @@
         <form method="POST" action="/organisation"  @submit.prevent="onSubmit">
 
             <div class="row justify-content-md-center my-3">
-                <button v-if="curentStep > 1 && curentStep < 4" @click.prevent="pretStep" class="btn btn-primary" :title="__('tamwil.back')">
+                <button v-if="curentStep > 1 && curentStep < 4 &&  loading == false" @click.prevent="pretStep" class="btn btn-primary" :title="__('tamwil.back')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
                     </svg><br>
@@ -125,8 +125,8 @@
         <!-- showing results sections -->
 
             <!-- showing groups of results -->
-        <div v-if="curentStep == 4" class="text-center">
-            <button v-if="loading == false" @click.prevent="pretStep" class="btn btn-primary col-3 mb-3" :title="__('tamwil.back')">
+        <div v-if="curentStep == 4">
+            <button v-if="loading == false" @click.prevent="pretStep" class="btn btn-primary col-1 mb-3" :title="__('tamwil.back')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
                 </svg><br>
@@ -136,7 +136,7 @@
             </div>
             <div v-if="loading == false">
                 <div class="row justify-content-md-center">
-                    <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex " >
+                    <div v-for="(offre, key) in offres" :key="key" class="col-3 ftco-animate fadeInUp ftco-animated d-flex text-center" >
                         <div class="staff bg-white border-light m-1 p-2 border mb-5 col-12 card">
                             <div class="text text-center card-body">
                                 <h2>{{__('tamwil.'+key )}}</h2>
@@ -161,8 +161,8 @@
         </div>
 
             <!-- showing offers -->
-        <div v-if="curentStep ==5" class="ftco-animate fadeInUp ftco-animated text-center">
-            <button v-if="loading == false" @click.prevent="pretStep" class="btn btn-primary col-3 mb-3" :title="__('tamwil.back')">
+        <div v-if="curentStep ==5" class="ftco-animate fadeInUp ftco-animated">
+            <button v-if="loading == false" @click.prevent="pretStep" class="btn btn-primary col-1 mb-3" :title="__('tamwil.back')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
                 </svg><br>
@@ -257,7 +257,7 @@
                         this.success = true;
                         this.offres = response.data;
                         this.loading= false
-                    }, 200)
+                    }, 10)
                     
                 } ).catch((error) => {
                          this.allerros = error.response.data.errors;
@@ -322,7 +322,7 @@
                             this.success = true;
                             this.offres = response.data;
                             this.loading= false
-                        }, 500)
+                        }, 5)
                     } ).catch((error) => {
                             this.allerros = error.response.data.errors;
                             this.success = false;

@@ -2126,7 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.success = true;
           _this.offres = response.data;
           _this.loading = false;
-        }, 200);
+        }, 10);
       })["catch"](function (error) {
         _this.allerros = error.response.data.errors;
         _this.success = false;
@@ -2174,7 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.success = true;
           _this2.offres = response.data;
           _this2.loading = false;
-        }, 500);
+        }, 5);
       })["catch"](function (error) {
         _this2.allerros = error.response.data.errors;
         _this2.success = false;
@@ -39597,7 +39597,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "row justify-content-md-center my-3" }, [
-          _vm.curentStep > 1 && _vm.curentStep < 4
+          _vm.curentStep > 1 && _vm.curentStep < 4 && _vm.loading == false
             ? _c(
                 "button",
                 {
@@ -39858,12 +39858,12 @@ var render = function() {
     ),
     _vm._v(" "),
     _vm.curentStep == 4
-      ? _c("div", { staticClass: "text-center" }, [
+      ? _c("div", [
           _vm.loading == false
             ? _c(
                 "button",
                 {
-                  staticClass: "btn btn-primary col-3 mb-3",
+                  staticClass: "btn btn-primary col-1 mb-3",
                   attrs: { title: _vm.__("tamwil.back") },
                   on: {
                     click: function($event) {
@@ -39923,7 +39923,7 @@ var render = function() {
                       {
                         key: key,
                         staticClass:
-                          "col-3 ftco-animate fadeInUp ftco-animated d-flex "
+                          "col-3 ftco-animate fadeInUp ftco-animated d-flex text-center"
                       },
                       [
                         _c(
@@ -40029,157 +40029,151 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.curentStep == 5
-      ? _c(
-          "div",
-          { staticClass: "ftco-animate fadeInUp ftco-animated text-center" },
-          [
-            _vm.loading == false
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary col-3 mb-3",
-                    attrs: { title: _vm.__("tamwil.back") },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.pretStep($event)
-                      }
+      ? _c("div", { staticClass: "ftco-animate fadeInUp ftco-animated" }, [
+          _vm.loading == false
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary col-1 mb-3",
+                  attrs: { title: _vm.__("tamwil.back") },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.pretStep($event)
                     }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "bi bi-arrow-bar-left",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "40",
-                          height: "40",
-                          fill: "currentColor",
-                          viewBox: "0 0 16 16"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d:
-                              "M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
-                          }
-                        })
-                      ]
-                    ),
-                    _c("br")
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row justify-content-md-center" },
-              _vm._l(_vm.offre, function(off) {
-                return _c("div", { key: off.id, staticClass: "col-3 mb-4" }, [
+                  }
+                },
+                [
                   _c(
-                    "div",
+                    "svg",
                     {
-                      staticClass: "card border-left-primary shadow h-100 py-2"
+                      staticClass: "bi bi-arrow-bar-left",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "40",
+                        height: "40",
+                        fill: "currentColor",
+                        viewBox: "0 0 16 16"
+                      }
                     },
                     [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "card-body",
-                          class: { "text-right": _vm.locale == "ar" }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "row no-gutters align-items-center mb-2"
-                            },
-                            [
-                              _vm.locale == "ar"
-                                ? _c(
-                                    "h4",
-                                    {
-                                      staticClass: "text-primary",
-                                      attrs: { title: off.nom_offre_ar }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          off.nom_offre_ar.substring(0, 70) +
-                                            "..."
-                                        )
-                                      )
-                                    ]
-                                  )
-                                : _c(
-                                    "h4",
-                                    {
-                                      staticClass: "text-primary",
-                                      attrs: { title: off.nom_offre_fr }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          off.nom_offre_fr.substring(0, 70) +
-                                            "..."
-                                        )
-                                      )
-                                    ]
-                                  )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mr-2" }, [
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          d:
+                            "M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+                        }
+                      })
+                    ]
+                  ),
+                  _c("br")
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-md-center" },
+            _vm._l(_vm.offre, function(off) {
+              return _c("div", { key: off.id, staticClass: "col-3 mb-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "card border-left-primary shadow h-100 py-2" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card-body",
+                        class: { "text-right": _vm.locale == "ar" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "row no-gutters align-items-center mb-2"
+                          },
+                          [
                             _vm.locale == "ar"
                               ? _c(
-                                  "p",
-                                  { staticClass: "h5 mb-0 text-gray-800" },
+                                  "h4",
+                                  {
+                                    staticClass: "text-primary",
+                                    attrs: { title: off.nom_offre_ar }
+                                  },
                                   [
                                     _vm._v(
                                       _vm._s(
-                                        off.objet_ar.substring(0, 70) + "..."
+                                        off.nom_offre_ar.substring(0, 70) +
+                                          "..."
                                       )
                                     )
                                   ]
                                 )
                               : _c(
-                                  "p",
-                                  { staticClass: "h5 mb-0 text-gray-800" },
+                                  "h4",
+                                  {
+                                    staticClass: "text-primary",
+                                    attrs: { title: off.nom_offre_fr }
+                                  },
                                   [
                                     _vm._v(
                                       _vm._s(
-                                        off.objet_fr.substring(0, 70) + "..."
+                                        off.nom_offre_fr.substring(0, 70) +
+                                          "..."
                                       )
                                     )
                                   ]
                                 )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "m-3" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "btn btn-outline-primary btn-lg btn-block",
-                            attrs: { href: "offre/" + off.id, target: "_blank" }
-                          },
-                          [_vm._v(_vm._s(_vm.__("tamwil.affiche_loffre")))]
-                        )
-                      ])
-                    ]
-                  )
-                ])
-              }),
-              0
-            )
-          ]
-        )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mr-2" }, [
+                          _vm.locale == "ar"
+                            ? _c(
+                                "p",
+                                { staticClass: "h5 mb-0 text-gray-800" },
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      off.objet_ar.substring(0, 70) + "..."
+                                    )
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "p",
+                                { staticClass: "h5 mb-0 text-gray-800" },
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      off.objet_fr.substring(0, 70) + "..."
+                                    )
+                                  )
+                                ]
+                              )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "m-3" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "btn btn-outline-primary btn-lg btn-block",
+                          attrs: { href: "offre/" + off.id, target: "_blank" }
+                        },
+                        [_vm._v(_vm._s(_vm.__("tamwil.affiche_loffre")))]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            }),
+            0
+          )
+        ])
       : _vm._e()
   ])
 }
