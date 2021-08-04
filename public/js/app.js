@@ -2082,6 +2082,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
@@ -2105,6 +2120,18 @@ __webpack_require__.r(__webpack_exports__);
       name: '{{off.nom_offre_' + window._locale + '}}',
       loading: false
     };
+  },
+  computed: {
+    activeProfiles: function activeProfiles() {
+      return this.profils.filter(function (u) {
+        return u.nom_profil != "Autres";
+      });
+    },
+    activeCycles: function activeCycles() {
+      return this.cycles.filter(function (u) {
+        return u.nom_cycle != "Autres";
+      });
+    }
   },
   props: {
     profils: Array,
@@ -39687,21 +39714,69 @@ var render = function() {
                   {
                     staticClass: "row d-flex justify-content-center text-center"
                   },
-                  _vm._l(_vm.profils, function(profil) {
-                    return _c(
+                  [
+                    _vm._l(_vm.activeProfiles, function(profil) {
+                      return _c(
+                        "div",
+                        {
+                          key: profil.id,
+                          staticClass:
+                            "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
+                          class: {
+                            "bg-white border-light":
+                              profil.id != _vm.form.profil
+                          },
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.selectProfil(profil.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
+                            _c("img", {
+                              staticClass: "col-lg-6",
+                              attrs: { src: "/assets/images/" + profil.icon }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "text m-1 mt-3",
+                                class: {
+                                  "bg-info ": profil.id == _vm.form.profil
+                                }
+                              },
+                              [
+                                _c("h3", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.__("tamwil." + profil.nom_profil)
+                                    )
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c(
                       "div",
                       {
-                        key: profil.id,
                         staticClass:
                           "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
                         class: {
-                          "bg-white border-light": profil.id != _vm.form.profil
+                          "bg-white border-light": 8 != _vm.form.profil
                         },
                         staticStyle: { cursor: "pointer" },
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.selectProfil(profil.id)
+                            return _vm.selectProfil(8)
                           }
                         }
                       },
@@ -39709,30 +39784,26 @@ var render = function() {
                         _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
                           _c("img", {
                             staticClass: "col-lg-6",
-                            attrs: { src: "/assets/images/" + profil.icon }
+                            attrs: { src: "/assets/images/autres.png" }
                           }),
                           _vm._v(" "),
                           _c(
                             "div",
                             {
                               staticClass: "text m-1 mt-3",
-                              class: {
-                                "bg-info ": profil.id == _vm.form.profil
-                              }
+                              class: { "bg-info ": 8 == _vm.form.profil }
                             },
                             [
                               _c("h3", [
-                                _vm._v(
-                                  _vm._s(_vm.__("tamwil." + profil.nom_profil))
-                                )
+                                _vm._v(_vm._s(_vm.__("tamwil.Autres")))
                               ])
                             ]
                           )
                         ])
                       ]
                     )
-                  }),
-                  0
+                  ],
+                  2
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -39758,22 +39829,72 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: "row justify-content-center" },
-                            _vm._l(_vm.cycles, function(cycle) {
-                              return _c(
+                            [
+                              _vm._l(_vm.activeCycles, function(cycle) {
+                                return _c(
+                                  "div",
+                                  {
+                                    key: cycle.id,
+                                    staticClass:
+                                      "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
+                                    class: {
+                                      "bg-white border-light":
+                                        cycle.id != _vm.form.cycle
+                                    },
+                                    staticStyle: { cursor: "pointer" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.selectCycle(cycle.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "p-4 mb-3 col-12" },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "text m-1 text-center",
+                                            class: {
+                                              "bg-info ":
+                                                cycle.id == _vm.form.cycle,
+                                              "text-right": _vm.locale == "ar"
+                                            }
+                                          },
+                                          [
+                                            _c("h3", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm.__(
+                                                    "tamwil." + cycle.nom_cycle
+                                                  )
+                                                )
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              }),
+                              _vm._v(" "),
+                              _c(
                                 "div",
                                 {
-                                  key: cycle.id,
                                   staticClass:
                                     "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
                                   class: {
-                                    "bg-white border-light":
-                                      cycle.id != _vm.form.cycle
+                                    "bg-white border-light": 6 != _vm.form.cycle
                                   },
                                   staticStyle: { cursor: "pointer" },
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      return _vm.selectCycle(cycle.id)
+                                      return _vm.selectCycle(6)
                                     }
                                   }
                                 },
@@ -39787,19 +39908,14 @@ var render = function() {
                                         {
                                           staticClass: "text m-1 text-center",
                                           class: {
-                                            "bg-info ":
-                                              cycle.id == _vm.form.cycle,
+                                            "bg-info ": 6 == _vm.form.cycle,
                                             "text-right": _vm.locale == "ar"
                                           }
                                         },
                                         [
                                           _c("h3", [
                                             _vm._v(
-                                              _vm._s(
-                                                _vm.__(
-                                                  "tamwil." + cycle.nom_cycle
-                                                )
-                                              )
+                                              _vm._s(_vm.__("tamwil.Autres"))
                                             )
                                           ])
                                         ]
@@ -39808,8 +39924,8 @@ var render = function() {
                                   )
                                 ]
                               )
-                            }),
-                            0
+                            ],
+                            2
                           )
                         ])
                       : _vm._e()

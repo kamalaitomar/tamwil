@@ -80,11 +80,19 @@
                 <form method="POST" action="/organisation"  @submit.prevent="onSubmit">
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1"  class="row d-flex justify-content-center text-center">
-                        <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : profil.id != form.profil}" style="cursor: pointer">
+                        <div v-for="profil in activeProfiles" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : profil.id != form.profil}" style="cursor: pointer">
                             <div class="m-1 p-2 mb-3 col-12" >
                                 <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                 <div class="text m-1 mt-3" :class="{'bg-info ':profil.id == form.profil}">
                                     <h3>{{__('tamwil.'+profil.nom_profil )}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div @click.prevent="selectProfil(8)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : 8 != form.profil}" style="cursor: pointer">
+                            <div class="m-1 p-2 mb-3 col-12" >
+                                <img src="/assets/images/autres.png" class="col-lg-6">
+                                <div class="text m-1 mt-3" :class="{'bg-info ': 8 == form.profil}">
+                                    <h3>{{__('tamwil.Autres' )}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -97,10 +105,17 @@
                         </div>
                         <div v-if="loading == false">
                             <div class="row justify-content-center" >
-                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : cycle.id != form.cycle}" style="cursor: pointer">
+                                <div v-for="cycle in activeCycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : cycle.id != form.cycle}" style="cursor: pointer">
                                     <div class="p-4 mb-3 col-12">
                                         <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
                                             <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div @click.prevent="selectCycle(6)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : 6 != form.cycle}" style="cursor: pointer">
+                                    <div class="p-4 mb-3 col-12">
+                                        <div class="text m-1 text-center"  :class="{'bg-info ': 6== form.cycle, 'text-right': locale=='ar'}">
+                                            <h3>{{__('tamwil.Autres')}}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -230,6 +245,19 @@
 
                 loading: false,
             }
+        },
+
+        computed: {
+            activeProfiles: function() {
+                return this.profils.filter(function(u) {
+                    return u.nom_profil != "Autres"
+                })
+            },
+            activeCycles: function() {
+                return this.cycles.filter(function(u) {
+                    return u.nom_cycle != "Autres"
+                })
+            },
         },
 
         props: {
