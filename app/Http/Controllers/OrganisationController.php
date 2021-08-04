@@ -63,8 +63,10 @@ class OrganisationController extends Controller
     public function show($locale,   $id)
     {
         $organisation = Organisation::findOrFail($id);
+        $offres =  $organisation->offres;
 
-        return view('affiche', compact('organisation', 'locale', 'id'));
+
+        return view('affiche', compact('organisation', 'locale', 'id', 'offres'));
 
     }
 

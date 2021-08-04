@@ -42,7 +42,7 @@
         "Création d'entreprise"=>"Création d'entreprise",
         "Démarrage de l'activité"=>"Démarrage de l'activité",
         "Exploitation"=>"Exploitation",
-        "Développement/Croissance"=>"Développement/ Croissance",
+        "Développement/Croissance"=>"Développement / Croissance",
         "Relance"=>"Relance",
         "i need"=>"Besoin",
         "Investissement"=>"Investissement",

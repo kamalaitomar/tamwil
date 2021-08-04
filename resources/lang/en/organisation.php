@@ -12,11 +12,7 @@
         "aucune"=>"We did not find any organization corresponding to your search, try other conditions!",
         "offre"=>"organization offer",
         "presentation"=>"Presentation :",
-
-
-
-
-        
+        "afficher l'offre"=>"Show offer"  
         ]
 
 

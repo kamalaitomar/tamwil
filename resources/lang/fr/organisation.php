@@ -10,8 +10,9 @@
         "Afficherlorganisation"=>" Afficher l'organisation",
         "Types des financement "=>"Types de financement",
         "aucune"=>"Nous n'avons trouvé aucune organisation correspondant à votre recherche, essayez d'autres conditions!",
-        "offre"=>"offre d'organisation",
+        "offre"=>"Offres d'organisation",
         "presentation"=>"Présentation :",
+        "afficher l'offre"=>"Afficher l'offre"
 
         ]
 ?>

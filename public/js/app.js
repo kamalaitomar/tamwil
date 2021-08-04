@@ -39625,7 +39625,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("h5", [_vm._v(_vm._s(_vm.__("tamwil.programme")))])
+                    _c("h6", [_vm._v(_vm._s(_vm.__("tamwil.programme")))])
                   ])
                 ]
               )

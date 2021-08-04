@@ -31,6 +31,27 @@
                 <h1 class="text-primary mb-3">{{ $organisation['name']}}</h1>
                 <h1 class="mb-3">{{__('organisation.presentation')}}</h1>
                 <p>{!! nl2br($organisation['presentation']) !!}</p>
+                @if ($offres)
+                    <div class="row" >
+                        <div class="col-12">  
+                            <h4 class="text-info">{{__('organisation.offre')}}</h4>
+                            <div class="row m-1">
+
+                                @foreach ($offres as $offre)
+                                    <div class="card col-3 m-2">
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{$offre['name']}}</h6>
+                                        </div>
+                                        <div class="d-flex align-items-end mb-3"> 
+                                            <a href=" {{ route('offre', [app()->getLocale(), $offre["id"]]) }}" class="btn btn-primary col-12" target="_blank">{{__('organisation.afficher l\'offre')}} </a>
+                                        </div>
+                                    </div> 
+                                @endforeach
+                                
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
