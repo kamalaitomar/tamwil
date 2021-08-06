@@ -41040,12 +41040,19 @@ var render = function() {
                                               "h5",
                                               {
                                                 staticClass:
-                                                  "text-xs font-weight-bold text-primary text-uppercase col-9 text-right"
+                                                  "text-xs font-weight-bold text-primary col-9 text-right",
+                                                attrs: {
+                                                  title:
+                                                    organisation.nom_organisation_ar
+                                                }
                                               },
                                               [
                                                 _vm._v(
                                                   _vm._s(
-                                                    organisation.nom_organisation_ar
+                                                    organisation.nom_organisation_ar.substring(
+                                                      0,
+                                                      35
+                                                    ) + "..."
                                                   )
                                                 )
                                               ]
@@ -41054,12 +41061,19 @@ var render = function() {
                                               "h5",
                                               {
                                                 staticClass:
-                                                  "text-xs font-weight-bold text-primary text-uppercase col-9 text-left"
+                                                  "text-xs font-weight-bold text-primary col-9 text-left",
+                                                attrs: {
+                                                  title:
+                                                    organisation.nom_organisation_fr
+                                                }
                                               },
                                               [
                                                 _vm._v(
                                                   _vm._s(
-                                                    organisation.nom_organisation_fr
+                                                    organisation.nom_organisation_fr.substring(
+                                                      0,
+                                                      35
+                                                    ) + "..."
                                                   )
                                                 )
                                               ]
@@ -41075,22 +41089,22 @@ var render = function() {
                                           }
                                         })
                                       ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("h6", { staticClass: "text-center" }, [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.__(
-                                              "organisation." +
-                                                organisation.type_d_organisation_fr.replace(
-                                                  /_/g,
-                                                  " "
-                                                )
-                                            )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h6", { staticClass: "text-center" }, [
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.__(
+                                            "organisation." +
+                                              organisation.type_d_organisation_fr.replace(
+                                                /_/g,
+                                                " "
+                                              )
                                           )
-                                      )
-                                    ])
+                                        )
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c(

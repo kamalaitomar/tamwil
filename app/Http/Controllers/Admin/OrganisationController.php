@@ -124,8 +124,10 @@ class OrganisationController extends Controller
         $imageName = $request->input('logo');
         $path = public_path('/assets/images/organisation');
         $file = $request->file('logofile');
-
-        $file->move($path, $imageName);
+        
+        if ($file) {
+            $file->move($path, $imageName);
+        }
 
         $organisation->save();
         

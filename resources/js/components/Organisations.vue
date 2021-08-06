@@ -126,12 +126,12 @@
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center mb-2">
-                                            <h5 v-if="locale == 'ar'" class="text-xs font-weight-bold text-primary text-uppercase col-9 text-right">{{organisation.nom_organisation_ar}}</h5>
-                                            <h5 v-else class="text-xs font-weight-bold text-primary text-uppercase col-9 text-left">{{organisation.nom_organisation_fr}}</h5>
+                                            <h5 v-if="locale == 'ar'" class="text-xs font-weight-bold text-primary col-9 text-right" :title="organisation.nom_organisation_ar">{{organisation.nom_organisation_ar.substring(0,35)+"..."}}</h5>
+                                            <h5 v-else class="text-xs font-weight-bold text-primary col-9 text-left" :title="organisation.nom_organisation_fr">{{organisation.nom_organisation_fr.substring(0,35)+"..."}}</h5>
                                             <img :src="'/assets/images/organisation/'+organisation.icone" class="offset-1 col-2 rounded d-flex align-items-start " >
-                                        </div>
-                                            <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6>  
+                                        </div> 
                                     </div>
+                                            <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6> 
                                     <div class="d-flex align-items-end">
                                         <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
                                     </div>
