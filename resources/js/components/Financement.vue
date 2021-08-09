@@ -251,6 +251,7 @@
                 slected: false,
                 name : '{{off.nom_offre_'+window._locale+'}}',
 
+
                 loading: false,
             }
         },
@@ -273,7 +274,24 @@
                 },
 
         mounted() {
-            console.log(_locale)
+            let vm = this;
+            window.onpopstate = function(event) {
+                var url = new URL(window.location.href)
+
+                var step = url.searchParams.get("step")
+                if (!step) {
+                    step= 1
+                }
+                vm.curentStep = step
+                
+            };
+        },
+
+
+        watch:{ 
+            uri: function (to, from){
+            this.link = false;
+            }
         },
 
         components:{
@@ -307,12 +325,14 @@
                          this.success = false;
                     });
 
-                    this.curentStep ++
+                    this.nextStep()
                     this.allerrors = ''
             },
 
             pretStep(){
                 this.curentStep --,
+                history.pushState({}, null, '?step='+this.curentStep)
+                
                 this.slected = true
             },
 
@@ -331,7 +351,7 @@
                         }, 5)
                     }
                 );
-                this.curentStep ++
+                this.nextStep()
                 this.allerrors = '',
                 this.slected = false
             },
@@ -356,7 +376,7 @@
                         }, 5)
                     } )
 
-                this.curentStep ++
+                this.nextStep()
                 this.allerrors = '',
                 this.slected = false
             },
@@ -388,35 +408,53 @@
                             this.success = false;
                         });
 
-                    this.curentStep ++
+                    this.nextStep()
                     this.allerrors = ''
             },
 
             showOffres($id){
                 this.offre = $id
-                this.curentStep ++
+                this.nextStep()
             },
 
             profilsStep(){
                 if (this.form.profil != '') {
                     this.curentStep = 1
+                    history.pushState({}, null, '?step='+this.curentStep)
                 }
                 
             },
             cyclesStep(){
                 if (this.form.profil != '') {
                     this.curentStep = 2
+                    history.pushState({}, null, '?step='+this.curentStep)   
                 }
             },
             besoinsStep(){
                 if (this.form.cycle != '') {
                     this.curentStep = 3
+                    history.pushState({}, null, '?step='+this.curentStep)
                 }
             },
             fasciculesStep(){
                 if (this.form.besoin != '') {
                     this.curentStep = 4
+                    history.pushState({}, null, '?step='+this.curentStep)
                 }
+            },
+
+            nextStep(){
+                this.curentStep++
+                history.pushState({}, null, '?step='+this.curentStep)
+
+                const queryString = window.location.search;
+
+                const urlParams = new URLSearchParams(queryString);
+
+                const step = urlParams.get('step')
+                console.log(step);
+
+                // this.link = this.curentStep
             },
 
         }

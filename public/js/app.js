@@ -2145,7 +2145,23 @@ __webpack_require__.r(__webpack_exports__);
     profils: Array
   },
   mounted: function mounted() {
-    console.log(_locale);
+    var vm = this;
+
+    window.onpopstate = function (event) {
+      var url = new URL(window.location.href);
+      var step = url.searchParams.get("step");
+
+      if (!step) {
+        step = 1;
+      }
+
+      vm.curentStep = step;
+    };
+  },
+  watch: {
+    uri: function uri(to, from) {
+      this.link = false;
+    }
   },
   components: {
     GridLoader: vue_spinner_src_GridLoader_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -2173,11 +2189,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
-      this.curentStep++;
+      this.nextStep();
       this.allerrors = '';
     },
     pretStep: function pretStep() {
-      this.curentStep--, this.slected = true;
+      this.curentStep--, history.pushState({}, null, '?step=' + this.curentStep);
+      this.slected = true;
     },
     selectProfil: function selectProfil($id) {
       this.loading = true;
@@ -2191,7 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
           that.loading = false;
         }, 5);
       });
-      this.curentStep++;
+      this.nextStep();
       this.allerrors = '', this.slected = false;
     },
     selectCycle: function selectCycle($id) {
@@ -2211,7 +2228,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.loading = false;
         }, 5);
       });
-      this.curentStep++;
+      this.nextStep();
       this.allerrors = '', this.slected = false;
     },
     selectBesoin: function selectBesoin($id) {
@@ -2237,32 +2254,44 @@ __webpack_require__.r(__webpack_exports__);
         _this3.allerros = error.response.data.errors;
         _this3.success = false;
       });
-      this.curentStep++;
+      this.nextStep();
       this.allerrors = '';
     },
     showOffres: function showOffres($id) {
       this.offre = $id;
-      this.curentStep++;
+      this.nextStep();
     },
     profilsStep: function profilsStep() {
       if (this.form.profil != '') {
         this.curentStep = 1;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     },
     cyclesStep: function cyclesStep() {
       if (this.form.profil != '') {
         this.curentStep = 2;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     },
     besoinsStep: function besoinsStep() {
       if (this.form.cycle != '') {
         this.curentStep = 3;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     },
     fasciculesStep: function fasciculesStep() {
       if (this.form.besoin != '') {
         this.curentStep = 4;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
+    },
+    nextStep: function nextStep() {
+      this.curentStep++;
+      history.pushState({}, null, '?step=' + this.curentStep);
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var step = urlParams.get('step');
+      console.log(step); // this.link = this.curentStep
     }
   }
 });
