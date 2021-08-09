@@ -15,9 +15,9 @@ class OffreController extends Controller
     public function index(Request $request)
     {
         $validated = $request->validate([
-            'profil' => 'required',
-            'cycle' => 'required',
-            'besoin' => 'required'
+            'profil' => 'required|integer|exists:profils,id',
+            'cycle' => 'required|integer|exists:cycles,id',
+            'besoin' => 'required|integer|exists:besoins,id'
         ]);
 
         $offres = Offre::whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})

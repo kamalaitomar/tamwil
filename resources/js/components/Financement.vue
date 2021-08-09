@@ -125,13 +125,19 @@
                     </div>
 
                     <!-- choose besoin section -->
-                    <div v-if="curentStep == 3" class="row d-flex justify-content-center text-center">
-                        <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : besoin.id != form.besoin}" style="cursor: pointer">
-                            <div class="m-1 p-2 mb-3 col-12">
-                                <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
-                                <div class="text m-1  text-center mt-3"  :class="{'bg-info ':besoin.id == form.besoin}">
-                                    <h3 v-if="__('tamwil.'+besoin.nom_besoin).length<25" :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin)}}</h3>
-                                    <h3 v-else :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin).substring(0,25)+".."}}</h3>
+                    <div v-if="curentStep == 3" class="ftco-animate fadeInUp ftco-animated">
+                        <div class="row justify-content-center">
+                            <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
+                        </div>
+                        
+                        <div v-if="loading == false" class="row justify-content-center" >
+                            <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2 text-center" :class="{ 'bg-white border-light' : besoin.id != form.besoin}" style="cursor: pointer">
+                                <div class="m-1 p-2 mb-3 col-12">
+                                    <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
+                                    <div class="text m-1  text-center mt-3"  :class="{'bg-info ':besoin.id == form.besoin}">
+                                        <h3 v-if="__('tamwil.'+besoin.nom_besoin).length<25" :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin)}}</h3>
+                                        <h3 v-else :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin).substring(0,25)+".."}}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -333,6 +339,7 @@
             selectCycle($id){
                 this.form.cycle = $id,
                 this.slected = true
+                this.loading = true;
 
                 let dataform = new FormData();
                 dataform.append('profil', this.form.profil);
