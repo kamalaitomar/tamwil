@@ -27,9 +27,8 @@ class formController extends Controller
 
 
         $profils = Profil::all();
-        $besoins = Besoin::all();
 
-        return view('financement', compact('profils', 'besoins'));
+        return view('financement', compact('profils'));
     }
 
     /**
@@ -100,5 +99,21 @@ class formController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getBesoins(Request $request)
+    {
+        
+        $validated = $request->validate([
+            'profil' => 'required|integer|exists:profils,id',
+            'cycle' => 'required|integer|exists:cycles,id',
+        ]);
+
+        $besoins = Besoin::whereHas('offres', function($q)use($request){
+                                $q->whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})
+                                ->whereHas('cycles', function($q)use($request){ $q->where('id', $request->cycle);})
+                            ;})
+                        ->get();
+        return $besoins;
     }
 }

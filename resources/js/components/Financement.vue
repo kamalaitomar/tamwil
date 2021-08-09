@@ -224,6 +224,7 @@
         data: function(){
             return{
                 cycles :[],
+                besoins:[],
                 offres :[],
                 
                 form: {
@@ -263,7 +264,6 @@
 
         props: {
                 profils:Array,
-                besoins: Array,
                 },
 
         mounted() {
@@ -332,7 +332,23 @@
 
             selectCycle($id){
                 this.form.cycle = $id,
-                this.slected = true,
+                this.slected = true
+
+                let dataform = new FormData();
+                dataform.append('profil', this.form.profil);
+                dataform.append('cycle', this.form.cycle);
+
+                axios.post( '/besoins', dataform)
+                        .then( response => {
+                        setTimeout(()=>{
+                            console.log(response);
+                            console.log(dataform);
+                            this.allerros = [];
+                            this.besoins = response.data;
+                            this.loading= false
+                        }, 5)
+                    } )
+
                 this.curentStep ++
                 this.allerrors = '',
                 this.slected = false

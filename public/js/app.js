@@ -2104,6 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cycles: [],
+      besoins: [],
       offres: [],
       form: {
         profil: '',
@@ -2135,8 +2136,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   props: {
-    profils: Array,
-    besoins: Array
+    profils: Array
   },
   mounted: function mounted() {
     console.log(_locale);
@@ -2189,11 +2189,26 @@ __webpack_require__.r(__webpack_exports__);
       this.allerrors = '', this.slected = false;
     },
     selectCycle: function selectCycle($id) {
-      this.form.cycle = $id, this.slected = true, this.curentStep++;
+      var _this2 = this;
+
+      this.form.cycle = $id, this.slected = true;
+      var dataform = new FormData();
+      dataform.append('profil', this.form.profil);
+      dataform.append('cycle', this.form.cycle);
+      axios.post('/besoins', dataform).then(function (response) {
+        setTimeout(function () {
+          console.log(response);
+          console.log(dataform);
+          _this2.allerros = [];
+          _this2.besoins = response.data;
+          _this2.loading = false;
+        }, 5);
+      });
+      this.curentStep++;
       this.allerrors = '', this.slected = false;
     },
     selectBesoin: function selectBesoin($id) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.loading = true;
       this.form.besoin = $id, this.slected = true;
@@ -2205,15 +2220,15 @@ __webpack_require__.r(__webpack_exports__);
         setTimeout(function () {
           console.log(response);
           console.log(dataform);
-          _this2.allerros = [];
-          _this2.submited = true;
-          _this2.success = true;
-          _this2.offres = response.data;
-          _this2.loading = false;
+          _this3.allerros = [];
+          _this3.submited = true;
+          _this3.success = true;
+          _this3.offres = response.data;
+          _this3.loading = false;
         }, 5);
       })["catch"](function (error) {
-        _this2.allerros = error.response.data.errors;
-        _this2.success = false;
+        _this3.allerros = error.response.data.errors;
+        _this3.success = false;
       });
       this.curentStep++;
       this.allerrors = '';

@@ -47,7 +47,6 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 
-    
     Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
 
@@ -55,4 +54,5 @@ Route::group(['prefix'=>'{locale}'], function(){
 });
 
 Route::get('/cycles/{id}', [FormController::class, 'show']);
+Route::post('/besoins', [FormController::class, 'getBesoins']);
 Route::post('/offres', [ControllersOffreController::class, 'index']);
