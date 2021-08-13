@@ -16,8 +16,7 @@ class OrganisationController extends Controller
     public function index()
     {
          $organisations = Organisation::select('type_d_organisation_fr')->distinct()->get();
-         $besoins = Besoin::all();
-         return view("organisation", compact('organisations', 'besoins'));
+         return view("organisation", compact('organisations'));
     }
 
     /**
@@ -102,5 +101,14 @@ class OrganisationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getBesoins(Request $request)
+    {
+        $besoins = Besoin::whereHas('organisations', function($q)use($request){
+                                     $q->where('type_d_organisation_fr', $request->type)
+                                ;})
+                            ->get();
+        return $besoins;
     }
 }

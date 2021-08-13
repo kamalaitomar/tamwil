@@ -2200,11 +2200,13 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       this.form.profil = $id;
       this.slected = true;
+      var dataform = new FormData();
+      dataform.append('profil', this.form.profil);
       var that = this;
-      axios.get('/cycles/' + this.form.profil).then(function (res) {
+      axios.post('/cycles', dataform).then(function (response) {
         setTimeout(function () {
-          console.log(res);
-          that.cycles = res.data;
+          console.log(response);
+          that.cycles = response.data;
           that.loading = false;
         }, 5);
       });
@@ -2467,6 +2469,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
@@ -2485,12 +2492,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allerrors: [],
       success: false,
       locale: window._locale,
-      loading: false
+      loading: false,
+      besoins: []
     };
   },
   props: {
-    organisations: Array,
-    besoins: Array
+    organisations: Array
   },
   mounted: function mounted() {// console.log(this.typedata)
   },
@@ -2499,11 +2506,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.curentStep--;
     },
     selectOrg: function selectOrg(type) {
+      var _this = this;
+
+      this.loading = true;
       this.form.type = type;
+      var dataform = new FormData();
+      dataform.append('type', this.form.type);
+      axios.post('/selectBesoins', dataform).then(function (response) {
+        setTimeout(function () {
+          _this.besoins = response.data;
+          _this.loading = false;
+        }, 200);
+      })["catch"](function (error) {
+        _this.allerros = error.response.data.errors;
+        _this.success = false;
+      });
       this.curentStep++;
     },
     selectBesoin: function selectBesoin(id) {
-      var _this = this;
+      var _this2 = this;
 
       this.loading = true;
       this.form.bes = id;
@@ -2515,12 +2536,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         setTimeout(function () {
           console.log(response);
           console.log(dataform);
-          _this.organisationsResult = response.data;
-          _this.loading = false;
+          _this2.organisationsResult = response.data;
+          _this2.loading = false;
         }, 200);
       })["catch"](function (error) {
-        _this.allerros = error.response.data.errors;
-        _this.success = false;
+        _this2.allerros = error.response.data.errors;
+        _this2.success = false;
       });
       this.curentStep++;
     },
@@ -39442,7 +39463,7 @@ var render = function() {
           ? _c(
               "button",
               {
-                staticClass: "btn btn-primary h-25",
+                staticClass: "btn btn-outline-primary h-25",
                 attrs: { title: _vm.__("tamwil.back") },
                 on: {
                   click: function($event) {
@@ -40572,7 +40593,7 @@ var render = function() {
           ? _c(
               "button",
               {
-                staticClass: "btn btn-primary h-25",
+                staticClass: "btn btn-outline-primary h-25",
                 attrs: { title: _vm.__("organisation.Retour") },
                 on: {
                   click: function($event) {
@@ -40935,78 +40956,111 @@ var render = function() {
           ? _c(
               "div",
               { staticClass: "row d-flex justify-content-center text-center" },
-              _vm._l(_vm.besoins, function(besoin) {
-                return _c(
+              [
+                _c(
                   "div",
-                  {
-                    key: besoin.id,
-                    staticClass:
-                      "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
-                    class: {
-                      "bg-white border-light": besoin.id != _vm.form.bes
-                    },
-                    staticStyle: { cursor: "pointer" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.selectBesoin(besoin.id)
-                      }
-                    }
-                  },
+                  { staticClass: "row justify-content-center" },
                   [
-                    _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
-                      _c("img", {
-                        staticClass: "col-lg-6",
-                        attrs: { src: "/assets/images/" + besoin.icon }
+                    _c("grid-loader", {
+                      staticClass: "mb-5",
+                      attrs: { loading: _vm.loading, color: "DeepSkyBlue" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm.loading == false
+                  ? _c(
+                      "div",
+                      { staticClass: "row justify-content-center" },
+                      _vm._l(_vm.besoins, function(besoin) {
+                        return _c(
+                          "div",
+                          {
+                            key: besoin.id,
+                            staticClass:
+                              "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2  justify-content-center",
+                            class: {
+                              "bg-white border-light": besoin.id != _vm.form.bes
+                            },
+                            staticStyle: { cursor: "pointer" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.selectBesoin(besoin.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
+                              _c("img", {
+                                staticClass: "col-lg-6",
+                                attrs: { src: "/assets/images/" + besoin.icon }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "text m-1 text-center mt-3",
+                                  class: {
+                                    "bg-info": besoin.id == _vm.form.bes
+                                  }
+                                },
+                                [
+                                  _vm.__("tamwil." + besoin.nom_besoin).length <
+                                  25
+                                    ? _c(
+                                        "h3",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            title: _vm.__(
+                                              "tamwil." + besoin.nom_besoin
+                                            )
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.__(
+                                                "tamwil." + besoin.nom_besoin
+                                              )
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    : _c(
+                                        "h3",
+                                        {
+                                          staticClass: "text-center",
+                                          attrs: {
+                                            title: _vm.__(
+                                              "tamwil." + besoin.nom_besoin
+                                            )
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm
+                                                .__(
+                                                  "tamwil." + besoin.nom_besoin
+                                                )
+                                                .substring(0, 25) + ".."
+                                            )
+                                          )
+                                        ]
+                                      )
+                                ]
+                              )
+                            ])
+                          ]
+                        )
                       }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "text m-1  text-center mt-3",
-                          class: { "bg-info": besoin.id == _vm.form.bes }
-                        },
-                        [
-                          _vm.__("tamwil." + besoin.nom_besoin).length < 25
-                            ? _c(
-                                "h3",
-                                {
-                                  attrs: {
-                                    title: _vm.__("tamwil." + besoin.nom_besoin)
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.__("tamwil." + besoin.nom_besoin)
-                                    )
-                                  )
-                                ]
-                              )
-                            : _c(
-                                "h3",
-                                {
-                                  attrs: {
-                                    title: _vm.__("tamwil." + besoin.nom_besoin)
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm
-                                        .__("tamwil." + besoin.nom_besoin)
-                                        .substring(0, 25) + ".."
-                                    )
-                                  )
-                                ]
-                              )
-                        ]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
+                      0
+                    )
+                  : _vm._e()
+              ]
             )
           : _vm._e(),
         _vm._v(" "),

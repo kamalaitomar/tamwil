@@ -58,11 +58,12 @@ class formController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $cycles = Cycle::whereHas('profils', function ($query) use($id) {
-            $query->where('id', $id);
-        })->get();
+        $cycles = Cycle::whereHas('offres', function($q)use($request){
+                    $q->whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})
+                ;})
+            ->get();
 
         return $cycles;
     }
@@ -99,6 +100,21 @@ class formController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCycles(Request $request)
+    {
+
+        $validated = $request->validate([
+            'profil' => 'required|integer|exists:profils,id',
+        ]);
+
+        $cycles = Cycle::whereHas('offres', function($q)use($request){
+                    $q->whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})
+                ;})
+            ->get();
+
+        return $cycles;
     }
 
     public function getBesoins(Request $request)

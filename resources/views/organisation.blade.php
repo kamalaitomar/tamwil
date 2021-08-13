@@ -3,7 +3,7 @@
 @section('content')
 
    <div class="container">
-      <organisations-component :organisations="{{ $organisations }}" :besoins="{{ $besoins }}" ></organisations-component>     
+      <organisations-component :organisations="{{ $organisations }}" ></organisations-component>     
    </div>
 
 

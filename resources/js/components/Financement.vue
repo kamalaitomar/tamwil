@@ -4,7 +4,7 @@
 
             <!-- back button  -->
             <div class="col-12 h-100 d-flex align-items-center">
-                <button v-if="curentStep > 1 && curentStep < 4 &&  loading == false" @click.prevent="pretStep" class="btn btn-primary h-25" :title="__('tamwil.back')">
+                <button v-if="curentStep > 1 && curentStep < 4 &&  loading == false" @click.prevent="pretStep" class="btn btn-outline-primary h-25" :title="__('tamwil.back')">
                     <svg v-if="locale == 'ar'" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
                     </svg>
@@ -341,12 +341,16 @@
                 this.loading = true;
                 this.form.profil = $id
                 this.slected = true 
+
+                let dataform = new FormData();
+                dataform.append('profil', this.form.profil);
+
                 var that = this
-                axios.get('/cycles/' + this.form.profil)
-                .then(function(res){
+                axios.post('/cycles' , dataform)
+                .then( response => {
                     setTimeout(()=>{
-                    console.log(res)
-                    that.cycles = res.data
+                    console.log(response)
+                    that.cycles = response.data
                     that.loading= false
                         }, 5)
                     }

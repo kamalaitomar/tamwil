@@ -22,8 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/findOrganisation', [ControllersOrganisationController::class , 'create']);
-
 Auth::routes([ 
     'register' => false, // Registration Routes...
     // 'reset' => false,  Password Reset Routes...
@@ -53,6 +51,10 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::resource('/about', AboutController::class)->only('index','store');
 });
 
-Route::get('/cycles/{id}', [FormController::class, 'show']);
+Route::post('/cycles', [FormController::class, 'getCycles']);
 Route::post('/besoins', [FormController::class, 'getBesoins']);
 Route::post('/offres', [ControllersOffreController::class, 'index']);
+
+
+Route::post('/selectBesoins', [ControllersOrganisationController::class, 'getBesoins']);
+Route::post('/findOrganisation', [ControllersOrganisationController::class , 'create']);

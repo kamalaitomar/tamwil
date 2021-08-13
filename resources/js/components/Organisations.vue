@@ -3,7 +3,7 @@
         <div class="col-1">
             <!-- back button  -->
             <div class="col-12 h-100 d-flex align-items-center">
-                <button v-if="curentStep == 2 &&  loading == false" @click.prevent="pretStep" class="btn btn-primary h-25" :title="__('organisation.Retour')">
+                <button v-if="curentStep == 2 &&  loading == false" @click.prevent="pretStep" class="btn btn-outline-primary h-25" :title="__('organisation.Retour')">
                     <svg v-if="locale == 'ar'" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
                     </svg>
@@ -95,12 +95,17 @@
                 
                 <!-- choose besoin section -->
                 <div v-if="curentStep == 2" class="row d-flex justify-content-center text-center">
-                    <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : besoin.id != form.bes}" style="cursor: pointer">
-                        <div class="m-1 p-2 mb-3 col-12">
-                            <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
-                            <div class="text m-1  text-center mt-3"  :class="{'bg-info':besoin.id == form.bes}">
-                                <h3 v-if="__('tamwil.'+besoin.nom_besoin).length<25" :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin)}}</h3>
-                                <h3 v-else :title="__('tamwil.'+besoin.nom_besoin)">{{__('tamwil.'+besoin.nom_besoin).substring(0,25)+".."}}</h3>
+                    <div class="row justify-content-center">
+                        <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
+                    </div> 
+                    <div v-if="loading == false" class="row justify-content-center">
+                        <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2  justify-content-center" :class="{ 'bg-white border-light' : besoin.id != form.bes}" style="cursor: pointer">
+                            <div class="m-1 p-2 mb-3 col-12">
+                                    <img :src="'/assets/images/'+besoin.icon" class="col-lg-6">
+                                <div class="text m-1 text-center mt-3"  :class="{'bg-info':besoin.id == form.bes}">
+                                    <h3 v-if="__('tamwil.'+besoin.nom_besoin).length<25" :title="__('tamwil.'+besoin.nom_besoin)" class="text-center">{{__('tamwil.'+besoin.nom_besoin)}}</h3>
+                                    <h3 v-else :title="__('tamwil.'+besoin.nom_besoin)" class="text-center">{{__('tamwil.'+besoin.nom_besoin).substring(0,25)+".."}}</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -173,14 +178,13 @@ export default {
                 success : false,
                 locale: window._locale,
                 loading: false,
+                besoins :[]
                 
             }
         },
 
         props: {
-                organisations:Array,
-                besoins:Array
-                
+                organisations:Array,               
                 },
 
         mounted() {
@@ -195,7 +199,23 @@ export default {
             },
 
             selectOrg(type){
+                this.loading = true;
                 this.form.type = type
+                
+                var dataform = new FormData();
+                dataform.append('type', this.form.type);
+
+                axios.post('/selectBesoins',dataform)
+                .then( response => {
+                    setTimeout(()=>{
+                        this.besoins = response.data;
+                            this.loading= false
+                        }, 200)
+                    }).catch((error) => {
+                         this.allerros = error.response.data.errors;
+                         this.success = false;
+                    });   
+                    
                 this.curentStep ++
             },
 
