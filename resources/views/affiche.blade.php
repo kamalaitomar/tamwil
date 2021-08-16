@@ -30,7 +30,7 @@
             <div class="col-9 mx-auto">
                 <h1 class="text-primary mb-3">{{ $organisation['name']}}</h1>
                 <h1 class="mb-3">{{__('organisation.presentation')}}</h1>
-                <p>{!! nl2br($organisation['presentation']) !!}</p>
+                <p class="text-justify">{!! nl2br($organisation['presentation']) !!}</p>
                 @if ($offres)
                     <div class="row" >
                         <div class="col-12">  
@@ -38,12 +38,11 @@
                             <div class="row m-1">
 
                                 @foreach ($offres as $offre)
-                                    <div class="card col-3 m-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-primary" title="{{$offre['name']}}">{{Str::limit($offre['name'], 30, $end='...') }}</h5>
-                                        </div>
-                                        <div class="d-flex align-items-end mb-3"> 
-                                            <a href=" {{ route('offre', [app()->getLocale(), $offre["id"]]) }}" class="btn btn-info col-12" target="_blank">{{__('organisation.afficher l\'offre')}} </a>
+                                    <div class="d-flex col-md-3 mb-4">
+                                        <div class="card col-12">
+                                            <div class="m-2 mt-3">
+                                                <a href=" {{ route('offre', [app()->getLocale(), $offre["id"]]) }}" class="text-primary" title="{{$offre['name']}}">{{Str::limit($offre['name'], 30, $end='...') }}</a>
+                                            </div>
                                         </div>
                                     </div> 
                                 @endforeach
