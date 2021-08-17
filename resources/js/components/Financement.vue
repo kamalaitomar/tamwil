@@ -1,5 +1,11 @@
 <template>
     <div class="row m-3">
+        <div id="ftco-loader" class="" :class="{'show': loading }">
+            <svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#3D90D9"/>
+            </svg>
+        </div>
         <div class="col-1">
 
             <!-- back button  -->
@@ -101,9 +107,6 @@
 
                     <!-- choose cycle section -->      
                     <div v-if="curentStep == 2" class="ftco-animate fadeInUp ftco-animated">
-                        <div class="row justify-content-center">
-                            <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
-                        </div>
                         <div v-if="loading == false">
                             <div class="row justify-content-center" >
                                 <div v-for="cycle in activeCycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : cycle.id != form.cycle}" style="cursor: pointer">
@@ -126,10 +129,6 @@
 
                     <!-- choose besoin section -->
                     <div v-if="curentStep == 3" class="ftco-animate fadeInUp ftco-animated">
-                        <div class="row justify-content-center">
-                            <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
-                        </div>
-                        
                         <div v-if="loading == false" class="row justify-content-center" >
                             <div v-for="besoin in besoins" :key="besoin.id" @click.prevent="selectBesoin(besoin.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2 text-center" :class="{ 'bg-white border-light' : besoin.id != form.besoin}" style="cursor: pointer">
                                 <div class="m-1 p-2 mb-3 col-12">
@@ -156,9 +155,6 @@
                             <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
                         </svg>
                     </button>
-                    <div class="row justify-content-center">
-                        <grid-loader :loading="loading" color="DeepSkyBlue" class="mb-5"></grid-loader>
-                    </div>
                     <div v-if="loading == false">
                         <div class="row justify-content-md-center">
                             <div v-for="(offre, key) in offres" :key="key" class="col-4 ftco-animate fadeInUp ftco-animated d-flex text-center" >
@@ -222,7 +218,7 @@
 </template>
 
 <script>
-    import GridLoader from 'vue-spinner/src/GridLoader.vue'
+    import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
     export default {
 
@@ -250,7 +246,6 @@
                 locale: window._locale,
                 slected: false,
                 name : '{{off.nom_offre_'+window._locale+'}}',
-
 
                 loading: false,
             }
@@ -295,7 +290,7 @@
         },
 
         components:{
-            GridLoader
+            ClipLoader
         },
         
         methods:{
