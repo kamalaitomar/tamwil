@@ -2085,24 +2085,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SearchForm',
+  props: {
+    profils: Array
+  },
+  components: {
+    ClipLoader: vue_spinner_src_ClipLoader_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
   data: function data() {
     return {
       cycles: [],
@@ -2120,47 +2111,9 @@ __webpack_require__.r(__webpack_exports__);
       curentStep: 1,
       offre: [],
       locale: window._locale,
-      slected: false,
       name: '{{off.nom_offre_' + window._locale + '}}',
       loading: false
     };
-  },
-  computed: {
-    activeProfiles: function activeProfiles() {
-      return this.profils.filter(function (u) {
-        return u.nom_profil != "Autres";
-      });
-    },
-    activeCycles: function activeCycles() {
-      return this.cycles.filter(function (u) {
-        return u.nom_cycle != "Autres";
-      });
-    }
-  },
-  props: {
-    profils: Array
-  },
-  mounted: function mounted() {
-    var vm = this;
-
-    window.onpopstate = function (event) {
-      var url = new URL(window.location.href);
-      var step = url.searchParams.get("step");
-
-      if (!step) {
-        step = 1;
-      }
-
-      vm.curentStep = step;
-    };
-  },
-  watch: {
-    uri: function uri(to, from) {
-      this.link = false;
-    }
-  },
-  components: {
-    ClipLoader: vue_spinner_src_ClipLoader_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   methods: {
     onSubmit: function onSubmit() {
@@ -2190,12 +2143,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     pretStep: function pretStep() {
       this.curentStep--, history.pushState({}, null, '?step=' + this.curentStep);
-      this.slected = true;
     },
     selectProfil: function selectProfil($id) {
       this.loading = true;
       this.form.profil = $id;
-      this.slected = true;
       var dataform = new FormData();
       dataform.append('profil', this.form.profil);
       var that = this;
@@ -2207,13 +2158,12 @@ __webpack_require__.r(__webpack_exports__);
         }, 5);
       });
       this.nextStep();
-      this.allerrors = '', this.slected = false;
+      this.allerrors = '', localStorage.setItem('profil', JSON.stringify(this.form.profil));
     },
     selectCycle: function selectCycle($id) {
       var _this2 = this;
 
-      this.form.cycle = $id, this.slected = true;
-      this.loading = true;
+      this.form.cycle = $id, this.loading = true;
       var dataform = new FormData();
       dataform.append('profil', this.form.profil);
       dataform.append('cycle', this.form.cycle);
@@ -2227,13 +2177,14 @@ __webpack_require__.r(__webpack_exports__);
         }, 5);
       });
       this.nextStep();
-      this.allerrors = '', this.slected = false;
+      this.allerrors = '', localStorage.setItem('cycle', JSON.stringify(this.form.cycle));
+      localStorage.setItem('cycles', JSON.stringify(this.cycles));
     },
     selectBesoin: function selectBesoin($id) {
       var _this3 = this;
 
       this.loading = true;
-      this.form.besoin = $id, this.slected = true;
+      this.form.besoin = $id;
       var dataform = new FormData();
       dataform.append('profil', this.form.profil);
       dataform.append('cycle', this.form.cycle);
@@ -2254,10 +2205,14 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.nextStep();
       this.allerrors = '';
+      localStorage.setItem('besoin', JSON.stringify(this.form.cycle));
+      localStorage.setItem('besoins', JSON.stringify(this.besoins));
     },
     showOffres: function showOffres($id) {
       this.offre = $id;
       this.nextStep();
+      localStorage.setItem('offres', JSON.stringify(this.offres));
+      localStorage.setItem('offre', JSON.stringify(this.offre));
     },
     profilsStep: function profilsStep() {
       if (this.form.profil != '') {
@@ -2291,7 +2246,35 @@ __webpack_require__.r(__webpack_exports__);
       var step = urlParams.get('step');
       console.log(step); // this.link = this.curentStep
     }
-  }
+  },
+  mounted: function mounted() {
+    console.log(this.activeCycles);
+    var vm = this;
+
+    window.onpopstate = function (event) {
+      var url = new URL(window.location.href);
+      var step = url.searchParams.get("step");
+
+      if (!step) {
+        step = 1;
+      }
+
+      vm.curentStep = step;
+    };
+
+    if (localStorage) {
+      this.besoins = JSON.parse(localStorage.besoins);
+      this.cycles = JSON.parse(localStorage.cycles);
+      this.form.profil = JSON.parse(localStorage.profil);
+      this.form.cycle = JSON.parse(localStorage.cycle);
+      this.form.besoin = JSON.parse(localStorage.besoin);
+      this.offre = JSON.parse(localStorage.offre);
+      this.offres = JSON.parse(localStorage.offres);
+      this.curentStep = 5;
+    }
+  },
+  computed: {},
+  watch: {}
 });
 
 /***/ }),
@@ -40047,69 +40030,21 @@ var render = function() {
                   {
                     staticClass: "row d-flex justify-content-center text-center"
                   },
-                  [
-                    _vm._l(_vm.activeProfiles, function(profil) {
-                      return _c(
-                        "div",
-                        {
-                          key: profil.id,
-                          staticClass:
-                            "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
-                          class: {
-                            "bg-white border-light":
-                              profil.id != _vm.form.profil
-                          },
-                          staticStyle: { cursor: "pointer" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.selectProfil(profil.id)
-                            }
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
-                            _c("img", {
-                              staticClass: "col-lg-6",
-                              attrs: { src: "/assets/images/" + profil.icon }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "text m-1 mt-3",
-                                class: {
-                                  "bg-info ": profil.id == _vm.form.profil
-                                }
-                              },
-                              [
-                                _c("h3", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.__("tamwil." + profil.nom_profil)
-                                    )
-                                  )
-                                ])
-                              ]
-                            )
-                          ])
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c(
+                  _vm._l(_vm.profils, function(profil) {
+                    return _c(
                       "div",
                       {
+                        key: profil.id,
                         staticClass:
                           "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
                         class: {
-                          "bg-white border-light": 8 != _vm.form.profil
+                          "bg-white border-light": profil.id != _vm.form.profil
                         },
                         staticStyle: { cursor: "pointer" },
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.selectProfil(8)
+                            return _vm.selectProfil(profil.id)
                           }
                         }
                       },
@@ -40117,26 +40052,30 @@ var render = function() {
                         _c("div", { staticClass: "m-1 p-2 mb-3 col-12" }, [
                           _c("img", {
                             staticClass: "col-lg-6",
-                            attrs: { src: "/assets/images/autres.png" }
+                            attrs: { src: "/assets/images/" + profil.icon }
                           }),
                           _vm._v(" "),
                           _c(
                             "div",
                             {
                               staticClass: "text m-1 mt-3",
-                              class: { "bg-info ": 8 == _vm.form.profil }
+                              class: {
+                                "bg-info ": profil.id == _vm.form.profil
+                              }
                             },
                             [
                               _c("h3", [
-                                _vm._v(_vm._s(_vm.__("tamwil.Autres")))
+                                _vm._v(
+                                  _vm._s(_vm.__("tamwil." + profil.nom_profil))
+                                )
                               ])
                             ]
                           )
                         ])
                       ]
                     )
-                  ],
-                  2
+                  }),
+                  0
                 )
               : _vm._e(),
             _vm._v(" "),
@@ -40150,72 +40089,22 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: "row justify-content-center" },
-                            [
-                              _vm._l(_vm.activeCycles, function(cycle) {
-                                return _c(
-                                  "div",
-                                  {
-                                    key: cycle.id,
-                                    staticClass:
-                                      "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
-                                    class: {
-                                      "bg-white border-light":
-                                        cycle.id != _vm.form.cycle
-                                    },
-                                    staticStyle: { cursor: "pointer" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.selectCycle(cycle.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "p-4 mb-3 col-12" },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "text m-1 text-center",
-                                            class: {
-                                              "bg-info ":
-                                                cycle.id == _vm.form.cycle,
-                                              "text-right": _vm.locale == "ar"
-                                            }
-                                          },
-                                          [
-                                            _c("h3", [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.__(
-                                                    "tamwil." + cycle.nom_cycle
-                                                  )
-                                                )
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              }),
-                              _vm._v(" "),
-                              _c(
+                            _vm._l(_vm.cycles, function(cycle) {
+                              return _c(
                                 "div",
                                 {
+                                  key: cycle.id,
                                   staticClass:
                                     "staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2",
                                   class: {
-                                    "bg-white border-light": 6 != _vm.form.cycle
+                                    "bg-white border-light":
+                                      cycle.id != _vm.form.cycle
                                   },
                                   staticStyle: { cursor: "pointer" },
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      return _vm.selectCycle(6)
+                                      return _vm.selectCycle(cycle.id)
                                     }
                                   }
                                 },
@@ -40229,14 +40118,19 @@ var render = function() {
                                         {
                                           staticClass: "text m-1 text-center",
                                           class: {
-                                            "bg-info ": 6 == _vm.form.cycle,
+                                            "bg-info ":
+                                              cycle.id == _vm.form.cycle,
                                             "text-right": _vm.locale == "ar"
                                           }
                                         },
                                         [
                                           _c("h3", [
                                             _vm._v(
-                                              _vm._s(_vm.__("tamwil.Autres"))
+                                              _vm._s(
+                                                _vm.__(
+                                                  "tamwil." + cycle.nom_cycle
+                                                )
+                                              )
                                             )
                                           ])
                                         ]
@@ -40245,8 +40139,8 @@ var render = function() {
                                   )
                                 ]
                               )
-                            ],
-                            2
+                            }),
+                            0
                           )
                         ])
                       : _vm._e()
@@ -40494,8 +40388,7 @@ var render = function() {
                                             staticClass:
                                               "btn btn-outline-primary btn-lg btn-block",
                                             attrs: {
-                                              href: "offre/" + offre[0].id,
-                                              target: "_blank"
+                                              href: "offre/" + offre[0].id
                                             }
                                           },
                                           [
@@ -40743,10 +40636,7 @@ var render = function() {
                                 {
                                   staticClass:
                                     "btn btn-outline-primary btn-lg btn-block",
-                                  attrs: {
-                                    href: "offre/" + off.id,
-                                    target: "_blank"
-                                  }
+                                  attrs: { href: "offre/" + off.id }
                                 },
                                 [
                                   _vm._v(

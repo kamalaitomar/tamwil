@@ -87,19 +87,11 @@
                 <form method="POST" action="/organisation"  @submit.prevent="onSubmit">
                     <!-- choose profil section -->
                     <div v-if="curentStep == 1"  class="row d-flex justify-content-center text-center">
-                        <div v-for="profil in activeProfiles" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : profil.id != form.profil}" style="cursor: pointer">
+                        <div v-for="profil in profils" :key="profil.id" @click.prevent="selectProfil(profil.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : profil.id != form.profil}" style="cursor: pointer">
                             <div class="m-1 p-2 mb-3 col-12" >
                                 <img :src="'/assets/images/'+profil.icon" class="col-lg-6">
                                 <div class="text m-1 mt-3" :class="{'bg-info ':profil.id == form.profil}">
                                     <h3>{{__('tamwil.'+profil.nom_profil )}}</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div @click.prevent="selectProfil(8)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2" :class="{ 'bg-white border-light' : 8 != form.profil}" style="cursor: pointer">
-                            <div class="m-1 p-2 mb-3 col-12" >
-                                <img src="/assets/images/autres.png" class="col-lg-6">
-                                <div class="text m-1 mt-3" :class="{'bg-info ': 8 == form.profil}">
-                                    <h3>{{__('tamwil.Autres' )}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -109,17 +101,10 @@
                     <div v-if="curentStep == 2" class="ftco-animate fadeInUp ftco-animated">
                         <div v-if="loading == false">
                             <div class="row justify-content-center" >
-                                <div v-for="cycle in activeCycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : cycle.id != form.cycle}" style="cursor: pointer">
+                                <div v-for="cycle in cycles" :key="cycle.id" @click.prevent="selectCycle(cycle.id)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : cycle.id != form.cycle}" style="cursor: pointer">
                                     <div class="p-4 mb-3 col-12">
                                         <div class="text m-1 text-center"  :class="{'bg-info ':cycle.id == form.cycle, 'text-right': locale=='ar'}">
                                             <h3>{{__('tamwil.'+cycle.nom_cycle )}}</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div @click.prevent="selectCycle(6)" class="staff bg-info col-lg-3 ftco-animate fadeInUp ftco-animated d-flex shadow-sm m-2"  :class="{ 'bg-white border-light' : 6 != form.cycle}" style="cursor: pointer">
-                                    <div class="p-4 mb-3 col-12">
-                                        <div class="text m-1 text-center"  :class="{'bg-info ': 6== form.cycle, 'text-right': locale=='ar'}">
-                                            <h3>{{__('tamwil.Autres')}}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +152,7 @@
                                         <span>{{__('tamwil.offres')}}</span>
                                     </div>
                                     <div class="m-3">
-                                        <a v-if="offre.length == 1" :href="'offre/'+offre[0].id" target="_blank" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</a>
+                                        <a v-if="offre.length == 1" :href="'offre/'+offre[0].id" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</a>
                                         <button v-else @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
                                     </div>
                                 </div>
@@ -205,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="m-3">
-                                    <a :href="'offre/'+off.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.affiche_loffre')}}</a>
+                                    <a :href="'offre/'+off.id" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.affiche_loffre')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -223,6 +208,15 @@
     export default {
 
         name : 'SearchForm',
+
+        props: {
+            profils:Array,
+        },
+
+        components:{
+            ClipLoader
+        },
+
         data: function(){
             return{
                 cycles :[],
@@ -244,55 +238,12 @@
 
                 offre:[],
                 locale: window._locale,
-                slected: false,
                 name : '{{off.nom_offre_'+window._locale+'}}',
 
                 loading: false,
             }
         },
 
-        computed: {
-            activeProfiles: function() {
-                return this.profils.filter(function(u) {
-                    return u.nom_profil != "Autres"
-                })
-            },
-            activeCycles: function() {
-                return this.cycles.filter(function(u) {
-                    return u.nom_cycle != "Autres"
-                })
-            },
-        },
-
-        props: {
-                profils:Array,
-                },
-
-        mounted() {
-            let vm = this;
-            window.onpopstate = function(event) {
-                var url = new URL(window.location.href)
-
-                var step = url.searchParams.get("step")
-                if (!step) {
-                    step= 1
-                }
-                vm.curentStep = step
-                
-            };
-        },
-
-
-        watch:{ 
-            uri: function (to, from){
-            this.link = false;
-            }
-        },
-
-        components:{
-            ClipLoader
-        },
-        
         methods:{
             
             onSubmit(){
@@ -328,14 +279,12 @@
                 this.curentStep --,
                 history.pushState({}, null, '?step='+this.curentStep)
                 
-                this.slected = true
             },
 
             selectProfil($id){
                 
                 this.loading = true;
                 this.form.profil = $id
-                this.slected = true 
 
                 let dataform = new FormData();
                 dataform.append('profil', this.form.profil);
@@ -352,12 +301,11 @@
                 );
                 this.nextStep()
                 this.allerrors = '',
-                this.slected = false
+                localStorage.setItem('profil', JSON.stringify(this.form.profil))
             },
 
             selectCycle($id){
                 this.form.cycle = $id,
-                this.slected = true
                 this.loading = true;
 
                 let dataform = new FormData();
@@ -377,14 +325,15 @@
 
                 this.nextStep()
                 this.allerrors = '',
-                this.slected = false
+                
+                localStorage.setItem('cycle', JSON.stringify(this.form.cycle))
+                localStorage.setItem('cycles', JSON.stringify(this.cycles))
             },
 
             selectBesoin($id){
                 
                 this.loading = true;
-                this.form.besoin = $id,
-                this.slected = true
+                this.form.besoin = $id
 
                 let dataform = new FormData();
                 dataform.append('profil', this.form.profil);
@@ -409,11 +358,16 @@
 
                     this.nextStep()
                     this.allerrors = ''
+                    localStorage.setItem('besoin', JSON.stringify(this.form.cycle))
+                localStorage.setItem('besoins', JSON.stringify(this.besoins))
             },
 
             showOffres($id){
                 this.offre = $id
                 this.nextStep()
+                
+                localStorage.setItem('offres', JSON.stringify(this.offres))
+                localStorage.setItem('offre', JSON.stringify(this.offre))
             },
 
             profilsStep(){
@@ -456,6 +410,40 @@
                 // this.link = this.curentStep
             },
 
-        }
+        },
+
+        mounted() {
+            console.log(this.activeCycles)
+
+            let vm = this;
+            window.onpopstate = function(event) {
+                var url = new URL(window.location.href)
+
+                var step = url.searchParams.get("step")
+                if (!step) { step= 1 }
+                vm.curentStep = step
+            };
+
+            if(localStorage){
+
+                this.besoins = JSON.parse(localStorage.besoins)
+                this.cycles = JSON.parse(localStorage.cycles)
+
+                this.form.profil = JSON.parse(localStorage.profil) 
+                this.form.cycle = JSON.parse(localStorage.cycle ) 
+                this.form.besoin = JSON.parse(localStorage.besoin)
+
+                this.offre =JSON.parse(localStorage.offre)
+                this.offres =JSON.parse(localStorage.offres)
+
+                this.curentStep = 5
+            }
+        },
+
+        computed: {
+        },
+
+        watch:{
+        }, 
     }
 </script>

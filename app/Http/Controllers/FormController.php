@@ -26,7 +26,7 @@ class formController extends Controller
         // $role->givePermissionTo($permission);
 
 
-        $profils = Profil::all();
+        $profils = Profil::orderBy('created_at')->get();
 
         return view('financement', compact('profils'));
     }
@@ -112,6 +112,7 @@ class formController extends Controller
         $cycles = Cycle::whereHas('offres', function($q)use($request){
                     $q->whereHas('profils', function($q)use($request){ $q->where('id', $request->profil);})
                 ;})
+            ->orderBy('created_at')
             ->get();
 
         return $cycles;
