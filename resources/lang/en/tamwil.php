@@ -60,6 +60,7 @@
         "douane"=>"customs",
         "garanties"=>"guarantees",
         "prise de participation"=>"equity investment",
+        "commande publique"=>"Public order",
         "offres"=>"Offer(s)",
         "aucune"=>"We did not find any offer corresponding to your search, try other conditions!",
         "affiche_loffre"=>"Show offer",

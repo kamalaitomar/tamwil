@@ -54,21 +54,18 @@
         "submit"=>"إرسال",
         "programme"=>"برنامج",
         "offre"=>"عرض التمويل",
-        "subvention"=>"منحة",
-        "prêts"=>"مستعد",
-        "foncier"=>"الأرض",
-        "fiscal"=>"ضريبة",
-        "garanties"=>"ضمانات",
-        "douane"=>"جمارك",
-        "prise de participation"=>"الاستثمار في الأسهم",
+        "subvention"=>"المساعدات",
+        "prêts"=>"القرض",
+        "foncier"=>"العقار",
+        "fiscal"=>"الضرائب",
+        "garanties"=>"الضمان",
+        "douane"=>"الجمارك",
+        "prise de participation"=>"الأستثمار في رأس المال",
+        "commande publique"=>"الصفقات العمومية",
         "offres"=>"عروض",
         "aucune"=>"لم نعثر على أي عرض لبحثك ، جرب الشروط الأخرى",
         "affiche_loffre"=>"عرض",
         "savoir_plus"=>"عرض المزيد",
-
-
-
-
     ]
 
 
