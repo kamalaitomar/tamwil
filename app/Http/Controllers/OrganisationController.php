@@ -16,7 +16,8 @@ class OrganisationController extends Controller
     public function index()
     {
          $organisations = Organisation::select('type_d_organisation_fr')->distinct()->get();
-         return view("organisation", compact('organisations'));
+         $title ='Organisation';
+         return view("organisation", compact('organisations', 'title'));
     }
 
     /**
@@ -63,9 +64,10 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::findOrFail($id);
         $offres =  $organisation->offres;
+        $title = 'Organisation';
 
 
-        return view('affiche', compact('organisation', 'locale', 'id', 'offres'));
+        return view('affiche', compact('organisation', 'locale', 'id', 'offres', 'title'));
 
     }
 

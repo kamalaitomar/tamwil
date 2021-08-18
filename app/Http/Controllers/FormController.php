@@ -19,16 +19,11 @@ class formController extends Controller
      */
     public function index()
     {
-        // $role = Role::findById(2);
-
-        // $permission = Permission::find([1, 2, 4, 5]);
-
-        // $role->givePermissionTo($permission);
-
 
         $profils = Profil::orderBy('created_at')->get();
+        $title = 'Financement';
 
-        return view('financement', compact('profils'));
+        return view('financement', compact('profils', 'title'));
     }
 
     /**

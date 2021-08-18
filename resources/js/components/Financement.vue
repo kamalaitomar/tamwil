@@ -245,33 +245,6 @@
         },
 
         methods:{
-            
-            onSubmit(){
-                
-                this.loading = true;
-                let dataform = new FormData();
-                dataform.append('profil', this.form.profil);
-                dataform.append('cycle', this.form.cycle);
-                dataform.append('besoin', this.form.besoin);
-
-
-                axios.post( '/offres', dataform).then( response => {
-                    setTimeout(()=>{
-                        this.allerros = [];
-                        this.submited = true;
-                        this.success = true;
-                        this.offres = response.data;
-                        this.loading= false
-                    }, 10)
-                    
-                } ).catch((error) => {
-                         this.allerros = error.response.data.errors;
-                         this.success = false;
-                    });
-
-                    this.nextStep()
-                    this.allerrors = ''
-            },
 
             pretStep(){
                 this.curentStep --,
@@ -290,10 +263,8 @@
                 var that = this
                 axios.post('/cycles' , dataform)
                 .then( response => {
-                    setTimeout(()=>{
                     that.cycles = response.data
                     that.loading= false
-                        }, 5)
                     }
                 );
                 this.nextStep()
@@ -311,11 +282,9 @@
 
                 axios.post( '/besoins', dataform)
                         .then( response => {
-                        setTimeout(()=>{
                             this.allerros = [];
                             this.besoins = response.data;
                             this.loading= false
-                        }, 5)
                     } )
 
                 this.nextStep()
@@ -337,13 +306,11 @@
 
 
                 axios.post( '/offres', dataform).then( response => {
-                    setTimeout(()=>{
                             this.allerros = [];
                             this.submited = true;
                             this.success = true;
                             this.offres = response.data;
                             this.loading= false
-                        }, 5)
                     } ).catch((error) => {
                             this.allerros = error.response.data.errors;
                             this.success = false;
@@ -417,8 +384,6 @@
                 const urlParams = new URLSearchParams(queryString);
 
                 const step = urlParams.get('step')
-
-                // this.link = this.curentStep
             },
 
         },
@@ -447,7 +412,6 @@
                 this.offres =JSON.parse(localStorage.offres)
 
                 const date = Date.now()
-                
                 if(date -  JSON.parse(localStorage.time) < 300000){
                     this.curentStep = JSON.parse(localStorage.curentStep)
                 }

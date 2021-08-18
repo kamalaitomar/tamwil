@@ -6,7 +6,7 @@
     <div class="my-5 p-2 m-2">
         <div class="row @if(App::isLocale('ar')) text-right @endif">
             <div class="col-3">
-                <img src='/assets/images/organisation/{{ $organisation ->icone}}' class="my-2 p-0 col-12">
+                <a href="{{ $organisation ->web_site}}" ><img src='/assets/images/organisation/{{ $organisation ->icone}}' class="my-2 p-0 col-12"></a>
                 <div class="my-2">
                     @if ($organisation ->email)
                         <div class="my-2">
@@ -22,7 +22,7 @@
                         </svg>
                         {{ $organisation ->tel}}<br>  
                     </div>
-                    <a href="{{ $organisation ->web_site}}" class="card-link my-2">{{ $organisation ->web_site}}</a>
+                    <a href="{{ $organisation ->web_site}}" class="card-link my-2">{{ Str::limit($organisation ->web_site, 30, $end='...')}}</a>
                     <p class="card-text my-2">{{ $organisation['adresse']}}</p>
                     <p class="card-text my-2">{{ $organisation['type']}}</p>
                 </div>

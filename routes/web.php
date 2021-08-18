@@ -41,7 +41,10 @@ Route::group(['middleware'=>'auth'], function(){
 Route::redirect('/','/fr');
 
 Route::group(['prefix'=>'{locale}'], function(){
-    Route::view('/', 'welcome')->name('home');
+    Route::get('/', function(){
+        $title = 'Tamwil';
+        return view('welcome', compact('title'));
+    })->name('home');
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 

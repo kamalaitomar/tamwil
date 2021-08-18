@@ -59,10 +59,12 @@ class OffreController extends Controller
     {
         $offre = Offre::findOrFail($id);
         $organisations =  $offre->organisations;
+        $title = 'Offre';
+        
 
         $lng = app()->getLocale();
 
-        return view("offre", compact('offre', 'organisations', 'locale', 'id'));
+        return view("offre", compact('offre', 'organisations', 'locale', 'id', 'title'));
     }
 
     /**
