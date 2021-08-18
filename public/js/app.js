@@ -2126,8 +2126,6 @@ __webpack_require__.r(__webpack_exports__);
       dataform.append('besoin', this.form.besoin);
       axios.post('/offres', dataform).then(function (response) {
         setTimeout(function () {
-          console.log(response);
-          console.log(dataform);
           _this.allerros = [];
           _this.submited = true;
           _this.success = true;
@@ -2152,7 +2150,6 @@ __webpack_require__.r(__webpack_exports__);
       var that = this;
       axios.post('/cycles', dataform).then(function (response) {
         setTimeout(function () {
-          console.log(response);
           that.cycles = response.data;
           that.loading = false;
         }, 5);
@@ -2169,8 +2166,6 @@ __webpack_require__.r(__webpack_exports__);
       dataform.append('cycle', this.form.cycle);
       axios.post('/besoins', dataform).then(function (response) {
         setTimeout(function () {
-          console.log(response);
-          console.log(dataform);
           _this2.allerros = [];
           _this2.besoins = response.data;
           _this2.loading = false;
@@ -2191,8 +2186,6 @@ __webpack_require__.r(__webpack_exports__);
       dataform.append('besoin', this.form.besoin);
       axios.post('/offres', dataform).then(function (response) {
         setTimeout(function () {
-          console.log(response);
-          console.log(dataform);
           _this3.allerros = [];
           _this3.submited = true;
           _this3.success = true;
@@ -2205,7 +2198,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.nextStep();
       this.allerrors = '';
-      localStorage.setItem('besoin', JSON.stringify(this.form.cycle));
+      localStorage.setItem('besoin', JSON.stringify(this.form.besoin));
       localStorage.setItem('besoins', JSON.stringify(this.besoins));
     },
     showOffres: function showOffres($id) {
@@ -2213,6 +2206,17 @@ __webpack_require__.r(__webpack_exports__);
       this.nextStep();
       localStorage.setItem('offres', JSON.stringify(this.offres));
       localStorage.setItem('offre', JSON.stringify(this.offre));
+      localStorage.setItem('curentStep', JSON.stringify(this.curentStep));
+      var time = Date.now();
+      localStorage.setItem('time', JSON.stringify(time));
+    },
+    showOffre: function showOffre(offre) {
+      localStorage.setItem('offres', JSON.stringify(this.offres));
+      localStorage.setItem('offre', JSON.stringify(offre[0]));
+      localStorage.setItem('curentStep', JSON.stringify(this.curentStep));
+      var time = Date.now();
+      localStorage.setItem('time', JSON.stringify(time));
+      window.location.href = 'offre/' + offre[0].id;
     },
     profilsStep: function profilsStep() {
       if (this.form.profil != '') {
@@ -2243,12 +2247,10 @@ __webpack_require__.r(__webpack_exports__);
       history.pushState({}, null, '?step=' + this.curentStep);
       var queryString = window.location.search;
       var urlParams = new URLSearchParams(queryString);
-      var step = urlParams.get('step');
-      console.log(step); // this.link = this.curentStep
+      var step = urlParams.get('step'); // this.link = this.curentStep
     }
   },
   mounted: function mounted() {
-    console.log(this.activeCycles);
     var vm = this;
 
     window.onpopstate = function (event) {
@@ -2270,7 +2272,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form.besoin = JSON.parse(localStorage.besoin);
       this.offre = JSON.parse(localStorage.offre);
       this.offres = JSON.parse(localStorage.offres);
-      this.curentStep = 5;
+      var date = Date.now();
+
+      if (date - JSON.parse(localStorage.time) < 300000) {
+        this.curentStep = JSON.parse(localStorage.curentStep);
+      } else {
+        this.curentStep = 1;
+      }
     }
   },
   computed: {},
@@ -40383,12 +40391,15 @@ var render = function() {
                                   _c("div", { staticClass: "m-3" }, [
                                     offre.length == 1
                                       ? _c(
-                                          "a",
+                                          "button",
                                           {
                                             staticClass:
                                               "btn btn-outline-primary btn-lg btn-block",
-                                            attrs: {
-                                              href: "offre/" + offre[0].id
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.showOffre(offre)
+                                              }
                                             }
                                           },
                                           [

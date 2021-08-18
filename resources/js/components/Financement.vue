@@ -152,7 +152,7 @@
                                         <span>{{__('tamwil.offres')}}</span>
                                     </div>
                                     <div class="m-3">
-                                        <a v-if="offre.length == 1" :href="'offre/'+offre[0].id" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</a>
+                                        <button v-if="offre.length == 1" @click.prevent="showOffre(offre)" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
                                         <button v-else @click.prevent="showOffres(offre)" type="button" :offre="offre" class="btn btn-outline-primary btn-lg btn-block">{{__('tamwil.savoir_plus')}}</button>
                                     </div>
                                 </div>
@@ -257,8 +257,6 @@
 
                 axios.post( '/offres', dataform).then( response => {
                     setTimeout(()=>{
-                        console.log(response);
-                        console.log(dataform);
                         this.allerros = [];
                         this.submited = true;
                         this.success = true;
@@ -293,7 +291,6 @@
                 axios.post('/cycles' , dataform)
                 .then( response => {
                     setTimeout(()=>{
-                    console.log(response)
                     that.cycles = response.data
                     that.loading= false
                         }, 5)
@@ -315,8 +312,6 @@
                 axios.post( '/besoins', dataform)
                         .then( response => {
                         setTimeout(()=>{
-                            console.log(response);
-                            console.log(dataform);
                             this.allerros = [];
                             this.besoins = response.data;
                             this.loading= false
@@ -343,8 +338,6 @@
 
                 axios.post( '/offres', dataform).then( response => {
                     setTimeout(()=>{
-                            console.log(response);
-                            console.log(dataform);
                             this.allerros = [];
                             this.submited = true;
                             this.success = true;
@@ -358,8 +351,8 @@
 
                     this.nextStep()
                     this.allerrors = ''
-                    localStorage.setItem('besoin', JSON.stringify(this.form.cycle))
-                localStorage.setItem('besoins', JSON.stringify(this.besoins))
+                    localStorage.setItem('besoin', JSON.stringify(this.form.besoin))
+                    localStorage.setItem('besoins', JSON.stringify(this.besoins))
             },
 
             showOffres($id){
@@ -368,6 +361,25 @@
                 
                 localStorage.setItem('offres', JSON.stringify(this.offres))
                 localStorage.setItem('offre', JSON.stringify(this.offre))
+
+                localStorage.setItem('curentStep', JSON.stringify(this.curentStep))
+
+                const time = Date.now()
+
+                localStorage.setItem('time',JSON.stringify(time)) 
+            },
+
+            showOffre(offre){
+
+                localStorage.setItem('offres', JSON.stringify(this.offres))
+                localStorage.setItem('offre', JSON.stringify(offre[0]))
+
+                localStorage.setItem('curentStep', JSON.stringify(this.curentStep))
+
+                const time = Date.now()
+                localStorage.setItem('time', JSON.stringify(time))
+
+                window.location.href = 'offre/'+offre[0].id;
             },
 
             profilsStep(){
@@ -405,7 +417,6 @@
                 const urlParams = new URLSearchParams(queryString);
 
                 const step = urlParams.get('step')
-                console.log(step);
 
                 // this.link = this.curentStep
             },
@@ -413,7 +424,6 @@
         },
 
         mounted() {
-            console.log(this.activeCycles)
 
             let vm = this;
             window.onpopstate = function(event) {
@@ -436,7 +446,16 @@
                 this.offre =JSON.parse(localStorage.offre)
                 this.offres =JSON.parse(localStorage.offres)
 
-                this.curentStep = 5
+                const date = Date.now()
+                
+                if(date -  JSON.parse(localStorage.time) < 300000){
+                    this.curentStep = JSON.parse(localStorage.curentStep)
+                }
+                else{
+                    this.curentStep = 1
+                }
+
+                
             }
         },
 
