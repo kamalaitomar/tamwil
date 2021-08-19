@@ -138,7 +138,7 @@
                                     </div>
                                             <h6 class="text-center"> {{__('organisation.'+organisation.type_d_organisation_fr.replace(/_/g, " ") )}}</h6> 
                                     <div class="d-flex align-items-end">
-                                        <a :href="'showorganisation/'+organisation.id" target="_blank" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
+                                        <a :href="'showorganisation/'+organisation.id" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +192,18 @@ export default {
 
             pretStep(){
                 this.curentStep --
+                history.pushState({}, null, '?step='+this.curentStep)
+            },
+
+            nextStep(){
+                this.curentStep++
+                history.pushState({}, null, '?step='+this.curentStep)
+
+                const queryString = window.location.search;
+
+                const urlParams = new URLSearchParams(queryString);
+
+                const step = urlParams.get('step')
             },
 
             selectOrg(type){
@@ -210,7 +222,7 @@ export default {
                          this.success = false;
                     });   
                     
-                this.curentStep ++
+                this.nextStep()
             },
 
             selectBesoin(id){
@@ -221,42 +233,51 @@ export default {
                 var dataform = new FormData();
                 dataform.append('type', this.form.type);
                 dataform.append('besoin', id);
-                console.log(dataform);
 
 
                 axios.post('/findOrganisation',dataform)
                 .then( response => {
-                        console.log(response);
-                        console.log(dataform);
                         this.organisationsResult = response.data;
                         this.loading= false
                     }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });   
-                this.curentStep ++
+                this.nextStep()
             },
 
             organisationsStep(){
                 if (this.form.type != '') {
                     this.curentStep = 1
+                    history.pushState({}, null, '?step='+this.curentStep)
                 }
             },
 
             financementStep(){
                 if (this.form.type != '') {
                     this.curentStep = 2
+                    history.pushState({}, null, '?step='+this.curentStep)
                 }  
             },
 
             afficheStep(){
                 if (this.form.bes != '') {
                     this.curentStep = 3
+                    history.pushState({}, null, '?step='+this.curentStep)
                 } 
             },
         },
 
         mounted() {
+            let vm = this;
+            window.onpopstate = function(event) {
+                var url = new URL(window.location.href)
+
+                var step = url.searchParams.get("step")
+                if (!step) { step= 1 }
+                vm.curentStep = step
+            };
+
         },
     }
 </script>

@@ -2448,6 +2448,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     pretStep: function pretStep() {
       this.curentStep--;
+      history.pushState({}, null, '?step=' + this.curentStep);
+    },
+    nextStep: function nextStep() {
+      this.curentStep++;
+      history.pushState({}, null, '?step=' + this.curentStep);
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var step = urlParams.get('step');
     },
     selectOrg: function selectOrg(type) {
       var _this = this;
@@ -2463,7 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.allerros = error.response.data.errors;
         _this.success = false;
       });
-      this.curentStep++;
+      this.nextStep();
     },
     selectBesoin: function selectBesoin(id) {
       var _this2 = this;
@@ -2473,35 +2481,48 @@ __webpack_require__.r(__webpack_exports__);
       var dataform = new FormData();
       dataform.append('type', this.form.type);
       dataform.append('besoin', id);
-      console.log(dataform);
       axios.post('/findOrganisation', dataform).then(function (response) {
-        console.log(response);
-        console.log(dataform);
         _this2.organisationsResult = response.data;
         _this2.loading = false;
       })["catch"](function (error) {
         _this2.allerros = error.response.data.errors;
         _this2.success = false;
       });
-      this.curentStep++;
+      this.nextStep();
     },
     organisationsStep: function organisationsStep() {
       if (this.form.type != '') {
         this.curentStep = 1;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     },
     financementStep: function financementStep() {
       if (this.form.type != '') {
         this.curentStep = 2;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     },
     afficheStep: function afficheStep() {
       if (this.form.bes != '') {
         this.curentStep = 3;
+        history.pushState({}, null, '?step=' + this.curentStep);
       }
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var vm = this;
+
+    window.onpopstate = function (event) {
+      var url = new URL(window.location.href);
+      var step = url.searchParams.get("step");
+
+      if (!step) {
+        step = 1;
+      }
+
+      vm.curentStep = step;
+    };
+  }
 });
 
 /***/ }),
@@ -40696,8 +40717,7 @@ var render = function() {
                                           attrs: {
                                             href:
                                               "showorganisation/" +
-                                              organisation.id,
-                                            target: "_blank"
+                                              organisation.id
                                           }
                                         },
                                         [
