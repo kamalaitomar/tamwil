@@ -216,13 +216,14 @@ export default {
                 axios.post('/selectBesoins',dataform)
                 .then( response => {
                         this.besoins = response.data;
-                            this.loading= false
+                        this.loading= false
                     }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });   
                     
                 this.nextStep()
+                localStorage.setItem('type', JSON.stringify(this.form.type))
             },
 
             selectBesoin(id){
@@ -238,12 +239,23 @@ export default {
                 axios.post('/findOrganisation',dataform)
                 .then( response => {
                         this.organisationsResult = response.data;
+                        
+                        localStorage.setItem('organisations', JSON.stringify(this.organisationsResult))
                         this.loading= false
                     }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
                     });   
                 this.nextStep()
+
+                localStorage.setItem('orgBesoin', JSON.stringify(this.form.bes))
+                localStorage.setItem('orgBesoins', JSON.stringify(this.besoins))
+
+                localStorage.setItem('curentStep', JSON.stringify(this.curentStep))
+
+                const time = Date.now()
+                localStorage.setItem('time', JSON.stringify(time))
+                
             },
 
             organisationsStep(){
@@ -278,6 +290,24 @@ export default {
                 vm.curentStep = step
             };
 
+            if(localStorage){
+
+                this.besoins = JSON.parse(localStorage.orgBesoins)
+
+                this.form.type = JSON.parse(localStorage.type) 
+                this.form.bes = JSON.parse(localStorage.orgBesoin ) 
+
+                this.organisationsResult =JSON.parse(localStorage.organisations)
+
+                const date = Date.now()
+                if(date -  JSON.parse(localStorage.time) < 300000){
+                    this.curentStep = JSON.parse(localStorage.curentStep)
+                }
+                else{
+                    this.curentStep = 1
+                }
+                
+            }
         },
     }
 </script>
