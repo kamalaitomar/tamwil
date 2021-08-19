@@ -158,13 +158,18 @@
     </div>
 </template>
 <script> 
-import ExampleComponent from './ExampleComponent.vue';
-    import GridLoader from 'vue-spinner/src/GridLoader.vue'
 
 export default {
-  components: { ExampleComponent },
 
         name : 'Organisations',
+
+        props: {
+                organisations:Array,               
+                },
+        
+        components:{
+        },
+
         data: function(){
             return{
                 curentStep : 1,
@@ -183,19 +188,10 @@ export default {
             }
         },
 
-        props: {
-                organisations:Array,               
-                },
-
-        mounted() {
-            // console.log(this.typedata)
-        },
-
         methods:{
 
             pretStep(){
                 this.curentStep --
-        
             },
 
             selectOrg(type){
@@ -207,10 +203,8 @@ export default {
 
                 axios.post('/selectBesoins',dataform)
                 .then( response => {
-                    setTimeout(()=>{
                         this.besoins = response.data;
                             this.loading= false
-                        }, 200)
                     }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
@@ -232,12 +226,10 @@ export default {
 
                 axios.post('/findOrganisation',dataform)
                 .then( response => {
-                    setTimeout(()=>{
                         console.log(response);
                         console.log(dataform);
                         this.organisationsResult = response.data;
-                            this.loading= false
-                        }, 200)
+                        this.loading= false
                     }).catch((error) => {
                          this.allerros = error.response.data.errors;
                          this.success = false;
@@ -249,26 +241,22 @@ export default {
                 if (this.form.type != '') {
                     this.curentStep = 1
                 }
-                
             },
 
             financementStep(){
                 if (this.form.type != '') {
                     this.curentStep = 2
-                }
-                
+                }  
             },
 
             afficheStep(){
                 if (this.form.bes != '') {
                     this.curentStep = 3
-                }
-                
+                } 
             },
         },
-        
-        components:{
-            GridLoader
+
+        mounted() {
         },
     }
 </script>
