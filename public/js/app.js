@@ -2493,9 +2493,9 @@ __webpack_require__.r(__webpack_exports__);
       this.nextStep();
       localStorage.setItem('orgBesoin', JSON.stringify(this.form.bes));
       localStorage.setItem('orgBesoins', JSON.stringify(this.besoins));
-      localStorage.setItem('curentStep', JSON.stringify(this.curentStep));
+      localStorage.setItem('orgCurentStep', JSON.stringify(this.curentStep));
       var time = Date.now();
-      localStorage.setItem('time', JSON.stringify(time));
+      localStorage.setItem('orgtime', JSON.stringify(time));
     },
     organisationsStep: function organisationsStep() {
       if (this.form.type != '') {
@@ -2537,8 +2537,8 @@ __webpack_require__.r(__webpack_exports__);
       this.organisationsResult = JSON.parse(localStorage.organisations);
       var date = Date.now();
 
-      if (date - JSON.parse(localStorage.time) < 300000) {
-        this.curentStep = JSON.parse(localStorage.curentStep);
+      if (date - JSON.parse(localStorage.orgtime) < 300000) {
+        this.curentStep = JSON.parse(localStorage.orgCurentStep);
       } else {
         this.curentStep = 1;
       }
@@ -40646,84 +40646,62 @@ var render = function() {
                                     "card border-left-primary shadow h-100 py-2"
                                 },
                                 [
-                                  _c("div", { staticClass: "card-body" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "row no-gutters align-items-center mb-2"
-                                      },
-                                      [
-                                        _vm.locale == "ar"
-                                          ? _c(
-                                              "h5",
-                                              {
-                                                staticClass:
-                                                  "text-xs font-weight-bold text-primary col-9 text-right",
-                                                attrs: {
-                                                  title:
-                                                    organisation.nom_organisation_ar
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    organisation.nom_organisation_ar.substring(
-                                                      0,
-                                                      35
-                                                    ) + "..."
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          : _c(
-                                              "h5",
-                                              {
-                                                staticClass:
-                                                  "text-xs font-weight-bold text-primary col-9 text-left",
-                                                attrs: {
-                                                  title:
-                                                    organisation.nom_organisation_fr
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    organisation.nom_organisation_fr.substring(
-                                                      0,
-                                                      35
-                                                    ) + "..."
-                                                  )
-                                                )
-                                              ]
-                                            ),
-                                        _vm._v(" "),
-                                        _c("img", {
-                                          staticClass:
-                                            "offset-1 col-2 rounded d-flex align-items-start ",
-                                          attrs: {
-                                            src:
-                                              "/assets/images/organisation/" +
-                                              organisation.icone
-                                          }
-                                        })
-                                      ]
-                                    )
+                                  _c("div", { staticClass: "text-center" }, [
+                                    _c("img", {
+                                      staticClass: "rounded",
+                                      staticStyle: { height: "70px" },
+                                      attrs: {
+                                        src:
+                                          "/assets/images/organisation/" +
+                                          organisation.icone
+                                      }
+                                    })
                                   ]),
                                   _vm._v(" "),
-                                  _c("h6", { staticClass: "text-center" }, [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.__(
-                                            "organisation." +
-                                              organisation.type_d_organisation_fr.replace(
-                                                /_/g,
-                                                " "
+                                  _c("div", { staticClass: "card-body" }, [
+                                    _vm.locale == "ar"
+                                      ? _c(
+                                          "h6",
+                                          {
+                                            staticClass:
+                                              "card-title font-weight-bold text-right",
+                                            attrs: {
+                                              title:
+                                                organisation.nom_organisation_ar
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                organisation.nom_organisation_ar.substring(
+                                                  0,
+                                                  35
+                                                ) + "..."
                                               )
-                                          )
+                                            )
+                                          ]
                                         )
-                                    )
+                                      : _c(
+                                          "h6",
+                                          {
+                                            staticClass:
+                                              "card-title font-weight-bold text-left",
+                                            attrs: {
+                                              title:
+                                                organisation.nom_organisation_fr
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(
+                                                organisation.nom_organisation_fr.substring(
+                                                  0,
+                                                  35
+                                                ) + "..."
+                                              )
+                                            )
+                                          ]
+                                        )
                                   ]),
                                   _vm._v(" "),
                                   _c(

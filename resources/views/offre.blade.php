@@ -33,9 +33,9 @@
                                             </div>
                                             
                                             <h6 class="text-center text-primary"> {{$organisation['type']}}</h6>
-                                        <div class="d-flex align-items-end">
-                                            <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
-                                        </div>
+                                            <div class="d-flex align-items-end">
+                                                <a href=" {{ route('showorganisation', [app()->getLocale(), $organisation["id"]]) }}" class="btn btn-outline-primary btn-lg btn-block m-3 ">{{__('organisation.Afficherlorganisation')}}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach

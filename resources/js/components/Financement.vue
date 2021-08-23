@@ -415,9 +415,7 @@
                 }
                 else{
                     this.curentStep = 1
-                }
-
-                
+                }  
             }
         },
 
