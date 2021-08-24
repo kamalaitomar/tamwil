@@ -9,12 +9,12 @@
                 <h1 class="mb-3">{{$offre['name']}}</h1>
                 <h4 class="text-info mb-0 ">{{__('offre.objet')}}</h4>
                 <p class="mb-3">{{$offre['objet']}}</p>
+                <h4 class="text-info mb-0">{{__('offre.description')}}</h4>
+                <p class="mb-3">{{$offre['description']}}</p>
                 @if ($offre['condition'] != null)
                     <h4 class="text-info mb-0">{{__('offre.condition')}}</h4>
                     <p class="mb-3">{{$offre['condition']}}</p>
                 @endif 
-                <h4 class="text-info mb-0">{{__('offre.description')}}</h4>
-                <p class="mb-3">{{$offre['description']}}</p>
 
                 @if ($organisations  )
                     <div class="row" >
