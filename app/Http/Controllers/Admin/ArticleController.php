@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+
+use App\Http\Controllers\Controller;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -12,8 +15,9 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { 
+        $articles = Article::paginate(10);
+        return view('admin.article.articles', compact('articles'));
     }
 
     /**
@@ -23,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article.createArticle');
     }
 
     /**
@@ -56,7 +60,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('admin.article.editArticle', compact('article'));
     }
 
     /**

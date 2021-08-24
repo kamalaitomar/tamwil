@@ -18,6 +18,12 @@
         </span>
         <span class="text">Ajouter une organisation</span>
     </a>
+    <a href="{{ route('article.create') }}" class="btn btn-success btn-icon-split m-2">
+        <span class="icon text-white-50">
+            <i class="fas fa-plus"></i>
+        </span>
+        <span class="text">Ajouter un article</span>
+    </a>
 </div>
 <div class="row">
     <div class="card border-left-primary shadow h-100 py-2 mx-2">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\OffreController;
 use App\Http\Controllers\Admin\OrganisationController;
 use App\Http\Controllers\Admin\UserController;
@@ -31,6 +32,7 @@ Auth::routes([
 Route::group(['middleware'=>'auth'], function(){
     Route::resource('/admin/offre', OffreController::class);
     Route::resource('/admin/organisation', OrganisationController::class);
+    Route::resource('/admin/article', ArticleController::class);
     
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('adminn');  
