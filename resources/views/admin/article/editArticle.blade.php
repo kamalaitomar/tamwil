@@ -15,7 +15,7 @@
         </ul>
         <div class="tab-content p-3" id="myTabContent">
             <div class="tab-pane fade show active" id="fr" role="tabpanel" aria-labelledby="home-tab">
-                <form class="user" action=" {{ route('article.store') }} " method="POST">
+                <form class="user" action=" {{ route('article.update', ['article'=>$article->id]) }} " method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
