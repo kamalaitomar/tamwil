@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticle;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class ArticleController extends Controller
 {
@@ -116,5 +117,21 @@ class ArticleController extends Controller
         $request->session()->flash('status','votre article a été Suprime');
 
         return redirect()->route('article.index');
+    }
+
+    public function uploadEditorImage(Request $request){
+        $this->validate($request, [
+            'image'=> 'required|mimes:jpeg,jpg,png'
+        ]);
+
+        $picName= time().'-'.$request->image->getClientOriginalName();
+        $request->image->move(public_path('uploads'),$picName);
+        return response()->json([
+            "success"=>1,
+            "file"=>[
+                'url' => "http://localhost:8000/uploads/$picName"
+            ] 
+        ]);
+        return $picName;
     }
 }

@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Contenu</label>
-                        <textarea type="text" class="form-control " id="content" name="content" rows="4">{{old('content')}}</textarea>
+                            <article-component></article-component>   
                         @error('content')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -20,6 +20,8 @@
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
+	<link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    
 
 </head>
 
@@ -167,7 +169,10 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @yield('content')
+                    <div id="app">
+                        @yield('content')
+
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -197,6 +202,8 @@
 
     
     <!-- Bootstrap core JavaScript-->
+    <script src="{{ mix('js/app.js') }}"></script>
+
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
     <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -212,8 +219,6 @@
     <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/admin/js/demo/chart-area-demo.js"></script>
-    <script src="/admin/js/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     {{-- sweetalert --}}

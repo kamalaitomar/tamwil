@@ -40,6 +40,8 @@ Route::group(['middleware'=>'auth'], function(){
     });
 });
 
+Route::post("/admin/article/create", [ArticleController::class, 'uploadEditorImage']);
+
 Route::redirect('/','/fr');
 
 Route::group(['prefix'=>'{locale}'], function(){
