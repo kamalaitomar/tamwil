@@ -9387,7 +9387,7 @@ textarea.form-control {
     border-radius: 50%;
     background: #f5f4f0;
     margin: 0 auto;
-    margin-top: -70px;
+    /* margin-top: -70px; */
     z-index: 1;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;

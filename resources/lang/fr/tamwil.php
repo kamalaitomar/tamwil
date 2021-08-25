@@ -4,7 +4,7 @@
         "funding"=>"Financement",
         "about"=>"A propos",
         "organizations"=>"Organisations",
-        "articles"=>"Articales",
+        "articles"=>"Articles",
         "admin"=>"Admin",
         "language"=>"Langue",
         "french"=>"Français",
