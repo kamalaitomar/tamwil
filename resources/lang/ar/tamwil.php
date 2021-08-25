@@ -4,6 +4,7 @@
         "funding"=>"التمويل",
         "about"=>"حول",
         "organizations"=>"المنظمات",
+        "articles"=>"المقالات",
         "admin"=>"مشرف ",
         "language"=>"اللغة",
         "french"=>"الفرنسية",

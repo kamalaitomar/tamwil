@@ -47,11 +47,15 @@ Route::group(['prefix'=>'{locale}'], function(){
         $title = 'Tamwil';
         return view('welcome', compact('title'));
     })->name('home');
+
     Route::get('/financement', [App\Http\Controllers\FormController::class, 'index'])->name('financement');
     Route::get('/offre/{id}', [App\Http\Controllers\OffreController::class, 'show'])->name('offre');
 
     Route::get('/organisations',[App\Http\Controllers\OrganisationController::class , 'index'])->name('organisations');
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
+
+    Route::get('/articles',[App\Http\Controllers\ArticleController::class , 'index'])->name('articles');
+    Route::get('/article/{id} ',[App\Http\Controllers\ArticleController::class , 'show'])->name('article');
 
     Route::resource('/about', AboutController::class)->only('index','store');
 });
