@@ -39,6 +39,25 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function slug($string, $separator = '-') {
+        if (is_null($string)) {
+            return "";
+        }
+    
+        $string = trim($string);
+    
+        $string = mb_strtolower($string, "UTF-8");;
+    
+        $string = preg_replace("/[^a-z0-9_\sءاأإآؤئبتثجحخدذرزسشصضطظعغفقكلمنهويةى]#u/", "", $string);
+    
+        $string = preg_replace("/[\s-]+/", " ", $string);
+    
+        $string = preg_replace("/[\s_]/", $separator, $string);
+    
+        return $string;
+    }
+
     public function store(Request $request)
     {
         $article= new Article();
@@ -46,7 +65,7 @@ class ArticleController extends Controller
         $article->title_ar = $request->input('titleAr');
 
         $article->slug_fr = Str::slug($request->input('titleFr'), '-') ;
-        $article->slug_ar = Str::slug($request->input('titleAr'), '-') ;
+        $article->slug_ar = $this->slug($request->input('titleAr'));
 
         $article->content_fr = json_encode($request->input('articleFr'));
         $article->content_ar = json_encode($request->input('articleAr'));

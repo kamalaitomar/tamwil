@@ -38,7 +38,7 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="title_ar">العنوان</label>
-                            <input type="text" class="form-control " id="title_ar" name="title_ar"  v-model="titleAr">
+                            <input type="text" class="form-control text-right" id="title_ar" name="title_ar"  v-model="titleAr">
                         </div>
                     </div>                
                     <div class="form-group d-flex justify-content-center">
@@ -216,26 +216,23 @@ export default {
             data.articleAr = '';
 
             editorFr.save().then((output) => {
-                // console.log(output);
                 data.articleFr = output
             }).catch((error) => {
                     console.log('Saving failed: ', error)
             });
 
             editorAr.save().then((output) => {
-                // console.log('Data: ', output);
                 data.articleAr = output
-                axios.post( '/admin/article', data).catch((error) => {
+                axios.post( '/admin/article', data).then(
+                             window.location.href = '/admin/article'
+                        ).catch((error) => {
                             this.allerros = error.response.data.errors;
                             this.success = false;
                         });
-                        
-                window.location.href = '/admin/article'
+
             }).catch((error) => {
                     console.log('Saving failed: ', error)
             });
-
-            // flash('status','votre article a été ajouté avec succès');
             
         }
     }

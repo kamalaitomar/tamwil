@@ -17,7 +17,7 @@
                           </div>
                       </div>
                       <h3 class="heading mb-3"><a href="article/{{$article->id}}">{{$article["title"]}}</a></h3>
-                      <p>{{$article["content"]}}</p>
+                      {{-- <p>{{$article["content"]}}</p> --}}
                   </div>
               </div>
           </div>            

@@ -2195,22 +2195,19 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
       data.articleFr = '';
       data.articleAr = '';
       editorFr.save().then(function (output) {
-        // console.log(output);
         data.articleFr = output;
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
       });
       editorAr.save().then(function (output) {
-        // console.log('Data: ', output);
         data.articleAr = output;
-        axios.post('/admin/article', data)["catch"](function (error) {
+        axios.post('/admin/article', data).then(window.location.href = '/admin/article')["catch"](function (error) {
           _this.allerros = error.response.data.errors;
           _this.success = false;
         });
-        window.location.href = '/admin/article';
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
-      }); // flash('status','votre article a été ajouté avec succès');
+      });
     }
   }
 });
@@ -39514,7 +39511,7 @@ var render = function() {
                         expression: "titleAr"
                       }
                     ],
-                    staticClass: "form-control ",
+                    staticClass: "form-control text-right",
                     attrs: { type: "text", id: "title_ar", name: "title_ar" },
                     domProps: { value: _vm.titleAr },
                     on: {
