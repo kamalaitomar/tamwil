@@ -17,7 +17,7 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="title">Titre</label>
-                            <input type="text" class="form-control " id="title" name="title"  value="">
+                            <input type="text" class="form-control " id="title" name="title"  v-model="titleFr">
                         </div>
                     </div>                
                     <div class="form-group d-flex justify-content-center">
@@ -37,13 +37,13 @@
                 <div class="tab-pane fade text-right" id="ar" role="tabpanel" aria-labelledby="home-tab">
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
-                            <label for="title">العنوان</label>
-                            <input type="text" class="form-control " id="title" name="title"  value="">
+                            <label for="title_ar">العنوان</label>
+                            <input type="text" class="form-control " id="title_ar" name="title_ar"  v-model="titleAr">
                         </div>
                     </div>                
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
-                            <label for="content">المقال</label>
+                            <label for="content_ar">المقال</label>
                             <div id="editor-js-ar" class="bg-white p-1"></div>
                         </div>
                     </div>
@@ -201,24 +201,42 @@ export default {
     name: 'createArticle',
     data() {
         return {
-        value: null
+        titleFr : '',
+        titleAr : '',
         };
     },
     methods:{
         submit(){
 
+            var data = new Object();
+
+            data.titleFr = this.titleFr;
+            data.titleAr = this.titleAr;
+            data.articleFr = '';
+            data.articleAr = '';
+
             editorFr.save().then((output) => {
-                console.log('Data: ', output);
+                // console.log(output);
+                data.articleFr = output
             }).catch((error) => {
                     console.log('Saving failed: ', error)
             });
 
             editorAr.save().then((output) => {
-                console.log('Data: ', output);
+                // console.log('Data: ', output);
+                data.articleAr = output
+                axios.post( '/admin/article', data).catch((error) => {
+                            this.allerros = error.response.data.errors;
+                            this.success = false;
+                        });
+                        
+                window.location.href = '/admin/article'
             }).catch((error) => {
                     console.log('Saving failed: ', error)
             });
 
+            // flash('status','votre article a été ajouté avec succès');
+            
         }
     }
 }

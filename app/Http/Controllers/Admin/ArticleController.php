@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticle;
 use App\Models\Article;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Str;
+
 
 class ArticleController extends Controller
 {
@@ -38,21 +39,21 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticle $request)
+    public function store(Request $request)
     {
-        
         $article= new Article();
-        $article->title_fr = $request->input('title');
-        $article->title_ar = $request->input('title_ar');
+        $article->title_fr = $request->input('titleFr');
+        $article->title_ar = $request->input('titleAr');
 
-        $article->content_fr = $request->input('content');
-        $article->content_ar = $request->input('content_ar');
+        $article->slug_fr = Str::slug($request->input('titleFr'), '-') ;
+        $article->slug_ar = Str::slug($request->input('titleAr'), '-') ;
+
+        $article->content_fr = json_encode($request->input('articleFr'));
+        $article->content_ar = json_encode($request->input('articleAr'));
         
         
         $article->save();
-        $request->session()->flash('status','votre article a été ajouté avec succès');
-
-        return redirect()->route('article.index');
+        
     }
 
     /**

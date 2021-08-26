@@ -2181,21 +2181,36 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   name: 'createArticle',
   data: function data() {
     return {
-      value: null
+      titleFr: '',
+      titleAr: ''
     };
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
+      var data = new Object();
+      data.titleFr = this.titleFr;
+      data.titleAr = this.titleAr;
+      data.articleFr = '';
+      data.articleAr = '';
       editorFr.save().then(function (output) {
-        console.log('Data: ', output);
+        // console.log(output);
+        data.articleFr = output;
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
       });
       editorAr.save().then(function (output) {
-        console.log('Data: ', output);
+        // console.log('Data: ', output);
+        data.articleAr = output;
+        axios.post('/admin/article', data)["catch"](function (error) {
+          _this.allerros = error.response.data.errors;
+          _this.success = false;
+        });
+        window.location.href = '/admin/article';
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
-      });
+      }); // flash('status','votre article a été ajouté avec succès');
     }
   }
 });
@@ -39429,7 +39444,50 @@ var render = function() {
       "div",
       { staticClass: "tab-content m-3", attrs: { id: "myTabContent" } },
       [
-        _vm._m(2),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade show active",
+            attrs: { id: "fr", role: "tabpanel", "aria-labelledby": "home-tab" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "form-group d-flex justify-content-center" },
+              [
+                _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
+                  _c("label", { attrs: { for: "title" } }, [_vm._v("Titre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.titleFr,
+                        expression: "titleFr"
+                      }
+                    ],
+                    staticClass: "form-control ",
+                    attrs: { type: "text", id: "title", name: "title" },
+                    domProps: { value: _vm.titleFr },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.titleFr = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        ),
         _vm._v(" "),
         _c(
           "div",
@@ -39438,7 +39496,39 @@ var render = function() {
             attrs: { id: "ar", role: "tabpanel", "aria-labelledby": "home-tab" }
           },
           [
-            _vm._m(3),
+            _c(
+              "div",
+              { staticClass: "form-group d-flex justify-content-center" },
+              [
+                _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
+                  _c("label", { attrs: { for: "title_ar" } }, [
+                    _vm._v("العنوان")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.titleAr,
+                        expression: "titleAr"
+                      }
+                    ],
+                    staticClass: "form-control ",
+                    attrs: { type: "text", id: "title_ar", name: "title_ar" },
+                    domProps: { value: _vm.titleAr },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.titleAr = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]
+            ),
             _vm._v(" "),
             _vm._m(4),
             _vm._v(" "),
@@ -39536,63 +39626,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "tab-pane fade show active",
-        attrs: { id: "fr", role: "tabpanel", "aria-labelledby": "home-tab" }
-      },
-      [
-        _c("div", { staticClass: "form-group d-flex justify-content-center" }, [
-          _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-            _c("label", { attrs: { for: "title" } }, [_vm._v("Titre")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control ",
-              attrs: { type: "text", id: "title", name: "title", value: "" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group d-flex justify-content-center" }, [
-          _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-            _c("label", { attrs: { for: "content" } }, [_vm._v("Article")]),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "bg-white p-1 border rounded",
-              attrs: { id: "editor-js-fr" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group d-flex justify-content-center" }, [
-          _c("div", { staticClass: "col-6  mb-3 mb-sm-0" }, [
-            _c(
-              "div",
-              { staticClass: "alert alert-warning", attrs: { role: "alert" } },
-              [
-                _vm._v(
-                  "veuillez remplir la suite des informations en arabe aussi"
-                )
-              ]
-            )
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
       { staticClass: "form-group d-flex justify-content-center" },
       [
         _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-          _c("label", { attrs: { for: "title" } }, [_vm._v("العنوان")]),
+          _c("label", { attrs: { for: "content" } }, [_vm._v("Article")]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control ",
-            attrs: { type: "text", id: "title", name: "title", value: "" }
+          _c("div", {
+            staticClass: "bg-white p-1 border rounded",
+            attrs: { id: "editor-js-fr" }
           })
         ])
       ]
@@ -39606,8 +39647,30 @@ var staticRenderFns = [
       "div",
       { staticClass: "form-group d-flex justify-content-center" },
       [
+        _c("div", { staticClass: "col-6  mb-3 mb-sm-0" }, [
+          _c(
+            "div",
+            { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+            [
+              _vm._v(
+                "veuillez remplir la suite des informations en arabe aussi"
+              )
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form-group d-flex justify-content-center" },
+      [
         _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-          _c("label", { attrs: { for: "content" } }, [_vm._v("المقال")]),
+          _c("label", { attrs: { for: "content_ar" } }, [_vm._v("المقال")]),
           _vm._v(" "),
           _c("div", {
             staticClass: "bg-white p-1",
