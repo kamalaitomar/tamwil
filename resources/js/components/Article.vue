@@ -1,7 +1,7 @@
 <template>
     <div class="P-5">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Ajouter une organisation</h1>
+            <h1 class="h4 text-gray-900 mb-4">Ajouter un article</h1>
         </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -17,13 +17,19 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="title">Titre</label>
-                            <input type="text" class="form-control " id="title" name="title"  v-model="titleFr">
+                            <input type="text" class="form-control " id="title" name="title" v-model="titleFr">
+                            <p v-if="allerros && allerros.titleFr" class="text-danger">
+                              {{ allerros.titleFr[0] }}
+                            </p>
                         </div>
                     </div>                
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="content">Article</label>
                             <div id="editor-js-fr" class="bg-white p-1 border rounded"></div>
+                            <p v-if="allerros && allerros['articleFr.blocks']" class="text-danger">
+                              {{ allerros["articleFr.blocks"][0] }}
+                            </p>
                         </div>
                     </div> 
                     
@@ -39,12 +45,18 @@
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="title_ar">العنوان</label>
                             <input type="text" class="form-control text-right" id="title_ar" name="title_ar"  v-model="titleAr">
+                            <p v-if="allerros && allerros.titleAr" class="text-danger">
+                              {{ allerros.titleAr[0] }}
+                            </p>
                         </div>
                     </div>                
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="content_ar">المقال</label>
                             <div id="editor-js-ar" class="bg-white p-1"></div>
+                            <p v-if="allerros && allerros['articleAr.blocks']" class="text-danger">
+                              {{ allerros["articleAr.blocks"][0] }}
+                            </p>
                         </div>
                     </div>
                     <div class="form-group d-flex justify-content-center">
@@ -199,10 +211,15 @@ const editorAr = new EditorJS({
 
 export default {
     name: 'createArticle',
+    props: {
+            article:null,
+        },
     data() {
         return {
-        titleFr : '',
-        titleAr : '',
+        titleFr :'',
+        titleAr :'',
+        allerros:'',
+        success:'',
         };
     },
     methods:{
@@ -219,19 +236,22 @@ export default {
                 data.articleFr = output
             }).catch((error) => {
                     console.log('Saving failed: ', error)
+                    this.editorFrErrors = error
+
             });
 
             editorAr.save().then((output) => {
                 data.articleAr = output
-                axios.post( '/admin/article', data).then(
-                             window.location.href = '/admin/article'
-                        ).catch((error) => {
-                            this.allerros = error.response.data.errors;
-                            this.success = false;
-                        });
-
+                axios.post( '/admin/article', data).then((data) => {
+                  window.location.href = '/admin/article' 
+                }).catch((error) => {
+                            this.allerros = ""
+                            this.allerros = error.response.data.errors
+                            this.success = false
+                        });      
             }).catch((error) => {
                     console.log('Saving failed: ', error)
+                    this.editorArErrors = error
             });
             
         }

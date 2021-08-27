@@ -24,10 +24,12 @@ class StoreArticle extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:255',
-            'title_ar' => 'required|min:3|max:255',
-            'content' => 'required|min:3|max:255',
-            'content_ar' => 'required|min:3|max:255'
+            'titleFr' => 'required|min:3|max:255',
+            'titleAr' => 'required|min:3|max:255',
+            'articleFr' => 'required|array|min:3',
+            'articleAr' => 'required|array|min:3',
+            'articleFr.blocks' => 'required|array',
+            'articleAr.blocks' => 'required|array'
         ];
     }
 }

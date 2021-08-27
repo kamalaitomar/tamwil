@@ -58,7 +58,7 @@ class ArticleController extends Controller
         return $string;
     }
 
-    public function store(Request $request)
+    public function store(StoreArticle $request)
     {
         $article= new Article();
         $article->title_fr = $request->input('titleFr');
@@ -70,8 +70,10 @@ class ArticleController extends Controller
         $article->content_fr = json_encode($request->input('articleFr'));
         $article->content_ar = json_encode($request->input('articleAr'));
         
-        
         $article->save();
+        
+        
+        $request->session()->flash('status','votre article a été ajouté avec succès');
         
     }
 

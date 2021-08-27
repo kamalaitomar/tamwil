@@ -2055,6 +2055,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2179,10 +2191,15 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'createArticle',
+  props: {
+    article: null
+  },
   data: function data() {
     return {
       titleFr: '',
-      titleAr: ''
+      titleAr: '',
+      allerros: '',
+      success: ''
     };
   },
   methods: {
@@ -2198,15 +2215,20 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
         data.articleFr = output;
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
+        _this.editorFrErrors = error;
       });
       editorAr.save().then(function (output) {
         data.articleAr = output;
-        axios.post('/admin/article', data).then(window.location.href = '/admin/article')["catch"](function (error) {
+        axios.post('/admin/article', data).then(function (data) {
+          window.location.href = '/admin/article';
+        })["catch"](function (error) {
+          _this.allerros = "";
           _this.allerros = error.response.data.errors;
           _this.success = false;
         });
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
+        _this.editorArErrors = error;
       });
     }
   }
@@ -39475,14 +39497,49 @@ var render = function() {
                         _vm.titleFr = $event.target.value
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.allerros && _vm.allerros.titleFr
+                    ? _c("p", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                          " +
+                            _vm._s(_vm.allerros.titleFr[0]) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
                 ])
               ]
             ),
             _vm._v(" "),
-            _vm._m(2),
+            _c(
+              "div",
+              { staticClass: "form-group d-flex justify-content-center" },
+              [
+                _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
+                  _c("label", { attrs: { for: "content" } }, [
+                    _vm._v("Article")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "bg-white p-1 border rounded",
+                    attrs: { id: "editor-js-fr" }
+                  }),
+                  _vm._v(" "),
+                  _vm.allerros && _vm.allerros["articleFr.blocks"]
+                    ? _c("p", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                          " +
+                            _vm._s(_vm.allerros["articleFr.blocks"][0]) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ]
+            ),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(2)
           ]
         ),
         _vm._v(" "),
@@ -39522,12 +39579,47 @@ var render = function() {
                         _vm.titleAr = $event.target.value
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.allerros && _vm.allerros.titleAr
+                    ? _c("p", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                          " +
+                            _vm._s(_vm.allerros.titleAr[0]) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
                 ])
               ]
             ),
             _vm._v(" "),
-            _vm._m(4),
+            _c(
+              "div",
+              { staticClass: "form-group d-flex justify-content-center" },
+              [
+                _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
+                  _c("label", { attrs: { for: "content_ar" } }, [
+                    _vm._v("المقال")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "bg-white p-1",
+                    attrs: { id: "editor-js-ar" }
+                  }),
+                  _vm._v(" "),
+                  _vm.allerros && _vm.allerros["articleAr.blocks"]
+                    ? _c("p", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                          " +
+                            _vm._s(_vm.allerros["articleAr.blocks"][0]) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -39567,7 +39659,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v("Ajouter une organisation")
+        _vm._v("Ajouter un article")
       ])
     ])
   },
@@ -39625,25 +39717,6 @@ var staticRenderFns = [
       "div",
       { staticClass: "form-group d-flex justify-content-center" },
       [
-        _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-          _c("label", { attrs: { for: "content" } }, [_vm._v("Article")]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "bg-white p-1 border rounded",
-            attrs: { id: "editor-js-fr" }
-          })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "form-group d-flex justify-content-center" },
-      [
         _c("div", { staticClass: "col-6  mb-3 mb-sm-0" }, [
           _c(
             "div",
@@ -39654,25 +39727,6 @@ var staticRenderFns = [
               )
             ]
           )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "form-group d-flex justify-content-center" },
-      [
-        _c("div", { staticClass: "col-md-12 mb-3 mb-sm-0" }, [
-          _c("label", { attrs: { for: "content_ar" } }, [_vm._v("المقال")]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "bg-white p-1",
-            attrs: { id: "editor-js-ar" }
-          })
         ])
       ]
     )
