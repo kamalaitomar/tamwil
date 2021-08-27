@@ -90,18 +90,21 @@
 @section('script')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
-        $('.delete-confirm').on('click', function (event) {
-        event.preventDefault();
-        swal({
-            title: 'Are you sure?',
-            text: 'This record and it`s details will be permanantly deleted!',
-            icon: 'warning',
-            buttons: ["Cancel", "Yes!"],
-        }).then(function(value) {
-            if (value) {
-                $('.delete-confirm').submit();            }
+@if (count($organisations)>0)
+
+    <script>
+            $('.delete-confirm').on('click', function (event) {
+            event.preventDefault();
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    $('.delete-confirm').submit();            }
+            });
         });
-    });
-</script>
+    </script>
+@endif
 @endsection
