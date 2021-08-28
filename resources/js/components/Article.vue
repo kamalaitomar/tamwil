@@ -53,7 +53,7 @@
                     <div class="form-group d-flex justify-content-center">
                         <div class="col-md-12 mb-3 mb-sm-0">
                             <label for="content_ar">المقال</label>
-                            <div id="editor-js-ar" class="bg-white p-1"></div>
+                            <div id="editor-js-ar" class="bg-white p-1" dir="rtl"></div>
                             <p v-if="allerros && allerros['articleAr.blocks']" class="text-danger">
                               {{ allerros["articleAr.blocks"][0] }}
                             </p>

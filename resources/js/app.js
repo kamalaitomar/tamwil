@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('financement-component', require('./components/Financement.vue').default);
 Vue.component('organisations-component', require('./components/Organisations.vue').default);
 Vue.component('article-component', require('./components/Article.vue').default);
+Vue.component('show-article-component', require('./components/ShowArticle.vue').default);
 Vue.mixin(require('./langs.js'))
 /**
  * Next, we will create a fresh Vue application instance and attach it to
