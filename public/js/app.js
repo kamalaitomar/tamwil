@@ -2091,6 +2091,7 @@ var editorFr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
    * Available Tools list. 
    * Pass Tool's class or Settings object for each Tool you want to use 
    */
+  autofocus: true,
   tools: {
     header: {
       "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
@@ -2198,8 +2199,12 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
     return {
       titleFr: '',
       titleAr: '',
+      content_fr: '',
+      content_ar: '',
+      blocks: '',
       allerros: '',
-      success: ''
+      success: '',
+      url: '/admin/article'
     };
   },
   methods: {
@@ -2219,16 +2224,48 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
       });
       editorAr.save().then(function (output) {
         data.articleAr = output;
-        axios.post('/admin/article', data).then(function (data) {
-          window.location.href = '/admin/article';
-        })["catch"](function (error) {
-          _this.allerros = "";
-          _this.allerros = error.response.data.errors;
-          _this.success = false;
-        });
+
+        if (_this.article) {
+          axios.put(_this.url, data).then(function (data) {
+            window.location.href = '/admin/article';
+          })["catch"](function (error) {
+            _this.allerros = "";
+            _this.allerros = error.response.data.errors;
+            _this.success = false;
+          });
+        } else {
+          axios.post(_this.url, data).then(function (data) {
+            window.location.href = '/admin/article';
+          })["catch"](function (error) {
+            _this.allerros = "";
+            _this.allerros = error.response.data.errors;
+            _this.success = false;
+          });
+        }
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
         _this.editorArErrors = error;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    if (this.article) {
+      this.titleFr = this.article.title_fr;
+      this.titleAr = this.article.title_ar;
+      this.content_fr = this.article.content_fr;
+      this.content_ar = this.article.content_ar;
+      this.url = '/admin/article/' + this.article.id;
+      editorFr.isReady.then(function () {
+        editorFr.render(JSON.parse(_this2.content_fr));
+      })["catch"](function (reason) {
+        console.log("Editor.js initialization failed because of ".concat(reason));
+      });
+      editorAr.isReady.then(function () {
+        editorAr.render(JSON.parse(_this2.content_ar));
+      })["catch"](function (reason) {
+        console.log("Editor.js initialization failed because of ".concat(reason));
       });
     }
   }

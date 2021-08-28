@@ -95,6 +95,8 @@ const editorFr = new EditorJS({
    * Available Tools list. 
    * Pass Tool's class or Settings object for each Tool you want to use 
    */ 
+  autofocus: true,
+
   tools: { 
     header: {
       class: Header,
@@ -143,7 +145,8 @@ const editorFr = new EditorJS({
       }       
     },
 
-  }
+  },
+
 })
 
 const editorAr = new EditorJS({ 
@@ -216,10 +219,14 @@ export default {
         },
     data() {
         return {
-        titleFr :'',
-        titleAr :'',
-        allerros:'',
-        success:'',
+          titleFr :'',
+          titleAr :'',
+          content_fr:'',
+          content_ar:'',
+          blocks:'',
+          allerros:'',
+          success:'',
+          url:'/admin/article',
         };
     },
     methods:{
@@ -242,19 +249,57 @@ export default {
 
             editorAr.save().then((output) => {
                 data.articleAr = output
-                axios.post( '/admin/article', data).then((data) => {
+
+                if (this.article) {
+                  axios.put( this.url, data).then((data) => {
                   window.location.href = '/admin/article' 
-                }).catch((error) => {
+                  }).catch((error) => {
                             this.allerros = ""
                             this.allerros = error.response.data.errors
                             this.success = false
-                        });      
+                        }); 
+                }else{
+                  axios.post( this.url, data).then((data) => {
+                  window.location.href = '/admin/article' 
+                  }).catch((error) => {
+                            this.allerros = ""
+                            this.allerros = error.response.data.errors
+                            this.success = false
+                        });
+                }
+
+                      
             }).catch((error) => {
                     console.log('Saving failed: ', error)
                     this.editorArErrors = error
             });
             
         }
+    },
+
+    mounted(){
+      if (this.article) {
+        this.titleFr = this.article.title_fr
+        this.titleAr = this.article.title_ar
+        this.content_fr = this.article.content_fr
+        this.content_ar = this.article.content_ar
+        this.url = '/admin/article/'+this.article.id
+        
+        
+        editorFr.isReady
+        .then(() => {
+          editorFr.render(JSON.parse(this.content_fr))
+        }).catch((reason) => {
+            console.log(`Editor.js initialization failed because of ${reason}`)
+          });
+
+        editorAr.isReady
+        .then(() => {
+          editorAr.render(JSON.parse(this.content_ar))
+        }).catch((reason) => {
+            console.log(`Editor.js initialization failed because of ${reason}`)
+        });
+      }  
     }
 }
 </script>

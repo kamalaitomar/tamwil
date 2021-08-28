@@ -112,17 +112,18 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        $article->title_fr = $request->input('title');
-        $article->title_ar = $request->input('title_ar');
+        $article->title_fr = $request->input('titleFr');
+        $article->title_ar = $request->input('titleAr');
 
-        $article->content_fr = $request->input('content');
-        $article->content_ar = $request->input('content_ar');
-        
+        $article->slug_fr = Str::slug($request->input('titleFr'), '-') ;
+        $article->slug_ar = $this->slug($request->input('titleAr'));
+
+        $article->content_fr = json_encode($request->input('articleFr'));
+        $article->content_ar = json_encode($request->input('articleAr'));
         
         $article->save();
         $request->session()->flash('status','votre article a été modifier avec succès');
 
-        return redirect()->route('article.index');
     }
 
     /**
@@ -140,6 +141,7 @@ class ArticleController extends Controller
 
         return redirect()->route('article.index');
     }
+
 
     public function uploadEditorImage(Request $request){
         $this->validate($request, [
