@@ -57,7 +57,7 @@ Route::group(['prefix'=>'{locale}'], function(){
     Route::get('/showorganisation/{id} ',[App\Http\Controllers\OrganisationController::class , 'show'])->name('showorganisation');
 
     Route::get('/articles',[App\Http\Controllers\ArticleController::class , 'index'])->name('articles');
-    Route::get('/article/{id} ',[App\Http\Controllers\ArticleController::class , 'show'])->name('article');
+    Route::get('/article/{id}/{slug}',[App\Http\Controllers\ArticleController::class , 'show'])->name('article');
 
     Route::resource('/about', AboutController::class)->only('index','store');
 });

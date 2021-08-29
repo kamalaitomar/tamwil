@@ -46,12 +46,12 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($locale, $id)
+    public function show($locale, $id, $slug)
     {
         $title = "Article";
         $article = Article::findOrFail($id);
 
-        return view("article", compact('title', 'article', 'locale', 'id'));
+        return view("article", compact('title', 'article', 'locale', 'id', 'slug'));
     }
 
     /**
