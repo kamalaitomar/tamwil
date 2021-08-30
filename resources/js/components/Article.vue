@@ -85,7 +85,79 @@ const Delimiter = require('@editorjs/delimiter');
 
 
 
-const editorFr = new EditorJS({ 
+
+ 
+
+
+export default {
+    name: 'createArticle',
+    props: {
+            article:null,
+        },
+    data() {
+        return {
+          editorFr : '',
+          editorAr : '',
+          titleFr :'',
+          titleAr :'',
+          content_fr:'',
+          content_ar:'',
+          blocks:'',
+          allerros:'',
+          success:'',
+          url:'/admin/article',
+        };
+    },
+    methods:{
+        submit(){
+
+            var data = new Object();
+
+            data.titleFr = this.titleFr;
+            data.titleAr = this.titleAr;
+            data.articleFr = '';
+            data.articleAr = '';
+
+            this.editorFr.save().then((output) => {
+                data.articleFr = output
+            }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                    this.editorFrErrors = error
+
+            });
+
+            this.editorAr.save().then((output) => {
+                data.articleAr = output
+
+                if (this.article) {
+                  axios.put( this.url, data).then((data) => {
+                  window.location.href = '/admin/article' 
+                  }).catch((error) => {
+                            this.allerros = ""
+                            this.allerros = error.response.data.errors
+                            this.success = false
+                        }); 
+                }else{
+                  axios.post( this.url, data).then((data) => {
+                  window.location.href = '/admin/article' 
+                  }).catch((error) => {
+                            this.allerros = ""
+                            this.allerros = error.response.data.errors
+                            this.success = false
+                        });
+                }
+
+                      
+            }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                    this.editorArErrors = error
+            });
+            
+        }
+    },
+
+    mounted(){
+      this.editorFr = new EditorJS({ 
   /** 
    * Id of Element that should contain the Editor 
    */ 
@@ -154,7 +226,7 @@ const editorFr = new EditorJS({
 
 })
 
-const editorAr = new EditorJS({ 
+this.editorAr = new EditorJS({ 
   /** 
    * Id of Element that should contain the Editor 
    */ 
@@ -219,75 +291,6 @@ const editorAr = new EditorJS({
 
   }
 })
- 
-
-
-export default {
-    name: 'createArticle',
-    props: {
-            article:null,
-        },
-    data() {
-        return {
-          titleFr :'',
-          titleAr :'',
-          content_fr:'',
-          content_ar:'',
-          blocks:'',
-          allerros:'',
-          success:'',
-          url:'/admin/article',
-        };
-    },
-    methods:{
-        submit(){
-
-            var data = new Object();
-
-            data.titleFr = this.titleFr;
-            data.titleAr = this.titleAr;
-            data.articleFr = '';
-            data.articleAr = '';
-
-            editorFr.save().then((output) => {
-                data.articleFr = output
-            }).catch((error) => {
-                    console.log('Saving failed: ', error)
-                    this.editorFrErrors = error
-
-            });
-
-            editorAr.save().then((output) => {
-                data.articleAr = output
-
-                if (this.article) {
-                  axios.put( this.url, data).then((data) => {
-                  window.location.href = '/admin/article' 
-                  }).catch((error) => {
-                            this.allerros = ""
-                            this.allerros = error.response.data.errors
-                            this.success = false
-                        }); 
-                }else{
-                  axios.post( this.url, data).then((data) => {
-                  window.location.href = '/admin/article' 
-                  }).catch((error) => {
-                            this.allerros = ""
-                            this.allerros = error.response.data.errors
-                            this.success = false
-                        });
-                }
-
-                      
-            }).catch((error) => {
-                    console.log('Saving failed: ', error)
-                    this.editorArErrors = error
-            });
-            
-        }
-    },
-
-    mounted(){
       if (this.article) {
         this.titleFr = this.article.title_fr
         this.titleAr = this.article.title_ar
@@ -296,16 +299,16 @@ export default {
         this.url = '/admin/article/'+this.article.id
         
         
-        editorFr.isReady
+        this.editorFr.isReady
         .then(() => {
-          editorFr.render(JSON.parse(this.content_fr))
+          this.editorFr.render(JSON.parse(this.content_fr))
         }).catch((reason) => {
             console.log(`Editor.js initialization failed because of ${reason}`)
           });
 
-        editorAr.isReady
+        this.editorAr.isReady
         .then(() => {
-          editorAr.render(JSON.parse(this.content_ar))
+          this.editorAr.render(JSON.parse(this.content_ar))
         }).catch((reason) => {
             console.log(`Editor.js initialization failed because of ${reason}`)
         });

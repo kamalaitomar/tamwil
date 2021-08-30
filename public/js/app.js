@@ -2081,125 +2081,6 @@ var ColorPlugin = __webpack_require__(/*! editorjs-text-color-plugin */ "./node_
 
 var Delimiter = __webpack_require__(/*! @editorjs/delimiter */ "./node_modules/@editorjs/delimiter/dist/bundle.js");
 
-var editorFr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
-  /** 
-   * Id of Element that should contain the Editor 
-   */
-  holder: 'editor-js-fr',
-
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */
-  autofocus: true,
-  tools: {
-    header: {
-      "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    },
-    paragraph: {
-      "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
-      inlineToolbar: true
-    },
-    list: {
-      "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
-      inlineToolbar: true
-    },
-    checklist: {
-      "class": Checklist,
-      inlineToolbar: true
-    },
-    image: {
-      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
-      config: {
-        additionalRequestHeaders: {
-          "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }
-    },
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
-    Color: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
-        defaultColor: '#FF1300',
-        type: 'text'
-      }
-    },
-    Marker: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        defaultColor: '#FFBF00',
-        type: 'marker'
-      }
-    }
-  }
-});
-var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
-  /** 
-   * Id of Element that should contain the Editor 
-   */
-  holder: 'editor-js-ar',
-
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */
-  tools: {
-    header: {
-      "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    },
-    paragraph: {
-      "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
-      inlineToolbar: true
-    },
-    list: {
-      "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
-      inlineToolbar: true
-    },
-    checklist: {
-      "class": Checklist,
-      inlineToolbar: true
-    },
-    image: {
-      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
-      config: {
-        additionalRequestHeaders: {
-          "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }
-    },
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
-    Color: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
-        defaultColor: '#FF1300',
-        type: 'text'
-      }
-    },
-    Marker: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        defaultColor: '#FFBF00',
-        type: 'marker'
-      }
-    }
-  }
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'createArticle',
   props: {
@@ -2207,6 +2088,8 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   },
   data: function data() {
     return {
+      editorFr: '',
+      editorAr: '',
       titleFr: '',
       titleAr: '',
       content_fr: '',
@@ -2226,13 +2109,13 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
       data.titleAr = this.titleAr;
       data.articleFr = '';
       data.articleAr = '';
-      editorFr.save().then(function (output) {
+      this.editorFr.save().then(function (output) {
         data.articleFr = output;
       })["catch"](function (error) {
         console.log('Saving failed: ', error);
         _this.editorFrErrors = error;
       });
-      editorAr.save().then(function (output) {
+      this.editorAr.save().then(function (output) {
         data.articleAr = output;
 
         if (_this.article) {
@@ -2261,19 +2144,139 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   mounted: function mounted() {
     var _this2 = this;
 
+    this.editorFr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
+      /** 
+       * Id of Element that should contain the Editor 
+       */
+      holder: 'editor-js-fr',
+
+      /** 
+       * Available Tools list. 
+       * Pass Tool's class or Settings object for each Tool you want to use 
+       */
+      autofocus: true,
+      tools: {
+        header: {
+          "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
+          inlineToolbar: true,
+          config: {
+            placeholder: 'Title...'
+          }
+        },
+        paragraph: {
+          "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
+          inlineToolbar: true
+        },
+        list: {
+          "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
+          inlineToolbar: true
+        },
+        checklist: {
+          "class": Checklist,
+          inlineToolbar: true
+        },
+        image: {
+          "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
+          config: {
+            additionalRequestHeaders: {
+              "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+          }
+        },
+        simpleImage: SimpleImage,
+        delimiter: Delimiter,
+        Color: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
+            defaultColor: '#FF1300',
+            type: 'text'
+          }
+        },
+        Marker: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            defaultColor: '#FFBF00',
+            type: 'marker'
+          }
+        }
+      }
+    });
+    this.editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
+      /** 
+       * Id of Element that should contain the Editor 
+       */
+      holder: 'editor-js-ar',
+
+      /** 
+       * Available Tools list. 
+       * Pass Tool's class or Settings object for each Tool you want to use 
+       */
+      tools: {
+        header: {
+          "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
+          inlineToolbar: true,
+          config: {
+            placeholder: 'Title...'
+          }
+        },
+        paragraph: {
+          "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
+          inlineToolbar: true
+        },
+        list: {
+          "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
+          inlineToolbar: true
+        },
+        checklist: {
+          "class": Checklist,
+          inlineToolbar: true
+        },
+        image: {
+          "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
+          config: {
+            additionalRequestHeaders: {
+              "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+          }
+        },
+        simpleImage: SimpleImage,
+        delimiter: Delimiter,
+        Color: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
+            defaultColor: '#FF1300',
+            type: 'text'
+          }
+        },
+        Marker: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            defaultColor: '#FFBF00',
+            type: 'marker'
+          }
+        }
+      }
+    });
+
     if (this.article) {
       this.titleFr = this.article.title_fr;
       this.titleAr = this.article.title_ar;
       this.content_fr = this.article.content_fr;
       this.content_ar = this.article.content_ar;
       this.url = '/admin/article/' + this.article.id;
-      editorFr.isReady.then(function () {
-        editorFr.render(JSON.parse(_this2.content_fr));
+      this.editorFr.isReady.then(function () {
+        _this2.editorFr.render(JSON.parse(_this2.content_fr));
       })["catch"](function (reason) {
         console.log("Editor.js initialization failed because of ".concat(reason));
       });
-      editorAr.isReady.then(function () {
-        editorAr.render(JSON.parse(_this2.content_ar));
+      this.editorAr.isReady.then(function () {
+        _this2.editorAr.render(JSON.parse(_this2.content_ar));
       })["catch"](function (reason) {
         console.log("Editor.js initialization failed because of ".concat(reason));
       });
@@ -3037,62 +3040,6 @@ var ColorPlugin = __webpack_require__(/*! editorjs-text-color-plugin */ "./node_
 
 var Delimiter = __webpack_require__(/*! @editorjs/delimiter */ "./node_modules/@editorjs/delimiter/dist/bundle.js");
 
-var editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
-  /** 
-   * Id of Element that should contain the Editor 
-   */
-  holder: 'editor',
-  readOnly: true,
-
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */
-  autofocus: true,
-  tools: {
-    header: {
-      "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    },
-    paragraph: {
-      "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
-      inlineToolbar: true
-    },
-    list: {
-      "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
-      inlineToolbar: true
-    },
-    checklist: {
-      "class": Checklist,
-      inlineToolbar: true
-    },
-    image: {
-      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default())
-    },
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
-    Color: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
-        defaultColor: '#FF1300',
-        type: 'text'
-      }
-    },
-    Marker: {
-      "class": ColorPlugin,
-      // if load from CDN, please try: window.ColorPlugin
-      config: {
-        defaultColor: '#FFBF00',
-        type: 'marker'
-      }
-    }
-  }
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'createArticle',
   props: {
@@ -3100,6 +3047,7 @@ var editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   },
   data: function data() {
     return {
+      editor: '',
       locale: window._locale
     };
   },
@@ -3107,12 +3055,69 @@ var editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
   mounted: function mounted() {
     var _this = this;
 
+    this.editor = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
+      /** 
+       * Id of Element that should contain the Editor 
+       */
+      holder: 'editor',
+      readOnly: true,
+
+      /** 
+       * Available Tools list. 
+       * Pass Tool's class or Settings object for each Tool you want to use 
+       */
+      autofocus: true,
+      tools: {
+        header: {
+          "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_2___default()),
+          inlineToolbar: true,
+          config: {
+            placeholder: 'Title...'
+          }
+        },
+        paragraph: {
+          "class": (_editorjs_paragraph__WEBPACK_IMPORTED_MODULE_1___default()),
+          inlineToolbar: true
+        },
+        list: {
+          "class": (_editorjs_list__WEBPACK_IMPORTED_MODULE_3___default()),
+          inlineToolbar: true
+        },
+        checklist: {
+          "class": Checklist,
+          inlineToolbar: true
+        },
+        image: {
+          "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default())
+        },
+        simpleImage: SimpleImage,
+        delimiter: Delimiter,
+        Color: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            colorCollections: ['#FF1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFF'],
+            defaultColor: '#FF1300',
+            type: 'text'
+          }
+        },
+        Marker: {
+          "class": ColorPlugin,
+          // if load from CDN, please try: window.ColorPlugin
+          config: {
+            defaultColor: '#FFBF00',
+            type: 'marker'
+          }
+        }
+      }
+    });
+
     if (this.article) {
-      editor.isReady.then(function () {
+      this.editor.isReady.then(function () {
         if (window._locale == "ar") {
-          editor.render(JSON.parse(_this.article.content_ar));
+          _this.editor.render(JSON.parse(_this.article.content_ar));
         } else {
-          editor.render(JSON.parse(_this.article.content_fr));
+          _this.editor.render(JSON.parse(_this.article.content_fr));
         }
       })["catch"](function (reason) {
         console.log("Editor.js initialization failed because of ".concat(reason));

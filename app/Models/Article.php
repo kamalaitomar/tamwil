@@ -17,11 +17,19 @@ class Article extends Model
     */ 
 
     public function getTitleAttribute() {
-        return $this->{'title_'.app()->getLocale()};
+        if (app()->getLocale()) {
+            return $this->{'title_'.app()->getLocale()};
+        }else{
+            return $this->{'title_fr'};
+        }
     }
 
     public function getContentAttribute() {
-        return $this->{'content_'.app()->getLocale()};
+        if (app()->getLocale()) {
+            return $this->{'content_'.app()->getLocale()};
+        }else{
+            return $this->{'content_fr'};
+    }
     }
 
     // date Time 

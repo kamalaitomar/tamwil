@@ -17,8 +17,24 @@ const ColorPlugin = require('editorjs-text-color-plugin');
 const Delimiter = require('@editorjs/delimiter');
 
 
+export default {
+    name: 'createArticle',
+    props: {
+            article:null,
+        },
 
-const editor = new EditorJS({ 
+    data() {
+        return {
+          editor: '',
+          locale : window._locale
+        };
+    },
+    
+    methods:{
+    },
+
+    mounted(){
+      this.editor = new EditorJS({ 
   /** 
    * Id of Element that should contain the Editor 
    */ 
@@ -83,33 +99,14 @@ const editor = new EditorJS({
 
 })
 
- 
-
-
-export default {
-    name: 'createArticle',
-    props: {
-            article:null
-        },
-
-    data() {
-        return {
-            locale : window._locale
-        };
-    },
-    
-    methods:{
-    },
-
-    mounted(){
       if (this.article) {
 
-        editor.isReady
+        this.editor.isReady
         .then(() => {
             if (window._locale == "ar") {
-                editor.render(JSON.parse(this.article.content_ar))
+                this.editor.render(JSON.parse(this.article.content_ar))
             }else{
-                editor.render(JSON.parse(this.article.content_fr))
+                this.editor.render(JSON.parse(this.article.content_fr))
             }
         }).catch((reason) => {
             console.log(`Editor.js initialization failed because of ${reason}`)
