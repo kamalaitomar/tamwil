@@ -59,7 +59,7 @@
                                     </a>
                                     <div class="my-2"></div>
 
-                                    <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}" class="button delete-confirm"> 
+                                    <form data-id="{{$user->id}}" method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}" class="button delete-confirm"> 
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-circle" title="Delete">
@@ -89,8 +89,9 @@
 
     <script>
             $('.delete-confirm').on('click', function (event) {
+                id = $(this).data('id')
+                let form = $(this)
             event.preventDefault();
-            const url = " {{ route('user.destroy', ['user'=>$user->id]) }} ";
             swal({
                 title: 'Are you sure?',
                 text: 'This record and it`s details will be permanantly deleted!',
@@ -98,7 +99,7 @@
                 buttons: ["Cancel", "Yes!"],
             }).then(function(value) {
                 if (value) {
-                    $('.delete-confirm').submit();            }
+                    form.submit();            }
             });
         });
     </script>

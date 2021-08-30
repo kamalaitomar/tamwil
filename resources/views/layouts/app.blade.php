@@ -49,7 +49,7 @@
                     @if (in_array(Route::currentRouteName(), ["offre","showorganisation"] ) )
                         <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id]) }}">Français</a>
                     @elseif (in_array(Route::currentRouteName(), ["article"] )) 
-                        <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'fr', 'id'=>$id, 'slug'=> $slug]) }}">Français</a>
+                        <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'fr','slug'=> $slug]) }}">Français</a>
                     @else
                         <a class="btn btn-info" href="{{ route(Route::currentRouteName(), 'fr') }}">Français</a> 
                     @endif
@@ -57,7 +57,7 @@
                     @if (in_array(Route::currentRouteName(), ["offre","showorganisation"] ) )
                         <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id]) }}">العربية</a>
                     @elseif (in_array(Route::currentRouteName(), ["article"] )) 
-                        <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'ar', 'id'=>$id, 'slug'=> $slug]) }}">العربية</a>
+                        <a class="btn btn-info" href="{{ route(Route::currentRouteName(), ['locale'=>'ar','slug'=> $slug]) }}">العربية</a>
                     @else
                         <a class="btn btn-info" href="{{ route(Route::currentRouteName(), 'ar') }}">العربية</a> 
                     @endif

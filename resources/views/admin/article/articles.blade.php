@@ -54,10 +54,10 @@
                                     <div class="my-2"></div>
                                     
                                     @if ( Auth::user()->hasRole('admin'))
-                                        <form method="POST" action="{{ route('article.destroy', ['article' => $article->id]) }}" class="button delete-confirm"> 
+                                        <form data-id="{{$article->id}}" method="POST"  action="{{ route('article.destroy', ['article' => $article->id]) }}" class="button delete-confirm"> 
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-circle" title="Delete">
+                                            <button  type="submit" class="btn btn-danger btn-circle" title="Delete">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -83,8 +83,9 @@
 @if (count($articles)>0)
     <script>
             $('.delete-confirm').on('click', function (event) {
-            event.preventDefault();
-                const url = " {{ route('article.destroy', ['article'=>$article->id]) }} ";
+                id = $(this).data('id')
+                let form = $(this)
+                event.preventDefault();
             swal({
                 title: 'Are you sure?',
                 text: 'This record and it`s details will be permanantly deleted!',
@@ -92,8 +93,8 @@
                 buttons: ["Cancel", "Yes!"],
             }).then(function(value) {
                 if (value) {
-                    $('.delete-confirm').submit();            
-                    }
+                    form.submit();            
+                }
             });
         });
             

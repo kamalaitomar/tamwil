@@ -115,7 +115,6 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        
         $user = User::findOrFail($id); 
         
         $user->roles()->detach();

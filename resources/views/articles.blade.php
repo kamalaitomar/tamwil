@@ -16,7 +16,7 @@
                               <span class="yr">{{ $article->created_at->format('Y')}}</span>
                           </div>
                       </div>
-                      <h3 class="heading mb-3"><a href="{{ route('article', [app()->getLocale(), 'slug'=>$article->slug_fr,'id'=>$article->id ])}}">{{$article["title"]}}</a></h3>
+                      <h3 class="heading mb-3"><a href="{{ route('article', [app()->getLocale(), 'slug'=>$article->slug_fr ])}}">{{$article["title"]}}</a></h3>
                       {{-- <p>{{$article["content"]}}</p> --}}
                   </div>
               </div>

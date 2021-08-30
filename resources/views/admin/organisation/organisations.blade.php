@@ -64,7 +64,7 @@
                                     <div class="my-2"></div>
                                     
                                     @if ( Auth::user()->hasRole('admin'))
-                                        <form method="POST" action="{{ route('organisation.destroy', ['organisation' => $organisation->id]) }}" class="button delete-confirm"> 
+                                        <form data-id="{{$organisation->id}}" method="POST" action="{{ route('organisation.destroy', ['organisation' => $organisation->id]) }}" class="button delete-confirm"> 
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-circle" title="Delete">
@@ -94,6 +94,8 @@
 
     <script>
             $('.delete-confirm').on('click', function (event) {
+                id = $(this).data('id')
+                let form = $(this)
             event.preventDefault();
             swal({
                 title: 'Are you sure?',
@@ -102,7 +104,7 @@
                 buttons: ["Cancel", "Yes!"],
             }).then(function(value) {
                 if (value) {
-                    $('.delete-confirm').submit();            }
+                    form.submit();            }
             });
         });
     </script>
