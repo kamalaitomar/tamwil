@@ -1,7 +1,7 @@
 <template>
     <div class="P-5">
         <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Ajouter un article</h1>
+            <h1 class="h4 text-gray-900 mb-4">Article</h1>
         </div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -123,6 +123,11 @@ const editorFr = new EditorJS({
 
     image : {
         class: ImageTool,
+        config:{
+          additionalRequestHeaders:{
+            "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          }
+        }
     },
 
     simpleImage: SimpleImage,
@@ -185,6 +190,11 @@ const editorAr = new EditorJS({
 
     image : {
         class: ImageTool,
+        config:{
+          additionalRequestHeaders:{
+            "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          }
+        }
     },
 
     simpleImage: SimpleImage,

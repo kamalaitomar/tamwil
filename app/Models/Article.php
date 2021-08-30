@@ -10,6 +10,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $appends =['title', 'content'];
+
     /*
      accesssors 
     */ 

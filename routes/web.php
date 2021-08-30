@@ -41,6 +41,7 @@ Route::group(['middleware'=>'auth'], function(){
 });
 
 Route::post("/admin/article/create", [ArticleController::class, 'uploadEditorImage']);
+Route::post("/admin/article/{article}/edit", [ArticleController::class, 'uploadEditorImage']);
 
 Route::redirect('/','/fr');
 

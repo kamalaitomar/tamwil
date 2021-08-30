@@ -2113,7 +2113,12 @@ var editorFr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
       inlineToolbar: true
     },
     image: {
-      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default())
+      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
+      config: {
+        additionalRequestHeaders: {
+          "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }
     },
     simpleImage: SimpleImage,
     delimiter: Delimiter,
@@ -2167,7 +2172,12 @@ var editorAr = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
       inlineToolbar: true
     },
     image: {
-      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default())
+      "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
+      config: {
+        additionalRequestHeaders: {
+          "X-CSRF-TOKEN": document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      }
     },
     simpleImage: SimpleImage,
     delimiter: Delimiter,
@@ -39895,9 +39905,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v("Ajouter un article")
-      ])
+      _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [_vm._v("Article")])
     ])
   },
   function() {
