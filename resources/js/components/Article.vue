@@ -77,6 +77,8 @@ import Paragraph from '@editorjs/paragraph';
 import Header from '@editorjs/header'; 
 import List from '@editorjs/list'; 
 import ImageTool from '@editorjs/image';
+import Underline from '@editorjs/underline';
+
 
 const Checklist = require('@editorjs/checklist');
 const SimpleImage = require('@editorjs/simple-image');
@@ -158,139 +160,142 @@ export default {
 
     mounted(){
       this.editorFr = new EditorJS({ 
-  /** 
-   * Id of Element that should contain the Editor 
-   */ 
-  holder: 'editor-js-fr', 
-  
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */ 
-  autofocus: true,
+        /** 
+         * Id of Element that should contain the Editor 
+         */ 
+        holder: 'editor-js-fr', 
+        
+        /** 
+         * Available Tools list. 
+         * Pass Tool's class or Settings object for each Tool you want to use 
+         */ 
+        autofocus: true,
 
-  tools: { 
-    header: {
-      class: Header,
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    }, 
+        tools: { 
+          header: {
+            class: Header,
+            inlineToolbar: true,
+            config: {
+              placeholder: 'Title...'
+            }
+          }, 
 
-    paragraph: {
-      class: Paragraph,
-      inlineToolbar : true
-    },
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar : true
+          },
 
-    list: {
-      class: List,
-      inlineToolbar : true
-    },
+          list: {
+            class: List,
+            inlineToolbar : true
+          },
 
-    checklist: {
-      class: Checklist,
-      inlineToolbar : true
-    },
+          checklist: {
+            class: Checklist,
+            inlineToolbar : true
+          },
 
-    image : {
-        class: ImageTool,
-        config:{
-          additionalRequestHeaders:{
-            "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          }
+          image : {
+              class: ImageTool,
+              config:{
+                additionalRequestHeaders:{
+                  "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+              }
+          },
+
+          simpleImage: SimpleImage,
+          delimiter: Delimiter,
+          underline: Underline,
+
+
+          Color: {
+            class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+            config: {
+              colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
+              defaultColor: '#FF1300',
+              type: 'text', 
+            }     
+          },
+
+          Marker: {
+            class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+            config: {
+              defaultColor: '#FFBF00',
+              type: 'marker', 
+            }       
+          },
+
+        },
+
+      })
+
+      this.editorAr = new EditorJS({ 
+        /** 
+         * Id of Element that should contain the Editor 
+         */ 
+        holder: 'editor-js-ar', 
+        
+        /** 
+         * Available Tools list. 
+         * Pass Tool's class or Settings object for each Tool you want to use 
+         */ 
+        tools: { 
+          header: {
+            class: Header,
+            inlineToolbar: true,
+            config: {
+              placeholder: 'Title...'
+            }
+          }, 
+
+          paragraph: {
+            class: Paragraph,
+            inlineToolbar : true
+          },
+
+          list: {
+            class: List,
+            inlineToolbar : true
+          },
+
+          checklist: {
+            class: Checklist,
+            inlineToolbar : true
+          },
+
+          image : {
+              class: ImageTool,
+              config:{
+                additionalRequestHeaders:{
+                  "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+              }
+          },
+
+          simpleImage: SimpleImage,
+          delimiter: Delimiter,
+          underline: Underline,
+
+          Color: {
+            class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+            config: {
+              colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
+              defaultColor: '#FF1300',
+              type: 'text', 
+            }     
+          },
+
+          Marker: {
+            class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+            config: {
+              defaultColor: '#FFBF00',
+              type: 'marker', 
+            }       
+          },
+
         }
-    },
-
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
-
-    Color: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
-         defaultColor: '#FF1300',
-         type: 'text', 
-      }     
-    },
-
-    Marker: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         defaultColor: '#FFBF00',
-         type: 'marker', 
-      }       
-    },
-
-  },
-
-})
-
-this.editorAr = new EditorJS({ 
-  /** 
-   * Id of Element that should contain the Editor 
-   */ 
-  holder: 'editor-js-ar', 
-  
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */ 
-  tools: { 
-    header: {
-      class: Header,
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    }, 
-
-    paragraph: {
-      class: Paragraph,
-      inlineToolbar : true
-    },
-
-    list: {
-      class: List,
-      inlineToolbar : true
-    },
-
-    checklist: {
-      class: Checklist,
-      inlineToolbar : true
-    },
-
-    image : {
-        class: ImageTool,
-        config:{
-          additionalRequestHeaders:{
-            "X-CSRF-TOKEN" : document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
-          }
-        }
-    },
-
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
-
-    Color: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
-         defaultColor: '#FF1300',
-         type: 'text', 
-      }     
-    },
-
-    Marker: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         defaultColor: '#FFBF00',
-         type: 'marker', 
-      }       
-    },
-
-  }
-})
+      })
       if (this.article) {
         this.titleFr = this.article.title_fr
         this.titleAr = this.article.title_ar

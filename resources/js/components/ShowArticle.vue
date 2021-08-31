@@ -1,6 +1,10 @@
 <template>
-    <div class="P-5">
-        <div id="editor" class="p-1" :class="{'text-right': locale == 'ar'}" ></div>
+    <div class="P-5 m-3">
+      <div id="editor" class="p-1" :class="{'text-right': locale == 'ar'}" >
+        <h1 class="m-1 text-primary">
+          {{article["title"]}}
+        </h1>
+      </div>
     </div>
 </template>
 
@@ -35,69 +39,69 @@ export default {
 
     mounted(){
       this.editor = new EditorJS({ 
-  /** 
-   * Id of Element that should contain the Editor 
-   */ 
-  holder: 'editor', 
-  readOnly: true,
-  
-  /** 
-   * Available Tools list. 
-   * Pass Tool's class or Settings object for each Tool you want to use 
-   */ 
-  autofocus: true,
+      /** 
+       * Id of Element that should contain the Editor 
+       */ 
+      holder: 'editor', 
+      readOnly: true,
+      
+      /** 
+       * Available Tools list. 
+       * Pass Tool's class or Settings object for each Tool you want to use 
+       */ 
+      autofocus: true,
 
-  tools: { 
-    header: {
-      class: Header,
-      inlineToolbar: true,
-      config: {
-        placeholder: 'Title...'
-      }
-    }, 
+      tools: { 
+        header: {
+          class: Header,
+          inlineToolbar: true,
+          config: {
+            placeholder: 'Title...'
+          }
+        }, 
 
-    paragraph: {
-      class: Paragraph,
-      inlineToolbar : true
-    },
+        paragraph: {
+          class: Paragraph,
+          inlineToolbar : true
+        },
 
-    list: {
-      class: List,
-      inlineToolbar : true
-    },
+        list: {
+          class: List,
+          inlineToolbar : true
+        },
 
-    checklist: {
-      class: Checklist,
-      inlineToolbar : true
-    },
+        checklist: {
+          class: Checklist,
+          inlineToolbar : true
+        },
 
-    image : {
-        class: ImageTool,
-    },
+        image : {
+            class: ImageTool,
+        },
 
-    simpleImage: SimpleImage,
-    delimiter: Delimiter,
+        simpleImage: SimpleImage,
+        delimiter: Delimiter,
 
-    Color: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
-         defaultColor: '#FF1300',
-         type: 'text', 
-      }     
-    },
+        Color: {
+          class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+          config: {
+            colorCollections: ['#FF1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
+            defaultColor: '#FF1300',
+            type: 'text', 
+          }     
+        },
 
-    Marker: {
-      class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
-      config: {
-         defaultColor: '#FFBF00',
-         type: 'marker', 
-      }       
-    },
+        Marker: {
+          class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
+          config: {
+            defaultColor: '#FFBF00',
+            type: 'marker', 
+          }       
+        },
 
-  },
+      },
 
-})
+    })
 
       if (this.article) {
 
