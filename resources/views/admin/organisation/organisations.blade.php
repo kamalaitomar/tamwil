@@ -29,7 +29,6 @@
                             <th>Email</th>
                             <th>Tele</th>
                             <th>Adresse</th>
-                            <th>Web-site</th>
                             <th>Type d'organisation</th>
                             <th>Action</th>
                         </tr>
@@ -41,7 +40,6 @@
                             <th>Email</th>
                             <th>Tele</th>
                             <th>Adresse</th>
-                            <th>Web-site</th>
                             <th>Type d'organisation</th>
                             <th>Action</th>
                         </tr>
@@ -54,7 +52,6 @@
                                 <td>{{$organisation->email}}</td>
                                 <td>{{$organisation->tel}}</td>
                                 <td>{{Str::limit($organisation->adresse_fr, 50)}}</td>
-                                <td>{{$organisation->web_site}}</td>
                                 <td>{{$organisation->type_d_organisation_fr}}</td>
                                 <td>
                                     <div class="my-2"></div>

@@ -1,9 +1,14 @@
 <template>
     <div class="P-5 m-3">
-      <div id="editor" class="p-1" :class="{'text-right': locale == 'ar'}" >
-        <h1 class="m-1 text-primary">
-          {{article["title"]}}
-        </h1>
+      <div id="editor" class="p-1 text-left" :class="{'text-right': locale == 'ar'}" >
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <h1 class="m-1 text-primary">
+              {{article["title"]}}
+            </h1>      
+          </div>
+        </div>
       </div>
     </div>
 </template>
