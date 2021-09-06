@@ -2,28 +2,26 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="ftco-section">
-    <div class="container">
-      <div class="row d-flex">
-        @foreach ($articles as $article)
-          <div class="col-md-4 d-flex ftco-animate ">
-              <div class="blog-entry justify-content-end bg-white">
-                  <div class="text text-center p-1 ">
-                      <div class="meta text-center mb-2 d-flex align-items-center justify-content-center ">
-                          <div>
-                              <span class="day">{{ $article->created_at->format('d')}}</span>
-                              <span class="mos">{{ $article->created_at->format('F')}}</span>
-                              <span class="yr">{{ $article->created_at->format('Y')}}</span>
-                          </div>
-                      </div>
-                      <h3 class="heading mb-3"><a href="{{ route('article', [app()->getLocale(), 'slug'=>$article->slug_fr ])}}">{{$article["title"]}}</a></h3>
-                      {{-- <p>{{$article["content"]}}</p> --}}
-                  </div>
-              </div>
-          </div>            
-        @endforeach
-      </div>
-    </div>
-  </section>	
+<div class="bg-primary d-flex align-items-center">
+  <div class="container p-5 my-5 d-flex justify-content-center">
+      <h1 class="m-1 text-white col-md-8 display-4 text-center @if( app()->getLocale() == 'ar') text-right @endif">
+          {{__('tamwil.articles')}}
+      </h1>
+  </div>
+</div>
+<div class="container d-flex justify-content-center">
+  <table class="col-md-8 m-5">
+    <tbody>
+      @foreach ($articles as $article)
+      <tr>
+        <td class="p-3 border-bottom">
+          <h1 class="font-weight-bold mb-3 @if( app()->getLocale() == 'ar') text-right @endif"><a href="{{ route('article', [app()->getLocale(), 'slug'=>$article->slug_fr ])}}" class="text-dark">{{$article["title"]}}</a></h1>
+          <p class="@if( app()->getLocale() == 'fr') text-right @endif">{{ $article->created_at->format('d-M-Y')}}</p>
+        </td>
+      </tr>     
+      @endforeach
+    </tbody>
+  </table> 
+  </div>   
 @endsection
 

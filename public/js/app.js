@@ -3042,14 +3042,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -41850,27 +41842,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "P-5 m-3" }, [
-    _c(
-      "div",
-      {
-        staticClass: "p-1 text-left",
-        class: { "text-right": _vm.locale == "ar" },
-        attrs: { id: "editor" }
-      },
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-1" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-10" }, [
-            _c("h1", { staticClass: "m-1 text-primary" }, [
-              _vm._v(
-                "\n          " + _vm._s(_vm.article["title"]) + "\n        "
-              )
-            ])
-          ])
-        ])
-      ]
-    )
+    _c("div", {
+      staticClass: "p-1 text-left",
+      class: { "text-right": _vm.locale == "ar" },
+      attrs: { id: "editor" }
+    })
   ])
 }
 var staticRenderFns = []
