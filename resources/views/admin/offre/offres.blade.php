@@ -17,7 +17,7 @@
 
                 <form method="get" class="form-inline">
                         <label for="search">Search</label>
-                        <input type="text" name="search" class="form-control m-2">
+                        <input type="text" name="search" class="form-control m-2" placeholder="Nom\objet\description...">
                         <button type="submit" class="btn btn-primary btn-user">Chercher</button>
                     </form>
 

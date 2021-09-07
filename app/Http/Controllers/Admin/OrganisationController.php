@@ -15,9 +15,15 @@ class OrganisationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $organisations = Organisation::paginate(10);
+        $organisations = Organisation::when($request->has('search'), function ($query)use($request){
+            $query->where('nom_organisation_fr', 'like', '%'.$request->search.'%')
+            ->orWhere('email', 'like', '%'.$request->search.'%')
+            ->orWhere('adresse_fr', 'like', '%'.$request->search.'%')
+            ->orWhere('web_site', 'like', '%'.$request->search.'%')
+            ->orWhere('type_d_organisation_fr', 'like', '%'.$request->search.'%');
+       })->paginate(10);
         
         return view('admin.organisation.organisations', compact('organisations'));
     }
