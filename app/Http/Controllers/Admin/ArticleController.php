@@ -17,9 +17,12 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     { 
-        $articles = Article::paginate(10);
+        $articles = Article::when($request->has('search'), function ($query)use($request){
+            $query->where('title_fr', 'like', '%'.$request->search.'%');
+        })->paginate(10);
+
         return view('admin.article.articles', compact('articles'));
     }
 
