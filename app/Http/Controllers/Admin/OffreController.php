@@ -19,9 +19,15 @@ class OffreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $offres = Offre::paginate(10);
+        $offres = Offre::when($request->has('search'), function ($query)use($request){
+                     $query->where('nom_offre_fr', 'like', '%'.$request->search.'%')
+                     ->orWhere('objet_fr', 'like', '%'.$request->search.'%')
+                     ->orWhere('description_fr', 'like', '%'.$request->search.'%')
+                     ->orWhere('condition_fr', 'like', '%'.$request->search.'%')
+                     ->orWhere('fascicule_fr', 'like', '%'.$request->search.'%');
+                })->paginate(10);
         return view('admin.offre.offres', compact('offres'));
     }
 

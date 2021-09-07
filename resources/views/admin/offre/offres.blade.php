@@ -13,8 +13,14 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row d-flex justify-content-between">
-                <h5 class=" font-weight-bold text-primary col-9">Offres table</h5>
-            
+                <h5 class=" font-weight-bold text-primary ">Offres table</h5>
+
+                <form method="get" class="form-inline">
+                        <label for="search">Search</label>
+                        <input type="text" name="search" class="form-control m-2">
+                        <button type="submit" class="btn btn-primary btn-user">Chercher</button>
+                    </form>
+
                 <a href=" {{ route('offre.create') }} " class="btn btn-success btn-icon-split ml-5">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
@@ -84,7 +90,7 @@
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center">
-                    {!! $offres->links() !!}
+                    {!! $offres->withQueryString()->links() !!}
                 </div> 
             </div>
         </div>
