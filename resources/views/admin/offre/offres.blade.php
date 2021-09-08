@@ -17,7 +17,7 @@
 
                 <form method="get" class="form-inline">
                         <label for="search">Search</label>
-                        <input type="text" name="search" class="form-control m-2" placeholder="Nom\objet\description...">
+                        <input type="text" name="search" class="form-control m-2" placeholder="Nom,objet,description...">
                         <button type="submit" class="btn btn-primary btn-user">Chercher</button>
                     </form>
 
@@ -41,7 +41,7 @@
                             <th>Description</th>
                             <th>Condition</th>
                             <th>Fascicule</th>
-                            <th>Mantont du financement</th>
+                            <th>Montant du financement</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,7 +53,7 @@
                             <th>Description</th>
                             <th>Condition</th>
                             <th>Fascicule</th>
-                            <th>Mantont du financement</th>
+                            <th>Montant du financement</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

@@ -3,7 +3,7 @@
         "home"=>"Accueil",
         "funding"=>"Financement",
         "about"=>"A propos",
-        "organizations"=>"Organisations",
+        "organizations"=>"Organismes",
         "articles"=>"Articles",
         "admin"=>"Admin",
         "language"=>"Langue",
